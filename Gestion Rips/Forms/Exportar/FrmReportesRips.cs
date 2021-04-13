@@ -100,7 +100,7 @@ namespace Gestion_Rips.Forms.Exportar
 
                     TolUsa = 0;
                     lblTotalConsultas.Text = "0";
-                    lblTotalConsultas.BackColor = Color.FromArgb(255, 0, 0);
+                    lblTotalConsultas.ForeColor = Color.FromArgb(255, 0, 0);
                 }
                 else
                 {
@@ -110,7 +110,7 @@ namespace Gestion_Rips.Forms.Exportar
                     {
                         TolUsa = 0;
                         lbltTotalUser.Text = "0";
-                        lbltTotalUser.BackColor = Color.FromArgb(255, 0, 0);
+                        lbltTotalUser.ForeColor = Color.FromArgb(255, 0, 0);
                     }
                     else
                     {
@@ -132,7 +132,7 @@ namespace Gestion_Rips.Forms.Exportar
                 {
                     TolFac = 0;
                     lblTotalTransacciones.Text = "0";   
-                    lblTotalTransacciones.BackColor = Color.FromArgb(255, 0, 0);
+                    lblTotalTransacciones.ForeColor = Color.FromArgb(255, 0, 0);
                 }
                 else
                 {
@@ -141,7 +141,7 @@ namespace Gestion_Rips.Forms.Exportar
                     {
                         TolFac = 0;
                         lblTotalTransacciones.Text = "0";
-                        lblTotalTransacciones.BackColor = Color.FromArgb(255, 0, 0);
+                        lblTotalTransacciones.ForeColor = Color.FromArgb(255, 0, 0);
                     }
                     else
                     {
@@ -165,7 +165,7 @@ namespace Gestion_Rips.Forms.Exportar
                 {
                     TolHos = 0;
                     lblTotalHospi.Text = "0";
-                    lblTotalHospi.BackColor = Color.FromArgb(255, 0, 0);
+                    lblTotalHospi.ForeColor = Color.FromArgb(255, 0, 0);
                 }
                 else
                 {
@@ -174,7 +174,7 @@ namespace Gestion_Rips.Forms.Exportar
                     {
                         TolHos = 0;
                         lblTotalHospi.Text = "0";
-                        lblTotalHospi.BackColor = Color.FromArgb(255, 0, 0);
+                        lblTotalHospi.ForeColor = Color.FromArgb(255, 0, 0);
                     }
                     else
                     {
@@ -197,7 +197,7 @@ namespace Gestion_Rips.Forms.Exportar
                 {
                     TolObs = 0;
                     lblTotalObser.Text = "0";
-                    lblTotalObser.BackColor = Color.FromArgb(255, 0, 0);
+                    lblTotalObser.ForeColor = Color.FromArgb(255, 0, 0);
                 }
                 else
                 {
@@ -206,7 +206,7 @@ namespace Gestion_Rips.Forms.Exportar
                     {
                         TolObs = 0;
                         lblTotalObser.Text = "0";
-                        lblTotalObser.BackColor = Color.FromArgb(255, 0, 0);
+                        lblTotalObser.ForeColor = Color.FromArgb(255, 0, 0);
                     }
                     else
                     {
@@ -229,7 +229,7 @@ namespace Gestion_Rips.Forms.Exportar
                 {
                     TolReN = 0;
                     lblTotalRecien.Text = "0";
-                    lblTotalRecien.BackColor = Color.FromArgb(255, 0, 0);
+                    lblTotalRecien.ForeColor = Color.FromArgb(255, 0, 0);
                 }
                 else
                 {
@@ -238,7 +238,7 @@ namespace Gestion_Rips.Forms.Exportar
                     {
                         TolReN = 0;
                         lblTotalRecien.Text = "0";
-                        lblTotalRecien.BackColor = Color.FromArgb(255, 0, 0);
+                        lblTotalRecien.ForeColor = Color.FromArgb(255, 0, 0);
                     }
                     else
                     {
@@ -260,7 +260,7 @@ namespace Gestion_Rips.Forms.Exportar
                 {
                     TolConsul = 0;
                     lblTotalConsultas.Text = "0";
-                    lblTotalConsultas.BackColor = Color.FromArgb(255, 0, 0);
+                    lblTotalConsultas.ForeColor = Color.FromArgb(255, 0, 0);
                 }
                 else
                 {
@@ -269,7 +269,7 @@ namespace Gestion_Rips.Forms.Exportar
                     {
                         TolConsul = 0;
                         lblTotalConsultas.Text = "0";
-                        lblTotalConsultas.BackColor = Color.FromArgb(255, 0, 0);
+                        lblTotalConsultas.ForeColor = Color.FromArgb(255, 0, 0);
                     }
                     else
                     {
@@ -295,7 +295,7 @@ namespace Gestion_Rips.Forms.Exportar
                 {
                     TolMedi = 0;
                     lblTotalMedica.Text = "0";
-                    lblTotalMedica.BackColor = Color.FromArgb(255, 0, 0);
+                    lblTotalMedica.ForeColor = Color.FromArgb(255, 0, 0);
                 }
                 else
                 {
@@ -304,7 +304,7 @@ namespace Gestion_Rips.Forms.Exportar
                     {
                         TolMedi = 0;
                         lblTotalMedica.Text = "0";
-                        lblTotalMedica.BackColor = Color.FromArgb(255, 0, 0);
+                        lblTotalMedica.ForeColor = Color.FromArgb(255, 0, 0);
                     }
                     else
                     {
@@ -327,7 +327,7 @@ namespace Gestion_Rips.Forms.Exportar
                 {
                     TolProce = 0;
                     lblTotalProce.Text = "0";
-                    lblTotalProce.BackColor = Color.FromArgb(255, 0, 0);
+                    lblTotalProce.ForeColor = Color.FromArgb(255, 0, 0);
                 }
                 else
                 {
@@ -336,7 +336,7 @@ namespace Gestion_Rips.Forms.Exportar
                     {
                         TolProce = 0;
                         lblTotalProce.Text = "0";
-                        lblTotalProce.BackColor = Color.FromArgb(255, 0, 0);
+                        lblTotalProce.ForeColor = Color.FromArgb(255, 0, 0);
                     }
                     else
                     {
@@ -361,7 +361,7 @@ namespace Gestion_Rips.Forms.Exportar
                 {
                     TolOtrosSer = 0;
                     lblTotalOtrosServi.Text = "0";
-                    lblTotalOtrosServi.BackColor = Color.FromArgb(255, 0, 0);
+                    lblTotalOtrosServi.ForeColor = Color.FromArgb(255, 0, 0);
                 }
 
                 else
@@ -371,7 +371,7 @@ namespace Gestion_Rips.Forms.Exportar
                     {
                         TolOtrosSer = 0;
                         lblTotalOtrosServi.Text = "0";
-                        lblTotalOtrosServi.BackColor = Color.FromArgb(255, 0, 0);
+                        lblTotalOtrosServi.ForeColor = Color.FromArgb(255, 0, 0);
                     }
                     else
                     {
@@ -393,7 +393,7 @@ namespace Gestion_Rips.Forms.Exportar
 
                 if (difer != 0)
                 {
-                    txtTolDifer.BackColor = Color.FromArgb(255, 0, 0);
+                    txtTolDifer.ForeColor = Color.FromArgb(255, 0, 0);
                 }
 
             }
