@@ -72,7 +72,6 @@ C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\obj\Debug\RdlCompile
 C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\obj\Debug\RdlCompile.compiled
 C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\obj\Debug\Gestion Rips.csproj.CopyComplete
 C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\bin\Debug\Reportes\rdlc\InfReporErroresRips.rdlc
-C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\bin\Debug\Forms\Exportar\FrmExportarSedarips.Designer.cs
 C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\obj\Debug\Gestion_Rips.Reportes.FrmInfUsuariosRemi.resources
 C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\obj\Debug\Gestion_Rips.Forms.Exportar.FrmReportesRips.resources
 C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\bin\Debug\Reportes\rdlc\dsInfInformeConsultaRemision.rdlc
@@ -89,3 +88,5 @@ C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\bin\Debug\Reportes\r
 C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\obj\Debug\Gestion_Rips.Reportes.FrmInInformeAuditar.resources
 C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\obj\Debug\Gestion_Rips.Forms.Exportar.FrmArchivoMaestro.resources
 C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\obj\Debug\Gestion_Rips.Forms.Exportar.FrmAnularRemi.resources
+C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\bin\Debug\Forms\ExportarSedaRips\FrmExportarSedarips.Designer.cs
+C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\obj\Debug\Gestion_Rips.Forms.ArchivoMaestro.FrmCrearModificarMaestro.resources

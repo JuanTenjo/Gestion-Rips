@@ -37,11 +37,18 @@ namespace Gestion_Rips.Clases
         public static string CodRips { get; set; }
         public static string NomTerc { get; set; }
 
+        //Para Anular
 
         public static string RemiAnular { get; set; }
 
         public static string RazonAnul { get; set; }
 
+        //PARA Formilario Crear Modificar Maestro
+
+
+        public static string NomAdmin { get; set; }
+        public static string CodiIPS { get; set; }
+        public static string CodigAdmin { get; set; }
 
     }
 }

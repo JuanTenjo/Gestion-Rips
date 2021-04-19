@@ -1183,7 +1183,7 @@ namespace Gestion_Rips.Forms.Exportar
 
                 string Estandatos, ConverCodigo;
 
-                Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos archivo maestro] WHERE CodInterAdmi='" + CI + " AND CerraRemi=" + RA + "'";
+                Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos archivo maestro] WHERE CodInterAdmi= '" + CI + "' AND CerraRemi= '" + RA + "'";
 
                 SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
 
@@ -1406,13 +1406,18 @@ namespace Gestion_Rips.Forms.Exportar
                 }
 
                 Utils.Informa = "¿Usted desea agregar una NUEVA" + "\r";
-                Utils.Informa += "remisión de envío a la entidad " + NAP + "\r";
+                Utils.Informa += "remisión de envío a la entidad " + NAP + "?" + "\r";
 
-                var RESP = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                var RESP = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
                 if (RESP == DialogResult.Yes)
                 {
-
+                    Utils.NomAdmin = cboNomAdmin.SelectedValue.ToString();
+                    Utils.CodiIPS = txtCodigIPS.Text;
+                    Utils.CodigAdmin = txtCodigAdmin.Text;
+                    Gestion_Rips.Forms.ArchivoMaestro.FrmCrearModificarMaestro frmCrearModificarMaestro = new Gestion_Rips.Forms.ArchivoMaestro.FrmCrearModificarMaestro();
+                    frmCrearModificarMaestro.ShowDialog();
+                    CargarDatosAdminPlanes();
                 }
 
             }
@@ -1941,7 +1946,8 @@ namespace Gestion_Rips.Forms.Exportar
 
                     FunCer = CerrarRemision(NR, USC);
 
-                    DataGridRemi.Rows.RemoveAt(DataGridRemi.CurrentRow.Index);
+                    CargarDatosAdminPlanes();
+
 
                 }
 
@@ -2131,7 +2137,7 @@ namespace Gestion_Rips.Forms.Exportar
 
                             Utils.Informa = "La remisión No. " + NR + " ha sido anulada en este sistema" + "\r";
                             MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                            CargarDatosAdminPlanes();
                             break;
 
                         default:

@@ -67,29 +67,35 @@
   <ItemGroup>
     <Compile Include="Clases\Conexion.cs" />
     <Compile Include="Clases\Utils.cs" />
-    <Compile Include="Forms\Exportar\FrmAnularRemi.cs">
+    <Compile Include="Forms\ArchivoMaestro\FrmArchivoMaestro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Exportar\FrmAnularRemi.Designer.cs">
-      <DependentUpon>FrmAnularRemi.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Exportar\FrmArchivoMaestro.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Exportar\FrmArchivoMaestro.Designer.cs">
+    <Compile Include="Forms\ArchivoMaestro\FrmArchivoMaestro.Designer.cs">
       <DependentUpon>FrmArchivoMaestro.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Exportar\FrmExportarSedarips.cs">
+    <Compile Include="Forms\ArchivoMaestro\FrmAnularRemi.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Exportar\FrmExportarSedarips.Designer.cs">
+    <Compile Include="Forms\ArchivoMaestro\FrmAnularRemi.Designer.cs">
+      <DependentUpon>FrmAnularRemi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ArchivoMaestro\FrmCrearModificarMaestro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ArchivoMaestro\FrmCrearModificarMaestro.Designer.cs">
+      <DependentUpon>FrmCrearModificarMaestro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ExportarSedaRips\FrmExportarSedarips.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ExportarSedaRips\FrmExportarSedarips.Designer.cs">
       <DependentUpon>FrmExportarSedarips.cs</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Forms\Exportar\FrmReportesRips.cs">
+    <Compile Include="Forms\ExportarSedaRips\FrmReportesRips.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Exportar\FrmReportesRips.Designer.cs">
+    <Compile Include="Forms\ExportarSedaRips\FrmReportesRips.Designer.cs">
       <DependentUpon>FrmReportesRips.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmPrincipal.cs">
@@ -143,16 +149,19 @@
       <DependentUpon>FrmInInformeAuditar.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <EmbeddedResource Include="Forms\Exportar\FrmAnularRemi.resx">
-      <DependentUpon>FrmAnularRemi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Exportar\FrmArchivoMaestro.resx">
+    <EmbeddedResource Include="Forms\ArchivoMaestro\FrmArchivoMaestro.resx">
       <DependentUpon>FrmArchivoMaestro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Exportar\FrmExportarSedarips.resx">
+    <EmbeddedResource Include="Forms\ArchivoMaestro\FrmAnularRemi.resx">
+      <DependentUpon>FrmAnularRemi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ArchivoMaestro\FrmCrearModificarMaestro.resx">
+      <DependentUpon>FrmCrearModificarMaestro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ExportarSedaRips\FrmExportarSedarips.resx">
       <DependentUpon>FrmExportarSedarips.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Exportar\FrmReportesRips.resx">
+    <EmbeddedResource Include="Forms\ExportarSedaRips\FrmReportesRips.resx">
       <DependentUpon>FrmReportesRips.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmPrincipal.resx">
