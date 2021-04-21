@@ -2245,7 +2245,11 @@ namespace Gestion_Rips.Forms.Exportar
             }
         }
 
-
+        private void BtnBorrarRemi_Click(object sender, EventArgs e)
+        {
+            Gestion_Rips.Forms.ArchivoMaestro.FrmBorrarRemision FrmBorrarRemision = new Gestion_Rips.Forms.ArchivoMaestro.FrmBorrarRemision();
+            FrmBorrarRemision.ShowDialog();
+        }
     }
 
 }

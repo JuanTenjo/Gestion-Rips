@@ -1,0 +1,415 @@
+﻿
+namespace Gestion_Rips.Forms.ArchivoMaestro
+{
+    partial class FrmBorrarRemision
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBorrarRemision));
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.asd = new System.Windows.Forms.GroupBox();
+            this.RdTodoSelect = new System.Windows.Forms.RadioButton();
+            this.RdArSelect = new System.Windows.Forms.RadioButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.CboArchiBorrar = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.TxtRemiNum = new System.Windows.Forms.TextBox();
+            this.TxtCodMin = new System.Windows.Forms.TextBox();
+            this.TxtNomEnti = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.BtnBorrar = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.LblNivelPermi = new System.Windows.Forms.Label();
+            this.LblCodigoUsaF = new System.Windows.Forms.Label();
+            this.LblNombreUsa = new System.Windows.Forms.Label();
+            this.DtFecRemi = new System.Windows.Forms.DateTimePicker();
+            this.DtPer01 = new System.Windows.Forms.DateTimePicker();
+            this.DtPer02 = new System.Windows.Forms.DateTimePicker();
+            this.asd.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(3, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(120, 26);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Remisión No:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(3, 35);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(120, 26);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Fecha:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(3, 61);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(120, 26);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Código SGSSS:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(3, 87);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(120, 26);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Nombre entidad:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label5
+            // 
+            this.label5.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(3, 113);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(120, 26);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Reportado del:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label6
+            // 
+            this.label6.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(255, 115);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(25, 26);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "al";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(-3, 16);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(173, 26);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "¿Que archivos borra?";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // asd
+            // 
+            this.asd.Controls.Add(this.RdTodoSelect);
+            this.asd.Controls.Add(this.RdArSelect);
+            this.asd.Controls.Add(this.label7);
+            this.asd.Location = new System.Drawing.Point(6, 142);
+            this.asd.Name = "asd";
+            this.asd.Size = new System.Drawing.Size(172, 118);
+            this.asd.TabIndex = 13;
+            this.asd.TabStop = false;
+            // 
+            // RdTodoSelect
+            // 
+            this.RdTodoSelect.AutoSize = true;
+            this.RdTodoSelect.Location = new System.Drawing.Point(6, 89);
+            this.RdTodoSelect.Name = "RdTodoSelect";
+            this.RdTodoSelect.Size = new System.Drawing.Size(114, 17);
+            this.RdTodoSelect.TabIndex = 14;
+            this.RdTodoSelect.TabStop = true;
+            this.RdTodoSelect.Text = "Todos los archivos";
+            this.RdTodoSelect.UseVisualStyleBackColor = true;
+            this.RdTodoSelect.CheckedChanged += new System.EventHandler(this.RdTodoSelect_CheckedChanged);
+            // 
+            // RdArSelect
+            // 
+            this.RdArSelect.AutoSize = true;
+            this.RdArSelect.Location = new System.Drawing.Point(6, 56);
+            this.RdArSelect.Name = "RdArSelect";
+            this.RdArSelect.Size = new System.Drawing.Size(138, 17);
+            this.RdArSelect.TabIndex = 13;
+            this.RdArSelect.TabStop = true;
+            this.RdArSelect.Text = "El archivo seleccionado";
+            this.RdArSelect.UseVisualStyleBackColor = true;
+            this.RdArSelect.CheckedChanged += new System.EventHandler(this.RdArSelect_CheckedChanged);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.CboArchiBorrar);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Location = new System.Drawing.Point(182, 144);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(241, 118);
+            this.groupBox2.TabIndex = 15;
+            this.groupBox2.TabStop = false;
+            // 
+            // CboArchiBorrar
+            // 
+            this.CboArchiBorrar.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.CboArchiBorrar.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CboArchiBorrar.Enabled = false;
+            this.CboArchiBorrar.FormattingEnabled = true;
+            this.CboArchiBorrar.Location = new System.Drawing.Point(6, 66);
+            this.CboArchiBorrar.Name = "CboArchiBorrar";
+            this.CboArchiBorrar.Size = new System.Drawing.Size(225, 21);
+            this.CboArchiBorrar.TabIndex = 13;
+            // 
+            // label8
+            // 
+            this.label8.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(-3, 16);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(233, 26);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "Archivo seleccionado";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // TxtRemiNum
+            // 
+            this.TxtRemiNum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtRemiNum.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtRemiNum.Location = new System.Drawing.Point(123, 12);
+            this.TxtRemiNum.Name = "TxtRemiNum";
+            this.TxtRemiNum.Size = new System.Drawing.Size(196, 21);
+            this.TxtRemiNum.TabIndex = 16;
+            this.TxtRemiNum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtRemiNum_KeyPress);
+            // 
+            // TxtCodMin
+            // 
+            this.TxtCodMin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtCodMin.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCodMin.Location = new System.Drawing.Point(123, 64);
+            this.TxtCodMin.Name = "TxtCodMin";
+            this.TxtCodMin.Size = new System.Drawing.Size(196, 21);
+            this.TxtCodMin.TabIndex = 18;
+            // 
+            // TxtNomEnti
+            // 
+            this.TxtNomEnti.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtNomEnti.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNomEnti.Location = new System.Drawing.Point(123, 90);
+            this.TxtNomEnti.Name = "TxtNomEnti";
+            this.TxtNomEnti.Size = new System.Drawing.Size(289, 21);
+            this.TxtNomEnti.TabIndex = 19;
+            // 
+            // label14
+            // 
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label14.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.Black;
+            this.label14.Location = new System.Drawing.Point(52, 265);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(68, 15);
+            this.label14.TabIndex = 33;
+            this.label14.Text = "Borrar";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BtnBorrar
+            // 
+            this.BtnBorrar.BackColor = System.Drawing.Color.Transparent;
+            this.BtnBorrar.BackgroundImage = global::Gestion_Rips.Properties.Resources.icons8_delete_30;
+            this.BtnBorrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.BtnBorrar.FlatAppearance.BorderSize = 0;
+            this.BtnBorrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
+            this.BtnBorrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
+            this.BtnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnBorrar.Location = new System.Drawing.Point(55, 282);
+            this.BtnBorrar.Name = "BtnBorrar";
+            this.BtnBorrar.Size = new System.Drawing.Size(57, 39);
+            this.BtnBorrar.TabIndex = 32;
+            this.BtnBorrar.TabStop = false;
+            this.BtnBorrar.UseVisualStyleBackColor = false;
+            this.BtnBorrar.Click += new System.EventHandler(this.BtnBorrar_Click);
+            // 
+            // label9
+            // 
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Black;
+            this.label9.Location = new System.Drawing.Point(179, 267);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(30, 15);
+            this.label9.TabIndex = 34;
+            this.label9.Text = "ID:";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LblNivelPermi
+            // 
+            this.LblNivelPermi.BackColor = System.Drawing.Color.Transparent;
+            this.LblNivelPermi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LblNivelPermi.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblNivelPermi.ForeColor = System.Drawing.Color.Black;
+            this.LblNivelPermi.Location = new System.Drawing.Point(286, 265);
+            this.LblNivelPermi.Name = "LblNivelPermi";
+            this.LblNivelPermi.Size = new System.Drawing.Size(56, 15);
+            this.LblNivelPermi.TabIndex = 35;
+            this.LblNivelPermi.Text = "NivelPer";
+            this.LblNivelPermi.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // LblCodigoUsaF
+            // 
+            this.LblCodigoUsaF.BackColor = System.Drawing.Color.Transparent;
+            this.LblCodigoUsaF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LblCodigoUsaF.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCodigoUsaF.ForeColor = System.Drawing.Color.Black;
+            this.LblCodigoUsaF.Location = new System.Drawing.Point(207, 265);
+            this.LblCodigoUsaF.Name = "LblCodigoUsaF";
+            this.LblCodigoUsaF.Size = new System.Drawing.Size(73, 15);
+            this.LblCodigoUsaF.TabIndex = 36;
+            this.LblCodigoUsaF.Text = "CodigoUsa";
+            this.LblCodigoUsaF.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // LblNombreUsa
+            // 
+            this.LblNombreUsa.BackColor = System.Drawing.Color.Transparent;
+            this.LblNombreUsa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LblNombreUsa.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblNombreUsa.ForeColor = System.Drawing.Color.Black;
+            this.LblNombreUsa.Location = new System.Drawing.Point(182, 282);
+            this.LblNombreUsa.Name = "LblNombreUsa";
+            this.LblNombreUsa.Size = new System.Drawing.Size(241, 15);
+            this.LblNombreUsa.TabIndex = 37;
+            this.LblNombreUsa.Text = "NombreUSa";
+            this.LblNombreUsa.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // DtFecRemi
+            // 
+            this.DtFecRemi.Location = new System.Drawing.Point(123, 39);
+            this.DtFecRemi.Name = "DtFecRemi";
+            this.DtFecRemi.Size = new System.Drawing.Size(196, 20);
+            this.DtFecRemi.TabIndex = 38;
+            // 
+            // DtPer01
+            // 
+            this.DtPer01.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DtPer01.Location = new System.Drawing.Point(123, 116);
+            this.DtPer01.Name = "DtPer01";
+            this.DtPer01.Size = new System.Drawing.Size(132, 20);
+            this.DtPer01.TabIndex = 39;
+            // 
+            // DtPer02
+            // 
+            this.DtPer02.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DtPer02.Location = new System.Drawing.Point(280, 118);
+            this.DtPer02.Name = "DtPer02";
+            this.DtPer02.Size = new System.Drawing.Size(132, 20);
+            this.DtPer02.TabIndex = 40;
+            // 
+            // FrmBorrarRemision
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(423, 328);
+            this.Controls.Add(this.DtPer02);
+            this.Controls.Add(this.DtPer01);
+            this.Controls.Add(this.DtFecRemi);
+            this.Controls.Add(this.LblNombreUsa);
+            this.Controls.Add(this.LblCodigoUsaF);
+            this.Controls.Add(this.LblNivelPermi);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.BtnBorrar);
+            this.Controls.Add(this.TxtNomEnti);
+            this.Controls.Add(this.TxtCodMin);
+            this.Controls.Add(this.TxtRemiNum);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.asd);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.Name = "FrmBorrarRemision";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "FrmBorrarRemision";
+            this.Load += new System.EventHandler(this.FrmBorrarRemision_Load);
+            this.asd.ResumeLayout(false);
+            this.asd.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox asd;
+        private System.Windows.Forms.RadioButton RdTodoSelect;
+        private System.Windows.Forms.RadioButton RdArSelect;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox CboArchiBorrar;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox TxtRemiNum;
+        private System.Windows.Forms.TextBox TxtCodMin;
+        private System.Windows.Forms.TextBox TxtNomEnti;
+        private System.Windows.Forms.Button BtnBorrar;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label LblNivelPermi;
+        private System.Windows.Forms.Label LblCodigoUsaF;
+        private System.Windows.Forms.Label LblNombreUsa;
+        private System.Windows.Forms.DateTimePicker DtFecRemi;
+        private System.Windows.Forms.DateTimePicker DtPer01;
+        private System.Windows.Forms.DateTimePicker DtPer02;
+    }
+}

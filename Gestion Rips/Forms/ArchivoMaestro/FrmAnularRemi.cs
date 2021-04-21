@@ -19,13 +19,13 @@ namespace Gestion_Rips.Forms.Exportar
 
         private void FrmAnularRemi_Load(object sender, EventArgs e)
         {
-            lblTexto.Text = "Por favor registre las razones por las cuales anula la remisión: " + Utils.RemiAnular;
+            lblTexto.Text = "Por favor registre las razones por que se anulara o eliminara esta remision";
 
         }
 
         private void BtnAceptar_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrWhiteSpace(txtRazonAnul.Text) == false)
+            if(string.IsNullOrWhiteSpace(txtRazonAnul.Text) == false || txtRazonAnul.Text.Length > 16)
             {
                 Utils.RazonAnul = txtRazonAnul.Text;
                 this.Close();
@@ -33,6 +33,7 @@ namespace Gestion_Rips.Forms.Exportar
             else
             {
                 Utils.Informa = "Lo siento pero no puedes anular una remision sin una razon" + "\r";
+                Utils.Informa += "Minimo 16 caracteres" + "\r";
 
                 MessageBox.Show("Control de anulacion", Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

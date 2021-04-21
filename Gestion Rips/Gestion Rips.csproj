@@ -79,6 +79,12 @@
     <Compile Include="Forms\ArchivoMaestro\FrmAnularRemi.Designer.cs">
       <DependentUpon>FrmAnularRemi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ArchivoMaestro\FrmBorrarRemision.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ArchivoMaestro\FrmBorrarRemision.Designer.cs">
+      <DependentUpon>FrmBorrarRemision.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ArchivoMaestro\FrmCrearModificarMaestro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ArchivoMaestro\FrmAnularRemi.resx">
       <DependentUpon>FrmAnularRemi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ArchivoMaestro\FrmBorrarRemision.resx">
+      <DependentUpon>FrmBorrarRemision.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ArchivoMaestro\FrmCrearModificarMaestro.resx">
       <DependentUpon>FrmCrearModificarMaestro.cs</DependentUpon>
@@ -294,6 +303,7 @@
     <None Include="Resources\icons8-cerrar-pestaña-30.png" />
     <None Include="Resources\icons8-eliminar-propiedad-30.png" />
     <None Include="Resources\icons8-crear-nuevo-301.png" />
+    <None Include="Resources\icons8-delete-30.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
