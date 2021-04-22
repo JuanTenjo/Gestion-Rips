@@ -24,9 +24,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
         {
             try
             {
-
                 CargaUsuario();
                 CargaComboBox();
+                CargarDatosRemi(Utils.NumRemi);
             }
             catch (Exception ex)
             {
@@ -462,54 +462,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                 {
                     if (string.IsNullOrWhiteSpace(TxtRemiNum.Text) == false)
                     {
-                        TxtCodMin.Clear();
-                        TxtNomEnti.Clear();
-
-                        string C = TxtRemiNum.Text;
-
-
-                        Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos archivo maestro] WHERE ConseArchivo = '"+ C +"'";
-
-
-                        SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
-
-                        if (TablaAux1.HasRows)
-                        {
-                            //Muestre algunos datos de la remision
-
-                            TablaAux1.Read();
-
-
-                            string CA = TablaAux1["CodInterAdmi"].ToString();
-
-                            this.DtFecRemi.Value = Convert.ToDateTime(TablaAux1["FecRemite"].ToString());
-                            this.TxtCodMin.Text = TablaAux1["CodAdmin"].ToString();
-                            this.DtPer01.Value = Convert.ToDateTime(TablaAux1["Periodo1"].ToString());
-                            this.DtPer02.Value = Convert.ToDateTime(TablaAux1["Periodo2"].ToString());
-
-                            string Data = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos administradoras de planes] WHERE CodInterno = '"+ CA +"'";
-
-                            SqlDataReader TablaAux4 = Conexion.SQLDataReader(Data);
-
-                            if (TablaAux4.HasRows)
-                            {
-                                TablaAux4.Read();
-                                this.TxtNomEnti.Text = TablaAux4["NomAdmin"].ToString();
-                                TablaAux4.Close();
-                            }
-
-
-                        }
-                        else
-                        {
-                            Utils.Titulo01 = "Control para mostrar datos";
-                            Utils.Informa = "Lo siento pero el número de remisión" + "\r";
-                            Utils.Informa += "digitado no existe en este sistema." + "\r";
-                            Utils.Informa += "Por favor corrija el número o pulse" + "\r";
-                            Utils.Informa += "La tecla [ESC] para continuar." + "\r";
-                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        TablaAux1.Close();
+                        CargarDatosRemi(TxtRemiNum.Text);
                     }
                 }
             }
@@ -522,6 +475,70 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void CargarDatosRemi(string NumRemi)
+        {
+            try
+            {
+                TxtCodMin.Clear();
+                TxtNomEnti.Clear();
+
+    
+
+                Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos archivo maestro] WHERE ConseArchivo = '" + NumRemi + "'";
+
+
+                SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (TablaAux1.HasRows)
+                {
+                    //Muestre algunos datos de la remision
+
+                    TablaAux1.Read();
+
+
+                    string CA = TablaAux1["CodInterAdmi"].ToString();
+                    this.TxtRemiNum.Text = NumRemi;
+                    this.DtFecRemi.Value = Convert.ToDateTime(TablaAux1["FecRemite"].ToString());
+                    this.TxtCodMin.Text = TablaAux1["CodAdmin"].ToString();
+                    this.DtPer01.Value = Convert.ToDateTime(TablaAux1["Periodo1"].ToString());
+                    this.DtPer02.Value = Convert.ToDateTime(TablaAux1["Periodo2"].ToString());
+
+                    string Data = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos administradoras de planes] WHERE CodInterno = '" + CA + "'";
+
+                    SqlDataReader TablaAux4 = Conexion.SQLDataReader(Data);
+
+                    if (TablaAux4.HasRows)
+                    {
+                        TablaAux4.Read();
+                        this.TxtNomEnti.Text = TablaAux4["NomAdmin"].ToString();
+                        TablaAux4.Close();
+                    }
+
+
+                }
+                else
+                {
+                    Utils.Titulo01 = "Control para mostrar datos";
+                    Utils.Informa = "Lo siento pero el número de remisión" + "\r";
+                    Utils.Informa += "digitado no existe en este sistema." + "\r";
+                    Utils.Informa += "Por favor corrija el número o pulse" + "\r";
+                    Utils.Informa += "La tecla [ESC] para continuar." + "\r";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                TablaAux1.Close();
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la funcion CargarDatosRemi " + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
     }
 
 }

@@ -31,6 +31,7 @@ namespace Gestion_Rips.Forms.Exportar
                 CargarDatosAdminPlanes();
             }
         }
+
         #endregion
 
         #region ComboBox
@@ -73,6 +74,219 @@ namespace Gestion_Rips.Forms.Exportar
 
         #region Funciones
 
+        private int ElimDatosLocales(string NT)
+        {
+            try
+            {
+                //'Permite eliminar todos los datos de una tabla local
+
+                Utils.SqlDatos = "DELETE FROM '" + NT + "'";
+
+                Boolean EstaEliDato = Conexion.SQLDelete(Utils.SqlDatos);
+
+                if (EstaEliDato)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return -1;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la función: ElimDatosLocales del " + "\r";
+                Utils.Informa += "Módulo gestión de RIPS" + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+        }
+
+        private int ActualMaestro(string R)
+        {
+            try
+            {
+                string ARC, CRips, Para01, NAr;
+                Double TolR;
+
+                //'Abrimos la tabla nombre de archivos
+
+                Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos archivo maestro] WHERE ConseArchivo = '" + R + "' ";
+
+                SqlDataReader TabNomArchi = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (TabNomArchi.HasRows == false)
+                {
+                    //'El número d remisión no se pudo encontrar en el sistema
+                    return 0;
+                }
+                else
+                {
+                    TabNomArchi.Read();
+                    if (Convert.ToBoolean(TabNomArchi["ActualRemi"].ToString()) == true) //aqui
+                    {
+                        //   'Al archivo ya se le corrió el proceso de actualización
+                        TabNomArchi.Close();
+                        return 1;
+                    }
+                    else
+                    {
+                        TabNomArchi.Close();
+                        return 2;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la función: ActualMaestro del " + "\r";
+                Utils.Informa += "Módulo gestión de RIPS" + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+        }
+
+        private int CerrarRemision(string R, string U)
+        {
+            try
+            {
+                string SqlNomArchi;
+
+                SqlNomArchi = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos archivo maestro] WHERE [ConseArchivo] = '" + R + "'";
+
+                SqlDataReader TabNomArchi = Conexion.SQLDataReader(SqlNomArchi);
+
+                if (TabNomArchi.HasRows == false)
+                {
+                    return 0;
+                }
+                else
+                {
+
+                    string Date = DateTime.Now.ToString("yyyy-MM-dd");
+
+                    Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos archivo maestro] SET CerraRemi = 1, CodModi = '" + U + "', FecModi = '" + Date + "' WHERE [ConseArchivo] = '" + R + "' ";
+
+                    Boolean EstaAct = Conexion.SQLUpdate(Utils.SqlDatos);
+
+                    if (EstaAct)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+
+                TabNomArchi.Close();
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la funcion: Cerrar Remision" + "\r";
+                Utils.Informa += "Módulo gestión de RIPS" + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+        }
+        private int RegisAccion(string Rm, string A, string Rz, string F, string Us)
+        {
+            try
+            {
+                Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos control de remisiones] " +
+                    "(" +
+                    "CodiMas," +
+                     "AcReal," +
+                     "RazReal," +
+                     "VezAccion," +
+                     "FecRegis," +
+                     "CodiRegis" +
+                     ")" +
+                     "VALUES" +
+                     "(" +
+                     "'" + Rm + "'," +
+                     "'" + A + "'," +
+                     "'" + Rz + "'," +
+                     "'" + 1 + "'," +
+                     "'" + F + "'," +
+                     "'" + Us + "'" +
+                     ")";
+
+                Boolean EstadoInsertMovi = Conexion.SqlInsert(Utils.SqlDatos);
+
+                if (EstadoInsertMovi)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la funcion: RegisAccion" + "\r";
+                Utils.Informa += "Módulo gestión de RIPS" + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
+            }
+        }
+
+        private int AnularRemision(string R, string Rz, string F, string U)
+        {
+            try
+            {
+                Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos archivo maestro] WHERE ConseArchivo = '" + R + "'";
+
+                SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (TablaAux1.HasRows == false)
+                {
+                    return 0;
+                }
+                else
+                {
+                    Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos archivo maestro] SET AnulRemi = 1, RazAnul = '" + Rz + "', CodAnul = '" + U + "', FecAnul = '" + F + "' WHERE ConseArchivo = '" + R + "'";
+
+                    Boolean EstaAnul = Conexion.SQLUpdate(Utils.SqlDatos);
+
+                    if (EstaAnul)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la funcion: AnularRemision en el" + "\r";
+                Utils.Informa += "Módulo gestión de RIPS" + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+        }
 
         private int ActualArchiControl(string NR, string CIPS, string FeN)
         {
@@ -829,7 +1043,6 @@ namespace Gestion_Rips.Forms.Exportar
                 return -1;
             }
         }
-
         private void BtnExportar_Click(object sender, EventArgs e)
         {
             try
@@ -1174,7 +1387,6 @@ namespace Gestion_Rips.Forms.Exportar
             }
         }
 
-
         private string RemisAbierta(string CI, Boolean RA)
         {
             try
@@ -1209,6 +1421,7 @@ namespace Gestion_Rips.Forms.Exportar
                 return "-1";
             }
         }
+
         private void CargaUsuario()
         {
             try
@@ -1242,6 +1455,7 @@ namespace Gestion_Rips.Forms.Exportar
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void CargarDatosAdminPlanes()
         {
             try
@@ -1348,7 +1562,7 @@ namespace Gestion_Rips.Forms.Exportar
             }
         }
 
-        #endregion
+        #endregion 
 
         #region Botones
         private void btnNuevaRemi_Click(object sender, EventArgs e)
@@ -1640,147 +1854,119 @@ namespace Gestion_Rips.Forms.Exportar
             }
         }
 
-
-        //private int EliminarTodosTemp()
-        //{
-        //    try
-        //    {
-        //        string NT, Estandatos;
-        //        int FunEliT, DVF = 0, ConverCodigo;
-
-        //        //'Abrimos la tabla nombre de archivos
-
-        //        //Utils.SqlDatos = "DELETE FROM [DARIPSXPSQL].[dbo].[Datos nombres de archivos]";
-
-        //        //Boolean EstaElimi = Conexion.SQLDelete(Utils.SqlDatos);
-
-        //        Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos nombres de archivos] ";
-
-        //        SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
-
-        //        if(TablaAux1.HasRows == false)
-        //        {
-        //            //   'No existen registros en la tabla
-        //            return 0;
-        //        }
-        //        else
-        //        {
-        //            while (TablaAux1.Read())
-        //            {
-        //                NT = TablaAux1["NomTabRemo"].ToString();
-
-        //                //Proceda a eliminar los datos
-
-
-        //                FunEliT = ElimDatosLocales(NT);
-
-        //                if(FunEliT == -1)
-        //                {
-        //                    DVF = -1;
-        //                    break;
-        //                }
-        //                else
-        //                {
-        //                    DVF = 2;
-        //                }
-
-        //            }
-
-        //            TablaAux1.Close();
-
-        //            return DVF;
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Utils.Titulo01 = "Control de errores de ejecución";
-        //        Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
-        //        Utils.Informa += "en la función: EliminarTodosTemp del " + "\r";
-        //        Utils.Informa += "Módulo gestión de RIPS" + "\r";
-        //        Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
-        //        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        return -1;
-        //    }
-        //}
-
-
-        private int ElimDatosLocales(string NT)
+        private void btnAnular_Click(object sender, EventArgs e)
         {
+
             try
             {
-                //'Permite eliminar todos los datos de una tabla local
+                Utils.Titulo01 = "Control para anular remisiones";
+                string NR, NAP;
+                int FunCer;
 
-                Utils.SqlDatos = "DELETE FROM '" + NT + "'";
-
-                Boolean EstaEliDato = Conexion.SQLDelete(Utils.SqlDatos);
-
-                if (EstaEliDato)
+                if (string.IsNullOrWhiteSpace(txtCodigIPS.Text) || string.IsNullOrWhiteSpace(txtCodigIPS.Text))
                 {
-                    return 1;
+                    Utils.Informa = "Lo siento pero la IPS no tiene un " + "\r";
+                    Utils.Informa += "código de SGSSS, el cual permita " + "\r";
+                    Utils.Informa += "crear la remisión de envío." + "\r";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (cboNomAdmin.SelectedIndex == -1)
+                {
+                    Utils.Informa = "Lo siento pero la IPS no tiene un " + "\r";
+                    Utils.Informa += "seleccionado el nombre de la" + "\r";
+                    Utils.Informa += "cadministradora de planes." + "\r";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+
+                //Revise si seleccionó la remisión de envio
+
+                if (DataGridRemi.SelectedRows.Count > 0)
+                {
+
+                    NR = DataGridRemi.SelectedCells[0].Value.ToString();
+
                 }
                 else
                 {
-                    return -1;
+                    Utils.Informa = "Lo siento  pero  usted no ha seleccionado " + "\r";
+                    Utils.Informa += "la remisión de envío a exportar." + "\r";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
+
+                //Validamos si la remisión seleccionada está Abierta.
+
+                string EstasdoRemi = DataGridRemi.SelectedCells[9].Value.ToString();
+
+                if (Convert.ToBoolean(EstasdoRemi) == false)
+                {
+                    Utils.Informa = "Lo siento pero la remisión " + NR + "\r";
+                    Utils.Informa += "se encuentra abierta, por tanto no" + "\r";
+                    Utils.Informa += "le puede exportar los archivos RIPS." + "\r";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+
+
+                NAP = cboNomAdmin.Text;
+
+                Utils.Informa = "Lo siento pero la remisión " + NR + "\r";
+                Utils.Informa += "se encuentra abierta, por tanto no" + "\r";
+                Utils.Informa += "le puede exportar los archivos RIPS." + "\r";
+                var res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (res == DialogResult.Yes)
+                {
+                    Utils.RemiAnular = NR;
+                    FrmAnularRemi FrmAnularRemi = new FrmAnularRemi();
+                    FrmAnularRemi.Show();
+                    string USC = lblCodigoUsaF.Text;
+
+                    string Rz = Utils.RemiAnular;
+                    string Date = DateTime.Now.ToString("yyyy-MM-dd");
+
+                    FunCer = AnularRemision(NR, Rz, Date, USC);
+
+                    switch (FunCer)
+                    {
+                        case -1: //ERROR EN LA FUNCION
+                            return;
+                            break;
+                        case 0: //No se encontro
+                            Utils.Informa = "Lo siento pero el número de la remisión no se pudo encontrar en este sistema" + "\r";
+                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                            break;
+                        case 1: //Todo bien
+                            //Registre la accion realizada
+
+                            int FunFec = RegisAccion(NR, "1", Rz, Date, USC);
+
+                            Utils.Informa = "La remisión No. " + NR + " ha sido anulada en este sistema" + "\r";
+                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            CargarDatosAdminPlanes();
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                }
             }
             catch (Exception ex)
             {
                 Utils.Titulo01 = "Control de errores de ejecución";
                 Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
-                Utils.Informa += "en la función: ElimDatosLocales del " + "\r";
+                Utils.Informa += "en el boton anular" + "\r";
                 Utils.Informa += "Módulo gestión de RIPS" + "\r";
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return -1;
-            }
-        }
-
-        private int ActualMaestro(string R)
-        {
-            try
-            {
-                string ARC, CRips, Para01, NAr;
-                Double TolR;
-
-                //'Abrimos la tabla nombre de archivos
-
-                Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos archivo maestro] WHERE ConseArchivo = '" + R + "' ";
-
-                SqlDataReader TabNomArchi = Conexion.SQLDataReader(Utils.SqlDatos);
-
-                if (TabNomArchi.HasRows == false)
-                {
-                    //'El número d remisión no se pudo encontrar en el sistema
-                    return 0;
-                }
-                else
-                {
-                    TabNomArchi.Read();
-                    if (Convert.ToBoolean(TabNomArchi["ActualRemi"].ToString()) == true) //aqui
-                    {
-                        //   'Al archivo ya se le corrió el proceso de actualización
-                        TabNomArchi.Close();
-                        return 1;
-                    }
-                    else
-                    {
-                        TabNomArchi.Close();
-                        return 2;
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Utils.Titulo01 = "Control de errores de ejecución";
-                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
-                Utils.Informa += "en la función: ActualMaestro del " + "\r";
-                Utils.Informa += "Módulo gestión de RIPS" + "\r";
-                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
-                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return -1;
             }
         }
 
@@ -1966,52 +2152,32 @@ namespace Gestion_Rips.Forms.Exportar
 
         } //Fin boton cerrar
 
-        private int CerrarRemision(string R, string U)
+        private void BtnBorrarRemi_Click(object sender, EventArgs e)
         {
-            try
+
+            if (DataGridRemi.SelectedRows.Count > 0)
             {
-                string SqlNomArchi;
 
-                SqlNomArchi = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos archivo maestro] WHERE [ConseArchivo] = '" + R + "'";
+                string NR = DataGridRemi.SelectedCells[0].Value.ToString();
 
-                SqlDataReader TabNomArchi = Conexion.SQLDataReader(SqlNomArchi);
 
-                if (TabNomArchi.HasRows == false)
+                if (string.IsNullOrWhiteSpace(NR) == false)
                 {
-                    return 0;
+                    Utils.NumRemi = NR;
+                    Gestion_Rips.Forms.ArchivoMaestro.FrmBorrarRemision FrmBorrarRemision = new Gestion_Rips.Forms.ArchivoMaestro.FrmBorrarRemision();
+                    FrmBorrarRemision.ShowDialog();
+                    CargarDatosAdminPlanes();
                 }
-                else
-                {
-
-                    string Date = DateTime.Now.ToString("yyyy-MM-dd");
-
-                    Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos archivo maestro] SET CerraRemi = 1, CodModi = '" + U + "', FecModi = '" + Date + "' WHERE [ConseArchivo] = '" + R + "' ";
-
-                    Boolean EstaAct = Conexion.SQLUpdate(Utils.SqlDatos);
-
-                    if (EstaAct)
-                    {
-                        return 1;
-                    }
-                    else
-                    {
-                        return 0;
-                    }
-                }
-
-                TabNomArchi.Close();
-
             }
-            catch (Exception ex)
+            else
             {
-                Utils.Titulo01 = "Control de errores de ejecución";
-                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
-                Utils.Informa += "en la funcion: Cerrar Remision" + "\r";
-                Utils.Informa += "Módulo gestión de RIPS" + "\r";
-                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                Utils.Informa = "Lo siento  pero  usted no ha " + "\r";
+                Utils.Informa += "seleccionado la remision a borrar" + "\r";
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return -1;
+                return;
             }
+
+
         }
 
         #endregion
@@ -2041,214 +2207,26 @@ namespace Gestion_Rips.Forms.Exportar
 
         }
 
-        private void btnAnular_Click(object sender, EventArgs e)
-        {
-
-            try
-            {
-                Utils.Titulo01 = "Control para anular remisiones";
-                string NR, NAP;
-                int FunCer;
-
-                if (string.IsNullOrWhiteSpace(txtCodigIPS.Text) || string.IsNullOrWhiteSpace(txtCodigIPS.Text))
-                {
-                    Utils.Informa = "Lo siento pero la IPS no tiene un " + "\r";
-                    Utils.Informa += "código de SGSSS, el cual permita " + "\r";
-                    Utils.Informa += "crear la remisión de envío." + "\r";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (cboNomAdmin.SelectedIndex == -1)
-                {
-                    Utils.Informa = "Lo siento pero la IPS no tiene un " + "\r";
-                    Utils.Informa += "seleccionado el nombre de la" + "\r";
-                    Utils.Informa += "cadministradora de planes." + "\r";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-
-                //Revise si seleccionó la remisión de envio
-
-                if (DataGridRemi.SelectedRows.Count > 0)
-                {
-
-                    NR = DataGridRemi.SelectedCells[0].Value.ToString();
-
-                }
-                else
-                {
-                    Utils.Informa = "Lo siento  pero  usted no ha seleccionado " + "\r";
-                    Utils.Informa += "la remisión de envío a exportar." + "\r";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-
-                //Validamos si la remisión seleccionada está Abierta.
-
-                string EstasdoRemi = DataGridRemi.SelectedCells[9].Value.ToString();
-
-                if (Convert.ToBoolean(EstasdoRemi) == false)
-                {
-                    Utils.Informa = "Lo siento pero la remisión " + NR + "\r";
-                    Utils.Informa += "se encuentra abierta, por tanto no" + "\r";
-                    Utils.Informa += "le puede exportar los archivos RIPS." + "\r";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
 
 
 
-                NAP = cboNomAdmin.Text;
-
-                Utils.Informa = "Lo siento pero la remisión " + NR + "\r";
-                Utils.Informa += "se encuentra abierta, por tanto no" + "\r";
-                Utils.Informa += "le puede exportar los archivos RIPS." + "\r";
-                var res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-                if (res == DialogResult.Yes)
-                {
-                    Utils.RemiAnular = NR;
-                    FrmAnularRemi FrmAnularRemi = new FrmAnularRemi();
-                    FrmAnularRemi.Show();
-                    string USC = lblCodigoUsaF.Text;
-
-                    string Rz = Utils.RemiAnular;
-                    string Date = DateTime.Now.ToString("yyyy-MM-dd");
-
-                    FunCer = AnularRemision(NR, Rz, Date, USC);
-
-                    switch (FunCer)
-                    {
-                        case -1: //ERROR EN LA FUNCION
-                            return;
-                            break;
-                        case 0: //No se encontro
-                            Utils.Informa = "Lo siento pero el número de la remisión no se pudo encontrar en este sistema" + "\r";
-                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                            break;
-                        case 1: //Todo bien
-                            //Registre la accion realizada
-
-                            int FunFec = RegisAccion(NR, "1", Rz, Date, USC);
-
-                            Utils.Informa = "La remisión No. " + NR + " ha sido anulada en este sistema" + "\r";
-                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            CargarDatosAdminPlanes();
-                            break;
-
-                        default:
-                            break;
-                    }
-
-                }
-            }
-            catch (Exception ex)
-            {
-                Utils.Titulo01 = "Control de errores de ejecución";
-                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
-                Utils.Informa += "en el boton anular" + "\r";
-                Utils.Informa += "Módulo gestión de RIPS" + "\r";
-                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
-                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private int RegisAccion(string Rm, string A, string Rz, string F, string Us)
+        private void btnUnificar_Click(object sender, EventArgs e)
         {
             try
             {
-                Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos control de remisiones] " +
-                    "(" +
-                    "CodiMas," +
-                     "AcReal," +
-                     "RazReal," +
-                     "VezAccion," +
-                     "FecRegis," +
-                     "CodiRegis" +
-                     ")" +
-                     "VALUES" +
-                     "(" +
-                     "'" + Rm + "'," +
-                     "'" + A + "'," +
-                     "'" + Rz + "'," +
-                     "'" + 1 + "'," +
-                     "'" + F + "'," +
-                     "'" + Us + "'" +
-                     ")";
 
-                Boolean EstadoInsertMovi = Conexion.SqlInsert(Utils.SqlDatos);
 
-                if (EstadoInsertMovi)
-                {
-                    return 1;
-                }
-                else
-                {
-                    return 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                Utils.Titulo01 = "Control de errores de ejecución";
-                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
-                Utils.Informa += "en la funcion: RegisAccion" + "\r";
-                Utils.Informa += "Módulo gestión de RIPS" + "\r";
-                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
-                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return 0;
-            }
-        }
-
-        private int AnularRemision(string R, string Rz, string F, string U)
-        {
-            try
-            {
-                Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos archivo maestro] WHERE ConseArchivo = '" + R + "'";
-
-                SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
-
-                if(TablaAux1.HasRows == false)
-                {
-                    return 0;
-                }
-                else
-                {
-                    Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos archivo maestro] SET AnulRemi = 1, RazAnul = '" + Rz + "', CodAnul = '" + U + "', FecAnul = '" + F + "' WHERE ConseArchivo = '" + R + "'";
-
-                    Boolean EstaAnul = Conexion.SQLUpdate(Utils.SqlDatos);
-
-                    if (EstaAnul)
-                    {
-                        return 1;
-                    }
-                    else
-                    {
-                        return 0;
-                    }
-
-                }
 
             }
             catch (Exception ex)
             {
                 Utils.Titulo01 = "Control de errores de ejecución";
                 Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
-                Utils.Informa += "en la funcion: AnularRemision en el" + "\r";
+                Utils.Informa += "despues de hacer click es Unificar" + "\r";
                 Utils.Informa += "Módulo gestión de RIPS" + "\r";
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return -1;
             }
-        }
-
-        private void BtnBorrarRemi_Click(object sender, EventArgs e)
-        {
-            Gestion_Rips.Forms.ArchivoMaestro.FrmBorrarRemision FrmBorrarRemision = new Gestion_Rips.Forms.ArchivoMaestro.FrmBorrarRemision();
-            FrmBorrarRemision.ShowDialog();
         }
     }
 

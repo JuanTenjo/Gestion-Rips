@@ -45,10 +45,10 @@ namespace Gestion_Rips.Clases
 
         //PARA Formilario Crear Modificar Maestro
 
-
         public static string NomAdmin { get; set; }
         public static string CodiIPS { get; set; }
         public static string CodigAdmin { get; set; }
+        public static string NumRemi { get; set; }
 
     }
 }

@@ -73,6 +73,16 @@ namespace Gestion_Rips.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_agrupar_objetos_30 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-agrupar-objetos-30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_audit_30 {
             get {
                 object obj = ResourceManager.GetObject("icons8-audit-30", resourceCulture);

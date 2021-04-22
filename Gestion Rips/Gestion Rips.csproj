@@ -91,6 +91,12 @@
     <Compile Include="Forms\ArchivoMaestro\FrmCrearModificarMaestro.Designer.cs">
       <DependentUpon>FrmCrearModificarMaestro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ArchivoMaestro\FrmUnificarFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ArchivoMaestro\FrmUnificarFactura.Designer.cs">
+      <DependentUpon>FrmUnificarFactura.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ExportarSedaRips\FrmExportarSedarips.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ArchivoMaestro\FrmCrearModificarMaestro.resx">
       <DependentUpon>FrmCrearModificarMaestro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ArchivoMaestro\FrmUnificarFactura.resx">
+      <DependentUpon>FrmUnificarFactura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ExportarSedaRips\FrmExportarSedarips.resx">
       <DependentUpon>FrmExportarSedarips.cs</DependentUpon>
@@ -304,6 +313,7 @@
     <None Include="Resources\icons8-eliminar-propiedad-30.png" />
     <None Include="Resources\icons8-crear-nuevo-301.png" />
     <None Include="Resources\icons8-delete-30.png" />
+    <None Include="Resources\icons8-agrupar-objetos-30.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
