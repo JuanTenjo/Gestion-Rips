@@ -2212,22 +2212,32 @@ namespace Gestion_Rips.Forms.Exportar
 
         private void btnUnificar_Click(object sender, EventArgs e)
         {
-            try
+            if (DataGridRemi.SelectedRows.Count > 0)
             {
 
+                string NR = DataGridRemi.SelectedCells[0].Value.ToString();
 
 
+                if (string.IsNullOrWhiteSpace(NR) == false)
+                {
+                    Utils.NumRemi = NR;
+                    Gestion_Rips.Forms.ArchivoMaestro.FrmUnificarFactura FrmUnificarFactura = new Gestion_Rips.Forms.ArchivoMaestro.FrmUnificarFactura();
+                    FrmUnificarFactura.ShowDialog();
+
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Utils.Titulo01 = "Control de errores de ejecución";
-                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
-                Utils.Informa += "despues de hacer click es Unificar" + "\r";
-                Utils.Informa += "Módulo gestión de RIPS" + "\r";
-                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                Utils.Informa = "Lo siento  pero  usted no ha " + "\r";
+                Utils.Informa += "seleccionado la remision a UNFICAR" + "\r";
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
+
+
+
+
     }
 
 }

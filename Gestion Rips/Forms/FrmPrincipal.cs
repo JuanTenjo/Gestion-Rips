@@ -33,6 +33,7 @@ namespace Gestion_Rips.Forms
         {
             try
             {
+
                 Conexion.conexionACCESS = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\SIIGHOSPLUS\LogPlus.LogSip;Jet OLEDB:Database Password=SIIGHOS33";
 
                 Utils.SqlDatos = "SELECT * FROM [Local registro del usuario]";

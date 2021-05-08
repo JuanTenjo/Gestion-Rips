@@ -3089,7 +3089,8 @@ namespace Gestion_Rips.Forms.Exportar
 
                 Utils.Informa = "¿Usted desea realizar la exportación de los ";
                 Utils.Informa += "archivos RIPS de la entidad o convenio ";
-                Utils.Informa += NEnti + "?";
+                Utils.Informa += NEnti;
+                Utils.Informa += "al programa SEDAS-RIPS.?";
                 var Respuesta = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (Respuesta == DialogResult.Yes)
                 {
@@ -5693,7 +5694,7 @@ namespace Gestion_Rips.Forms.Exportar
                 }
 
                 //'Revisamos si la persona ya digitó al menos algunos documentos
-
+                //Seleccion es una variable gobar que controla los datepcker
                 TM = Convert.ToInt32(Seleccion);
                 SubTolD = Convert.ToInt32(txtTotalCantidadDestino.Text);
                 TolD = (SubTolD + Convert.ToInt32(txtTotalCantidadFacturas.Text));
@@ -5928,9 +5929,42 @@ namespace Gestion_Rips.Forms.Exportar
                                 string codMuni = TabConsumos["CodMuni"].ToString();
                                 codMuni = codMuni.Substring(0, 3);
 
-                                string data = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal usuarios RIPS](CodDigita,NumRemi,TipoDocum,NumDocum,CodAdmin,TipUsuario,Apellido1,Apellido2,Nombre1,Nombre2,Edad,EdadMedi,Sexo,CodDpto,CodMuni,CodDptoCity,ZonaResi) " +
-                                              "VALUES('" + UsSel + "','" + Coenti01 + "','" + TabConsumos["TipoIden"].ToString() + "','" + TabConsumos["NumIden"].ToString() + "','" + ConMinRips + "','" + TabConsumos["TipoUsuario"].ToString() + "','" + TabConsumos["Apellido1"].ToString() + "','" + TabConsumos["Apellido2"].ToString() + "','" + TabConsumos["Nombre1"].ToString() + "','" + TabConsumos["Nombre2"].ToString() + "','" + TabConsumos["ValorEdad"].ToString() + "','" + TabConsumos["UnidadEdad"].ToString() + "'," +
-                                              "'" + TabConsumos["Sexo"].ToString() + "','" + TabConsumos["CodDpto"].ToString() + "','" + codMuni + "','" + TabConsumos["CodMuni"].ToString() + "','" + TabConsumos["ZonaResiden"].ToString() + "' )";
+                                string data = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal usuarios RIPS]" +
+                                            "(CodDigita,"+
+                                            "NumRemi,"+
+                                            "TipoDocum,"+
+                                            "NumDocum,"+
+                                            "CodAdmin,"+
+                                            "TipUsuario,"+
+                                            "Apellido1,"+
+                                            "Apellido2,"+
+                                            "Nombre1,"+
+                                            "Nombre2,"+
+                                            "Edad,"+
+                                            "EdadMedi,"+
+                                            "Sexo,"+
+                                            "CodDpto,"+
+                                            "CodMuni,"+
+                                            "CodDptoCity,"+
+                                            "ZonaResi)" +
+                                             "VALUES("+
+                                             "'" + UsSel + "',"+
+                                             "'" + Coenti01 + "',"+
+                                             "'" + TabConsumos["TipoIden"].ToString() + "',"+
+                                             "'" + TabConsumos["NumIden"].ToString() + "',"+
+                                             "'" + ConMinRips + "',"+
+                                             "'" + TabConsumos["TipoUsuario"].ToString() + "',"+
+                                             "'" + TabConsumos["Apellido1"].ToString() + "',"+
+                                             "'" + TabConsumos["Apellido2"].ToString() + "',"+
+                                             "'" + TabConsumos["Nombre1"].ToString() + "',"+
+                                             "'" + TabConsumos["Nombre2"].ToString() + "',"+
+                                             "'" + TabConsumos["ValorEdad"].ToString() + "',"+
+                                             "'" + TabConsumos["UnidadEdad"].ToString() + "',"+
+                                             "'" + TabConsumos["Sexo"].ToString() + "',"+
+                                             "'" + TabConsumos["CodDpto"].ToString() + "',"+
+                                             "'" + codMuni + "',"+
+                                             "'" + TabConsumos["CodMuni"].ToString() + "',"+
+                                             "'" + TabConsumos["ZonaResiden"].ToString() + "')";
 
                                 SqlInsert = Conexion.SqlInsert(data);  //HASTA AQUI LLEGO LA PRUEBA
                             }
@@ -5941,8 +5975,6 @@ namespace Gestion_Rips.Forms.Exportar
                                 /*   'El paciente fue facturado como hospitalizado en este sistema
                                       'A partir de hoy 02 de marzo, se incluye urgencias porque hay veces que no se hospitaliza en el sistema
                                       'Miramos los d'ias de estancias u horas */
-
-
 
                                 if (TabFacSele["NumResol"].ToString() != "0")
                                 {
@@ -6084,7 +6116,7 @@ namespace Gestion_Rips.Forms.Exportar
                             {
 
                                 //RECIEN NACIDOS
-
+                                //Revisamos si la cuenta tiene registrado algun parto
                                 HisBus = TabConsumos["HistorPaci"].ToString();
 
                                 if (TabFacSele["NumResol"].ToString() != "0")

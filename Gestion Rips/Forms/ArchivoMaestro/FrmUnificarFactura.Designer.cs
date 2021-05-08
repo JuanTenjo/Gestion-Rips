@@ -162,6 +162,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmUnificarFactura";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmUnificarFactura";
             this.Load += new System.EventHandler(this.FrmUnificarFactura_Load);
             this.ResumeLayout(false);
