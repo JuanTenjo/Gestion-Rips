@@ -6499,19 +6499,35 @@ namespace Gestion_Rips.Forms.Exportar
 
                                                 string NomForFar = TabMedicamentos["NomForFar"].ToString();
 
-                                                NomForFar = NomForFar.Substring(0, 20);
+                                                if(string.IsNullOrWhiteSpace(NomForFar) == false && NomForFar.Length > 20)
+                                                {
+                                                    NomForFar = NomForFar.Substring(0, 20);
+                                                }
+
 
                                                 string Descripcion = TabMedicamentos["Descripcion"].ToString();
 
-                                                Descripcion = Descripcion.Substring(0, 20);
+                                                if (string.IsNullOrWhiteSpace(Descripcion) == false && Descripcion.Length > 20)
+                                                {
+                                                    Descripcion = Descripcion.Substring(0, 20);
+                                                }
+
 
                                                 string Concentra = TabMedicamentos["Concentra"].ToString();
 
-                                                Concentra = Concentra.Substring(0, 20);
+                                                if (string.IsNullOrWhiteSpace(Concentra) == false && Concentra.Length > 20)
+                                                {
+                                                    Concentra = Concentra.Substring(0, 20);
+                                                }
+
 
                                                 string NomGenerico = TabConsumos2["NomServicio"].ToString();
 
-                                                NomGenerico = NomGenerico.Substring(0, 30);
+                                                if (string.IsNullOrWhiteSpace(NomGenerico) == false && NomGenerico.Length >30)
+                                                {
+                                                    NomGenerico = NomGenerico.Substring(0, 30);
+                                                }
+
 
 
                                                 Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal medicamentos RIPS]" +
@@ -6608,6 +6624,11 @@ namespace Gestion_Rips.Forms.Exportar
 
                                             NomServicio = NomServicio.Substring(0, 60);
 
+                                            if (string.IsNullOrWhiteSpace(NomServicio) == false && NomServicio.Length > 60)
+                                            {
+                                                NomServicio = NomServicio.Substring(0, 60);
+                                            }
+
 
 
                                             //   'TRATELO CON TRAQUILIDAD QUE ES OTRO SERVICIO 
@@ -6664,12 +6685,16 @@ namespace Gestion_Rips.Forms.Exportar
 
                             string TipoDocuIPS = txtTipoDocuIps.Text;
 
-                            TipoDocuIPS = TipoDocuIPS.Substring(0, 2);
+                            if(TipoDocuIPS.Length > 2)
+                            {
+                                TipoDocuIPS = TipoDocuIPS.Substring(0, 2);
+                            }
+
 
 
                             string NomAdmin = TabFacSele["NomAdmin"].ToString();
 
-                            if (string.IsNullOrWhiteSpace(NomAdmin) == false)
+                            if (string.IsNullOrWhiteSpace(NomAdmin) == false && NomAdmin.Length > 30)
                             {
                                 NomAdmin = NomAdmin.Substring(0, 30);
 
@@ -6677,14 +6702,14 @@ namespace Gestion_Rips.Forms.Exportar
 
                             string NumContra = TabFacSele["NumContra"].ToString();
 
-                            if(string.IsNullOrWhiteSpace(NumContra) == false)
+                            if(string.IsNullOrWhiteSpace(NumContra) == false && NumContra.Length > 15)
                             {
                                 NumContra = NumContra.Substring(0, 15);
                             }
 
                             string NomPlan = TabFacSele["NomPlan"].ToString();
 
-                            if (string.IsNullOrWhiteSpace(NomPlan) == false)
+                            if (string.IsNullOrWhiteSpace(NomPlan) == false && NomPlan.Length > 30)
                             {
                                 NomPlan = NomPlan.Substring(0, 30);
                             }
