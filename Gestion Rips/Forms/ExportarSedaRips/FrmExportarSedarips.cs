@@ -6622,8 +6622,6 @@ namespace Gestion_Rips.Forms.Exportar
                                         {
                                             string NomServicio = TabConsumos2["NomServicio"].ToString();
 
-                                            NomServicio = NomServicio.Substring(0, 60);
-
                                             if (string.IsNullOrWhiteSpace(NomServicio) == false && NomServicio.Length > 60)
                                             {
                                                 NomServicio = NomServicio.Substring(0, 60);
