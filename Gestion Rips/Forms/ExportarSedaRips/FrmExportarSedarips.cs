@@ -6579,7 +6579,7 @@ namespace Gestion_Rips.Forms.Exportar
                                                         CodTomo = TabMedicamentos["CodiMinSa"].ToString();
                                                         break;
                                                     case "5":
-                                                        CodTomo = TabMedicamentos["CodiISS"].ToString();
+                                                        CodTomo = TabConsumos2["CodiISS"].ToString();
                                                         break;
                                                     default:
                                                         CodTomo = TabMedicamentos["CodiMinSa"].ToString();
