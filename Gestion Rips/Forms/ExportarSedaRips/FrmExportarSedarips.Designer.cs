@@ -126,9 +126,9 @@ namespace Gestion_Rips.Forms.Exportar
             this.groupBox1.Controls.Add(this.lblCardinal);
             this.groupBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(8, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(776, 51);
+            this.groupBox1.Size = new System.Drawing.Size(812, 51);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -235,7 +235,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox2.Location = new System.Drawing.Point(12, 65);
+            this.groupBox2.Location = new System.Drawing.Point(12, 66);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(125, 112);
             this.groupBox2.TabIndex = 9;
@@ -296,6 +296,7 @@ namespace Gestion_Rips.Forms.Exportar
             // 
             this.groupBox3.BackColor = System.Drawing.Color.White;
             this.groupBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.groupBox3.Controls.Add(this.cboContratos);
             this.groupBox3.Controls.Add(this.DateFinal);
             this.groupBox3.Controls.Add(this.DateInicial);
             this.groupBox3.Controls.Add(this.label8);
@@ -304,7 +305,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox3.Location = new System.Drawing.Point(159, 65);
+            this.groupBox3.Location = new System.Drawing.Point(143, 65);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(235, 112);
             this.groupBox3.TabIndex = 13;
@@ -384,7 +385,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.btnMostrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
             this.btnMostrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMostrar.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMostrar.Location = new System.Drawing.Point(412, 78);
+            this.btnMostrar.Location = new System.Drawing.Point(415, 85);
             this.btnMostrar.Name = "btnMostrar";
             this.btnMostrar.Size = new System.Drawing.Size(93, 28);
             this.btnMostrar.TabIndex = 14;
@@ -400,7 +401,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.btnLimpiar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
             this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpiar.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Location = new System.Drawing.Point(412, 121);
+            this.btnLimpiar.Location = new System.Drawing.Point(415, 128);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(93, 28);
             this.btnLimpiar.TabIndex = 15;
@@ -421,7 +422,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.groupBox4.Controls.Add(this.label12);
             this.groupBox4.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.groupBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox4.Location = new System.Drawing.Point(525, 65);
+            this.groupBox4.Location = new System.Drawing.Point(557, 65);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(263, 112);
             this.groupBox4.TabIndex = 14;
@@ -509,7 +510,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.groupBox5.Controls.Add(this.btnReportes);
             this.groupBox5.Controls.Add(this.btnValidar);
             this.groupBox5.Controls.Add(this.btnSeleccionar);
-            this.groupBox5.Location = new System.Drawing.Point(525, 183);
+            this.groupBox5.Location = new System.Drawing.Point(557, 183);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(263, 153);
             this.groupBox5.TabIndex = 17;
@@ -613,7 +614,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.groupBox6.Controls.Add(this.lblNombreUser);
             this.groupBox6.Controls.Add(this.lblCodigoUser);
             this.groupBox6.Controls.Add(this.label16);
-            this.groupBox6.Location = new System.Drawing.Point(525, 342);
+            this.groupBox6.Location = new System.Drawing.Point(557, 342);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(263, 106);
             this.groupBox6.TabIndex = 18;
@@ -733,7 +734,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.groupBox7.Controls.Add(this.lblTipoRips);
             this.groupBox7.Location = new System.Drawing.Point(12, 183);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(507, 274);
+            this.groupBox7.Size = new System.Drawing.Size(539, 277);
             this.groupBox7.TabIndex = 19;
             this.groupBox7.TabStop = false;
             // 
@@ -745,7 +746,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.DataGridDestino.BackgroundColor = System.Drawing.Color.White;
             this.DataGridDestino.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.DataGridDestino.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridDestino.Location = new System.Drawing.Point(311, 89);
+            this.DataGridDestino.Location = new System.Drawing.Point(337, 89);
             this.DataGridDestino.MultiSelect = false;
             this.DataGridDestino.Name = "DataGridDestino";
             this.DataGridDestino.ReadOnly = true;
@@ -760,13 +761,13 @@ namespace Gestion_Rips.Forms.Exportar
             this.txtTotalCantidadFacturas.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotalCantidadFacturas.Location = new System.Drawing.Point(92, 243);
             this.txtTotalCantidadFacturas.Name = "txtTotalCantidadFacturas";
-            this.txtTotalCantidadFacturas.Size = new System.Drawing.Size(110, 22);
+            this.txtTotalCantidadFacturas.Size = new System.Drawing.Size(121, 22);
             this.txtTotalCantidadFacturas.TabIndex = 9;
             // 
             // txtTotalCantidadDestino
             // 
             this.txtTotalCantidadDestino.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalCantidadDestino.Location = new System.Drawing.Point(400, 242);
+            this.txtTotalCantidadDestino.Location = new System.Drawing.Point(426, 242);
             this.txtTotalCantidadDestino.Name = "txtTotalCantidadDestino";
             this.txtTotalCantidadDestino.Size = new System.Drawing.Size(107, 22);
             this.txtTotalCantidadDestino.TabIndex = 25;
@@ -791,7 +792,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.btnQTodas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
             this.btnQTodas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQTodas.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnQTodas.Location = new System.Drawing.Point(208, 202);
+            this.btnQTodas.Location = new System.Drawing.Point(228, 204);
             this.btnQTodas.Name = "btnQTodas";
             this.btnQTodas.Size = new System.Drawing.Size(93, 28);
             this.btnQTodas.TabIndex = 23;
@@ -804,7 +805,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.label26.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label26.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.ForeColor = System.Drawing.Color.White;
-            this.label26.Location = new System.Drawing.Point(311, 242);
+            this.label26.Location = new System.Drawing.Point(337, 242);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(89, 23);
             this.label26.TabIndex = 26;
@@ -819,7 +820,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.btnQUna.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
             this.btnQUna.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQUna.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnQUna.Location = new System.Drawing.Point(208, 168);
+            this.btnQUna.Location = new System.Drawing.Point(228, 170);
             this.btnQUna.Name = "btnQUna";
             this.btnQUna.Size = new System.Drawing.Size(93, 28);
             this.btnQUna.TabIndex = 22;
@@ -835,7 +836,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.btnUna.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
             this.btnUna.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUna.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUna.Location = new System.Drawing.Point(208, 134);
+            this.btnUna.Location = new System.Drawing.Point(228, 136);
             this.btnUna.Name = "btnUna";
             this.btnUna.Size = new System.Drawing.Size(93, 28);
             this.btnUna.TabIndex = 21;
@@ -851,7 +852,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.btnTodas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
             this.btnTodas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTodas.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTodas.Location = new System.Drawing.Point(208, 100);
+            this.btnTodas.Location = new System.Drawing.Point(228, 102);
             this.btnTodas.Name = "btnTodas";
             this.btnTodas.Size = new System.Drawing.Size(93, 28);
             this.btnTodas.TabIndex = 20;
@@ -873,7 +874,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.DataGridFacturas.ReadOnly = true;
             this.DataGridFacturas.RowHeadersVisible = false;
             this.DataGridFacturas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridFacturas.Size = new System.Drawing.Size(196, 150);
+            this.DataGridFacturas.Size = new System.Drawing.Size(207, 150);
             this.DataGridFacturas.TabIndex = 17;
             this.DataGridFacturas.CurrentCellChanged += new System.EventHandler(this.DataGridFacturas_CurrentCellChanged);
             // 
@@ -882,7 +883,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.lblDestinoDocument.BackColor = System.Drawing.Color.White;
             this.lblDestinoDocument.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDestinoDocument.ForeColor = System.Drawing.Color.Red;
-            this.lblDestinoDocument.Location = new System.Drawing.Point(308, 62);
+            this.lblDestinoDocument.Location = new System.Drawing.Point(337, 62);
             this.lblDestinoDocument.Name = "lblDestinoDocument";
             this.lblDestinoDocument.Size = new System.Drawing.Size(196, 24);
             this.lblDestinoDocument.TabIndex = 16;
@@ -896,7 +897,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.DigeteOrigen.ForeColor = System.Drawing.Color.Red;
             this.DigeteOrigen.Location = new System.Drawing.Point(6, 63);
             this.DigeteOrigen.Name = "DigeteOrigen";
-            this.DigeteOrigen.Size = new System.Drawing.Size(196, 23);
+            this.DigeteOrigen.Size = new System.Drawing.Size(207, 23);
             this.DigeteOrigen.TabIndex = 15;
             this.DigeteOrigen.Text = "Independiente";
             this.DigeteOrigen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -906,9 +907,9 @@ namespace Gestion_Rips.Forms.Exportar
             this.label22.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label22.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.White;
-            this.label22.Location = new System.Drawing.Point(308, 39);
+            this.label22.Location = new System.Drawing.Point(337, 39);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(199, 23);
+            this.label22.Size = new System.Drawing.Size(196, 23);
             this.label22.TabIndex = 14;
             this.label22.Text = "Destino";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -920,7 +921,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.label21.ForeColor = System.Drawing.Color.White;
             this.label21.Location = new System.Drawing.Point(6, 40);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(196, 23);
+            this.label21.Size = new System.Drawing.Size(207, 23);
             this.label21.TabIndex = 13;
             this.label21.Text = "Origen";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -930,9 +931,9 @@ namespace Gestion_Rips.Forms.Exportar
             this.label20.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label20.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(201, 16);
+            this.label20.Location = new System.Drawing.Point(214, 16);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(111, 23);
+            this.label20.Size = new System.Drawing.Size(129, 23);
             this.label20.TabIndex = 10;
             this.label20.Text = "Codigo IPS";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -942,9 +943,9 @@ namespace Gestion_Rips.Forms.Exportar
             this.lblCodMinSalud.BackColor = System.Drawing.Color.White;
             this.lblCodMinSalud.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCodMinSalud.ForeColor = System.Drawing.Color.Blue;
-            this.lblCodMinSalud.Location = new System.Drawing.Point(201, 40);
+            this.lblCodMinSalud.Location = new System.Drawing.Point(211, 40);
             this.lblCodMinSalud.Name = "lblCodMinSalud";
-            this.lblCodMinSalud.Size = new System.Drawing.Size(111, 23);
+            this.lblCodMinSalud.Size = new System.Drawing.Size(132, 23);
             this.lblCodMinSalud.TabIndex = 12;
             this.lblCodMinSalud.Text = "Independiente";
             this.lblCodMinSalud.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -954,7 +955,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.label18.BackColor = System.Drawing.Color.White;
             this.label18.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.Blue;
-            this.label18.Location = new System.Drawing.Point(311, 16);
+            this.label18.Location = new System.Drawing.Point(337, 16);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(196, 23);
             this.label18.TabIndex = 11;
@@ -968,7 +969,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.lblTipoRips.ForeColor = System.Drawing.Color.Blue;
             this.lblTipoRips.Location = new System.Drawing.Point(6, 16);
             this.lblTipoRips.Name = "lblTipoRips";
-            this.lblTipoRips.Size = new System.Drawing.Size(196, 23);
+            this.lblTipoRips.Size = new System.Drawing.Size(207, 23);
             this.lblTipoRips.TabIndex = 10;
             this.lblTipoRips.Text = "Facturas";
             this.lblTipoRips.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -979,7 +980,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.cboContratos.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboContratos.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboContratos.FormattingEnabled = true;
-            this.cboContratos.Location = new System.Drawing.Point(289, 142);
+            this.cboContratos.Location = new System.Drawing.Point(130, 76);
             this.cboContratos.Name = "cboContratos";
             this.cboContratos.Size = new System.Drawing.Size(99, 22);
             this.cboContratos.TabIndex = 9;
@@ -988,8 +989,7 @@ namespace Gestion_Rips.Forms.Exportar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 462);
-            this.Controls.Add(this.cboContratos);
+            this.ClientSize = new System.Drawing.Size(825, 462);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);

@@ -5930,40 +5930,40 @@ namespace Gestion_Rips.Forms.Exportar
                                 codMuni = codMuni.Substring(0, 3);
 
                                 string data = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal usuarios RIPS]" +
-                                            "(CodDigita,"+
-                                            "NumRemi,"+
-                                            "TipoDocum,"+
-                                            "NumDocum,"+
-                                            "CodAdmin,"+
-                                            "TipUsuario,"+
-                                            "Apellido1,"+
-                                            "Apellido2,"+
-                                            "Nombre1,"+
-                                            "Nombre2,"+
-                                            "Edad,"+
-                                            "EdadMedi,"+
-                                            "Sexo,"+
-                                            "CodDpto,"+
-                                            "CodMuni,"+
-                                            "CodDptoCity,"+
+                                            "(CodDigita," +
+                                            "NumRemi," +
+                                            "TipoDocum," +
+                                            "NumDocum," +
+                                            "CodAdmin," +
+                                            "TipUsuario," +
+                                            "Apellido1," +
+                                            "Apellido2," +
+                                            "Nombre1," +
+                                            "Nombre2," +
+                                            "Edad," +
+                                            "EdadMedi," +
+                                            "Sexo," +
+                                            "CodDpto," +
+                                            "CodMuni," +
+                                            "CodDptoCity," +
                                             "ZonaResi)" +
-                                             "VALUES("+
-                                             "'" + UsSel + "',"+
-                                             "'" + Coenti01 + "',"+
-                                             "'" + TabConsumos["TipoIden"].ToString() + "',"+
-                                             "'" + TabConsumos["NumIden"].ToString() + "',"+
-                                             "'" + ConMinRips + "',"+
-                                             "'" + TabConsumos["TipoUsuario"].ToString() + "',"+
-                                             "'" + TabConsumos["Apellido1"].ToString() + "',"+
-                                             "'" + TabConsumos["Apellido2"].ToString() + "',"+
-                                             "'" + TabConsumos["Nombre1"].ToString() + "',"+
-                                             "'" + TabConsumos["Nombre2"].ToString() + "',"+
-                                             "'" + TabConsumos["ValorEdad"].ToString() + "',"+
-                                             "'" + TabConsumos["UnidadEdad"].ToString() + "',"+
-                                             "'" + TabConsumos["Sexo"].ToString() + "',"+
-                                             "'" + TabConsumos["CodDpto"].ToString() + "',"+
-                                             "'" + codMuni + "',"+
-                                             "'" + TabConsumos["CodMuni"].ToString() + "',"+
+                                             "VALUES(" +
+                                             "'" + UsSel + "'," +
+                                             "'" + Coenti01 + "'," +
+                                             "'" + TabConsumos["TipoIden"].ToString() + "'," +
+                                             "'" + TabConsumos["NumIden"].ToString() + "'," +
+                                             "'" + ConMinRips + "'," +
+                                             "'" + TabConsumos["TipoUsuario"].ToString() + "'," +
+                                             "'" + TabConsumos["Apellido1"].ToString() + "'," +
+                                             "'" + TabConsumos["Apellido2"].ToString() + "'," +
+                                             "'" + TabConsumos["Nombre1"].ToString() + "'," +
+                                             "'" + TabConsumos["Nombre2"].ToString() + "'," +
+                                             "'" + TabConsumos["ValorEdad"].ToString() + "'," +
+                                             "'" + TabConsumos["UnidadEdad"].ToString() + "'," +
+                                             "'" + TabConsumos["Sexo"].ToString() + "'," +
+                                             "'" + TabConsumos["CodDpto"].ToString() + "'," +
+                                             "'" + codMuni + "'," +
+                                             "'" + TabConsumos["CodMuni"].ToString() + "'," +
                                              "'" + TabConsumos["ZonaResiden"].ToString() + "')";
 
                                 SqlInsert = Conexion.SqlInsert(data);  //HASTA AQUI LLEGO LA PRUEBA
@@ -6150,46 +6150,90 @@ namespace Gestion_Rips.Forms.Exportar
                                 {
                                     while (RecienNacidos.Read())
                                     {
-                                        Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal recien nacidos RIPS] " +
-                                                          "(" +
-                                                          "CodDigita," +
-                                                          "NumRemi," +
-                                                          "NumFactur," +
-                                                          "CodIPS," +
-                                                          "TipoDocum," +
-                                                          "NumDocum," +
-                                                          "FecNaci," +
-                                                          "HorIngresa," +
-                                                          "EdadGesta," +
-                                                          "ControlPrena," +
-                                                          "SexoRecien," +
-                                                          "PesoRecien," +
-                                                          "DxRecien," +
-                                                          "DxMuerte," +
-                                                          "FecMuerte," +
-                                                          "HorMuerte" +
-                                                          ")" +
-                                                          "VALUES" +
-                                                          "(" +
-                                                          "'" + UsSel + "'," +
-                                                          "'" + Coenti02 + "'," +
-                                                          "'" + NumFac + "'," +
-                                                          "'" + lblCodMinSalud.Text + "'," +
-                                                          "'" + TabConsumos["TipoIden"].ToString() + "'," +
-                                                          "'" + TabConsumos["NumIden"].ToString() + "'," +
-                                                          "'" + Convert.ToDateTime(RecienNacidos["FechaNaci"]).ToString("yyyy-MM-dd") + "'," +
-                                                          "'" + Convert.ToDateTime(RecienNacidos["HoraNaci"]).ToString("hh:mm:ss") + "'," +
-                                                          "'" + RecienNacidos["EdadGesta"].ToString() + "'," +
-                                                          "'" + RecienNacidos["ConPrena"].ToString() + "'," +
-                                                          "'" + RecienNacidos["SexoNaci"].ToString() + "'," +
-                                                          "'" + RecienNacidos["PesoNaci"].ToString() + "'," +
-                                                          "'" + RecienNacidos["DxNaci"].ToString() + "'," +
-                                                          "'" + RecienNacidos["DxMuerNaci"].ToString() + "'," +
-                                                          "'" + Convert.ToDateTime(RecienNacidos["FecMuerNaci"]).ToString("yyyy-MM-dd") + "'," +
-                                                           "'" + RecienNacidos["HorMuerNaci"].ToString() + "'" +
-                                                          ")";
+                                        //   '***************  Las siguientes instrucciones se incluyen a partir del 27 de Noviembre de 2020, por HERNANDO ***********************
+
+                                        if (string.IsNullOrWhiteSpace(RecienNacidos["FecMuerNaci"].ToString())) { //Entra si existe una fehca de muerte Naci
+
+                                            Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal recien nacidos RIPS] " +
+                                                   "(" +
+                                                   "CodDigita," +
+                                                   "NumRemi," +
+                                                   "NumFactur," +
+                                                   "CodIPS," +
+                                                   "TipoDocum," +
+                                                   "NumDocum," +
+                                                   "FecNaci," +
+                                                   "HorIngresa," +
+                                                   "EdadGesta," +
+                                                   "ControlPrena," +
+                                                   "SexoRecien," +
+                                                   "PesoRecien," +
+                                                   "DxRecien," +
+                                                   "DxMuerte," +
+                                                   "FecMuerte," +
+                                                   "HorMuerte" +
+                                                   ")" +
+                                                   "VALUES" +
+                                                   "(" +
+                                                   "'" + UsSel + "'," +
+                                                   "'" + Coenti02 + "'," +
+                                                   "'" + NumFac + "'," +
+                                                   "'" + lblCodMinSalud.Text + "'," +
+                                                   "'" + TabConsumos["TipoIden"].ToString() + "'," +
+                                                   "'" + TabConsumos["NumIden"].ToString() + "'," +
+                                                   "'" + Convert.ToDateTime(RecienNacidos["FechaNaci"]).ToString("yyyy-MM-dd") + "'," +
+                                                   "'" + Convert.ToDateTime(RecienNacidos["HoraNaci"]).ToString("hh:mm:ss") + "'," +
+                                                   "'" + RecienNacidos["EdadGesta"].ToString() + "'," +
+                                                   "'" + RecienNacidos["ConPrena"].ToString() + "'," +
+                                                   "'" + RecienNacidos["SexoNaci"].ToString() + "'," +
+                                                   "'" + RecienNacidos["PesoNaci"].ToString() + "'," +
+                                                   "'" + RecienNacidos["DxNaci"].ToString() + "'," +
+                                                   "'" + RecienNacidos["DxMuerNaci"].ToString() + "'," +
+                                                   "'" + Convert.ToDateTime(RecienNacidos["FecMuerNaci"]).ToString("yyyy-MM-dd") + "'," +
+                                                    "'" + RecienNacidos["HorMuerNaci"].ToString() + "'" +
+                                                   ")";
+                                        }
+                                        else
+                                        {
+                                            Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal recien nacidos RIPS] " +
+                                                       "(" +
+                                                       "CodDigita," +
+                                                       "NumRemi," +
+                                                       "NumFactur," +
+                                                       "CodIPS," +
+                                                       "TipoDocum," +
+                                                       "NumDocum," +
+                                                       "FecNaci," +
+                                                       "HorIngresa," +
+                                                       "EdadGesta," +
+                                                       "ControlPrena," +
+                                                       "SexoRecien," +
+                                                       "PesoRecien," +
+                                                       "DxRecien," +
+                                                       "DxMuerte" +
+                                                       ")" +
+                                                       "VALUES" +
+                                                       "(" +
+                                                       "'" + UsSel + "'," +
+                                                       "'" + Coenti02 + "'," +
+                                                       "'" + NumFac + "'," +
+                                                       "'" + lblCodMinSalud.Text + "'," +
+                                                       "'" + TabConsumos["TipoIden"].ToString() + "'," +
+                                                       "'" + TabConsumos["NumIden"].ToString() + "'," +
+                                                       "'" + Convert.ToDateTime(RecienNacidos["FechaNaci"]).ToString("yyyy-MM-dd") + "'," +
+                                                       "'" + Convert.ToDateTime(RecienNacidos["HoraNaci"]).ToString("hh:mm:ss") + "'," +
+                                                       "'" + RecienNacidos["EdadGesta"].ToString() + "'," +
+                                                       "'" + RecienNacidos["ConPrena"].ToString() + "'," +
+                                                       "'" + RecienNacidos["SexoNaci"].ToString() + "'," +
+                                                       "'" + RecienNacidos["PesoNaci"].ToString() + "'," +
+                                                       "'" + RecienNacidos["DxNaci"].ToString() + "'," +
+                                                       "'" + RecienNacidos["DxMuerNaci"].ToString() + "'" +
+                                                       ")";
+                                        }
+
 
                                         Boolean RegisRecienNadido = Conexion.SqlInsert(Utils.SqlDatos);
+
                                     }
                                     RecienNacidos.Close();
                                 } //HasRow
@@ -6232,10 +6276,12 @@ namespace Gestion_Rips.Forms.Exportar
                                         break;
                                 }
 
-                                switch (GBus)
+                                int GBus2 = Convert.ToInt32(GBus);
+
+                                switch (GBus2)
                                 {
-                                    case "01": //Consultas
-                                               //procede a agregar registro
+                                    case 1: //Consultas
+                                            //procede a agregar registro
 
 
                                         if (TabFacSele["NumResol"].ToString() != "0")
@@ -6256,36 +6302,36 @@ namespace Gestion_Rips.Forms.Exportar
                                         DxMuerte = (TabConsumos2["DxMuerte"].ToString() == "0000" ? "" : TabConsumos2["DxMuerte"].ToString());
 
                                         Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal consultas RIPS]" +
-                                                                    "(" +
-                                                                    "CodDigita," +
-                                                                    "NumRemi," +
-                                                                    "NumFactur," +
-                                                                    "CodIPS," +
-                                                                    "TipoDocum," +
-                                                                    "NumDocum," +
-                                                                    "FecConsul," +
-                                                                    "AutoriNum," +
-                                                                    "CodConsul," +
-                                                                    "FinalConsul," +
-                                                                    "CausExter," +
-                                                                    "DxPrincipal," +
-                                                                    "DxRelacion1," +
-                                                                    "DxRelacion2," +
-                                                                    "DxRelacion3," +
-                                                                    "TipoDxPrin," +
-                                                                    "ValorConsul," +
-                                                                    "ValorCuota," +
-                                                                    "ValorNeto" +
-                                                                    ")" +
-                                                                    "VALUES" +
-                                                                    "(" +
-                                                                    "'" + UsSel + "'," +
-                                                                    "'" + Coenti02 + "'," +
-                                                                    "'" + NumFac + "'," +
-                                                                    "'" + lblCodMinSalud.Text + "'," +
-                                                                    "'" + TabConsumos2["TipoIden"].ToString() + "'," +
-                                                                    "'" + TabConsumos2["NumIden"].ToString() + "',";
-
+                                        "(" +
+                                        "CodDigita," +
+                                        "NumRemi," +
+                                        "NumFactur," +
+                                        "CodIPS," +
+                                        "TipoDocum," +
+                                        "NumDocum," +
+                                        "FecConsul," +
+                                        "AutoriNum," +
+                                        "CodConsul," +
+                                        "FinalConsul," +
+                                        "CausExter," +
+                                        "DxPrincipal," +
+                                        "DxRelacion1," +
+                                        "DxRelacion2," +
+                                        "DxRelacion3," +
+                                        "TipoDxPrin," +
+                                        "ValorConsul," +
+                                        "ValorCuota," +
+                                        "ValorNeto" +
+                                        ")" +
+                                        "VALUES" +
+                                        "(" +
+                                        "'" + UsSel + "'," +
+                                        "'" + Coenti02 + "'," +
+                                        "'" + NumFac + "'," +
+                                        "'" + lblCodMinSalud.Text + "'," +
+                                        "'" + TabConsumos2["TipoIden"].ToString() + "'," +
+                                        "'" + TabConsumos2["NumIden"].ToString() + "',";
+                                        // '****************** lo siguiente se coloca por los caprichos de COMFAMILIAR ******************* 01 de Agosto de 2020
                                         if (DefFecTrans.Text == "Consultas")
                                         {
                                             Utils.SqlDatos += "'" + Convert.ToDateTime(TabFacSele["FechaFac"]).ToString("yyyy-MM-dd") + "',";
@@ -6312,8 +6358,8 @@ namespace Gestion_Rips.Forms.Exportar
                                         Boolean RegisConsulta = Conexion.SqlInsert(Utils.SqlDatos);
                                         break;
 
-                                    case "02"://Procedimientos
-                                    case "05":
+                                    case int G2 when GBus2 >= 2 && GBus2 <= 5: //Procedimientos
+
                                         //Como los procedimientos se deben grabar uno por uno,
                                         //tenemos que hacer unas iteraciones
 
@@ -6322,18 +6368,21 @@ namespace Gestion_Rips.Forms.Exportar
                                         DxComplica = (TabConsumos2["DxComplica"].ToString() == "0000" ? "" : TabConsumos2["DxComplica"].ToString());
                                         DxRelac01 = (TabConsumos2["DxRelac01"].ToString() == "0000" ? "" : TabConsumos2["DxRelac01"].ToString());
 
-                                        if (TabFacSele["NumResol"].ToString() != "0")
-                                        {
-                                            NumFac = (TabFacSele["PrefiFac"].ToString() + TabFacSele["NumFactura"].ToString());
-                                        }
-                                        else
-                                        {
-                                            NumFac = TabFacSele["NumFactura"].ToString();
-                                        }
+
 
                                         for (int x = 0; x < Convert.ToInt32(TabConsumos2["Cantidad"]); x++)
                                         {
 
+                                            if (TabFacSele["NumResol"].ToString() != "0")
+                                            {
+                                                NumFac = (TabFacSele["PrefiFac"].ToString() + TabFacSele["NumFactura"].ToString());
+                                            }
+                                            else
+                                            {
+                                                NumFac = TabFacSele["NumFactura"].ToString();
+                                            }
+
+                                            //  '******************** Lo sigueinte se cambia a partir del 01 Agosto de 2020 HERNANDO *******************
                                             Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal procedimientos RIPS] " +
                                             "(" +
                                             "CodDigita," +
@@ -6367,9 +6416,10 @@ namespace Gestion_Rips.Forms.Exportar
                                             "'" + CodTomo + "'," +
                                             "'" + TabConsumos2["RealizadoEn"].ToString() + "'," +
                                             "'" + TabConsumos2["FinalProce"].ToString() + "',";
-                                            //  '******************** Lo sigueinte se cambia a partir del 01 Agosto de 2020 HERNANDO *******************
 
-                                            if (GBus == "04" || GBus == "05")
+
+
+                                            if (GBus2 == 4 || GBus2 == 5)
                                             {
                                                 if (ClaSerBus == "B" || ClaSerBus == "C")
                                                 {
@@ -6399,8 +6449,7 @@ namespace Gestion_Rips.Forms.Exportar
 
                                         break;
 
-                                    case "06":
-                                    case "14":
+                                    case int G2 when GBus2 >= 6 && GBus2 <= 14: //'OTROS SERVICIOS
 
                                         if (TabFacSele["NumResol"].ToString() != "0")
                                         {
@@ -6409,16 +6458,20 @@ namespace Gestion_Rips.Forms.Exportar
                                         else
                                         {
                                             NumFac = TabFacSele["NumFactura"].ToString();
-                                        } //TabFacSele["NumResol"].ToString() != "0"
+                                        }
 
-                                        if (GBus == "12" || GBus == "14")
+                                        if (GBus2 == 12 || GBus2 == 13)
                                         {
+                                            //  'Son medicamentos, por lo tanto se deben tomar los datos complementarios
+
+
+
                                             SqlMedicamentos = "SELECT [Datos productos farmaceuticos].CodigoPro, [Datos forma farmaceutica].CodForFar, " +
                                                                "[Datos forma farmaceutica].NomForFar, [Datos productos farmaceuticos].Medida, " +
                                                                "[Datos unidades de medidas].AbreMedida, [Datos unidades de medidas].Descripcion, " +
                                                                "[Datos productos farmaceuticos].CodiMinSa, [Datos productos farmaceuticos].SiPos, " +
                                                                "[Datos productos farmaceuticos].Concentra " +
-                                                               "FROM[BDFARMA].[dbo].[Datos forma farmaceutica] INNER JOIN [BDFARMA].[dbo].[Datos productos farmaceuticos] ON " +
+                                                               "FROM [BDFARMA].[dbo].[Datos forma farmaceutica] INNER JOIN [BDFARMA].[dbo].[Datos productos farmaceuticos] ON " +
                                                                "[Datos forma farmaceutica].CodForFar = [Datos productos farmaceuticos].Formafarma INNER JOIN " +
                                                                "[BDFARMA].[dbo].[Datos unidades de medidas] ON [Datos productos farmaceuticos].Medida = [Datos unidades de medidas].CodigoMedida " +
                                                                "WHERE (([Datos productos farmaceuticos].CodigoPro) = N'" + CodInterIPs + "') ";
@@ -6438,6 +6491,7 @@ namespace Gestion_Rips.Forms.Exportar
                                             }
                                             else
                                             {
+                                                //'***************  Las siguientes instrucciones se incluyen a partir del 27 de Noviembre de 2020, por HERNANDO ***********************
                                                 TabMedicamentos.Read();
                                                 DxSalida = (TabConsumos2["DxSalida"].ToString() == "0000" ? "" : TabConsumos2["DxSalida"].ToString());
                                                 DxComplica = (TabConsumos2["DxComplica"].ToString() == "0000" ? "" : TabConsumos2["DxComplica"].ToString());
@@ -6445,22 +6499,33 @@ namespace Gestion_Rips.Forms.Exportar
 
                                                 string NomForFar = TabMedicamentos["NomForFar"].ToString();
 
+                                                NomForFar = NomForFar.Substring(0, 20);
+
                                                 string Descripcion = TabMedicamentos["Descripcion"].ToString();
+
+                                                Descripcion = Descripcion.Substring(0, 20);
 
                                                 string Concentra = TabMedicamentos["Concentra"].ToString();
 
+                                                Concentra = Concentra.Substring(0, 20);
+
                                                 string NomGenerico = TabConsumos2["NomServicio"].ToString();
+
+                                                NomGenerico = NomGenerico.Substring(0, 30);
+
 
                                                 Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal medicamentos RIPS]" +
                                                 "(" +
                                                 "CodDigita," +
                                                 "NumRemi," +
-                                                "NumFactur," +
+                                                "NumFactur," + //ES PARA AQOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
                                                 "CodIPS," +
                                                 "TipoDocum," +
                                                 "NumDocum," +
                                                 "AutoriNum," +
+                                                //Se debe registrar el nombre de la forma
                                                 "FormaFarma," +
+                                                //Se busca la unidad de medida
                                                 "UniMedida," +
                                                 "ConcenMedi," +
                                                 "CodMedica," +
@@ -6532,7 +6597,7 @@ namespace Gestion_Rips.Forms.Exportar
                                                       "'" + (Convert.ToDouble(TabConsumos2["Cantidad"]) * Convert.ToDouble(TabConsumos2["ValorUnitario"])) + "'" +
                                                       ")";
 
-                                                Boolean InsertMedicamentos = Conexion.SQLUpdate(Utils.SqlDatos);
+                                                Boolean InsertMedicamentos = Conexion.SqlInsert(Utils.SqlDatos);
 
 
                                             } //TabMedicamentos.HasRows == false
@@ -6540,12 +6605,14 @@ namespace Gestion_Rips.Forms.Exportar
                                         else
                                         {
                                             string NomServicio = TabConsumos2["NomServicio"].ToString();
+
                                             NomServicio = NomServicio.Substring(0, 60);
 
 
 
-                                            //   'TRATELO CON TRAQUILIDAD QUE ES OTRO SERVICIO
-                                            Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal medicamentos RIPS]" +
+                                            //   'TRATELO CON TRAQUILIDAD QUE ES OTRO SERVICIO 
+
+                                            Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal otros servicios RIPS]" +
                                              "(" +
                                              "CodDigita," +
                                              "NumRemi," +
@@ -6579,7 +6646,7 @@ namespace Gestion_Rips.Forms.Exportar
                                              ")";
 
 
-                                            Boolean InsertMedicamentos = Conexion.SQLUpdate(Utils.SqlDatos);
+                                            Boolean InsertMedicamentos = Conexion.SqlInsert(Utils.SqlDatos);
 
                                         } // Final de GBus = "12" Or GBus = "13"
 
@@ -6596,10 +6663,31 @@ namespace Gestion_Rips.Forms.Exportar
                             //para poder registrar el detalle individual de cada factura
 
                             string TipoDocuIPS = txtTipoDocuIps.Text;
+
                             TipoDocuIPS = TipoDocuIPS.Substring(0, 2);
 
 
                             string NomAdmin = TabFacSele["NomAdmin"].ToString();
+
+                            if (string.IsNullOrWhiteSpace(NomAdmin) == false)
+                            {
+                                NomAdmin = NomAdmin.Substring(0, 30);
+
+                            }
+
+                            string NumContra = TabFacSele["NumContra"].ToString();
+
+                            if(string.IsNullOrWhiteSpace(NumContra) == false)
+                            {
+                                NumContra = NumContra.Substring(0, 15);
+                            }
+
+                            string NomPlan = TabFacSele["NomPlan"].ToString();
+
+                            if (string.IsNullOrWhiteSpace(NomPlan) == false)
+                            {
+                                NomPlan = NomPlan.Substring(0, 30);
+                            }
 
 
                             if (TabFacSele["NumResol"].ToString() != "0")
@@ -6663,14 +6751,15 @@ namespace Gestion_Rips.Forms.Exportar
 
                             if (IDContrato.Text == "0")
                             {
-                                Utils.SqlDatos += "'" + TabFacSele["NumContra"].ToString() + "',";
+                                Utils.SqlDatos += "'" + NumContra + "',";
                             }
                             else
                             {
+                                //    'A todas las facturas coloquele el código ID del contrato, CREADO EL 29 DE julio de 2020 por HERNANDO
                                 Utils.SqlDatos += "'" + IDContrato.Text + "',";
                             }
 
-                            Utils.SqlDatos += "'" + TabFacSele["NomPlan"].ToString() + "'," +
+                            Utils.SqlDatos += "'" + NomPlan + "'," +
                             "'" + PoliFactu + "'," +
                             "'" + TabFacSele["Copago"].ToString() + "'," +
                             "'" + TabFacSele["ValorFac"].ToString() + "'," +
@@ -6683,6 +6772,8 @@ namespace Gestion_Rips.Forms.Exportar
 
 
                         }  //Final  de TabConsumos.hasrow
+
+                        //'Desacivo la factura marcada, para que no se vuelva a seleccionar
 
                         Utils.SqlDatos = "UPDATE [Datos de las facturas realizadas] SET ExpoRips = 0, CodSele = '" + UsSel + "'  WHERE [NumFactura] = '" + TabFacSele["NumFactura"] + "'";
 
@@ -6723,6 +6814,8 @@ namespace Gestion_Rips.Forms.Exportar
         {
             try
             {
+
+                
                 DatosDeLaEmpresa();
                 CargarCombobox();
                 CargarDatosUser();
@@ -6737,6 +6830,7 @@ namespace Gestion_Rips.Forms.Exportar
             }
         }
 
+    
 
     }
 }
