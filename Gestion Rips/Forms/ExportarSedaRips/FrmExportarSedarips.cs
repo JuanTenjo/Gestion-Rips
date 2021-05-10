@@ -6518,7 +6518,7 @@ namespace Gestion_Rips.Forms.Exportar
                                                 "(" +
                                                 "CodDigita," +
                                                 "NumRemi," +
-                                                "NumFactur," + //ES PARA AQOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                                                "NumFactur," +
                                                 "CodIPS," +
                                                 "TipoDocum," +
                                                 "NumDocum," +
@@ -6815,7 +6815,6 @@ namespace Gestion_Rips.Forms.Exportar
             try
             {
 
-                
                 DatosDeLaEmpresa();
                 CargarCombobox();
                 CargarDatosUser();
