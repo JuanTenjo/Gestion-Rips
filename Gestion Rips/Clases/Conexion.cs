@@ -53,7 +53,7 @@ namespace Gestion_Rips.Clases
                     }
                 }
 
-                command.CommandTimeout = 60;
+                command.CommandTimeout = 300;
 
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -63,7 +63,7 @@ namespace Gestion_Rips.Clases
             catch (Exception ex)
             {
                 Utils.Titulo01 = "Control de errores de ejecución";
-                    Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
                 Utils.Informa += "en la funcion SQLDataReader" + "\r";
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
