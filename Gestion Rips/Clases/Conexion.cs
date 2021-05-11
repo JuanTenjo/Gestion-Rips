@@ -53,6 +53,8 @@ namespace Gestion_Rips.Clases
                     }
                 }
 
+                command.CommandTimeout = 60;
+
                 SqlDataReader reader = command.ExecuteReader();
 
                 return reader;

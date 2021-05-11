@@ -6235,8 +6235,11 @@ namespace Gestion_Rips.Forms.Exportar
                                         Boolean RegisRecienNadido = Conexion.SqlInsert(Utils.SqlDatos);
 
                                     }
+
                                     RecienNacidos.Close();
+
                                 } //HasRow
+
                             }//if del tipo de sexo
 
                             //   'Tomamos el posible numero de poliza, para grabarlo en la factura
@@ -6245,6 +6248,8 @@ namespace Gestion_Rips.Forms.Exportar
                             FecEnPer = Convert.ToDateTime(TabConsumos["FecEntrada"].ToString());
 
 
+                            TabConsumos.Close();
+                            TabConsumos = null;
 
 
                             while (TabConsumos2.Read())

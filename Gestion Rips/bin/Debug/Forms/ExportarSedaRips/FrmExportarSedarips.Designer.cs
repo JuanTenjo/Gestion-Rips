@@ -46,6 +46,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.RbFacturas = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cboContratos = new System.Windows.Forms.ComboBox();
             this.DateFinal = new System.Windows.Forms.DateTimePicker();
             this.DateInicial = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
@@ -99,7 +100,6 @@ namespace Gestion_Rips.Forms.Exportar
             this.lblCodMinSalud = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.lblTipoRips = new System.Windows.Forms.Label();
-            this.cboContratos = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -140,14 +140,14 @@ namespace Gestion_Rips.Forms.Exportar
             this.cboNameEntidades.FormattingEnabled = true;
             this.cboNameEntidades.Location = new System.Drawing.Point(92, 26);
             this.cboNameEntidades.Name = "cboNameEntidades";
-            this.cboNameEntidades.Size = new System.Drawing.Size(423, 22);
+            this.cboNameEntidades.Size = new System.Drawing.Size(460, 22);
             this.cboNameEntidades.TabIndex = 1;
             this.cboNameEntidades.SelectedIndexChanged += new System.EventHandler(this.cboNameEntidades_SelectedIndexChanged);
             // 
             // txtTipoDocu
             // 
             this.txtTipoDocu.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTipoDocu.Location = new System.Drawing.Point(513, 26);
+            this.txtTipoDocu.Location = new System.Drawing.Point(547, 26);
             this.txtTipoDocu.Name = "txtTipoDocu";
             this.txtTipoDocu.Size = new System.Drawing.Size(40, 22);
             this.txtTipoDocu.TabIndex = 8;
@@ -155,7 +155,7 @@ namespace Gestion_Rips.Forms.Exportar
             // txtRips
             // 
             this.txtRips.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRips.Location = new System.Drawing.Point(672, 26);
+            this.txtRips.Location = new System.Drawing.Point(706, 26);
             this.txtRips.Name = "txtRips";
             this.txtRips.Size = new System.Drawing.Size(104, 22);
             this.txtRips.TabIndex = 7;
@@ -163,7 +163,7 @@ namespace Gestion_Rips.Forms.Exportar
             // txtDocumento
             // 
             this.txtDocumento.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDocumento.Location = new System.Drawing.Point(553, 26);
+            this.txtDocumento.Location = new System.Drawing.Point(587, 26);
             this.txtDocumento.Name = "txtDocumento";
             this.txtDocumento.Size = new System.Drawing.Size(121, 22);
             this.txtDocumento.TabIndex = 6;
@@ -182,7 +182,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.label3.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(672, 0);
+            this.label3.Location = new System.Drawing.Point(706, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(104, 23);
             this.label3.TabIndex = 4;
@@ -194,7 +194,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.label2.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(510, 0);
+            this.label2.Location = new System.Drawing.Point(544, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(164, 23);
             this.label2.TabIndex = 3;
@@ -208,7 +208,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(92, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(423, 23);
+            this.label1.Size = new System.Drawing.Size(460, 23);
             this.label1.TabIndex = 2;
             this.label1.Text = "Nombre de la entidad y/o convenio";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -310,6 +310,17 @@ namespace Gestion_Rips.Forms.Exportar
             this.groupBox3.Size = new System.Drawing.Size(235, 112);
             this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
+            // 
+            // cboContratos
+            // 
+            this.cboContratos.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cboContratos.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboContratos.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboContratos.FormattingEnabled = true;
+            this.cboContratos.Location = new System.Drawing.Point(130, 76);
+            this.cboContratos.Name = "cboContratos";
+            this.cboContratos.Size = new System.Drawing.Size(99, 22);
+            this.cboContratos.TabIndex = 9;
             // 
             // DateFinal
             // 
@@ -973,17 +984,6 @@ namespace Gestion_Rips.Forms.Exportar
             this.lblTipoRips.TabIndex = 10;
             this.lblTipoRips.Text = "Facturas";
             this.lblTipoRips.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // cboContratos
-            // 
-            this.cboContratos.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.cboContratos.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboContratos.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboContratos.FormattingEnabled = true;
-            this.cboContratos.Location = new System.Drawing.Point(130, 76);
-            this.cboContratos.Name = "cboContratos";
-            this.cboContratos.Size = new System.Drawing.Size(99, 22);
-            this.cboContratos.TabIndex = 9;
             // 
             // FrmExportarSedarips
             // 
