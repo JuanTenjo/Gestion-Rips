@@ -115,6 +115,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.txtCodigAdmin.Name = "txtCodigAdmin";
             this.txtCodigAdmin.Size = new System.Drawing.Size(167, 22);
             this.txtCodigAdmin.TabIndex = 15;
+            this.txtCodigAdmin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigAdmin_KeyPress);
             // 
             // txtCodigIPS
             // 
@@ -174,6 +175,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.txtNitCCAdmin.Name = "txtNitCCAdmin";
             this.txtNitCCAdmin.Size = new System.Drawing.Size(165, 22);
             this.txtNitCCAdmin.TabIndex = 13;
+            this.txtNitCCAdmin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNitCCAdmin_KeyPress);
             // 
             // label1
             // 
@@ -254,7 +256,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.lblCodigoUsaF.ForeColor = System.Drawing.Color.Black;
             this.lblCodigoUsaF.Location = new System.Drawing.Point(73, 455);
             this.lblCodigoUsaF.Name = "lblCodigoUsaF";
-            this.lblCodigoUsaF.Size = new System.Drawing.Size(36, 26);
+            this.lblCodigoUsaF.Size = new System.Drawing.Size(57, 26);
             this.lblCodigoUsaF.TabIndex = 18;
             this.lblCodigoUsaF.Text = "CodigoUsa";
             this.lblCodigoUsaF.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -315,7 +317,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.label14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label14.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(212, 366);
+            this.label14.Location = new System.Drawing.Point(203, 366);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(68, 26);
             this.label14.TabIndex = 23;
@@ -328,7 +330,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.label15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label15.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(281, 366);
+            this.label15.Location = new System.Drawing.Point(272, 366);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(68, 26);
             this.label15.TabIndex = 24;
@@ -341,7 +343,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.label16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label16.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(356, 366);
+            this.label16.Location = new System.Drawing.Point(403, 366);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(68, 26);
             this.label16.TabIndex = 25;
@@ -354,7 +356,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.label18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label18.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.Black;
-            this.label18.Location = new System.Drawing.Point(420, 366);
+            this.label18.Location = new System.Drawing.Point(341, 366);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(68, 26);
             this.label18.TabIndex = 27;
@@ -367,7 +369,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.label19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label19.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.Black;
-            this.label19.Location = new System.Drawing.Point(475, 366);
+            this.label19.Location = new System.Drawing.Point(466, 366);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(68, 26);
             this.label19.TabIndex = 28;
@@ -441,7 +443,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.label10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label10.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(537, 366);
+            this.label10.Location = new System.Drawing.Point(528, 366);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(68, 26);
             this.label10.TabIndex = 41;
@@ -454,7 +456,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(601, 366);
+            this.label5.Location = new System.Drawing.Point(592, 366);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(68, 26);
             this.label5.TabIndex = 43;
@@ -470,7 +472,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.btnUnificar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnUnificar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnUnificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUnificar.Location = new System.Drawing.Point(608, 395);
+            this.btnUnificar.Location = new System.Drawing.Point(599, 395);
             this.btnUnificar.Name = "btnUnificar";
             this.btnUnificar.Size = new System.Drawing.Size(55, 39);
             this.btnUnificar.TabIndex = 44;
@@ -487,7 +489,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.BtnBorrarRemi.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.BtnBorrarRemi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.BtnBorrarRemi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnBorrarRemi.Location = new System.Drawing.Point(544, 395);
+            this.BtnBorrarRemi.Location = new System.Drawing.Point(535, 395);
             this.BtnBorrarRemi.Name = "BtnBorrarRemi";
             this.BtnBorrarRemi.Size = new System.Drawing.Size(55, 39);
             this.BtnBorrarRemi.TabIndex = 42;
@@ -504,7 +506,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.BtnExportar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.BtnExportar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.BtnExportar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnExportar.Location = new System.Drawing.Point(361, 395);
+            this.BtnExportar.Location = new System.Drawing.Point(408, 395);
             this.BtnExportar.Name = "BtnExportar";
             this.BtnExportar.Size = new System.Drawing.Size(57, 39);
             this.BtnExportar.TabIndex = 39;
@@ -521,7 +523,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.btnCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrar.Location = new System.Drawing.Point(426, 395);
+            this.btnCerrar.Location = new System.Drawing.Point(347, 395);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(55, 39);
             this.btnCerrar.TabIndex = 37;
@@ -538,7 +540,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.btnAnular.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnAnular.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnAnular.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAnular.Location = new System.Drawing.Point(482, 395);
+            this.btnAnular.Location = new System.Drawing.Point(473, 395);
             this.btnAnular.Name = "btnAnular";
             this.btnAnular.Size = new System.Drawing.Size(55, 39);
             this.btnAnular.TabIndex = 36;
@@ -555,7 +557,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.btnActualizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnActualizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizar.Location = new System.Drawing.Point(288, 395);
+            this.btnActualizar.Location = new System.Drawing.Point(279, 395);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(53, 39);
             this.btnActualizar.TabIndex = 33;
@@ -572,7 +574,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(217, 395);
+            this.button3.Location = new System.Drawing.Point(208, 395);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(57, 39);
             this.button3.TabIndex = 31;

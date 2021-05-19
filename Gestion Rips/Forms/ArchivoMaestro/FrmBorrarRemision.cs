@@ -303,7 +303,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                                 TB = NombreDeArchivos["NomTabRemo"].ToString();
                                 NArch = NombreDeArchivos["NomArchivo"].ToString();
 
-                                Utils.SqlDatos = "SELECT Count(NumRemi) as TolRemi  FROM [DARIPSXPSQL].[dbo].[" + TB + "] WHERE [NumRemi]  = '" + R + "'";
+                                Utils.SqlDatos = "SELECT Count(NumRemi) as TolRemi FROM [DARIPSXPSQL].[dbo].[" + TB + "] WHERE [NumRemi]  = '" + R + "'";
 
                                 SqlDataReader TolTablas = Conexion.SQLDataReader(Utils.SqlDatos);
 
@@ -350,9 +350,15 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
 
                             Utils.Informa += "Datos eliminados satisfactoriamente ";
 
-                            //Registre la acción realizada, 4 = Eliminada totalmente
+                            //Actualiza el campo de Numfacturas a 0 -- Juan Diego Pimentel 2021
+
+                            Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos archivo maestro] SET NumFacturas = 0 WHERE ConseArchivo = '" + R + "' ";
+
+                            Boolean EstaAct = Conexion.SQLUpdate(Utils.SqlDatos);
 
                             MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            //Registre la acción realizada, 4 = Eliminada totalmente
 
                             FunFec = RegisAccion(R, "4", Rz, FRS, USC);
 

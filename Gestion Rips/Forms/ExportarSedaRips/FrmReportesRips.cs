@@ -119,7 +119,7 @@ namespace Gestion_Rips.Forms.Exportar
                 }
 
                 TabUsuarios.Close();
-
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
                 SqlFacturas = "SELECT COUNT(CodDigita) AS TolFacturas, SUM(Copago) AS ValCopaFac, SUM(ValorNeto) AS ValNetoFac ";
                 SqlFacturas += "FROM [DARIPSXPSQL].[dbo].[Datos temporal transacciones RIPS] ";
                 SqlFacturas += "WHERE (CodDigita = N'" + UsSel + "') AND ";
@@ -153,7 +153,7 @@ namespace Gestion_Rips.Forms.Exportar
                 }
 
                 TabFacturas.Close();
-
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
                 SqlHospitalizados = "SELECT COUNT(CodDigita) AS TolHospi ";
                 SqlHospitalizados += "FROM [DARIPSXPSQL].[dbo].[Datos temporal hospitalizacion RIPS] ";
                 SqlHospitalizados += "WHERE (CodDigita = N'" + UsSel + "') AND ";
@@ -184,7 +184,7 @@ namespace Gestion_Rips.Forms.Exportar
                 }
 
                 TabHospitalizados.Close();
-
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
 
                 SqlUrgencias = "SELECT COUNT(CodDigita) AS TolObserva ";
                 SqlUrgencias += "FROM [DARIPSXPSQL].[dbo].[Datos temporal observacion RIPS] ";
@@ -216,7 +216,7 @@ namespace Gestion_Rips.Forms.Exportar
                 }
 
                 TabUrgencias.Close();
-
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
 
                 SqlRNacidos = "SELECT COUNT(CodDigita) AS TolNacido ";
                 SqlRNacidos += "FROM [DARIPSXPSQL].[dbo].[Datos temporal recien nacidos RIPS]";
@@ -248,7 +248,7 @@ namespace Gestion_Rips.Forms.Exportar
                 }
 
                 TabRNacidos.Close();
-
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
                 SqlConsultas = "SELECT COUNT(CodDigita) AS TolConsultas, SUM(ValorConsul) AS ValtolConsul ";
                 SqlConsultas += "FROM [DARIPSXPSQL].[dbo].[Datos temporal consultas RIPS]";
                 SqlConsultas += "WHERE (CodDigita = N'" + UsSel + "') AND ";
@@ -283,7 +283,7 @@ namespace Gestion_Rips.Forms.Exportar
                 }
 
                 TabConsultas.Close();
-
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
                 SqlMedica = "SELECT COUNT(CodDigita) AS TolMedicamentos, SUM(ValorTotal) AS ValtolMedi ";
                 SqlMedica += "FROM [DARIPSXPSQL].[dbo].[Datos temporal medicamentos RIPS] ";
                 SqlMedica += "WHERE (CodDigita = N'" + UsSel + "') AND ";
@@ -315,7 +315,7 @@ namespace Gestion_Rips.Forms.Exportar
                 }
 
                 TabMedica.Close();
-
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
                 SqlProcedimientos = "SELECT COUNT(CodDigita) AS TolProcedimientos, SUM(ValorProce) AS ValtolProce ";
                 SqlProcedimientos += "FROM [DARIPSXPSQL].[dbo].[Datos temporal procedimientos RIPS] ";
                 SqlProcedimientos += "WHERE (CodDigita = N'" + UsSel + "') AND ";
@@ -347,7 +347,7 @@ namespace Gestion_Rips.Forms.Exportar
                 }
 
                 TabProcedimientos.Close();
-
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
                 SqlOtrosServi = "SELECT COUNT(CodDigita) AS TolOtrosSer, SUM(ValorTotal) AS ValtolOtros ";
                 SqlOtrosServi += "FROM [DARIPSXPSQL].[dbo].[Datos temporal otros servicios RIPS] ";
                 SqlOtrosServi += "WHERE (CodDigita = N'" + UsSel + "') AND ";
@@ -382,7 +382,7 @@ namespace Gestion_Rips.Forms.Exportar
                 }
 
                 TabOtrosServi.Close();
-
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
                 txtTotalTrans.Text = Convert.ToString(ValTolTras);
 
                 txtSumDeta.Text = Convert.ToString(ValTolDeta);
@@ -406,6 +406,10 @@ namespace Gestion_Rips.Forms.Exportar
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
             }
         }
 

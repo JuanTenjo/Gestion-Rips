@@ -823,61 +823,73 @@ namespace Gestion_Rips.Forms.Exportar
                         "HAVING ((([Datos archivo de procedimientos].NumRemi) = '" + Rm + "' ))" +
                         "ORDER BY [Datos archivo de procedimientos].NumRemi;";
 
-                SqlDataReader TabProce = Conexion.SQLDataReader(SqlProce);
+                //   SqlDataReader TabProce = Conexion.SQLDataReader(SqlProce);
 
-                if (TabProce.HasRows == false)
+                SqlDataReader TabProce;
+
+                using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
                 {
-                    //El numeor de Remision no se encuentra
-                    return 0;
-                }
-                else
-                {
-                    //Se empieza a grabar en la tabla de agrupados, porque ya se eliminaron los datos y n puede haber repetidos
+                    SqlCommand command = new SqlCommand(SqlProce, connection);
+                    command.Connection.Open();
+                    TabProce = command.ExecuteReader();
 
-
-                    while (TabProce.Read())
+                    if (TabProce.HasRows == false)
                     {
-                        CD = TabProce["CodProce"].ToString();
-                        FunReg = GrupoProceServi(CD, TM);
+                        //El numeor de Remision no se encuentra
+                        return 0;
+                    }
+                    else
+                    {
+                        //Se empieza a grabar en la tabla de agrupados, porque ya se eliminaron los datos y n puede haber repetidos
 
-                        Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos archivo de servicios agrupados] " +
-                                            "(" +
-                                            "NumRemi, " +
-                                            "NumFactur, " +
-                                            "CodIPS, " +
-                                            "CodConcepto, " +
-                                            "CantiGrupo, " +
-                                            "ValUnita, " +
-                                            "Valtotal" +
-                                            ") " +
-                                            "VALUES" +
-                                            "(" +
-                                            "'" + TabProce["NumRemi"].ToString() + "'," +
-                                            "'" + TabProce["NumFactur"].ToString() + "'," +
-                                            "'" + TabProce["CodIPS"].ToString() + "'," +
-                                            "'" + FunReg + "'," +
-                                            "'" + TabProce["CuentaDeIndiceRIPSAP"].ToString() + "'," +
-                                            "'" + Convert.ToDouble(TabProce["SumaDeValorProce"].ToString()) / Convert.ToDouble(TabProce["CuentaDeIndiceRIPSAP"].ToString()) + "'," +
-                                            "'" + Convert.ToDouble(TabProce["SumaDeValorProce"].ToString()) + "'" +
-                                            ")";
 
-                        Boolean sqlInsert = Conexion.SqlInsert(Utils.SqlDatos);
-
-                        if (sqlInsert)
+                        while (TabProce.Read())
                         {
-                            esta = 1;
-                        }
-                        else
-                        {
-                            esta = 0;
+                            CD = TabProce["CodProce"].ToString();
+                            FunReg = GrupoProceServi(CD, TM);
+
+                            Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos archivo de servicios agrupados] " +
+                                                "(" +
+                                                "NumRemi, " +
+                                                "NumFactur, " +
+                                                "CodIPS, " +
+                                                "CodConcepto, " +
+                                                "CantiGrupo, " +
+                                                "ValUnita, " +
+                                                "Valtotal" +
+                                                ") " +
+                                                "VALUES" +
+                                                "(" +
+                                                "'" + TabProce["NumRemi"].ToString() + "'," +
+                                                "'" + TabProce["NumFactur"].ToString() + "'," +
+                                                "'" + TabProce["CodIPS"].ToString() + "'," +
+                                                "'" + FunReg + "'," +
+                                                "'" + TabProce["CuentaDeIndiceRIPSAP"].ToString() + "'," +
+                                                "'" + Convert.ToDouble(TabProce["SumaDeValorProce"].ToString()) / Convert.ToDouble(TabProce["CuentaDeIndiceRIPSAP"].ToString()) + "'," +
+                                                "'" + Convert.ToDouble(TabProce["SumaDeValorProce"].ToString()) + "'" +
+                                                ")";
+
+                            Boolean sqlInsert = Conexion.SqlInsert(Utils.SqlDatos);
+
+                            if (sqlInsert)
+                            {
+                                esta = 1;
+                            }
+                            else
+                            {
+                                esta = 0;
+                            }
+
                         }
 
+                        TabProce.Close();
+                        if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+                        return esta;
                     }
 
-                    TabProce.Close();
-                    return esta;
-
                 }
+
+
 
             }
             catch (Exception ex)
@@ -935,18 +947,34 @@ namespace Gestion_Rips.Forms.Exportar
                         break;
                 }
 
-                SqlDataReader TabCatalogo = Conexion.SQLDataReader(SqlCatalogo);
+                SqlDataReader TabCatalogo;
+                //    SqlDataReader TabUsuaTemp = Conexion.SQLDataReader(SqlsuaTemp);
 
-                if (TabCatalogo.HasRows == false)
+                using (SqlConnection connection2 = new SqlConnection(Conexion.conexionSQL))
                 {
-                    return "06";
+                    SqlCommand command2 = new SqlCommand(SqlCatalogo, connection2);
+                    command2.Connection.Open();
+                    TabCatalogo = command2.ExecuteReader();
+
+                    //SqlDataReader TabCatalogo = Conexion.SQLDataReader(SqlCatalogo);
+
+                    if (TabCatalogo.HasRows == false)
+                    {
+                        return "06";
+                    }
+                    else
+                    {
+                        TabCatalogo.Read();
+
+                        return TabCatalogo["GrupoServi"].ToString();
+
+                        TabCatalogo.Close();
+                    }
+
                 }
-                else
-                {
-                    TabCatalogo.Read();
-                    //Devuelva grupos
-                    return TabCatalogo["GrupoServi"].ToString();
-                }
+
+
+
             }
             catch (Exception ex)
             {
@@ -1027,6 +1055,7 @@ namespace Gestion_Rips.Forms.Exportar
                     }
 
                     TabConsultas.Close();
+                    if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
                     return Esta;
 
                 } //Fin TabConsultas.HasRows 
@@ -1053,9 +1082,6 @@ namespace Gestion_Rips.Forms.Exportar
 
                 double[] CanReg = new double[11];
                 string[] NomAr = new string[11];
-
-
-
 
 
                 Utils.Titulo01 = "Control para exportar archivos RIPS";
@@ -1293,10 +1319,10 @@ namespace Gestion_Rips.Forms.Exportar
                                     switch (NT)
                                     {
                                         case "Datos archivo de control":
-                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(FechaRemi)), LTRIM(RTRIM(CodArchivo)), LTRIM(RTRIM(TotalRegis)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(CodIPS)), CONVERT(varchar,FechaRemi,103), LTRIM(RTRIM(CodArchivo)), LTRIM(RTRIM(TotalRegis)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
                                             break;
                                         case "Datos archivo de transacciones":
-                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(CodIPS)),LTRIM(RTRIM(RazonSocial)),LTRIM(RTRIM(TipIdenti)),LTRIM(RTRIM(NumIdenti)),LTRIM(RTRIM(NumFactur)),LTRIM(RTRIM(FecFactur)),LTRIM(RTRIM(FecInicio)),LTRIM(RTRIM(FecFinal)),LTRIM(RTRIM(CodAdmin)),LTRIM(RTRIM(NomAdmin)),LTRIM(RTRIM(NumContra)),LTRIM(RTRIM(PlanBene)),LTRIM(RTRIM(NumPoli)),LTRIM(RTRIM(Copago)),LTRIM(RTRIM(ValorComi)),LTRIM(RTRIM(ValorDes)),LTRIM(RTRIM(ValorNeto)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(CodIPS)),LTRIM(RTRIM(RazonSocial)),LTRIM(RTRIM(TipIdenti)),LTRIM(RTRIM(NumIdenti)),LTRIM(RTRIM(NumFactur)),CONVERT(varchar,FecFactur,103),CONVERT(varchar,FecInicio,103),CONVERT(varchar,FecFinal,103),LTRIM(RTRIM(CodAdmin)),LTRIM(RTRIM(NomAdmin)),LTRIM(RTRIM(NumContra)),LTRIM(RTRIM(PlanBene)),LTRIM(RTRIM(NumPoli)),LTRIM(RTRIM(Copago)),LTRIM(RTRIM(ValorComi)),LTRIM(RTRIM(ValorDes)),LTRIM(RTRIM(ValorNeto)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
                                             break;
                                         case "Datos archivo usuarios":
                                             Utils.SqlDatos = "SELECT LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)), LTRIM(RTRIM(CodAdmin)), LTRIM(RTRIM(TipUsuario)),LTRIM(RTRIM(Apellido1)),LTRIM(RTRIM(Apellido2)),LTRIM(RTRIM(Nombre1)),LTRIM(RTRIM(Nombre2)),LTRIM(RTRIM(Edad)),LTRIM(RTRIM(EdadMedi)),LTRIM(RTRIM(Sexo)),LTRIM(RTRIM(CodDpto)),LTRIM(RTRIM(CodMuni)),LTRIM(RTRIM(ZonaResi)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
@@ -1305,19 +1331,19 @@ namespace Gestion_Rips.Forms.Exportar
                                             Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(CodConcepto)), LTRIM(RTRIM(CantiGrupo)),LTRIM(RTRIM(ValUnita)),LTRIM(RTRIM(Valtotal)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
                                             break;
                                         case "Datos archivo de consulta":
-                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),LTRIM(RTRIM(FecConsul)),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CodConsul)),LTRIM(RTRIM(CausExter)),LTRIM(RTRIM(DxPrincipal)),LTRIM(RTRIM(DxRelacion1)),LTRIM(RTRIM(DxRelacion2)),LTRIM(RTRIM(DxRelacion3)),LTRIM(RTRIM(TipoDxPrin)),LTRIM(RTRIM(ValorConsul)),LTRIM(RTRIM(ValorCuota)),LTRIM(RTRIM(ValorNeto)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),CONVERT(varchar,FecConsul,103),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CodConsul)),LTRIM(RTRIM(CausExter)),LTRIM(RTRIM(DxPrincipal)),LTRIM(RTRIM(DxRelacion1)),LTRIM(RTRIM(DxRelacion2)),LTRIM(RTRIM(DxRelacion3)),LTRIM(RTRIM(TipoDxPrin)),LTRIM(RTRIM(ValorConsul)),LTRIM(RTRIM(ValorCuota)),LTRIM(RTRIM(ValorNeto)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
                                             break;
                                         case "Datos archivo de procedimientos":
-                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),LTRIM(RTRIM(FecProce)),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CodProce)),LTRIM(RTRIM(AmbitoReal)),LTRIM(RTRIM(FinalProce)),LTRIM(RTRIM(PersonAten)),LTRIM(RTRIM(DxPrincipal)),LTRIM(RTRIM(DxRelacion)),LTRIM(RTRIM(Complicacion)),LTRIM(RTRIM(RealiActo)),LTRIM(RTRIM(ValorProce)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),CONVERT(varchar,FecProce,103),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CodProce)),LTRIM(RTRIM(AmbitoReal)),LTRIM(RTRIM(FinalProce)),LTRIM(RTRIM(PersonAten)),LTRIM(RTRIM(DxPrincipal)),LTRIM(RTRIM(DxRelacion)),LTRIM(RTRIM(Complicacion)),LTRIM(RTRIM(RealiActo)),LTRIM(RTRIM(ValorProce)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
                                             break;
                                         case "Datos archivo de hospitalizacion":
-                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),LTRIM(RTRIM(ViaDIngreso)),LTRIM(RTRIM(FecIngresa)),LTRIM(RTRIM(HorIngresa)),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CausExter)),LTRIM(RTRIM(DxPrincIngre)),LTRIM(RTRIM(DxPrincEgre)),LTRIM(RTRIM(DxRelacion1)),LTRIM(RTRIM(DxRelacion2)),LTRIM(RTRIM(DxRelacion3)),LTRIM(RTRIM(DxComplica)),LTRIM(RTRIM(EstadoSal)),LTRIM(RTRIM(DxMuerte)),LTRIM(RTRIM(FecSalida)),LTRIM(RTRIM(HorSalida)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),LTRIM(RTRIM(ViaDIngreso)),CONVERT(varchar,FecIngresa,103) ,LTRIM(RTRIM(HorIngresa)),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CausExter)),LTRIM(RTRIM(DxPrincIngre)),LTRIM(RTRIM(DxPrincEgre)),LTRIM(RTRIM(DxRelacion1)),LTRIM(RTRIM(DxRelacion2)),LTRIM(RTRIM(DxRelacion3)),LTRIM(RTRIM(DxComplica)),LTRIM(RTRIM(EstadoSal)),LTRIM(RTRIM(DxMuerte)),CONVERT(varchar,FecSalida,103),LTRIM(RTRIM(HorSalida)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
                                             break;
                                         case "Datos archivo de observacion urgencias":
-                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),LTRIM(RTRIM(FecIngresa)),LTRIM(RTRIM(HorIngresa)),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CausExter)),LTRIM(RTRIM(DxPrincipal)),LTRIM(RTRIM(DxRelacion1)),LTRIM(RTRIM(DxRelacion2)),LTRIM(RTRIM(DxRelacion3)),LTRIM(RTRIM(Destino)),LTRIM(RTRIM(EstadoSal)),LTRIM(RTRIM(DxMuerte)),FecSalida,LTRIM(RTRIM(HorSalida)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),CONVERT(varchar,FecIngresa,103),LTRIM(RTRIM(HorIngresa)),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CausExter)),LTRIM(RTRIM(DxPrincipal)),LTRIM(RTRIM(DxRelacion1)),LTRIM(RTRIM(DxRelacion2)),LTRIM(RTRIM(DxRelacion3)),LTRIM(RTRIM(Destino)),LTRIM(RTRIM(EstadoSal)),LTRIM(RTRIM(DxMuerte)),CONVERT(varchar,FecSalida,103),LTRIM(RTRIM(HorSalida)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
                                             break;
                                         case "Datos archivo de recien nacido":
-                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)), LTRIM(RTRIM(FecNaci)),LTRIM(RTRIM(HorIngresa)),LTRIM(RTRIM(EdadGesta)),LTRIM(RTRIM(ControlPrena)),LTRIM(RTRIM(SexoRecien)),LTRIM(RTRIM(PesoRecien)),LTRIM(RTRIM(DxRecien)),LTRIM(RTRIM(DxMuerte)),LTRIM(RTRIM(FecMuerte)),LTRIM(RTRIM(HorMuerte)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),CONVERT(varchar,FecNaci,103),LTRIM(RTRIM(HorIngresa)),LTRIM(RTRIM(EdadGesta)),LTRIM(RTRIM(ControlPrena)),LTRIM(RTRIM(SexoRecien)),LTRIM(RTRIM(PesoRecien)),LTRIM(RTRIM(DxRecien)),LTRIM(RTRIM(DxMuerte)),CONVERT(varchar,FecMuerte,103),LTRIM(RTRIM(HorMuerte)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
                                             break;
                                         case "Datos archivo de medicamentos":
                                             Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)), LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CodMedica)),LTRIM(RTRIM(TipoMedica)),LTRIM(RTRIM(NomGenerico)),LTRIM(RTRIM(FormaFarma)),LTRIM(RTRIM(ConcenMedi)),LTRIM(RTRIM(UniMedida)),LTRIM(RTRIM(NumUnidad)),LTRIM(RTRIM(ValorUnita)),LTRIM(RTRIM(ValorTotal)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
@@ -1522,17 +1548,27 @@ namespace Gestion_Rips.Forms.Exportar
                 //Abrimos la tabla nombre de archivos
 
                 Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos archivo de servicios agrupados] WHERE NumRemi = '" + RM + "'";
+                /// SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
 
-                SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
+                SqlDataReader TablaAux1;
 
-                if (TablaAux1.HasRows == false)
+                using (SqlConnection connection2 = new SqlConnection(Conexion.conexionSQL))
                 {
-                    //El numero de factura no se encuentra
-                    return 0;
+                    SqlCommand command2 = new SqlCommand(Utils.SqlDatos, connection2);
+                    command2.Connection.Open();
+                    TablaAux1 = command2.ExecuteReader();
+
+                    if (TablaAux1.HasRows == false)
+                    {
+                        //El numero de factura no se encuentra
+                        return 0;
+                    }
+
+                    TablaAux1.Close();
+
                 }
-                else
-                {
-                    Utils.SqlDatos = "DELETE FROM [DARIPSXPSQL].[dbo].[Datos archivo de servicios agrupados] WHERE NumRemi = '" + RM + "' ";
+
+                Utils.SqlDatos = "DELETE FROM [DARIPSXPSQL].[dbo].[Datos archivo de servicios agrupados] WHERE NumRemi = '" + RM + "' ";
 
                     Boolean EliminaDatosAgri = Conexion.SQLDelete(Utils.SqlDatos);
 
@@ -1544,10 +1580,6 @@ namespace Gestion_Rips.Forms.Exportar
                     {
                         return 0;
                     }
-
-                }
-
-                TablaAux1.Close();
 
             }
             catch (Exception ex)
@@ -1564,7 +1596,88 @@ namespace Gestion_Rips.Forms.Exportar
 
         #endregion 
 
-        #region Botones
+        #region Botones Y TEXBOX
+
+        private void txtCodigAdmin_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            try
+            {
+                if ((int)e.KeyChar == (int)Keys.Enter)
+                {
+                    if (string.IsNullOrWhiteSpace(txtCodigAdmin.Text) == false)
+                    {
+
+                        SqlDataReader AdminPLanes = Conexion.SQLDataReader("SELECT [Datos administradoras de planes].CodInterno, [Datos administradoras de planes].NomAdmin, [Datos administradoras de planes].CodAdmin, [Datos administradoras de planes].NitCC, [Datos administradoras de planes].ManualTari " +
+                                                                  " FROM [DARIPSXPSQL].[dbo].[Datos administradoras de planes] WHERE CodAdmin = '" + txtCodigAdmin.Text + "' ");
+
+                        if (AdminPLanes.HasRows)
+                        {
+                            AdminPLanes.Read();
+
+                            cboNomAdmin.SelectedValue = AdminPLanes["CodInterno"].ToString();
+
+                        }
+                        else
+                        {
+                            Utils.Titulo01 = "Control de ejecución";
+                            Utils.Informa = "Lo siento pero el código digitado no corresponde a ninguna entidad en este sistema." + "\r";
+                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "después intentar buscar por codigo admin" + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtNitCCAdmin_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if ((int)e.KeyChar == (int)Keys.Enter)
+                {
+                    if (string.IsNullOrWhiteSpace(txtNitCCAdmin.Text) == false)
+                    {
+
+                        SqlDataReader AdminPLanes = Conexion.SQLDataReader("SELECT [Datos administradoras de planes].CodInterno, [Datos administradoras de planes].NomAdmin, [Datos administradoras de planes].CodAdmin, [Datos administradoras de planes].NitCC, [Datos administradoras de planes].ManualTari " +
+                                                                  " FROM [DARIPSXPSQL].[dbo].[Datos administradoras de planes] WHERE NitCC = '" + txtNitCCAdmin.Text + "' ");
+
+                        if (AdminPLanes.HasRows)
+                        {
+                            AdminPLanes.Read();
+
+                            cboNomAdmin.SelectedValue = AdminPLanes["CodInterno"].ToString();
+
+                        }
+                        else
+                        {
+                            Utils.Titulo01 = "Control de ejecución";
+                            Utils.Informa = "Lo siento pero el NIT digitado no corresponde a ninguna entidad en este sistema" + "\r";
+                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "después intentar buscar por NIT O CC" + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void btnNuevaRemi_Click(object sender, EventArgs e)
         {
             try
@@ -1650,6 +1763,9 @@ namespace Gestion_Rips.Forms.Exportar
         {
             try
             {
+
+                Utils.Titulo01 = "Control de ejecución";
+
                 string NAP, NR, USC, CIp, Estandatos, FEv;
                 string EstasdoRemi;
                 int MT, SinoG, FunAct, FunGru, FunAC;
@@ -1730,7 +1846,7 @@ namespace Gestion_Rips.Forms.Exportar
                         if (FunGru != -1)
                         {
                             FunGru = AgruparMedicamentos(NR, MT);
-                            if (FunGru != 1)
+                            if (FunGru != -1)
                             {
                                 FunGru = AgruparOtrosServi(NR, MT);
                             }
@@ -1802,6 +1918,7 @@ namespace Gestion_Rips.Forms.Exportar
                                 break;
                             case 1:
                                 break;
+
                             default:
 
                                 break;
@@ -1825,6 +1942,13 @@ namespace Gestion_Rips.Forms.Exportar
                             Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos archivo maestro] SET ActualRemi = '" + 1 + "' WHERE ConseArchivo = '" + NR + "'";
 
                             Boolean eSTAaCT = Conexion.SQLUpdate(Utils.SqlDatos);
+
+                            if (eSTAaCT)
+                            {
+                                Utils.Titulo01 = "Control de ejecución";
+                                Utils.Informa = "se ha actualizado correctamente la remision " + NR + "\r";
+                                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
 
                         }
 
@@ -1861,7 +1985,7 @@ namespace Gestion_Rips.Forms.Exportar
             {
                 Utils.Titulo01 = "Control para anular remisiones";
                 string NR, NAP;
-                int FunCer;
+                int FunCer = 0;
 
                 if (string.IsNullOrWhiteSpace(txtCodigIPS.Text) || string.IsNullOrWhiteSpace(txtCodigIPS.Text))
                 {
@@ -1916,22 +2040,27 @@ namespace Gestion_Rips.Forms.Exportar
 
                 NAP = cboNomAdmin.Text;
 
-                Utils.Informa = "Lo siento pero la remisión " + NR + "\r";
-                Utils.Informa += "se encuentra abierta, por tanto no" + "\r";
-                Utils.Informa += "le puede exportar los archivos RIPS." + "\r";
+                Utils.Informa = "¿Usted desea ANULAR la remisión  " + NR + "\r";
+                Utils.Informa += "registrada a la administradora de planes@" + NAP+  "\r";
                 var res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
                 if (res == DialogResult.Yes)
                 {
                     Utils.RemiAnular = NR;
                     FrmAnularRemi FrmAnularRemi = new FrmAnularRemi();
-                    FrmAnularRemi.Show();
+                    FrmAnularRemi.ShowDialog();
                     string USC = lblCodigoUsaF.Text;
 
-                    string Rz = Utils.RemiAnular;
+                    string Rz = Utils.RazonAnul;
+
                     string Date = DateTime.Now.ToString("yyyy-MM-dd");
 
-                    FunCer = AnularRemision(NR, Rz, Date, USC);
+                    if(string.IsNullOrWhiteSpace(Utils.RazonAnul) == false)
+                    {
+                        FunCer = AnularRemision(NR, Rz, Date, USC);
+
+                    }
+
 
                     switch (FunCer)
                     {
@@ -1949,7 +2078,7 @@ namespace Gestion_Rips.Forms.Exportar
                             int FunFec = RegisAccion(NR, "1", Rz, Date, USC);
 
                             Utils.Informa = "La remisión No. " + NR + " ha sido anulada en este sistema" + "\r";
-                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
                             CargarDatosAdminPlanes();
                             break;
 
@@ -2132,6 +2261,15 @@ namespace Gestion_Rips.Forms.Exportar
 
                     FunCer = CerrarRemision(NR, USC);
 
+                    if (FunCer == 1)
+                    {
+                        Utils.Titulo01 = "Control de ejecución";
+                        Utils.Informa = "se ha cerrado correctamente la remision " + NR + "\r";
+                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
+
+
                     CargarDatosAdminPlanes();
 
 
@@ -2180,36 +2318,6 @@ namespace Gestion_Rips.Forms.Exportar
 
         }
 
-        #endregion
-
-        private void FrmArchivoMaestro_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                CargaUsuario();
-
-                CargarComboBox();
-
-                Bandera = 1;
-
-                CargarDatosAdminPlanes();
-
-            }
-            catch (Exception ex)
-            {
-                Utils.Titulo01 = "Control de errores de ejecución";
-                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
-                Utils.Informa += "en el formulario Archivo Maestro" + "\r";
-                Utils.Informa += "Módulo gestión de RIPS" + "\r";
-                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
-                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
-
-
-
-
         private void btnUnificar_Click(object sender, EventArgs e)
         {
             if (DataGridRemi.SelectedRows.Count > 0)
@@ -2236,6 +2344,32 @@ namespace Gestion_Rips.Forms.Exportar
         }
 
 
+        #endregion
+
+        private void FrmArchivoMaestro_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                CargaUsuario();
+
+                CargarComboBox();
+
+                Bandera = 1;
+
+                CargarDatosAdminPlanes();
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en el formulario Archivo Maestro" + "\r";
+                Utils.Informa += "Módulo gestión de RIPS" + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
 
 
     }

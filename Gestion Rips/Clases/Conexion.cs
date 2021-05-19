@@ -41,7 +41,7 @@ namespace Gestion_Rips.Clases
             try
             {
                 sqlConnection = new SqlConnection(conexionSQL);
-                sqlConnection.Open();
+                sqlConnection.Open(); //aqui
 
                 SqlCommand command = new SqlCommand(sqlString, sqlConnection);
 
@@ -87,8 +87,15 @@ namespace Gestion_Rips.Clases
                         }
                     }
 
+                    //var dataContext = new MyDataBaseDataContext();
+                    //dataContext.DataBase.CommandTimeout = 300; // Timeout en hardcode :( 
+
                     sqlConnection.Open();
+
+                    command.CommandTimeout = 300;
+
                     command.ExecuteNonQuery();
+
                 }
 
                 return true;
@@ -153,7 +160,10 @@ namespace Gestion_Rips.Clases
                         }
                     }
 
-                    sqlConnection.Open();
+                    sqlConnection.Open(); //aqui
+
+                    command.CommandTimeout = 300;
+
                     command.ExecuteNonQuery();
                 }
 
