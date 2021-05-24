@@ -123,7 +123,8 @@ namespace Gestion_Rips.Forms
 
         private void exportarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            FrmArchivoMaestro FrmArchivoMaestro = new FrmArchivoMaestro();
+            FrmArchivoMaestro.Show();
         }
     }
 }
