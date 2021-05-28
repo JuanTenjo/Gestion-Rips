@@ -644,8 +644,6 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                         {
                             string HistoNum = Convert.ToString(Row.Cells["HistoNum"].Value);
 
-                            // string Cardinal = Convert.ToString(Row.Cells["Estado"].Value);
-
                             SqlDatos = "SELECT [Datos del Paciente].TipoIden, [Datos del Paciente].NumIden, [Datos del Paciente].Apellido1, [Datos del Paciente].Apellido2, [Datos del Paciente].Nombre1,  " +
                                     " [Datos del Paciente].Nombre2, [Datos del Paciente].Sexo, [Datos del Paciente].CodDpto, [Datos del Paciente].CodMuni,  " +
                                     " [Datos del Paciente].ZonaResiden" +
@@ -670,11 +668,11 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
 
                                     SqlDataReader DatosTemporalUser;
 
-                                    using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                                    using (SqlConnection connection3 = new SqlConnection(Conexion.conexionSQL))
                                     {
-                                        SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
-                                        command.Connection.Open();
-                                        DatosTemporalUser = command.ExecuteReader();
+                                        SqlCommand command3 = new SqlCommand(Utils.SqlDatos, connection3);
+                                        command3.Connection.Open();
+                                        DatosTemporalUser = command3.ExecuteReader();
 
                                         if (DatosTemporalUser.HasRows == false)
                                         {
