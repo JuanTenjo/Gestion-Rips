@@ -103,6 +103,26 @@ namespace Gestion_Rips.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_casilla_de_verificación_desactivada_25 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-casilla-de-verificación-desactivada-25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_casilla_de_verificación_marcada_25 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-casilla-de-verificación-marcada-25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_cerrar_pestaña_30 {
             get {
                 object obj = ResourceManager.GetObject("icons8-cerrar-pestaña-30", resourceCulture);

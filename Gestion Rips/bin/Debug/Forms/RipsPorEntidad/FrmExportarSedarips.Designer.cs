@@ -82,6 +82,8 @@ namespace Gestion_Rips.Forms.Exportar
             this.lblCodigoUser = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.txtFacturaDestino = new System.Windows.Forms.TextBox();
+            this.txtFacturaOrigen = new System.Windows.Forms.TextBox();
             this.DataGridDestino = new System.Windows.Forms.DataGridView();
             this.txtTotalCantidadFacturas = new System.Windows.Forms.TextBox();
             this.txtTotalCantidadDestino = new System.Windows.Forms.TextBox();
@@ -92,8 +94,6 @@ namespace Gestion_Rips.Forms.Exportar
             this.btnUna = new System.Windows.Forms.Button();
             this.btnTodas = new System.Windows.Forms.Button();
             this.DataGridFacturas = new System.Windows.Forms.DataGridView();
-            this.lblDestinoDocument = new System.Windows.Forms.Label();
-            this.DigeteOrigen = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -249,7 +249,6 @@ namespace Gestion_Rips.Forms.Exportar
             this.RbContrato.Name = "RbContrato";
             this.RbContrato.Size = new System.Drawing.Size(73, 18);
             this.RbContrato.TabIndex = 12;
-            this.RbContrato.TabStop = true;
             this.RbContrato.Text = "Contrato";
             this.RbContrato.UseVisualStyleBackColor = true;
             this.RbContrato.CheckedChanged += new System.EventHandler(this.RbContrato_CheckedChanged);
@@ -262,7 +261,6 @@ namespace Gestion_Rips.Forms.Exportar
             this.RbCtaCobro.Name = "RbCtaCobro";
             this.RbCtaCobro.Size = new System.Drawing.Size(105, 18);
             this.RbCtaCobro.TabIndex = 11;
-            this.RbCtaCobro.TabStop = true;
             this.RbCtaCobro.Text = "Ctas. de cobro";
             this.RbCtaCobro.UseVisualStyleBackColor = true;
             this.RbCtaCobro.CheckedChanged += new System.EventHandler(this.RbCtaCobro_CheckedChanged);
@@ -270,6 +268,7 @@ namespace Gestion_Rips.Forms.Exportar
             // RbFacturas
             // 
             this.RbFacturas.AutoSize = true;
+            this.RbFacturas.Checked = true;
             this.RbFacturas.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RbFacturas.Location = new System.Drawing.Point(6, 33);
             this.RbFacturas.Name = "RbFacturas";
@@ -710,7 +709,6 @@ namespace Gestion_Rips.Forms.Exportar
             this.lblCodigoUser.Name = "lblCodigoUser";
             this.lblCodigoUser.Size = new System.Drawing.Size(76, 13);
             this.lblCodigoUser.TabIndex = 9;
-            this.lblCodigoUser.Text = "CodigoUser";
             this.lblCodigoUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label16
@@ -725,6 +723,8 @@ namespace Gestion_Rips.Forms.Exportar
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.txtFacturaDestino);
+            this.groupBox7.Controls.Add(this.txtFacturaOrigen);
             this.groupBox7.Controls.Add(this.DataGridDestino);
             this.groupBox7.Controls.Add(this.txtTotalCantidadFacturas);
             this.groupBox7.Controls.Add(this.txtTotalCantidadDestino);
@@ -735,8 +735,6 @@ namespace Gestion_Rips.Forms.Exportar
             this.groupBox7.Controls.Add(this.btnUna);
             this.groupBox7.Controls.Add(this.btnTodas);
             this.groupBox7.Controls.Add(this.DataGridFacturas);
-            this.groupBox7.Controls.Add(this.lblDestinoDocument);
-            this.groupBox7.Controls.Add(this.DigeteOrigen);
             this.groupBox7.Controls.Add(this.label22);
             this.groupBox7.Controls.Add(this.label21);
             this.groupBox7.Controls.Add(this.label20);
@@ -749,6 +747,26 @@ namespace Gestion_Rips.Forms.Exportar
             this.groupBox7.TabIndex = 19;
             this.groupBox7.TabStop = false;
             // 
+            // txtFacturaDestino
+            // 
+            this.txtFacturaDestino.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFacturaDestino.ForeColor = System.Drawing.Color.Red;
+            this.txtFacturaDestino.Location = new System.Drawing.Point(337, 61);
+            this.txtFacturaDestino.Name = "txtFacturaDestino";
+            this.txtFacturaDestino.Size = new System.Drawing.Size(196, 22);
+            this.txtFacturaDestino.TabIndex = 28;
+            this.txtFacturaDestino.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtFacturaOrigen
+            // 
+            this.txtFacturaOrigen.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFacturaOrigen.ForeColor = System.Drawing.Color.Red;
+            this.txtFacturaOrigen.Location = new System.Drawing.Point(6, 61);
+            this.txtFacturaOrigen.Name = "txtFacturaOrigen";
+            this.txtFacturaOrigen.Size = new System.Drawing.Size(207, 22);
+            this.txtFacturaOrigen.TabIndex = 9;
+            this.txtFacturaOrigen.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // DataGridDestino
             // 
             this.DataGridDestino.AllowUserToAddRows = false;
@@ -757,13 +775,13 @@ namespace Gestion_Rips.Forms.Exportar
             this.DataGridDestino.BackgroundColor = System.Drawing.Color.White;
             this.DataGridDestino.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.DataGridDestino.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridDestino.Location = new System.Drawing.Point(337, 89);
+            this.DataGridDestino.Location = new System.Drawing.Point(337, 83);
             this.DataGridDestino.MultiSelect = false;
             this.DataGridDestino.Name = "DataGridDestino";
             this.DataGridDestino.ReadOnly = true;
             this.DataGridDestino.RowHeadersVisible = false;
             this.DataGridDestino.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridDestino.Size = new System.Drawing.Size(196, 150);
+            this.DataGridDestino.Size = new System.Drawing.Size(196, 156);
             this.DataGridDestino.TabIndex = 27;
             this.DataGridDestino.CurrentCellChanged += new System.EventHandler(this.DataGridDestino_CurrentCellChanged);
             // 
@@ -879,39 +897,15 @@ namespace Gestion_Rips.Forms.Exportar
             this.DataGridFacturas.BackgroundColor = System.Drawing.Color.White;
             this.DataGridFacturas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.DataGridFacturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridFacturas.Location = new System.Drawing.Point(6, 89);
+            this.DataGridFacturas.Location = new System.Drawing.Point(6, 82);
             this.DataGridFacturas.MultiSelect = false;
             this.DataGridFacturas.Name = "DataGridFacturas";
             this.DataGridFacturas.ReadOnly = true;
             this.DataGridFacturas.RowHeadersVisible = false;
             this.DataGridFacturas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridFacturas.Size = new System.Drawing.Size(207, 150);
+            this.DataGridFacturas.Size = new System.Drawing.Size(207, 157);
             this.DataGridFacturas.TabIndex = 17;
             this.DataGridFacturas.CurrentCellChanged += new System.EventHandler(this.DataGridFacturas_CurrentCellChanged);
-            // 
-            // lblDestinoDocument
-            // 
-            this.lblDestinoDocument.BackColor = System.Drawing.Color.White;
-            this.lblDestinoDocument.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDestinoDocument.ForeColor = System.Drawing.Color.Red;
-            this.lblDestinoDocument.Location = new System.Drawing.Point(337, 62);
-            this.lblDestinoDocument.Name = "lblDestinoDocument";
-            this.lblDestinoDocument.Size = new System.Drawing.Size(196, 24);
-            this.lblDestinoDocument.TabIndex = 16;
-            this.lblDestinoDocument.Text = "Independiente";
-            this.lblDestinoDocument.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // DigeteOrigen
-            // 
-            this.DigeteOrigen.BackColor = System.Drawing.Color.White;
-            this.DigeteOrigen.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DigeteOrigen.ForeColor = System.Drawing.Color.Red;
-            this.DigeteOrigen.Location = new System.Drawing.Point(6, 63);
-            this.DigeteOrigen.Name = "DigeteOrigen";
-            this.DigeteOrigen.Size = new System.Drawing.Size(207, 23);
-            this.DigeteOrigen.TabIndex = 15;
-            this.DigeteOrigen.Text = "Independiente";
-            this.DigeteOrigen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label22
             // 
@@ -1072,8 +1066,6 @@ namespace Gestion_Rips.Forms.Exportar
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.DataGridView DataGridFacturas;
-        private System.Windows.Forms.Label lblDestinoDocument;
-        private System.Windows.Forms.Label DigeteOrigen;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
@@ -1095,5 +1087,7 @@ namespace Gestion_Rips.Forms.Exportar
         private System.Windows.Forms.Label IDContrato;
         private System.Windows.Forms.Label LabelIDContrato;
         private System.Windows.Forms.Label lblNivelPermitido;
+        private System.Windows.Forms.TextBox txtFacturaDestino;
+        private System.Windows.Forms.TextBox txtFacturaOrigen;
     }
 }

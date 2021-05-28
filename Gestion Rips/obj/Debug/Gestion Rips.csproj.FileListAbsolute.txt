@@ -88,7 +88,8 @@ C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\bin\Debug\Reportes\r
 C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\obj\Debug\Gestion_Rips.Reportes.FrmInInformeAuditar.resources
 C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\obj\Debug\Gestion_Rips.Forms.Exportar.FrmArchivoMaestro.resources
 C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\obj\Debug\Gestion_Rips.Forms.Exportar.FrmAnularRemi.resources
-C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\bin\Debug\Forms\ExportarSedaRips\FrmExportarSedarips.Designer.cs
 C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\obj\Debug\Gestion_Rips.Forms.ArchivoMaestro.FrmCrearModificarMaestro.resources
 C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\obj\Debug\Gestion_Rips.Forms.ArchivoMaestro.FrmBorrarRemision.resources
 C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\obj\Debug\Gestion_Rips.Forms.ArchivoMaestro.FrmUnificarFactura.resources
+C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\bin\Debug\Forms\RipsPorEntidad\FrmExportarSedarips.Designer.cs
+C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\obj\Debug\Gestion_Rips.Forms.RipsPorRegimen.FrmRipsRegimen.resources

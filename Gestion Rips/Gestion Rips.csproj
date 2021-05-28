@@ -100,17 +100,17 @@
     <Compile Include="Forms\ArchivoMaestro\FrmUnificarFactura.Designer.cs">
       <DependentUpon>FrmUnificarFactura.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ExportarSedaRips\FrmExportarSedarips.cs">
+    <Compile Include="Forms\RipsPorEntidad\FrmExportarSedarips.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ExportarSedaRips\FrmExportarSedarips.Designer.cs">
+    <Compile Include="Forms\RipsPorEntidad\FrmExportarSedarips.Designer.cs">
       <DependentUpon>FrmExportarSedarips.cs</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Forms\ExportarSedaRips\FrmReportesRips.cs">
+    <Compile Include="Forms\RipsPorEntidad\FrmReportesRips.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ExportarSedaRips\FrmReportesRips.Designer.cs">
+    <Compile Include="Forms\RipsPorEntidad\FrmReportesRips.Designer.cs">
       <DependentUpon>FrmReportesRips.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmPrincipal.cs">
@@ -118,6 +118,12 @@
     </Compile>
     <Compile Include="Forms\FrmPrincipal.Designer.cs">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RipsPorRegimen\FrmRipsRegimen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RipsPorRegimen\FrmRipsRegimen.Designer.cs">
+      <DependentUpon>FrmRipsRegimen.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -179,14 +185,17 @@
     <EmbeddedResource Include="Forms\ArchivoMaestro\FrmUnificarFactura.resx">
       <DependentUpon>FrmUnificarFactura.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ExportarSedaRips\FrmExportarSedarips.resx">
+    <EmbeddedResource Include="Forms\RipsPorEntidad\FrmExportarSedarips.resx">
       <DependentUpon>FrmExportarSedarips.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ExportarSedaRips\FrmReportesRips.resx">
+    <EmbeddedResource Include="Forms\RipsPorEntidad\FrmReportesRips.resx">
       <DependentUpon>FrmReportesRips.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RipsPorRegimen\FrmRipsRegimen.resx">
+      <DependentUpon>FrmRipsRegimen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -317,6 +326,8 @@
     <None Include="Resources\icons8-crear-nuevo-301.png" />
     <None Include="Resources\icons8-delete-30.png" />
     <None Include="Resources\icons8-agrupar-objetos-30.png" />
+    <None Include="Imagenes\icons8-casilla-de-verificación-marcada-25.png" />
+    <None Include="Imagenes\icons8-casilla-de-verificación-desactivada-25.png" />
     <Content Include="SIIGHOSPLUSICONO.ico" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
@@ -332,5 +343,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

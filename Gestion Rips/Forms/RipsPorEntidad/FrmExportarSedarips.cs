@@ -118,6 +118,28 @@ namespace Gestion_Rips.Forms.Exportar
 
         #region Funciones y Procesos
 
+        private void CargarRangoFechas()
+        {
+            try
+            {
+                DateTime FechaActual = DateTime.Now;
+
+                DateTime FechaUnMesAntes = DateTime.Now.AddMonths(-1);
+
+                DateInicial.Value = FechaUnMesAntes;
+
+                DateFinal.Value = FechaActual;
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "al abrir funcion CargarRangoFechas" + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private int ValidarProcedi(string c, double T, string CodDg)
         {
             try
@@ -1019,8 +1041,8 @@ namespace Gestion_Rips.Forms.Exportar
         {
             try
             {
-                string SqlMediTem, Dp, mMuCi, ObErr, Z, RutaGeo, Msj, DxPr, FunDx;
-                int RegExp, FunDpto, FunMuni, FiCon, VR;
+                string SqlMediTem, Dp, ObErr, Z;
+                int RegExp, VR;
 
                 SqlMediTem = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal medicamentos RIPS] ";
                 SqlMediTem += "WHERE (([Datos temporal medicamentos RIPS].CodDigita) = '" + CodDg + "') and ";
@@ -2275,11 +2297,11 @@ namespace Gestion_Rips.Forms.Exportar
                 if (DataGridFacturas.SelectedCells.Count != 0)
                 {
                     string CodArt = DataGridFacturas.SelectedCells[0].Value.ToString();
-                    DigeteOrigen.Text = CodArt;
+                    txtFacturaOrigen.Text = CodArt;
                 }
                 else
                 {
-                    DigeteOrigen.Text = null;
+                    txtFacturaOrigen.Text = null;
                 }
             }
             catch (Exception ex)
@@ -4473,8 +4495,8 @@ namespace Gestion_Rips.Forms.Exportar
         {
             try
             {
-                string Coenti02 = null, NomUsReal = null, Coenti01 = null, NEnti = null, TDE = null, NCC = null, Para01 = null;
-                string Mj = null, UsSel = null, ND = null, CodRegEsp = null, TD = null, Msj = null, NEenti = null;
+                string Coenti02 = null, NomUsReal = null, Coenti01 = null, TDE = null, NCC = null, Para01 = null;
+                string Mj = null, UsSel = null, CodRegEsp = null, NEenti = null;
                 int NivPerReal;
 
                 object CR;
@@ -4577,11 +4599,11 @@ namespace Gestion_Rips.Forms.Exportar
                 if (DataGridDestino.SelectedCells.Count != 0)
                 {
                     string CodArt = DataGridDestino.SelectedCells[0].Value.ToString();
-                    lblDestinoDocument.Text = CodArt;
+                    txtFacturaDestino.Text = CodArt;
                 }
                 else
                 {
-                    lblDestinoDocument.Text = null;
+                    txtFacturaDestino.Text = null;
                 }
             }
             catch (Exception ex)
@@ -4677,7 +4699,7 @@ namespace Gestion_Rips.Forms.Exportar
                 Para02 = DateInicial.Value.ToString("yyyy-MM-dd");
                 Para03 = DateFinal.Value.ToString("yyyy-MM-dd");
 
-                if (string.IsNullOrWhiteSpace(DigeteOrigen.Text))
+                if (string.IsNullOrWhiteSpace(txtFacturaOrigen.Text))
                 {
                     Utils.Informa = "Lo siento pero usted no ha seleccionado o" + "\r";
                     Utils.Informa += "digitado el número del documento a agregar" + "\r";
@@ -4686,7 +4708,7 @@ namespace Gestion_Rips.Forms.Exportar
                 }
                 else
                 {
-                    NDO = DigeteOrigen.Text;
+                    NDO = txtFacturaOrigen.Text;
                     switch (Seleccion)
                     {
                         case 1:
@@ -4871,7 +4893,7 @@ namespace Gestion_Rips.Forms.Exportar
                                                 DataGridFacturas.Rows.Remove(DataGridFacturas.CurrentRow);
                                             }
                                             CalcularTotalFactura();
-                                            DigeteOrigen.Text = null;
+                                            txtFacturaOrigen.Text = null;
                                         }
 
                                     }
@@ -5244,7 +5266,7 @@ namespace Gestion_Rips.Forms.Exportar
                 Para02 = DateInicial.Value.ToString("yyyy-MM-dd");
                 Para03 = DateFinal.Value.ToString("yyyy-MM-dd");
 
-                if (string.IsNullOrWhiteSpace(lblDestinoDocument.Text))
+                if (string.IsNullOrWhiteSpace(txtFacturaDestino.Text))
                 {
                     Utils.Informa = "Lo siento pero usted no ha seleccionado o" + "\r";
                     Utils.Informa += "digitado el número de factura a quitar" + "\r";
@@ -5252,13 +5274,15 @@ namespace Gestion_Rips.Forms.Exportar
                     return;
                 }
 
+
+                DQ = txtFacturaDestino.Text;
+
+
                 Utils.Informa = "¿Usted desea quitar la facturas No. " + DQ + "\r";
                 Utils.Informa += ", al listado destino para RIP?" + "\r";
 
                 var Respuesta = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-
-                DQ = lblDestinoDocument.Text;
 
                 if (Respuesta == DialogResult.Yes)
                 {
@@ -6258,7 +6282,21 @@ namespace Gestion_Rips.Forms.Exportar
                                         if (TabUsuarios.HasRows == false)
                                         {
                                             string codMuni = TabConsumos["CodMuni"].ToString();
-                                            codMuni = codMuni.Substring(0, 3);
+
+                                            if (codMuni.Length > 3 && codMuni.Length == 5)
+                                            {
+                                                codMuni = codMuni.Substring(2, 3);
+                                                MessageBox.Show(codMuni);
+                                            }
+                                            else
+                                            {
+                                                Utils.Titulo01 = "Control de inserccion";
+                                                Utils.Informa = "No se pudo cortar el codigo del municipio" + "\r";
+                                                Utils.Informa += "en los ultimos 3 caracteres" + "\r";
+                                                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                                return;
+                                            }
+
 
                                             string data = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal usuarios RIPS]" +
                                                         "(CodDigita," +
@@ -7223,6 +7261,8 @@ namespace Gestion_Rips.Forms.Exportar
 
         int Seleccion = 1;
 
+
+
         private void FrmExportarSedarips_Load(object sender, EventArgs e)
         {
             try
@@ -7230,6 +7270,7 @@ namespace Gestion_Rips.Forms.Exportar
                 DatosDeLaEmpresa();
                 CargarCombobox();
                 CargarDatosUser();
+                CargarRangoFechas();
             }
             catch (Exception ex)
             {

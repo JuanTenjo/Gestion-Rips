@@ -1,5 +1,6 @@
 ﻿using Gestion_Rips.Clases;
 using Gestion_Rips.Forms.Exportar;
+using Gestion_Rips.Forms.RipsPorRegimen;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -112,19 +113,19 @@ namespace Gestion_Rips.Forms
         private void exportarToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             FrmExportarSedarips frmExportarSedarips = new FrmExportarSedarips();
-            frmExportarSedarips.Show();
+            frmExportarSedarips.ShowDialog();
         }
 
-        private void archivoMaestroToolStripMenuItem_Click(object sender, EventArgs e)
+        private void archivoMaestroToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             FrmArchivoMaestro FrmArchivoMaestro = new FrmArchivoMaestro();
-            FrmArchivoMaestro.Show();
+            FrmArchivoMaestro.ShowDialog();
         }
 
-        private void exportarToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ripsPorRegimenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmArchivoMaestro FrmArchivoMaestro = new FrmArchivoMaestro();
-            FrmArchivoMaestro.Show();
+            FrmRipsRegimen FrmRipRegimen = new FrmRipsRegimen();
+            FrmRipRegimen.ShowDialog();
         }
     }
 }
