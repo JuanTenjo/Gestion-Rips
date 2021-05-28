@@ -499,6 +499,8 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                         }
                     }
 
+                    if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
                     CalcularTotalFactura();
 
                     if (Convert.ToInt32(TxtTotalFact.Text) <= 0)
@@ -598,6 +600,16 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                     return;
                 }
 
+                if (Convert.ToInt32(TxtMarcadas.Text) <= 0)
+                {
+                    Utils.Informa = "Lo siento pero usted aún no ha ejecutado el " + "\r";
+                    Utils.Informa += "proceso mostrar facturas, para generar RIPS." + "\r";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtFacturaDestino.Select();
+                    return;
+                }
+
+
 
                 Utils.Informa = "¿Usted desea seleccionar los datos necesarios";
                 Utils.Informa = Utils.Informa + "para realizar los RIPS de la entidad ";
@@ -643,11 +655,11 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
 
                             SqlDataReader reader;
 
-                            using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                            using (SqlConnection connection2 = new SqlConnection(Conexion.conexionSQL))
                             {
-                                SqlCommand command = new SqlCommand(SqlDatos, connection);
-                                command.Connection.Open();
-                                reader = command.ExecuteReader();
+                                SqlCommand command2 = new SqlCommand(SqlDatos, connection2);
+                                command2.Connection.Open();
+                                reader = command2.ExecuteReader();
 
                                 if (reader.HasRows)
                                 {
@@ -727,16 +739,22 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                         }
 
                                     } //(DatosTemporalUser.HasRows == false
-                                } //reader.HasRows
+
+                                    DatosTemporalUser.Close();
+                                    DatosTemporalUser = null;
+                                    if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                                } //reader.HasRows  
                             }//Using
+                            reader.Close();
+                            reader = null;
                         }//Estado Grilla
                     } //Foreach Grilla
 
                     if (SqlInsert)
                     {
-                        MessageBox.Show("Listo","Listo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Listo");
                     }
-
 
                 } // Dialogo Yes
 

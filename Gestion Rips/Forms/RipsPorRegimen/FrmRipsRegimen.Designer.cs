@@ -819,24 +819,28 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
             this.HistoNum.DataPropertyName = "HistoNum";
             this.HistoNum.HeaderText = "HistoNum";
             this.HistoNum.Name = "HistoNum";
+            this.HistoNum.Visible = false;
             // 
             // TipoUsuario
             // 
             this.TipoUsuario.DataPropertyName = "TipoUsuario";
             this.TipoUsuario.HeaderText = "TipoUsuario";
             this.TipoUsuario.Name = "TipoUsuario";
+            this.TipoUsuario.Visible = false;
             // 
             // ValorEdad
             // 
             this.ValorEdad.DataPropertyName = "ValorEdad";
             this.ValorEdad.HeaderText = "ValorEdad";
             this.ValorEdad.Name = "ValorEdad";
+            this.ValorEdad.Visible = false;
             // 
             // UnidadEdad
             // 
             this.UnidadEdad.DataPropertyName = "UnidadEdad";
             this.UnidadEdad.HeaderText = "UnidadEdad";
             this.UnidadEdad.Name = "UnidadEdad";
+            this.UnidadEdad.Visible = false;
             // 
             // dataGridViewTextBoxColumn1
             // 
