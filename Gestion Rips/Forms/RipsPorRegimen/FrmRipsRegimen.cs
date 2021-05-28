@@ -668,82 +668,87 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                     Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal usuarios RIPS] " +
                                                         "WHERE CodDigita = '" + UsSel + "' AND NumRemi = '" + Coenti01 + "' AND TipoDocum = '" + reader["TipoIden"].ToString() + "' AND NumDocum = '" + reader["NumIden"].ToString() + "'";
 
-                                    SqlDataReader DatosTemporalUser = Conexion.SQLDataReader(Utils.SqlDatos);
+                                    SqlDataReader DatosTemporalUser;
 
-                                    if (DatosTemporalUser.HasRows == false)
+                                    using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
                                     {
-                                        string TipoUsuario = Convert.ToString(Row.Cells["TipoUsuario"].Value);
+                                        SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+                                        command.Connection.Open();
+                                        DatosTemporalUser = command.ExecuteReader();
 
-                                        string ValorEdad = Convert.ToString(Row.Cells["ValorEdad"].Value);
-
-                                        string UnidadEdad = Convert.ToString(Row.Cells["UnidadEdad"].Value);
-
-                                        string codMuni = reader["CodMuni"].ToString();
-
-                                        if (codMuni.Length > 3 && codMuni.Length == 5)
+                                        if (DatosTemporalUser.HasRows == false)
                                         {
-                                            codMuni = codMuni.Substring(2, 3);
-                                        }
-                                        else
-                                        {
-                                            Utils.Titulo01 = "Control de inserccion";
-                                            Utils.Informa = "No se pudo cortar el codigo del municipio " + codMuni + "\r";
-                                            Utils.Informa += "en los ultimos 3 caracteres" + "\r";
-                                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                            return;
-                                        }
+                                            string TipoUsuario = Convert.ToString(Row.Cells["TipoUsuario"].Value);
 
-                                        string data = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal usuarios RIPS] " +
-                                        "(TipoDocum," +
-                                        "NumDocum," +
-                                        "TipUsuario," +
-                                        "Apellido1," +
-                                        "Apellido2," +
-                                        "Nombre1," +
-                                        "Nombre2," +
-                                        "Edad," +
-                                        "EdadMedi," +
-                                        "Sexo," +
-                                        "CodDpto," +
-                                        "CodMuni," +
-                                        "ZonaResi," +
-                                        "NumRemi," +
-                                        "CodAdmin," +
-                                        "CodDigita)" +
-                                        "VALUES(" +
-                                        "'" + reader["TipoIden"].ToString() + "'," +
-                                        "'" + reader["NumIden"].ToString() + "'," +
-                                        "'" + TipoUsuario + "'," +
-                                        "'" + reader["Apellido1"].ToString() + "'," +
-                                        "'" + reader["Apellido2"].ToString() + "'," +
-                                        "'" + reader["Nombre1"].ToString() + "'," +
-                                        "'" + reader["Nombre2"].ToString() + "'," +
-                                        "'" + ValorEdad + "'," +
-                                        "'" + UnidadEdad + "'," +
-                                        "'" + reader["Sexo"].ToString() + "'," +
-                                        "'" + reader["CodDpto"].ToString() + "'," +
-                                        "'" + codMuni + "'," +
-                                        "'" + reader["ZonaResiden"].ToString() + "'," +
-                                        "'" + Coenti01 + "'," +
-                                        "'" + CodRips + "'," +
-                                        "'" + UsSel + "')";
+                                            string ValorEdad = Convert.ToString(Row.Cells["ValorEdad"].Value);
 
-                                        SqlInsert = Conexion.SqlInsert(data);
+                                            string UnidadEdad = Convert.ToString(Row.Cells["UnidadEdad"].Value);
 
-                                        if (SqlInsert == false)
-                                        {
-                                            Utils.Titulo01 = "Control de inserccion";
-                                            Utils.Informa = "No se pudo insertar el usario con N: " + reader["TipoIden"].ToString() + reader["NumIden"].ToString() + "\r";
-                                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                            return;
-                                        }
+                                            string codMuni = reader["CodMuni"].ToString();
 
-                                    } //(DatosTemporalUser.HasRows == false
+                                            if (codMuni.Length > 3 && codMuni.Length == 5)
+                                            {
+                                                codMuni = codMuni.Substring(2, 3);
+                                            }
+                                            else
+                                            {
+                                                Utils.Titulo01 = "Control de inserccion";
+                                                Utils.Informa = "No se pudo cortar el codigo del municipio " + codMuni + "\r";
+                                                Utils.Informa += "en los ultimos 3 caracteres" + "\r";
+                                                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                                return;
+                                            }
 
+                                            string data = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal usuarios RIPS] " +
+                                            "(TipoDocum," +
+                                            "NumDocum," +
+                                            "TipUsuario," +
+                                            "Apellido1," +
+                                            "Apellido2," +
+                                            "Nombre1," +
+                                            "Nombre2," +
+                                            "Edad," +
+                                            "EdadMedi," +
+                                            "Sexo," +
+                                            "CodDpto," +
+                                            "CodMuni," +
+                                            "ZonaResi," +
+                                            "NumRemi," +
+                                            "CodAdmin," +
+                                            "CodDigita)" +
+                                            "VALUES(" +
+                                            "'" + reader["TipoIden"].ToString() + "'," +
+                                            "'" + reader["NumIden"].ToString() + "'," +
+                                            "'" + TipoUsuario + "'," +
+                                            "'" + reader["Apellido1"].ToString() + "'," +
+                                            "'" + reader["Apellido2"].ToString() + "'," +
+                                            "'" + reader["Nombre1"].ToString() + "'," +
+                                            "'" + reader["Nombre2"].ToString() + "'," +
+                                            "'" + ValorEdad + "'," +
+                                            "'" + UnidadEdad + "'," +
+                                            "'" + reader["Sexo"].ToString() + "'," +
+                                            "'" + reader["CodDpto"].ToString() + "'," +
+                                            "'" + codMuni + "'," +
+                                            "'" + reader["ZonaResiden"].ToString() + "'," +
+                                            "'" + Coenti01 + "'," +
+                                            "'" + CodRips + "'," +
+                                            "'" + UsSel + "')";
+
+                                            SqlInsert = Conexion.SqlInsert(data);
+
+                                            if (SqlInsert == false)
+                                            {
+                                                Utils.Titulo01 = "Control de inserccion";
+                                                Utils.Informa = "No se pudo insertar el usario con N: " + reader["TipoIden"].ToString() + reader["NumIden"].ToString() + "\r";
+                                                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                                return;
+                                            }
+
+                                        } //(DatosTemporalUser.HasRows == false
+                                    }//Using
                                     DatosTemporalUser.Close();
                                     DatosTemporalUser = null;
                                     if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
-
                                 } //reader.HasRows  
                             }//Using
                             reader.Close();
