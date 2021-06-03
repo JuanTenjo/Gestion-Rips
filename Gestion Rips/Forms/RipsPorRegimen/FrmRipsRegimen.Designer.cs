@@ -95,15 +95,20 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
             this.lblCodigoUser = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.Estado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.NumCuenFac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumPoliza = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cartercero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumContra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HistoNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ValorEdad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnidadEdad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NomAdmin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NomTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ValorFac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Copago = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -539,15 +544,20 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
             this.DataGridFacturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridFacturas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Estado,
+            this.NumCuenFac,
+            this.NumPoliza,
+            this.Cartercero,
+            this.NumContra,
             this.HistoNum,
             this.TipoUsuario,
             this.ValorEdad,
             this.UnidadEdad,
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn3,
+            this.NumFactura,
+            this.Fecha,
             this.NomAdmin,
             this.NomTipo,
-            this.dataGridViewTextBoxColumn6});
+            this.ValorFac,
+            this.Copago});
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -814,6 +824,34 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
             this.Estado.HeaderText = "Estado";
             this.Estado.Name = "Estado";
             // 
+            // NumCuenFac
+            // 
+            this.NumCuenFac.DataPropertyName = "NumCuenFac";
+            this.NumCuenFac.HeaderText = "NumCuenFac";
+            this.NumCuenFac.Name = "NumCuenFac";
+            this.NumCuenFac.Visible = false;
+            // 
+            // NumPoliza
+            // 
+            this.NumPoliza.DataPropertyName = "NumPoliza";
+            this.NumPoliza.HeaderText = "NumPoliza";
+            this.NumPoliza.Name = "NumPoliza";
+            this.NumPoliza.Visible = false;
+            // 
+            // Cartercero
+            // 
+            this.Cartercero.DataPropertyName = "Cartercero";
+            this.Cartercero.HeaderText = "Cartercero";
+            this.Cartercero.Name = "Cartercero";
+            this.Cartercero.Visible = false;
+            // 
+            // NumContra
+            // 
+            this.NumContra.DataPropertyName = "NumContra";
+            this.NumContra.HeaderText = "NumContra";
+            this.NumContra.Name = "NumContra";
+            this.NumContra.Visible = false;
+            // 
             // HistoNum
             // 
             this.HistoNum.DataPropertyName = "HistoNum";
@@ -842,27 +880,27 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
             this.UnidadEdad.Name = "UnidadEdad";
             this.UnidadEdad.Visible = false;
             // 
-            // dataGridViewTextBoxColumn1
+            // NumFactura
             // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "NumFactura";
+            this.NumFactura.DataPropertyName = "NumFactura";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewTextBoxColumn1.FillWeight = 94.96603F;
-            this.dataGridViewTextBoxColumn1.HeaderText = "NumFactura";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.NumFactura.DefaultCellStyle = dataGridViewCellStyle2;
+            this.NumFactura.FillWeight = 94.96603F;
+            this.NumFactura.HeaderText = "NumFactura";
+            this.NumFactura.Name = "NumFactura";
+            this.NumFactura.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn3
+            // Fecha
             // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "FechaFac";
+            this.Fecha.DataPropertyName = "FechaFac";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.Format = "d";
             dataGridViewCellStyle3.NullValue = null;
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridViewTextBoxColumn3.FillWeight = 94.81275F;
-            this.dataGridViewTextBoxColumn3.HeaderText = "Fecha";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.Fecha.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Fecha.FillWeight = 94.81275F;
+            this.Fecha.HeaderText = "Fecha";
+            this.Fecha.Name = "Fecha";
+            this.Fecha.ReadOnly = true;
             // 
             // NomAdmin
             // 
@@ -884,17 +922,24 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
             this.NomTipo.Name = "NomTipo";
             this.NomTipo.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn6
+            // ValorFac
             // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "ValorFac";
+            this.ValorFac.DataPropertyName = "ValorFac";
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle6.Format = "C0";
             dataGridViewCellStyle6.NullValue = null;
-            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridViewTextBoxColumn6.FillWeight = 85.76708F;
-            this.dataGridViewTextBoxColumn6.HeaderText = "ValorFac";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.ValorFac.DefaultCellStyle = dataGridViewCellStyle6;
+            this.ValorFac.FillWeight = 85.76708F;
+            this.ValorFac.HeaderText = "ValorFac";
+            this.ValorFac.Name = "ValorFac";
+            this.ValorFac.ReadOnly = true;
+            // 
+            // Copago
+            // 
+            this.Copago.DataPropertyName = "Copago";
+            this.Copago.HeaderText = "Copago";
+            this.Copago.Name = "Copago";
+            this.Copago.Visible = false;
             // 
             // FrmRipsRegimen
             // 
@@ -988,14 +1033,19 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button BtnMarcarTodas;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NumCuenFac;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NumPoliza;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cartercero;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NumContra;
         private System.Windows.Forms.DataGridViewTextBoxColumn HistoNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoUsuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn ValorEdad;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnidadEdad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NumFactura;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn NomAdmin;
         private System.Windows.Forms.DataGridViewTextBoxColumn NomTipo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ValorFac;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Copago;
     }
 }
