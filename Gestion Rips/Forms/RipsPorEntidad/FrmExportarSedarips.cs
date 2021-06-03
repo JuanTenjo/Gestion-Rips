@@ -140,6 +140,40 @@ namespace Gestion_Rips.Forms.Exportar
             }
         }
 
+        private string NomDiagnostico(string CoDx)
+        {
+            try
+            {
+                string SqlDatos = "SELECT [Datos listado de diagnosticos].* ";
+                SqlDatos = SqlDatos + "FROM [GEOGRAXPSQL].[dbo].[Datos listado de diagnosticos]";
+                SqlDatos = SqlDatos + "WHERE ((([[Datos listado de diagnosticos]].[CodiDx]) = '" + CoDx + "')) ";
+                SqlDatos = SqlDatos + "ORDER BY [[Datos listado de diagnosticos]].[CodiDx];";
+
+                SqlDataReader TablaAux9 = Conexion.SQLDataReader(SqlDatos);
+
+                if (TablaAux9.HasRows == false)
+                {
+                    return "0";
+                }
+                else
+                {
+                    return TablaAux9["NombreDx"].ToString();
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la función: NomDiagnostico del Módulo" + "\r";
+                Utils.Informa += "Módulo gestión de RIPS" + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return "-1";
+            }
+        }
+
         private int ValidarProcedi(string c, double T, string CodDg)
         {
             try
@@ -617,39 +651,6 @@ namespace Gestion_Rips.Forms.Exportar
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return -1;
-            }
-        }
-        private string NomDiagnostico(string CoDx)
-        {
-            try
-            {
-                string SqlDatos = "SELECT [Datos listado de diagnosticos].* ";
-                SqlDatos = SqlDatos + "FROM [GEOGRAXPSQL].[dbo].[Datos listado de diagnosticos]";
-                SqlDatos = SqlDatos + "WHERE ((([[Datos listado de diagnosticos]].[CodiDx]) = '" + CoDx + "')) ";
-                SqlDatos = SqlDatos + "ORDER BY [[Datos listado de diagnosticos]].[CodiDx];";
-
-                SqlDataReader TablaAux9 = Conexion.SQLDataReader(SqlDatos);
-
-                if (TablaAux9.HasRows == false)
-                {
-                    return "0";
-                }
-                else
-                {
-                    return TablaAux9["NombreDx"].ToString();
-                }
-
-            }
-
-            catch (Exception ex)
-            {
-                Utils.Titulo01 = "Control de errores de ejecución";
-                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
-                Utils.Informa += "en la función: NomDiagnostico del Módulo" + "\r";
-                Utils.Informa += "Módulo gestión de RIPS" + "\r";
-                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
-                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return "-1";
             }
         }
         private int ValidarOtros(string c, double T, string CodDg)

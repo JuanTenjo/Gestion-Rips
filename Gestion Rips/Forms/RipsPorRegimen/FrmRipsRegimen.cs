@@ -168,7 +168,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
 
         #region Funciones
 
-        private int ElimdatosRIPS(string UsSel,string ConMinRips)
+        private int ElimdatosRIPS(string UsSel, string ConMinRips)
         {
             try
             {
@@ -282,7 +282,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                 {
 
                     int Estado = Convert.ToInt32(Row.Cells["Estado"].Value);
-                    if(Estado == 1)
+                    if (Estado == 1)
                     {
                         Contador2 += 1;
                     }
@@ -465,9 +465,9 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                     DataGridFacturas.Rows.Clear();
 
 
-                   //********************* el 23 de noviembre de 2020, Hernando modificò, incluyendo que las facturas capitas no se relacionen en la selecciòn *****************
+                    //********************* el 23 de noviembre de 2020, Hernando modificò, incluyendo que las facturas capitas no se relacionen en la selecciòn *****************
 
-                   SqlFacturas = "";
+                    SqlFacturas = "";
 
 
                     //Debo Insertar los datos que salen en usuarios
@@ -553,7 +553,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
             {
                 Utils.Titulo01 = "Control para seleccionar datos";
                 Boolean SqlInsert = true;
-                string Coenti01, TDE, NCC, NEnti = null, MT = null,SqlDatos = null;
+                string Coenti01, TDE, NCC, NEnti = null, MT = null, SqlDatos = null;
                 int FunEli;
                 string data;
                 if (string.IsNullOrWhiteSpace(cboNameEntidades.SelectedValue.ToString()) == true || cboNameEntidades.SelectedIndex == -1)
@@ -617,7 +617,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                 Utils.Informa = Utils.Informa + NEnti + ".?";
                 Utils.Informa = Utils.Informa + " Son: " + TxtMarcadas.Text + " " + "Facturas para rips de " + TxtTotalFact.Text;
 
-                var re  = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var re = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (re == DialogResult.Yes)
                 {
@@ -830,7 +830,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
 
                                 if (DatosEmpresasYTercero.HasRows)
                                 {
-                                   DatosEmpresasYTercero.Read();
+                                    DatosEmpresasYTercero.Read();
 
                                     string NomPlan = DatosEmpresasYTercero["NomPlan"].ToString();
 
@@ -921,7 +921,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                             switch (MT)
                             {
                                 case "1": //Manual SOAT
-                                    Utils.SqlDatos += "[Datos registros de consumos].CodiSOAT as CodConsul,"; 
+                                    Utils.SqlDatos += "[Datos registros de consumos].CodiSOAT as CodConsul,";
                                     break;
                                 case "2": //Manual ISS
                                     Utils.SqlDatos += "[Datos registros de consumos].CodiISS as CodConsul,";
@@ -948,7 +948,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                 " WHERE [Datos registros de consumos].ValorUnitario > 0 " +
                                 " AND [Datos registros de consumos].PagaHoja = 1 " +
                                 " AND [Datos registros de consumos].Cantidad > 0 " +
-                                " AND [Datos catalogo de servicios].GrupoServi = '"+ Para02 + "' " +
+                                " AND [Datos catalogo de servicios].GrupoServi = '" + Para02 + "' " +
                                 " AND [Datos cuentas de consumos].CuenNum = '" + NumCuenFac + "'  ";
 
 
@@ -1030,7 +1030,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
 
                             //PROCEDIMIENTOS -------------------------------------------------------------------------------------------------------------------------
 
-                            int FunP = ProceSoloPorFacturas(NumFactur,  CodIPS, Coenti01, NumCuenFac, MT, SubTolD);
+                            int FunP = ProceSoloPorFacturas(NumFactur, CodIPS, Coenti01, NumCuenFac, MT, SubTolD);
 
                             if (FunP == -1)
                             {
@@ -1066,14 +1066,14 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                                 " [Datos cuentas de consumos] ON [Datos del Paciente].HistorPaci = [Datos cuentas de consumos].HistoNum INNER JOIN " +
                                                 " [Datos registros de consumos] ON [Datos cuentas de consumos].CuenNum = [Datos registros de consumos].CuenConsu INNER JOIN " +
                                                 " [Datos catalogo de servicios] ON [Datos registros de consumos].CodInter = [Datos catalogo de servicios].CodInterno " +
-                                                " WHERE [Datos registros de consumos].ValorUnitario > 0 AND [Datos registros de consumos].PagaHoja = 1 AND [Datos registros de consumos].Cantidad > 0 AND[Datos cuentas de consumos].CuenNum = '"+ NumCuenFac + "' " +
+                                                " WHERE [Datos registros de consumos].ValorUnitario > 0 AND [Datos registros de consumos].PagaHoja = 1 AND [Datos registros de consumos].Cantidad > 0 AND[Datos cuentas de consumos].CuenNum = '" + NumCuenFac + "' " +
                                                 " AND ([Datos catalogo de servicios].GrupoServi = '06' OR[Datos catalogo de servicios].GrupoServi = '07' " +
                                                 " OR [Datos catalogo de servicios].GrupoServi = '08' OR[Datos catalogo de servicios].GrupoServi = '09' " +
                                                 " OR [Datos catalogo de servicios].GrupoServi = '10' OR[Datos catalogo de servicios].GrupoServi = '11' " +
                                                 " OR [Datos catalogo de servicios].GrupoServi = '14'); ";
 
 
-                                SqlDataReader ArchivoOtrosServicios; 
+                                SqlDataReader ArchivoOtrosServicios;
 
                                 using (SqlConnection connection4 = new SqlConnection(Conexion.conexionSQL))
                                 {
@@ -1136,7 +1136,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                                 " [Datos cuentas de consumos].HorSalida, [Datos cuentas de consumos].DxMuerte, [Datos cuentas de consumos].TipoCuenta " +
                                                 " FROM [Datos del Paciente] INNER JOIN " +
                                                 " [Datos cuentas de consumos] ON[Datos del Paciente].HistorPaci = [Datos cuentas de consumos].HistoNum " +
-                                                " WHERE [Datos cuentas de consumos].TipoCuenta = '04' AND[Datos cuentas de consumos].DiasEstancias <> 0 AND[Datos cuentas de consumos].CuenNum = '"+ NumCuenFac + "'";
+                                                " WHERE [Datos cuentas de consumos].TipoCuenta = '04' AND[Datos cuentas de consumos].DiasEstancias <> 0 AND[Datos cuentas de consumos].CuenNum = '" + NumCuenFac + "'";
 
 
                                 SqlDataReader ArchivoHospitalizacion;
@@ -1202,7 +1202,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
 
                                     ArchivoHospitalizacion.Close();
                                 }
-                                
+
                                 //OBSERVACION
 
                                 Para02 = "04"; //El tipo de cuenta de hospitalizados
@@ -1215,7 +1215,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                                  " [Datos cuentas de consumos].HorSalida, [Datos cuentas de consumos].DxMuerte " +
                                                  " FROM [Datos del Paciente] INNER JOIN " +
                                                  " [Datos cuentas de consumos] ON[Datos del Paciente].HistorPaci = [Datos cuentas de consumos].HistoNum " +
-                                                 " WHERE [Datos cuentas de consumos].TipoCuenta = '"+ Para02 + "' AND [Datos cuentas de consumos].DiasEstancias = 0 AND[Datos cuentas de consumos].CuenNum = '" + NumCuenFac + "'";
+                                                 " WHERE [Datos cuentas de consumos].TipoCuenta = '" + Para02 + "' AND [Datos cuentas de consumos].DiasEstancias = 0 AND[Datos cuentas de consumos].CuenNum = '" + NumCuenFac + "'";
 
 
                                 SqlDataReader ArchivoObservacion;
@@ -1356,7 +1356,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                                 " [Datos cuentas de consumos] ON[Datos del Paciente].HistorPaci = [Datos cuentas de consumos].HistoNum INNER JOIN " +
                                                 " [Datos registros de consumos] ON[Datos cuentas de consumos].CuenNum = [Datos registros de consumos].CuenConsu INNER JOIN " +
                                                 " [Datos catalogo de servicios] ON[Datos registros de consumos].CodInter = [Datos catalogo de servicios].CodInterno " +
-                                                " WHERE [Datos registros de consumos].PagaHoja = 1 AND[Datos registros de consumos].ValorUnitario > 0 AND[Datos registros de consumos].Cantidad > 0 AND[Datos cuentas de consumos].CuenNum = '"+ NumCuenFac + "' " +
+                                                " WHERE [Datos registros de consumos].PagaHoja = 1 AND[Datos registros de consumos].ValorUnitario > 0 AND[Datos registros de consumos].Cantidad > 0 AND[Datos cuentas de consumos].CuenNum = '" + NumCuenFac + "' " +
                                                 " AND ([Datos catalogo de servicios].GrupoServi = '12' OR[Datos catalogo de servicios].GrupoServi = '13')";
 
                                 SqlDataReader ArchivoMedicamentos;
@@ -1447,13 +1447,13 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
             {
 
                 string c = null, FormaFarma = null, ConcenMedi = null, NumFactur = null;
-              
+
                 //'**************  Creada el 11 de diciembre de 2003 ***************
                 //'Permite colocar la información complementaria de los medicamentos NO POS y POS
                 //'como es la forma la concentración, presentación, unidad, etc
                 //'Esto funciona para aquella entidades que tienen definido el modulo de farmacia
 
-                Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal medicamentos RIPS] where NumRemi =  '"+ Ct +"' ";
+                Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal medicamentos RIPS] where NumRemi =  '" + Ct + "' ";
 
 
 
@@ -1466,7 +1466,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
 
                     ArchivoMedicamentos = command8.ExecuteReader();
 
-                    if(ArchivoMedicamentos.HasRows == false)
+                    if (ArchivoMedicamentos.HasRows == false)
                     {
                         //No se consiguió el código del producto en tabla de farmacia
                     }
@@ -1497,7 +1497,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                 reader = command9.ExecuteReader();
 
 
-                                if(reader.HasRows == false)
+                                if (reader.HasRows == false)
                                 {
                                     //No se consiguió el código del producto en tabla de farmacia
                                 }
@@ -1524,11 +1524,11 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                         }
 
                                         Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos temporal medicamentos RIPS] SET CodMedica = '', FormaFarma = '" + FormaFarma + "'," +
-                                                         " UniMedida = '" + reader["Descripcion"].ToString() + "', ConcenMedi = '" + ConcenMedi + "', TipoMedica = '2' WHERE NumFactur = '"+ NumFactur +"' ";
+                                                         " UniMedida = '" + reader["Descripcion"].ToString() + "', ConcenMedi = '" + ConcenMedi + "', TipoMedica = '2' WHERE NumFactur = '" + NumFactur + "' ";
                                     }
                                     else
                                     {
-                                          Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos temporal medicamentos RIPS] SET CodMedica = '"+ reader["CodiMinSa"].ToString() + "', TipoMedica = '1' WHERE NumFactur = '"+ NumFactur +"' ";
+                                        Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos temporal medicamentos RIPS] SET CodMedica = '" + reader["CodiMinSa"].ToString() + "', TipoMedica = '1' WHERE NumFactur = '" + NumFactur + "' ";
                                     }
 
                                     Boolean SqlUpdate = Conexion.SQLUpdate(Utils.SqlDatos);
@@ -1537,7 +1537,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                 }
                             }
                             reader.Close();
-                            }
+                        }
                         ArchivoMedicamentos.Close();
                     }
                 }
@@ -1558,14 +1558,14 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
             }
         }
 
-        private int ProceSoloPorFacturas(string NumFactur, string CodIPS, string NumRemi, string CT, string M,int TolDoc)
+        private int ProceSoloPorFacturas(string NumFactur, string CodIPS, string NumRemi, string CT, string M, int TolDoc)
         {
             try
             {
 
-               string AutoNum = null, CodProce = null, DxPrin = null, DxRel1 = null, DxCom    = null, TD = null, NDocum = null;
-               double TolPro;
-               int CanPro = 0, VR = 0;
+                string AutoNum = null, CodProce = null, DxPrin = null, DxRel1 = null, DxCom = null, TD = null, NDocum = null;
+                double TolPro;
+                int CanPro = 0, VR = 0;
 
 
                 string SqlProcedimientos = "SELECT [Datos cuentas de consumos].CuenNum, [Datos cuentas de consumos].HistoNum, [Datos del Paciente].TipoIden, [Datos del Paciente].NumIden, [Datos registros de consumos].CodiSOAT, [Datos registros de consumos].CodiISS,[Datos registros de consumos].CodiCUPS,[Datos registros de consumos].CodInter,  " +
@@ -1576,7 +1576,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                             " FROM [Datos del Paciente] INNER JOIN [Datos cuentas de consumos] ON [Datos del Paciente].HistorPaci = [Datos cuentas de consumos].HistoNum " +
                                             " INNER JOIN[Datos registros de consumos] ON[Datos cuentas de consumos].CuenNum = [Datos registros de consumos].CuenConsu " +
                                             " INNER JOIN[Datos catalogo de servicios] ON[Datos registros de consumos].CodInter = [Datos catalogo de servicios].CodInterno " +
-                                            " WHERE [Datos cuentas de consumos].CuenNum = '"+ CT +"' " +
+                                            " WHERE [Datos cuentas de consumos].CuenNum = '" + CT + "' " +
                                             " AND [Datos registros de consumos].Cantidad > 0 " +
                                             " AND [Datos registros de consumos].ValorUnitario > 0 " +
                                             " AND [Datos registros de consumos].PagaHoja = 1 " +
@@ -1635,7 +1635,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
 
                         TolPro = Convert.ToDouble(TabLocal["ValorUnitario"].ToString()) + Convert.ToDouble(TabLocal["SubValorUnita"].ToString());
 
-                        if(TolPro > 0)
+                        if (TolPro > 0)
                         {
                             CanPro = Convert.ToInt32(TabLocal["Cantidad"].ToString());
 
@@ -1679,7 +1679,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                       "'" + DxRel1 + "'," +
                                       "'" + DxCom + "'," +
                                       "'" + TabLocal["FormaRealiza"].ToString() + "'," +
-                                      "'" + TolPro  + "');";
+                                      "'" + TolPro + "');";
 
 
                                 Boolean SqlInsert = Conexion.SqlInsert(Utils.SqlDatos);
@@ -1729,6 +1729,2673 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
 
         }
 
+        private void btnValidar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //  *******************  Diciembre 02 de 2.003  **************************
+                //  *******************  Junio 2021 Juan Diego   **************************
+
+                //Permite validar los datos de los RIPS
+
+
+                Utils.Titulo01 = "Control para validar datos";
+
+                string Coenti01, UsSel = null, NEnti, TDE, NCC, CD, CR, Para02, Para01, TUReg = null, AcRe = null;
+                double TolUsa = 0, TolConsul = 0, TolHos = 0, TolMedi = 0, TolObs = 0, TolOtros = 0, TolReN = 0, TolProce = 0, TolFac = 0, FunAudi = 0;
+
+                int FunUs, FunFac, FunCon, FunHos, FunObs, FunMedi, FunOtros, FunReN, FunProce, TolInco = 0;
+
+                SqlDataReader ContarRips;
+
+                UsSel = lblCodigoUser.Text;
+
+                if (string.IsNullOrWhiteSpace(cboNameEntidades.SelectedValue.ToString()) == true || cboNameEntidades.SelectedIndex == -1)
+                {
+                    Utils.Informa = "Lo siento pero usted aún no ha";
+                    Utils.Informa += "seleccionado el nombre de la entidad.";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    cboNameEntidades.Select();
+                    return;
+                }
+                else
+                {
+                    Coenti01 = txtCardinal.Text;
+                    //Cargamos los datos de la entidad
+                    Utils.SqlDatos = "SELECT CarAdmin, ([NomAdmin] + ' ' + [ProgrAmin]) AS NP, TipoDocu, NumDocu , CodiMinSalud, ManualTari, RegimenAdmin, ActiReali, PerEmpre " +
+                                            "FROM [ACDATOXPSQL].[dbo].[Datos empresas y terceros] WHERE ((([ACDATOXPSQL].[dbo].[Datos empresas y terceros].PerEmpre) = 1) AND(([ACDATOXPSQL].[dbo].[Datos empresas y terceros].HabilEmp) = 1)) " +
+                                            "AND ([NomAdmin] + ' ' + [ProgrAmin]) is not null AND CarAdmin = '" + Coenti01 + "'";
+
+                    SqlDataReader sqlDataReader2 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                    if (sqlDataReader2.HasRows)
+                    {
+                        sqlDataReader2.Read();
+                        NEnti = sqlDataReader2["NP"].ToString();
+                        TDE = sqlDataReader2["TipoDocu"].ToString();
+                        NCC = sqlDataReader2["NumDocu"].ToString();
+                        TUReg = sqlDataReader2["RegimenAdmin"].ToString();
+                        AcRe = sqlDataReader2["ActiReali"].ToString();
+                        CR = lblCodMinSalud.Text;
+                    }
+
+                    sqlDataReader2.Close();
+                    sqlDataReader2 = null;
+
+                    if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                } //'Final de IsNull(Coenti01) Or (Coenti01 = " ")
+
+                //Usuarios
+
+                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolUsuarios FROM [DARIPSXPSQL].[dbo].[Datos temporal usuarios RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (ContarRips.HasRows)
+                {
+                    ContarRips.Read();
+                    TolUsa = Convert.ToDouble(ContarRips["TolUsuarios"]);
+
+                }
+                else
+                {
+                    Utils.Informa = "El proceso de validación de este módulo no se" + "\r";
+                    Utils.Informa += "puede realizar mientras no se seleccione los" + "\r";
+                    Utils.Informa += "pusuarios de la entidad seleccionada." + "\r";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                ContarRips.Close();
+                ContarRips = null;
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+
+                //Consultas
+
+                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolConsul FROM [DARIPSXPSQL].[dbo].[Datos temporal consultas RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (ContarRips.HasRows)
+                {
+                    ContarRips.Read();
+                    TolConsul = Convert.ToDouble(ContarRips["TolConsul"]);
+                }
+                ContarRips.Close();
+                ContarRips = null;
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                //Hospitalizados
+
+                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolHos FROM [DARIPSXPSQL].[dbo].[Datos temporal hospitalizacion RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (ContarRips.HasRows)
+                {
+                    ContarRips.Read();
+                    TolHos = Convert.ToDouble(ContarRips["TolHos"]);
+                }
+                ContarRips.Close();
+                ContarRips = null;
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                //Medicamentos
+
+                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolMedi FROM [DARIPSXPSQL].[dbo].[Datos temporal medicamentos RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (ContarRips.HasRows)
+                {
+                    ContarRips.Read();
+                    TolMedi = Convert.ToDouble(ContarRips["TolMedi"]);
+                }
+                ContarRips.Close();
+                ContarRips = null;
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                //Observaciones
+
+                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolObs FROM [DARIPSXPSQL].[dbo].[Datos temporal observacion RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (ContarRips.HasRows)
+                {
+                    ContarRips.Read();
+                    TolObs = Convert.ToDouble(ContarRips["TolObs"]);
+                }
+                ContarRips.Close();
+                ContarRips = null;
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                //OtroServicios
+
+                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolOtros FROM [DARIPSXPSQL].[dbo].[Datos temporal otros servicios RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (ContarRips.HasRows)
+                {
+                    ContarRips.Read();
+                    TolOtros = Convert.ToDouble(ContarRips["TolOtros"]);
+                }
+                ContarRips.Close();
+                ContarRips = null;
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                //Recien Nacidos
+
+                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolReN FROM [DARIPSXPSQL].[dbo].[Datos temporal recien nacidos RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (ContarRips.HasRows)
+                {
+                    ContarRips.Read();
+                    TolReN = Convert.ToDouble(ContarRips["TolReN"]);
+                }
+                ContarRips.Close();
+                ContarRips = null;
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                //Procedimientos
+
+                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolProce FROM [DARIPSXPSQL].[dbo].[Datos temporal procedimientos RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (ContarRips.HasRows)
+                {
+                    ContarRips.Read();
+                    TolProce = Convert.ToDouble(ContarRips["TolProce"]);
+                }
+                ContarRips.Close();
+                ContarRips = null;
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+
+                //transacciones 
+
+                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolFac FROM [DARIPSXPSQL].[dbo].[Datos temporal transacciones RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (ContarRips.HasRows)
+                {
+                    ContarRips.Read();
+                    TolFac = Convert.ToDouble(ContarRips["TolFac"]);
+                }
+                ContarRips.Close();
+                ContarRips = null;
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+
+                //Elimine los datos de la tabla temporal
+
+
+                Utils.SqlDatos = "DELETE FROM [DARIPSXPSQL].[dbo].[Datos temporal errores RIPS]";
+
+
+                Boolean EliDatos = Conexion.SQLDelete(Utils.SqlDatos);
+
+                Utils.Informa = "¿Usted desea validar los datos de los RIPS" + "\r";
+                Utils.Informa += "previamente seleccionados a la entidad " + "\r";
+
+                var res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (res == DialogResult.Yes)
+                {
+                    // 'Validamos el de usuarios
+
+                    FunUs = ValidarUsuarios(Coenti01, TUReg, TolUsa, UsSel);
+
+
+                    switch (FunUs)
+                    {
+                        case -1: //error en la funcion
+                            return;
+                            break;
+                        case 0: // Casi imposible que entre aqui
+                            Utils.Informa = "El proceso de validación de este módulo no se";
+                            Utils.Informa += "puede realizar mientras no se seleccione los ";
+                            Utils.Informa += "usuarios de la entidad seleccionada.";
+                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                            break;
+                        default:
+                            if (TolFac <= 0)
+                            {
+                                Utils.Informa = "El proceso de validación de este módulo no se";
+                                Utils.Informa += "puede realizar mientras no se seleccione los ";
+                                Utils.Informa += "facturas de los procedimientos realizados.";
+                                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                            break;
+                    }
+
+
+                    FunAudi = AuditaDetaFacturas(Coenti01);
+
+                    if(FunAudi == -1)
+                    {
+                        return;
+                    }
+
+                    //Empiece a validar las facturas
+
+                    FunFac = ValidarFacturas(Coenti01, TolFac, UsSel);
+
+                    if(FunFac == -1)
+                    {
+                        return;
+                    }
+
+
+
+                    if (TolConsul > 0)
+                    {
+                        //Validar el de consultas
+                        FunCon = ValidaConsultas(Coenti01, AcRe, TolConsul, UsSel);
+                    }
+
+
+                    if (TolHos > 0)
+                    {
+                        //'Validar el de hospitalizaciones
+                        FunHos = ValidarHospi(Coenti01, TolObs, UsSel);
+                    }
+
+                    if (TolMedi > 0)
+                    {
+                        //'Validar el de medicamentos
+                        FunMedi = ValidarMedica(Coenti01, TolMedi, UsSel);
+                    }
+
+                    if (TolObs > 0)
+                    {
+                        //'Validar el de observación de urgencias
+                        FunObs = ValidarObserva(Coenti01, TolObs, UsSel);
+                    }
+
+
+                    if (TolOtros > 0)
+                    {
+                        //'Validar el de otros servicios
+                        FunOtros = ValidarOtros(Coenti01, TolOtros, UsSel);
+                    }
+
+                    if (TolReN > 0)
+                    {
+                        //'Validar el de recien nacidos
+                        FunReN = ValidarReNan(Coenti01, TolReN, UsSel);
+                    }
+
+                    if (TolProce > 0)
+                    {
+                        //'Validar el de procedimientos
+                        FunProce = ValidarProcedi(Coenti01, TolObs, UsSel);
+                    }
+
+
+                    Utils.SqlDatos = "SELECT COUNT(CodEnti) AS CuenCodEnti FROM [DARIPSXPSQL].[dbo].[Datos temporal errores RIPS] WHERE CodEnti = '" + Coenti01 + "' ";
+
+                    SqlDataReader reader = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                    if (reader.HasRows)
+                    {
+                        reader.Read();
+                        TolInco = Convert.ToInt32(reader["CuenCodEnti"].ToString());
+                    }
+
+                    if (TolInco == 0)
+                    {
+                        Utils.Titulo01 = "Control de validacion";
+                        Utils.Informa = "Los datos de los seleccionados han validado exitosamente.";
+                        Utils.Informa = Utils.Informa + "Recuerde este no es el validador oficial de MinSalud.";
+                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        if (TolInco > 0)
+                        {
+
+                            Utils.SqlDatos = "SELECT [CodDigita],[TipARchi],[TipDocu],[NumDocu],[CodEnti],[FacturaN],[Observa1] FROM [DARIPSXPSQL].[dbo].[Datos temporal errores RIPS] WHERE CodEnti = '" + Coenti01 + "' ORDER BY NumDocu ASC  ";
+
+                            Utils.infNombreInforme = "InfReporErroresRips";
+
+                            Utils.CarAdmin = Coenti01;
+
+                            Reportes.FrmInfErroresRips frm = new Reportes.FrmInfErroresRips();
+                            frm.ShowDialog();
+
+                        }
+                    }
+                    reader.Close();
+
+
+                }
+
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "despues de dar click en el boton validar " + "\r";
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private string NomDiagnostico(string CoDx)
+        {
+            try
+            {
+                string SqlDatos = "SELECT [Datos listado de diagnosticos].* ";
+                SqlDatos = SqlDatos + "FROM [GEOGRAXPSQL].[dbo].[Datos listado de diagnosticos]";
+                SqlDatos = SqlDatos + "WHERE ((([[Datos listado de diagnosticos]].[CodiDx]) = '" + CoDx + "')) ";
+                SqlDatos = SqlDatos + "ORDER BY [[Datos listado de diagnosticos]].[CodiDx];";
+
+                SqlDataReader TablaAux9 = Conexion.SQLDataReader(SqlDatos);
+
+                if (TablaAux9.HasRows == false)
+                {
+                    return "0";
+                }
+                else
+                {
+                    return TablaAux9["NombreDx"].ToString();
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la función: NomDiagnostico del Módulo" + "\r";
+                Utils.Informa += "Módulo gestión de RIPS" + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return "-1";
+            }
+        }
+        private int ValidarProcedi(string c, double T, string CodDg)
+        {
+            try
+            {
+                string SqlProceTemp, Dp, mMuCi, ObErr, Z, RutaGeo, Msj, DxPr, FunDx;
+                int RegExp, FunDpto, FunMuni, FiCon, VR;
+
+                SqlProceTemp = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal procedimientos RIPS] ";
+                SqlProceTemp += "WHERE (([Datos temporal procedimientos RIPS].CodDigita) = '" + CodDg + "') and ";
+                SqlProceTemp += "(([Datos temporal procedimientos RIPS].NumRemi) = '" + c + "');";
+
+
+                SqlDataReader TabProce;
+
+                // SqlDataReader TabProce = Conexion.SQLDataReader(SqlProceTemp);
+
+                using (SqlConnection connection2 = new SqlConnection(Conexion.conexionSQL))
+                {
+                    SqlCommand command2 = new SqlCommand(SqlProceTemp, connection2);
+
+                    command2.Connection.Open();
+
+                    TabProce = command2.ExecuteReader();
+
+                    if (TabProce.HasRows == false)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        VR = 0;
+                        while (TabProce.Read())
+                        {
+                            RegExp = 0;
+                            ObErr = "";
+                            VR = 0;
+
+                            //Validamos Ambito
+
+                            switch (TabProce["AmbitoReal"])
+                            {
+                                case "1":
+                                    break;
+                                case "2":
+                                    break;
+                                case "3":
+                                    break;
+                                default:
+                                    RegExp = 1;
+                                    ObErr = ObErr + "El identificador para determinar el ámbito de realización del procedimiento no es valido.";
+                                    break;
+                            }
+
+                            switch (TabProce["FinalProce"])
+                            {
+                                case "1":
+                                    break;
+                                case "2":
+                                    break;
+                                case "3":
+                                    break;
+                                case "4":
+                                    break;
+                                case "5":
+                                    break;
+                                default:
+                                    RegExp = 1;
+                                    ObErr = ObErr + "La finalidad del procedimiento no es valida para normatividad vigente.";
+                                    break;
+                            }
+
+                            // Validamos el código del diagnóstico principal
+
+                            if (string.IsNullOrEmpty(TabProce["DxPrincipal"].ToString()) || TabProce["DxPrincipal"].ToString() == "")
+                            {
+
+                            }
+                            else
+                            {
+                                string DxPrincipal = TabProce["DxPrincipal"].ToString();
+                                int lenDxPrincipal = DxPrincipal.Length;
+                                if (lenDxPrincipal < 4)
+                                {
+                                    RegExp = 1;
+                                    ObErr = ObErr + "El código " + TabProce["DxPrincipal"].ToString() + ", del diagnóstico  no es valido.";
+                                }
+                                else
+                                {
+                                    if (TabProce["DxPrincipal"].ToString() == "0000")
+                                    {
+                                        RegExp = 1;
+                                        ObErr = ObErr + "El código " + TabProce["DxPrincipal"].ToString() + ", del diagnóstico  no es valido.";
+                                    }
+                                    else
+                                    {
+                                        DxPr = TabProce["DxPrincipal"].ToString();
+                                        //Si pasó todo lo anterior pasemos a verificar si el diagnóstico existe o no
+                                        Utils.SqlDatos = "SELECT [Datos listado de diagnosticos].*, [Datos listado de diagnosticos].[CodiDx] FROM [GEOGRAXPSQL].[dbo].[Datos listado de diagnosticos] ";
+                                        Utils.SqlDatos += "WHERE [Datos listado de diagnosticos].[CodiDx] = '" + DxPr + "' ORDER BY [Datos listado de diagnosticos].[CodiDx] ";
+
+                                        SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                                        if (TablaAux1.HasRows == false)
+                                        {
+                                            RegExp = 1;
+                                            ObErr = ObErr + "El código " + TabProce["DxPrincipal"].ToString() + ", del diagnóstico de la causa básica no existe en la resolución vigente.";
+                                        }
+                                        TablaAux1.Close();
+
+                                        if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+
+                                    }
+                                }
+                            }
+
+                            //   'Validamos el Diagnostico Relacional unico
+
+
+                            if (string.IsNullOrEmpty(TabProce["DxRelacion"].ToString()) || TabProce["DxRelacion"].ToString() == "")
+                            {
+
+                            }
+                            else
+                            {
+                                string DxPrincipal = TabProce["DxRelacion"].ToString();
+                                int lenDxPrincipal = DxPrincipal.Length;
+                                if (lenDxPrincipal < 4)
+                                {
+                                    RegExp = 1;
+                                    ObErr = ObErr + "El código " + TabProce["DxRelacion"].ToString() + ", del diagnóstico Relacional no es valido.";
+                                }
+                                else
+                                {
+                                    if (TabProce["DxRelacion"].ToString() == "0000")
+                                    {
+                                        RegExp = 1;
+                                        ObErr = ObErr + "El código " + TabProce["DxRelacion"].ToString() + ", del diagnóstico Relacional  no es valido.";
+                                    }
+                                    else
+                                    {
+                                        DxPr = TabProce["DxRelacion"].ToString();
+                                        //Si pasó todo lo anterior pasemos a verificar si el diagnóstico existe o no
+                                        Utils.SqlDatos = "SELECT [Datos listado de diagnosticos].*, [Datos listado de diagnosticos].[CodiDx] FROM [GEOGRAXPSQL].[dbo].[Datos listado de diagnosticos] ";
+                                        Utils.SqlDatos += "WHERE [Datos listado de diagnosticos].[CodiDx] = '" + DxPr + "' ORDER BY [Datos listado de diagnosticos].[CodiDx] ";
+
+                                        SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                                        if (TablaAux1.HasRows == false)
+                                        {
+                                            RegExp = 1;
+                                            ObErr = ObErr + "El código " + TabProce["DxPrincipal"].ToString() + ", del diagnóstico principal no existe la resolución vigente.";
+                                        }
+                                        TablaAux1.Close();
+
+                                        if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                                    }
+                                }
+                            }
+
+                            //Validamos el Diagnostico de la complicación
+
+
+
+                            if (string.IsNullOrEmpty(TabProce["Complicacion"].ToString()) || TabProce["Complicacion"].ToString() == "")
+                            {
+
+                            }
+                            else
+                            {
+                                string DxPrincipal = TabProce["Complicacion"].ToString();
+                                int lenDxPrincipal = DxPrincipal.Length;
+                                if (lenDxPrincipal < 4)
+                                {
+                                    RegExp = 1;
+                                    ObErr = ObErr + "El código " + TabProce["Complicacion"].ToString() + ", del diagnóstico Complicacion no es valido.";
+                                }
+                                else
+                                {
+                                    if (TabProce["Complicacion"].ToString() == "0000")
+                                    {
+                                        RegExp = 1;
+                                        ObErr = ObErr + "El código " + TabProce["Complicacion"].ToString() + ", del diagnóstico Complicacion  no es valido.";
+                                    }
+                                    else
+                                    {
+                                        DxPr = TabProce["Complicacion"].ToString();
+                                        //Si pasó todo lo anterior pasemos a verificar si el diagnóstico existe o no
+                                        Utils.SqlDatos = "SELECT [Datos listado de diagnosticos].*, [Datos listado de diagnosticos].[CodiDx] FROM [GEOGRAXPSQL].[dbo].[Datos listado de diagnosticos] ";
+                                        Utils.SqlDatos += "WHERE [Datos listado de diagnosticos].[CodiDx] = '" + DxPr + "' ORDER BY [Datos listado de diagnosticos].[CodiDx] ";
+
+
+                                        SqlDataReader TablaAux1;
+
+                                        using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                                        {
+                                            SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+
+                                            command.Connection.Open();
+
+                                            TablaAux1 = command.ExecuteReader();
+
+                                            if (TablaAux1.HasRows == false)
+                                            {
+                                                RegExp = 1;
+                                                ObErr = ObErr + "El código " + TabProce["DxPrincipal"].ToString() + ", del diagnóstico principal no existe la resolución vigente.";
+                                            }
+
+                                            if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                                        }
+
+                                    }
+                                }
+                            }
+
+                            //Validamos La forma de realización
+
+                            switch (TabProce["RealiActo"].ToString())
+                            {
+                                case "1":
+                                    break;
+                                case "2":
+                                    break;
+                                case "3":
+                                    break;
+                                case "4":
+                                    break;
+                                case "5":
+                                    break;
+                                default:
+                                    RegExp = 1;
+                                    ObErr = ObErr + "El identificador " + TabProce["RealiActo"].ToString() + ", no es valido para determinar la forma de realización del acto quirúrgico.";
+                                    break;
+                            }
+
+                            if (Convert.ToDouble(TabProce["ValorProce"].ToString()) < 0)
+                            {
+                                RegExp = 1;
+                                ObErr = ObErr + "El valor del procedimiento no puede ser menor a cero ";
+                            }
+
+
+                            if (RegExp == 1)
+                            {
+                                Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal errores RIPS] ";
+                                Utils.SqlDatos += "([CodDigita],[TipARchi],[TipDocu],[NumDocu],[CodEnti],[FacturaN],[Observa1]) ";
+                                Utils.SqlDatos += "VALUES('" + lblCodigoUser.Text + "', 'AP','" + TabProce["TipoDocum"].ToString() + "','" + TabProce["NumDocum"].ToString() + "','" + c + "','" + TabProce["NumFactur"].ToString() + "','" + ObErr + "')";
+
+                                Boolean TabLocal2 = Conexion.SqlInsert(Utils.SqlDatos);
+                            }
+
+                            VR += 1;
+
+                        } //FIN WHILE
+
+                        return 1;
+                    }
+                }
+
+                TabProce.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la función:  ValidarProcedi del " + "\r";
+                Utils.Informa += "Módulo gestión de RIPS" + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+        }
+        private int ValidarReNan(string c, double T, string CodDg)
+        {
+            try
+            {
+                string SqlReNaciTemp, Dp, mMuCi, ObErr, Z, RutaGeo, Msj, DxPr, FunDx;
+                int RegExp, FunDpto, FunMuni, FiCon, VR;
+
+                SqlReNaciTemp = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal observacion RIPS] ";
+                SqlReNaciTemp += "WHERE (([Datos temporal observacion RIPS].CodDigita) = '" + CodDg + "') and ";
+                SqlReNaciTemp += "((Datos temporal observacion RIPS].NumRemi) = '" + c + "');";
+                SqlDataReader TabReNan = Conexion.SQLDataReader(SqlReNaciTemp);
+
+                if (TabReNan.HasRows == false)
+                {
+                    return 0;
+                }
+                else
+                {
+                    VR = 0;
+                    while (TabReNan.Read())
+                    {
+                        RegExp = 0;
+                        ObErr = "";
+                        VR = 0;
+
+                        // 'Solo validamos las cosas necesarias
+                        //'Se debe validar el código de la consulta de acuero al manual que utiliza la entidad
+                        //'Validamos la finalidad
+
+
+                        if (string.IsNullOrEmpty(TabReNan["EdadGesta"].ToString()) || TabReNan["EdadGesta"].ToString() == "")
+                        {
+                            RegExp = 1;
+                            ObErr = ObErr + "Falta el número de semanas de gestación.";
+                        }
+                        else
+                        {
+                            if (Convert.ToInt32(TabReNan["EdadGesta"].ToString()) > 42)
+                            {
+                                RegExp = 1;
+                                ObErr = ObErr + "El número de semanas de gestación no puede ser mayor de 42 semanas.";
+                            }
+                        }
+                        //   'Validamos el control prenatal
+
+                        switch (TabReNan["ControlPrena"].ToString())
+                        {
+                            case "1":
+                                break;
+                            case "2":
+                                break;
+                            default:
+                                RegExp = 1;
+                                ObErr = ObErr + "El identificador " + TabReNan["ControlPrena"].ToString() + ", no es valido para el control prenatal";
+                                break;
+                        }
+
+                        //'Validamos el sexo
+
+                        switch (TabReNan["SexoRecien"].ToString())
+                        {
+                            case "M":
+                                break;
+                            case "F":
+                                break;
+                            case "I":
+                                break;
+                            default:
+                                RegExp = 1;
+                                ObErr = ObErr + "El identificador " + TabReNan["SexoRecien"].ToString() + ", no es valido para definir el sexo.";
+                                break;
+                        }
+
+                        //Validamos el peso
+                        int peso = Convert.ToInt32(TabReNan["PesoRecien"].ToString());
+
+                        if (peso <= 0)
+                        {
+                            RegExp = 1;
+                            ObErr = ObErr + "Falta el peso del recién nacido.";
+                        }
+                        if (peso <= 1000)
+                        {
+                            RegExp = 1;
+                            ObErr = ObErr + "El peso del recién nacido esta por debajo de la media.";
+                        }
+                        if (peso > 600)
+                        {
+                            RegExp = 1;
+                            ObErr = ObErr + "El peso del recién nacido parece estar sobrevalorado.";
+                        }
+
+                        //Validamos el código del diagnóstico del recien nacido
+
+
+                        if (string.IsNullOrEmpty(TabReNan["DxRecien"].ToString()) || TabReNan["DxRecien"].ToString() == "")
+                        {
+                            RegExp = 1;
+                            ObErr = ObErr + "No tiene definido el diagnóstico del recién nacido";
+                        }
+                        else
+                        {
+                            string DxPrincipal = TabReNan["DxRecien"].ToString();
+                            int lenDxPrincipal = DxPrincipal.Length;
+                            if (lenDxPrincipal < 4)
+                            {
+                                RegExp = 1;
+                                ObErr = ObErr + "El código " + TabReNan["DxRecien"].ToString() + ", del diagnóstico  no es valido.";
+                            }
+                            else
+                            {
+                                if (TabReNan["DxRecien"].ToString() == "0000")
+                                {
+                                    RegExp = 1;
+                                    ObErr = ObErr + "El código " + TabReNan["DxRecien"].ToString() + ", del diagnóstico  no es valido.";
+                                }
+                                else
+                                {
+                                    DxPr = TabReNan["DxRecien"].ToString();
+                                    FunDx = NomDiagnostico(DxPr);
+
+                                    if (FunDx == "0")
+                                    {
+                                        RegExp = 1;
+                                        ObErr = ObErr + "El código " + TabReNan["DxRecien"].ToString() + ", del diagnóstico del recién nacido no existe la resolución vigente.";
+                                    }
+                                }
+                            }
+                        }
+
+
+                        //Si se murio debe llevar un codigo
+
+                        if (string.IsNullOrEmpty(TabReNan["DxMuerte"].ToString()) || TabReNan["DxMuerte"].ToString() == "")
+                        {
+                            RegExp = 1;
+                            ObErr = ObErr + "A pesar que el paciente murió, no tiene definido el diagnóstico de la causa básica";
+                        }
+                        else
+                        {
+
+                            string DxRelacion2 = TabReNan["DxMuerte"].ToString();
+                            int lenDxRelacion2 = DxRelacion2.Length;
+                            if (lenDxRelacion2 < 4)
+                            {
+                                RegExp = 1;
+                                ObErr = ObErr + "El código " + TabReNan["DxMuerte"].ToString() + ", del diagnóstico de la causa básica no es valido.";
+                            }
+                            else
+                            {
+                                if (TabReNan["DxMuerte"].ToString() == "0000")
+                                {
+                                    RegExp = 1;
+                                    ObErr = ObErr + "El código " + TabReNan["DxMuerte"].ToString() + ",  del diagnóstico de la causa básica no es valido.";
+                                }
+                                else
+                                {
+                                    DxPr = TabReNan["DxMuerte"].ToString();
+                                    //Si pasó todo lo anterior pasemos a verificar si el diagnóstico existe o no
+                                    Utils.SqlDatos = "SELECT [Datos listado de diagnosticos].*, [Datos listado de diagnosticos].[CodiDx] FROM [GEOGRAXPSQL].[dbo].[Datos listado de diagnosticos] ";
+                                    Utils.SqlDatos += "WHERE [Datos listado de diagnosticos].[CodiDx] = '" + DxPr + "' ORDER BY [Datos listado de diagnosticos].[CodiDx] ";
+
+                                    SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                                    if (TablaAux1.HasRows == false)
+                                    {
+                                        RegExp = 1;
+                                        ObErr = ObErr + "El código " + TabReNan["DxMuerte"].ToString() + ", del diagnóstico de la causa básica no existe en la resolución vigente.";
+                                    }
+                                    TablaAux1.Close();
+                                }
+                            }
+                        }
+
+
+
+                        if (RegExp == 1)
+                        {
+                            Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal errores RIPS] ";
+                            Utils.SqlDatos += "([CodDigita],[TipARchi],[TipDocu],[NumDocu],[CodEnti],[FacturaN],[Observa1]) ";
+                            Utils.SqlDatos += "VALUES('" + lblCodigoUser.Text + "', 'AN','" + TabReNan["TipoDocum"].ToString() + "','" + TabReNan["NumDocum"].ToString() + "','" + c + "','" + TabReNan["NumFactur"].ToString() + "','" + ObErr + "')";
+
+                            Boolean TabLocal2 = Conexion.SqlInsert(Utils.SqlDatos);
+                        }
+
+                        VR += 1;
+
+                    } //FIN WHILE
+
+                    return 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la función: ValidarReNan del" + "\r";
+                Utils.Informa += "Módulo gestión de RIPS" + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+        }
+        private int ValidarOtros(string c, double T, string CodDg)
+        {
+            try
+            {
+                string SqlOtrosTemp, Dp, mMuCi, ObErr, Z, RutaGeo, Msj, DxPr, FunDx;
+                int RegExp, FunDpto, FunMuni, FiCon, VR;
+
+                SqlOtrosTemp = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal otros servicios RIPS] ";
+                SqlOtrosTemp += "WHERE (([Datos temporal otros servicios RIPS].CodDigita) = '" + CodDg + "') and ";
+                SqlOtrosTemp += "(([Datos temporal otros servicios RIPS].NumRemi) = '" + c + "');";
+
+                SqlDataReader TabOtros = Conexion.SQLDataReader(SqlOtrosTemp);
+
+                if (TabOtros.HasRows == false)
+                {
+                    return 0;
+                }
+                else
+                {
+                    VR = 0;
+                    while (TabOtros.Read())
+                    {
+                        RegExp = 0;
+                        ObErr = "";
+
+                        // 'Solo validamos las cosas necesarias
+                        //'Se debe validar el código de la consulta de acuero al manual que utiliza la entidad
+                        //'Validamos la finalidad
+
+                        switch (TabOtros["TipoServicio"].ToString())
+                        {
+                            case "1":
+                                break;
+                            case "2":
+                                break;
+                            case "3":
+                                break;
+                            case "4":
+                                break;
+                            default:
+                                ObErr = ObErr + "El identificador para determinar el tipo de servicio hace falta en el servicio de código ";
+                                break;
+                        }
+
+                        // 'Validamos el código del servicio
+
+                        if (string.IsNullOrEmpty(TabOtros["CodiServi"].ToString()) || TabOtros["CodiServi"].ToString() == "")
+                        {
+                            RegExp = 1;
+                            ObErr = "El nombre del servicio hace falta.";
+                        }
+
+                        //validamos la cantidad
+
+                        if (Convert.ToDecimal(TabOtros["ValorUnita"].ToString()) <= 0)
+                        {
+                            RegExp = 1;
+                            ObErr = ObErr + "el valor unitario del servicio no puede ser menor o igual a cero.";
+                        }
+
+
+                        if (RegExp == 1)
+                        {
+                            Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal errores RIPS] ";
+                            Utils.SqlDatos += "([CodDigita],[TipARchi],[TipDocu],[NumDocu],[CodEnti],[FacturaN],[Observa1]) ";
+                            Utils.SqlDatos += "VALUES('" + lblCodigoUser.Text + "', 'AT','" + TabOtros["TipoDocum"].ToString() + "','" + TabOtros["NumDocum"].ToString() + "','" + c + "','" + TabOtros["NumFactur"].ToString() + "','" + ObErr + "')";
+
+                            Boolean TabLocal2 = Conexion.SqlInsert(Utils.SqlDatos);
+                        }
+
+                        VR += 1;
+
+                    } //FIN WHILE
+
+                    return 1;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la función: ValidarOtros del" + "\r";
+                Utils.Informa += "Módulo gestión de RIPS" + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+        }
+        private int ValidarObserva(string c, double T, string CodDg)
+        {
+            try
+            {
+                string SqlMediTem, Dp, mMuCi, ObErr, Z, RutaGeo, Msj, DxPr, FunDx;
+                int RegExp, FunDpto, FunMuni, FiCon, VR;
+
+                SqlMediTem = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal observacion RIPS] ";
+                SqlMediTem += "WHERE (([Datos temporal observacion RIPS].CodDigita) = '" + CodDg + "') and ";
+                SqlMediTem += "((Datos temporal observacion RIPS].NumRemi) = '" + c + "');";
+                SqlDataReader TabObserva = Conexion.SQLDataReader(SqlMediTem);
+
+                if (TabObserva.HasRows == false)
+                {
+                    return 0;
+                }
+                else
+                {
+                    VR = 0;
+                    while (TabObserva.Read())
+                    {
+                        RegExp = 0;
+                        ObErr = "";
+                        VR = 0;
+
+                        // 'Solo validamos las cosas necesarias
+                        //'Se debe validar el código de la consulta de acuero al manual que utiliza la entidad
+                        //'Validamos la finalidad
+
+                        switch (TabObserva["CausExter"].ToString())
+                        {
+                            case "01":
+                            case "02":
+                            case "03":
+                            case "04":
+                            case "05":
+                            case "06":
+                            case "07":
+                            case "08":
+                            case "09":
+                            case "10":
+                            case "11":
+                            case "12":
+                            case "13":
+                            case "14":
+                            case "15":
+                            default:
+                                RegExp = 1;
+                                ObErr += "La causa externa de la urgencia no es valida para la normatividad vigente.";
+                                break;
+                        }
+
+
+
+                        if (string.IsNullOrEmpty(TabObserva["DxPrincIngre"].ToString()) || TabObserva["DxPrincIngre"].ToString() == "")
+                        {
+                            RegExp = 1;
+                            ObErr = ObErr + "La consulta no tiene definido el diagnóstico principal";
+                        }
+                        else
+                        {
+                            string DxPrincipal = TabObserva["DxPrincIngre"].ToString();
+                            int lenDxPrincipal = DxPrincipal.Length;
+                            if (lenDxPrincipal < 4)
+                            {
+                                RegExp = 1;
+                                ObErr = ObErr + "El código " + TabObserva["DxPrincIngre"].ToString() + ", del diagnóstico principal no es valido.";
+                            }
+                            else
+                            {
+                                if (TabObserva["DxPrincIngre"].ToString() == "0000")
+                                {
+                                    RegExp = 1;
+                                    ObErr = ObErr + "El código " + TabObserva["DxPrincIngre"].ToString() + ", del diagnóstico principal no es valido.";
+                                }
+                                else
+                                {
+                                    DxPr = TabObserva["DxPrincIngre"].ToString();
+                                    //Si pasó todo lo anterior pasemos a verificar si el diagnóstico existe o no
+                                    Utils.SqlDatos = "SELECT [Datos listado de diagnosticos].*, [Datos listado de diagnosticos].[CodiDx] FROM [GEOGRAXPSQL].[dbo].[Datos listado de diagnosticos] ";
+                                    Utils.SqlDatos += "WHERE [Datos listado de diagnosticos].[CodiDx] = '" + DxPr + "' ORDER BY [Datos listado de diagnosticos].[CodiDx] ";
+
+                                    SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                                    if (TablaAux1.HasRows == false)
+                                    {
+                                        RegExp = 1;
+                                        ObErr = ObErr + "El código " + TablaAux1["DxPrincIngre"].ToString() + ", del diagnóstico principal no existe la resolución vigente.";
+                                    }
+                                    TablaAux1.Close();
+                                }
+                            }
+                        }
+
+                        //Validamos el Diagnostico Relacional 1
+
+                        if (string.IsNullOrEmpty(TabObserva["DxRelacion1"].ToString()) || TabObserva["DxRelacion1"].ToString() == "")
+                        {
+                            RegExp = 1;
+                            ObErr = ObErr + "La consulta no tiene definido el diagnóstico DxRelacion1";
+                        }
+                        else
+                        {
+                            string DxPrincipal = TabObserva["DxRelacion1"].ToString();
+                            int lenDxPrincipal = DxPrincipal.Length;
+                            if (lenDxPrincipal < 4)
+                            {
+                                RegExp = 1;
+                                ObErr = ObErr + "El código " + TabObserva["DxRelacion1"].ToString() + ", del diagnóstico DxRelacion1 no es valido.";
+                            }
+                            else
+                            {
+                                if (TabObserva["DxRelacion1"].ToString() == "0000")
+                                {
+                                    RegExp = 1;
+                                    ObErr = ObErr + "El código " + TabObserva["DxRelacion1"].ToString() + ", del diagnóstico DxRelacion1 no es valido.";
+                                }
+                                else
+                                {
+                                    DxPr = TabObserva["DxRelacion1"].ToString();
+                                    //Si pasó todo lo anterior pasemos a verificar si el diagnóstico existe o no
+                                    Utils.SqlDatos = "SELECT [Datos listado de diagnosticos].*, [Datos listado de diagnosticos].[CodiDx] FROM [GEOGRAXPSQL].[dbo].[Datos listado de diagnosticos] ";
+                                    Utils.SqlDatos += "WHERE [Datos listado de diagnosticos].[CodiDx] = '" + DxPr + "' ORDER BY [Datos listado de diagnosticos].[CodiDx] ";
+
+                                    SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                                    if (TablaAux1.HasRows == false)
+                                    {
+                                        RegExp = 1;
+                                        ObErr = ObErr + "El código " + TablaAux1["DxRelacion1"].ToString() + ", del diagnóstico DxRelacion1 no existe la resolución vigente.";
+                                    }
+                                    TablaAux1.Close();
+                                }
+                            }
+                        }
+
+
+                        //Validamos el Diagnostico Relacional 2
+
+                        if (string.IsNullOrEmpty(TabObserva["DxRelacion2"].ToString()) || TabObserva["DxRelacion2"].ToString() == "")
+                        {
+                            RegExp = 1;
+                            ObErr = ObErr + "La consulta no tiene definido el diagnóstico DxRelacion2";
+                        }
+                        else
+                        {
+                            string DxPrincipal = TabObserva["DxRelacion2"].ToString();
+                            int lenDxPrincipal = DxPrincipal.Length;
+                            if (lenDxPrincipal < 4)
+                            {
+                                RegExp = 1;
+                                ObErr = ObErr + "El código " + TabObserva["DxRelacion2"].ToString() + ", del diagnóstico DxRelacion1 no es valido.";
+                            }
+                            else
+                            {
+                                if (TabObserva["DxRelacion2"].ToString() == "0000")
+                                {
+                                    RegExp = 1;
+                                    ObErr = ObErr + "El código " + TabObserva["DxRelacion2"].ToString() + ", del diagnóstico DxRelacion2 no es valido.";
+                                }
+                                else
+                                {
+                                    DxPr = TabObserva["DxRelacion2"].ToString();
+                                    //Si pasó todo lo anterior pasemos a verificar si el diagnóstico existe o no
+                                    Utils.SqlDatos = "SELECT [Datos listado de diagnosticos].*, [Datos listado de diagnosticos].[CodiDx] FROM [GEOGRAXPSQL].[dbo].[Datos listado de diagnosticos] ";
+                                    Utils.SqlDatos += "WHERE [Datos listado de diagnosticos].[CodiDx] = '" + DxPr + "' ORDER BY [Datos listado de diagnosticos].[CodiDx] ";
+
+                                    SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                                    if (TablaAux1.HasRows == false)
+                                    {
+                                        RegExp = 1;
+                                        ObErr = ObErr + "El código " + TablaAux1["DxRelacion2"].ToString() + ", del diagnóstico DxRelacion2 no existe la resolución vigente.";
+                                    }
+                                    TablaAux1.Close();
+                                }
+                            }
+                        }
+
+                        //Validamos el destino del usuario
+
+                        switch (TabObserva["Destino"].ToString())
+                        {
+                            case "1":
+                                break;
+                            case "2":
+                                break;
+                            case "3":
+                                break;
+                            default:
+                                RegExp = 1;
+                                ObErr = ObErr + "El identificador para determinar el destino del usuario a la salida de observación no es valido.";
+                                break;
+                        }
+
+
+                        switch (TabObserva["EstadoSal"].ToString())
+                        {
+                            case "1":
+                                break;
+                            case "2":
+
+                                //Si se murio debe llevar un codigo
+                                if (string.IsNullOrEmpty(TabObserva["DxMuerte"].ToString()) || TabObserva["DxMuerte"].ToString() == "")
+                                {
+                                    RegExp = 1;
+                                    ObErr = ObErr + "A pesar que el paciente murió, no tiene definido el diagnóstico de la causa básica";
+                                }
+                                else
+                                {
+
+                                    string DxRelacion2 = TabObserva["DxMuerte"].ToString();
+                                    int lenDxRelacion2 = DxRelacion2.Length;
+                                    if (lenDxRelacion2 < 4)
+                                    {
+                                        RegExp = 1;
+                                        ObErr = ObErr + "El código " + TabObserva["DxMuerte"].ToString() + ", del diagnóstico de la causa básica no es valido.";
+                                    }
+                                    else
+                                    {
+                                        if (TabObserva["DxMuerte"].ToString() == "0000")
+                                        {
+                                            RegExp = 1;
+                                            ObErr = ObErr + "El código " + TabObserva["DxMuerte"].ToString() + ",  del diagnóstico de la causa básica no es valido.";
+                                        }
+                                        else
+                                        {
+                                            DxPr = TabObserva["DxMuerte"].ToString();
+                                            //Si pasó todo lo anterior pasemos a verificar si el diagnóstico existe o no
+                                            Utils.SqlDatos = "SELECT [Datos listado de diagnosticos].*, [Datos listado de diagnosticos].[CodiDx] FROM [GEOGRAXPSQL].[dbo].[Datos listado de diagnosticos] ";
+                                            Utils.SqlDatos += "WHERE [Datos listado de diagnosticos].[CodiDx] = '" + DxPr + "' ORDER BY [Datos listado de diagnosticos].[CodiDx] ";
+
+                                            SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                                            if (TablaAux1.HasRows == false)
+                                            {
+                                                RegExp = 1;
+                                                ObErr = ObErr + "El código " + TabObserva["DxMuerte"].ToString() + ", del diagnóstico de la causa básica no existe en la resolución vigente.";
+                                            }
+                                            TablaAux1.Close();
+                                        }
+                                    }
+                                }
+
+                                break;
+                            default:
+                                RegExp = 1;
+                                ObErr = ObErr + "El identificador para determinar el estado a la salida no es valido para la normatividad vigente.";
+                                break;
+                        }
+
+                        //'Validamos si lleva la fecha de salida
+
+                        if (string.IsNullOrEmpty(TabObserva["FecSalida"].ToString()))
+                        {
+                            RegExp = 1;
+                            ObErr = ObErr + "El usuario no tiene la fecha de salida de observacion de urgencias ";
+                        }
+
+
+
+                        if (string.IsNullOrEmpty(TabObserva["HorSalida"].ToString()))
+                        {
+                            RegExp = 1;
+                            ObErr = ObErr + "El usuario no tiene la hora de salida de observacion de urgencias ";
+                        }
+
+
+
+                        if (RegExp == 1)
+                        {
+                            Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal errores RIPS] ";
+                            Utils.SqlDatos += "([CodDigita],[TipARchi],[TipDocu],[NumDocu],[CodEnti],[FacturaN],[Observa1]) ";
+                            Utils.SqlDatos += "VALUES('" + lblCodigoUser.Text + "', 'AU','" + TabObserva["TipoDocum"].ToString() + "','" + TabObserva["NumDocum"].ToString() + "','" + c + "','" + TabObserva["NumFactur"].ToString() + "','" + ObErr + "')";
+
+                            Boolean TabLocal2 = Conexion.SqlInsert(Utils.SqlDatos);
+                        }
+
+                        VR += 1;
+
+                    } //FIN WHILE
+
+                    return 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la función: ValidarObserva del" + "\r";
+                Utils.Informa += "Módulo gestión de RIPS" + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+        }
+        private int ValidarMedica(string c, double T, string CodDg)
+        {
+            try
+            {
+                string SqlMediTem, Dp, ObErr, Z;
+                int RegExp, VR;
+
+                SqlMediTem = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal medicamentos RIPS] ";
+                SqlMediTem += "WHERE (([Datos temporal medicamentos RIPS].CodDigita) = '" + CodDg + "') and ";
+                SqlMediTem += "(([Datos temporal medicamentos RIPS].NumRemi) = '" + c + "');";
+
+                SqlDataReader TabMedi = Conexion.SQLDataReader(SqlMediTem);
+
+                if (TabMedi.HasRows == false)
+                {
+                    return 0;
+                }
+                else
+                {
+                    VR = 0;
+                    while (TabMedi.Read())
+                    {
+                        RegExp = 0;
+                        ObErr = "";
+
+                        // 'Solo validamos las cosas necesarias
+                        //'Se debe validar el código de la consulta de acuero al manual que utiliza la entidad
+                        //'Validamos la finalidad
+
+                        switch (TabMedi["TipoMedica"].ToString())
+                        {
+                            case "01": //'Es POS
+
+                                //Validamos el código del medicamento
+                                if (string.IsNullOrEmpty(TabMedi["CodMedica"].ToString()) || TabMedi["CodMedica"].ToString() == "")
+                                {
+                                    RegExp = 1;
+                                    ObErr = "El código del medicamento hace falta cuando este es POS.";
+                                }
+
+                                break;
+
+                            case "02": //No es Pos
+
+                                //Validamos el codigo del medicamento
+                                if (string.IsNullOrEmpty(TabMedi["NomGenerico"].ToString()) || TabMedi["NomGenerico"].ToString() == "")
+                                {
+                                    RegExp = 1;
+                                    ObErr = "El forma farmacéutica del medicamento hace falta cuando este es NO POS.";
+                                }
+
+                                //Validamos La forma
+                                if (string.IsNullOrEmpty(TabMedi["FormaFarma"].ToString()) || TabMedi["FormaFarma"].ToString() == "")
+                                {
+                                    RegExp = 1;
+                                    ObErr += "El forma farmacéutica del medicamento hace falta cuando este es NO POS.";
+                                }
+
+                                //Validamos la concentración
+                                if (string.IsNullOrEmpty(TabMedi["ConcenMedi"].ToString()) || TabMedi["ConcenMedi"].ToString() == "")
+                                {
+                                    RegExp = 1;
+                                    ObErr += "El forma farmacéutica del medicamento hace falta cuando este es NO POS.";
+                                }
+
+                                //'Validamos la unidad de medida
+                                if (string.IsNullOrEmpty(TabMedi["UniMedida"].ToString()) || TabMedi["UniMedida"].ToString() == "")
+                                {
+                                    RegExp = 1;
+                                    ObErr += "La unidad de medida del medicamento hace falta cuando este es NO POS.";
+                                }
+                                break;
+                            default:
+
+                                ObErr += "El identificador para determinar la condición del medicamento en el plan de beneficios hace falta.";
+
+                                break;
+                        }
+
+
+                        //Validamos la unidades administrdas
+
+                        if (Convert.ToDecimal(TabMedi["NumUnidad"].ToString()) <= 0)
+                        {
+                            RegExp = 1;
+                            ObErr = ObErr + "La Cantidad o las unidades aplicadas no puede ser menor o igual a cero..";
+                        }
+                        else
+                        {
+                            if (Convert.ToDecimal(TabMedi["NumUnidad"].ToString()) > 1000)
+                            {
+                                ObErr = ObErr + "La Cantidad o las unidades aplicadas no puede ser mayor a 1.000.";
+                            }
+                        }
+
+                        // 'Validamos que el valor unitario
+
+                        if (Convert.ToDecimal(TabMedi["ValorUnita"].ToString()) <= 0)
+                        {
+                            RegExp = 1;
+                            ObErr = ObErr + "El valor unitario del medicamento no puede ser menor o igual a cero.";
+                        }
+
+
+                        if (RegExp == 1)
+                        {
+                            Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal errores RIPS] ";
+                            Utils.SqlDatos += "([CodDigita],[TipARchi],[TipDocu],[NumDocu],[CodEnti],[FacturaN],[Observa1]) ";
+                            Utils.SqlDatos += "VALUES('" + lblCodigoUser.Text + "', 'AM','" + TabMedi["TipoDocum"].ToString() + "','" + TabMedi["NumDocum"].ToString() + "','" + c + "','" + TabMedi["NumFactur"].ToString() + "','" + ObErr + "')";
+
+                            Boolean TabLocal2 = Conexion.SqlInsert(Utils.SqlDatos);
+                        }
+
+                        VR += 1;
+
+                    } //FIN WHILE
+
+                    return 1;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la función: ValidarMedica del" + "\r";
+                Utils.Informa += "Módulo gestión de RIPS" + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+            }
+        }
+        private int ValidarHospi(string c, double T, string CodDg)
+        {
+            try
+            {
+
+                string SqlConsulTem, Dp, mMuCi, ObErr, Z, RutaGeo, Msj, DxPr, FunDx;
+                int RegExp, FunDpto, FunMuni, FiCon, VR;
+
+                SqlConsulTem = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal hospitalizacion RIPS] " +
+                "WHERE ((Datos temporal hospitalizacion RIPS].CodDigita) = '" + CodDg + "' ) and " +
+                "(([Datos temporal hospitalizacion RIPS].NumRemi) = '" + c + "');";
+
+                SqlDataReader TabHospi = Conexion.SQLDataReader(SqlConsulTem);
+
+                if (TabHospi.HasRows == false)
+                {
+                    return 0;
+                }
+                else
+                {
+                    VR = 0;
+                    while (TabHospi.Read())
+                    {
+                        RegExp = 0;
+                        ObErr = "";
+
+                        // 'Solo validamos las cosas necesarias
+                        //'Se debe validar el código de la consulta de acuero al manual que utiliza la entidad
+                        //'Validamos la finalidad
+
+                        switch (TabHospi["ViaDIngreso"].ToString())
+                        {
+                            case "01":
+                                break;
+                            case "02":
+                                break;
+                            case "03":
+                                break;
+                            case "04":
+                                break;
+                            default:
+                                RegExp = 1;
+                                ObErr = "El identificador para determinar la vía de ingreso a la institución no es valida.";
+                                break;
+                        }
+
+                        //'Validamos si lleva la fecha de ingreso
+
+                        if (string.IsNullOrEmpty(TabHospi["FecIngresa"].ToString()))
+                        {
+                            RegExp = 1;
+                            ObErr = ObErr + "El usuario no tiene la fecha de ingreso a la institución ";
+                        }
+
+                        //'Validamos si lleva la fecha de salida
+
+                        if (string.IsNullOrEmpty(TabHospi["HorIngresa"].ToString()))
+                        {
+                            RegExp = 1;
+                            ObErr = ObErr + "El usuario no tiene la hora de ingreso a la institución ";
+                        }
+
+                        switch (TabHospi["CausExter"].ToString())
+                        {
+                            case "01":
+                            case "02":
+                            case "03":
+                            case "04":
+                            case "05":
+                            case "06":
+                            case "07":
+                            case "08":
+                            case "09":
+                            case "10":
+                            case "11":
+                            case "12":
+                            case "13":
+                            case "14":
+                            case "15":
+                            default:
+                                RegExp = 1;
+                                ObErr = "La causa externa de la consulta no es valida para la normatividad vigente.";
+                                break;
+                        }
+
+
+                        //Validamos el código del diagnóstico principal
+
+                        if (string.IsNullOrEmpty(TabHospi["DxPrincIngre"].ToString()) || TabHospi["DxPrincIngre"].ToString() == "")
+                        {
+                            RegExp = 1;
+                            ObErr = ObErr + "La consulta no tiene definido el diagnóstico principal";
+                        }
+                        else
+                        {
+                            string DxPrincipal = TabHospi["DxPrincIngre"].ToString();
+                            int lenDxPrincipal = DxPrincipal.Length;
+                            if (lenDxPrincipal < 4)
+                            {
+                                RegExp = 1;
+                                ObErr = ObErr + "El código " + TabHospi["DxPrincIngre"].ToString() + ", del diagnóstico principal no es valido.";
+                            }
+                            else
+                            {
+                                if (TabHospi["DxPrincIngre"].ToString() == "0000")
+                                {
+                                    RegExp = 1;
+                                    ObErr = ObErr + "El código " + TabHospi["DxPrincIngre"].ToString() + ", del diagnóstico principal no es valido.";
+                                }
+                                else
+                                {
+                                    DxPr = TabHospi["DxPrincIngre"].ToString();
+                                    //Si pasó todo lo anterior pasemos a verificar si el diagnóstico existe o no
+                                    Utils.SqlDatos = "SELECT [Datos listado de diagnosticos].*, [Datos listado de diagnosticos].[CodiDx] FROM [GEOGRAXPSQL].[dbo].[Datos listado de diagnosticos] ";
+                                    Utils.SqlDatos += "WHERE [Datos listado de diagnosticos].[CodiDx] = '" + DxPr + "' ORDER BY [Datos listado de diagnosticos].[CodiDx] ";
+
+                                    SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                                    if (TablaAux1.HasRows == false)
+                                    {
+                                        RegExp = 1;
+                                        ObErr = ObErr + "El código " + TablaAux1["DxPrincIngre"].ToString() + ", del diagnóstico principal no existe la resolución vigente.";
+                                    }
+                                    TablaAux1.Close();
+                                }
+                            }
+                        }
+
+                        //Validamos el código del diagnóstico principal de egreso
+
+                        if (string.IsNullOrEmpty(TabHospi["DxPrincEgre"].ToString()) || TabHospi["DxPrincEgre"].ToString() == "")
+                        {
+                            RegExp = 1;
+                            ObErr = ObErr + "La consulta no tiene definido el diagnóstico principal de egreso ";
+                        }
+                        else
+                        {
+                            string DxPrincipal = TabHospi["DxPrincEgre"].ToString();
+                            int lenDxPrincipal = DxPrincipal.Length;
+                            if (lenDxPrincipal < 4)
+                            {
+                                RegExp = 1;
+                                ObErr = ObErr + "El código " + TabHospi["DxPrincEgre"].ToString() + ", del diagnóstico principal de egreso no es valido.";
+                            }
+                            else
+                            {
+                                if (TabHospi["DxPrincEgre"].ToString() == "0000")
+                                {
+                                    RegExp = 1;
+                                    ObErr = ObErr + "El código " + TabHospi["DxPrincEgre"].ToString() + ", del diagnóstico principal de egreso no es valido.";
+                                }
+                                else
+                                {
+                                    DxPr = TabHospi["DxPrincEgre"].ToString();
+
+                                    //Si pasó todo lo anterior pasemos a verificar si el diagnóstico existe o no
+
+                                    Utils.SqlDatos = "SELECT [Datos listado de diagnosticos].*, [Datos listado de diagnosticos].[CodiDx] FROM [GEOGRAXPSQL].[dbo].[Datos listado de diagnosticos] ";
+                                    Utils.SqlDatos += "WHERE [Datos listado de diagnosticos].[CodiDx] = '" + DxPr + "' ORDER BY [Datos listado de diagnosticos].[CodiDx] ";
+
+                                    SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                                    if (TablaAux1.HasRows == false)
+                                    {
+                                        RegExp = 1;
+                                        ObErr = ObErr + "El código " + TablaAux1["DxPrincEgre"].ToString() + ", el diagnóstico principal de egreso no existe la resolución vigente.";
+                                    }
+                                    TablaAux1.Close();
+                                }
+                            }
+                        }
+
+                        //Validamos el tipo de diagnóstico
+
+
+                        //Validamos el Diagnostico Relacional 1
+
+                        if (string.IsNullOrEmpty(TabHospi["DxRelacion1"].ToString()) || TabHospi["DxRelacion1"].ToString() == "")
+                        {
+                            //Todo bien
+                        }
+                        else
+                        {
+
+                            string DxRelacion1 = TabHospi["DxRelacion1"].ToString();
+                            int lenDxRelacion1 = DxRelacion1.Length;
+                            if (lenDxRelacion1 < 4)
+                            {
+                                RegExp = 1;
+                                ObErr = ObErr + "El código " + TabHospi["DxRelacion1"].ToString() + ", del diagnóstico relacional 1  no es valido.";
+                            }
+                            else
+                            {
+                                if (TabHospi["DxRelacion1"].ToString() == "0000")
+                                {
+                                    RegExp = 1;
+                                    ObErr = ObErr + "El código " + TabHospi["DxRelacion1"].ToString() + ", del diagnóstico relacional 1  no es valido.";
+                                }
+                                else
+                                {
+                                    DxPr = TabHospi["DxRelacion1"].ToString();
+                                    //Si pasó todo lo anterior pasemos a verificar si el diagnóstico existe o no
+                                    Utils.SqlDatos = "SELECT [Datos listado de diagnosticos].*, [Datos listado de diagnosticos].[CodiDx] FROM [GEOGRAXPSQL].[dbo].[Datos listado de diagnosticos] ";
+                                    Utils.SqlDatos += "WHERE [Datos listado de diagnosticos].[CodiDx] = '" + DxPr + "' ORDER BY [Datos listado de diagnosticos].[CodiDx] ";
+
+                                    SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                                    if (TablaAux1.HasRows == false)
+                                    {
+                                        RegExp = 1;
+                                        ObErr = ObErr + "El código " + TabHospi["DxRelacion1"].ToString() + ", del diagnóstico relacional 1 no existe la resolución vigente.";
+                                    }
+                                    TablaAux1.Close();
+                                }
+                            }
+                        }
+
+                        //Validamos el Diagnostico Relacional 2
+
+                        if (string.IsNullOrEmpty(TabHospi["DxRelacion2"].ToString()) || TabHospi["DxRelacion2"].ToString() == "")
+                        {
+                            //Todo bien
+                        }
+                        else
+                        {
+
+                            string DxRelacion2 = TabHospi["DxRelacion2"].ToString();
+                            int lenDxRelacion2 = DxRelacion2.Length;
+                            if (lenDxRelacion2 < 4)
+                            {
+                                RegExp = 1;
+                                ObErr = ObErr + "El código " + TabHospi["DxRelacion2"].ToString() + ", del diagnóstico  Relacional 2 no es valido.";
+                            }
+                            else
+                            {
+                                if (TabHospi["DxRelacion2"].ToString() == "0000")
+                                {
+                                    RegExp = 1;
+                                    ObErr = ObErr + "El código " + TabHospi["DxRelacion2"].ToString() + ", del diagnóstico  Relacional 2 no es valido.";
+                                }
+                                else
+                                {
+                                    DxPr = TabHospi["DxRelacion2"].ToString();
+                                    //Si pasó todo lo anterior pasemos a verificar si el diagnóstico existe o no
+                                    Utils.SqlDatos = "SELECT [Datos listado de diagnosticos].*, [Datos listado de diagnosticos].[CodiDx] FROM [GEOGRAXPSQL].[dbo].[Datos listado de diagnosticos] ";
+                                    Utils.SqlDatos += "WHERE [Datos listado de diagnosticos].[CodiDx] = '" + DxPr + "' ORDER BY [Datos listado de diagnosticos].[CodiDx] ";
+
+                                    SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                                    if (TablaAux1.HasRows == false)
+                                    {
+                                        RegExp = 1;
+                                        ObErr = ObErr + "El código " + TabHospi["DxRelacion2"].ToString() + ", del diagnóstico  Relacional 2 no existe la resolución vigente.";
+                                    }
+                                    TablaAux1.Close();
+                                }
+                            }
+                        }
+
+                        //Validamos el Diagnostico Relacional 3
+
+                        if (string.IsNullOrEmpty(TabHospi["DxRelacion3"].ToString()) || TabHospi["DxRelacion3"].ToString() == "")
+                        {
+                            //Todo bien
+                        }
+                        else
+                        {
+
+                            string DxRelacion2 = TabHospi["DxRelacion3"].ToString();
+                            int lenDxRelacion2 = DxRelacion2.Length;
+                            if (lenDxRelacion2 < 4)
+                            {
+                                RegExp = 1;
+                                ObErr = ObErr + "El código " + TabHospi["DxRelacion3"].ToString() + ", del diagnóstico  Relacional 3 no es valido.";
+                            }
+                            else
+                            {
+                                if (TabHospi["DxRelacion3"].ToString() == "0000")
+                                {
+                                    RegExp = 1;
+                                    ObErr = ObErr + "El código " + TabHospi["DxRelacion3"].ToString() + ", del diagnóstico  Relacional 3 no es valido.";
+                                }
+                                else
+                                {
+                                    DxPr = TabHospi["DxRelacion3"].ToString();
+                                    //Si pasó todo lo anterior pasemos a verificar si el diagnóstico existe o no
+                                    Utils.SqlDatos = "SELECT [Datos listado de diagnosticos].*, [Datos listado de diagnosticos].[CodiDx] FROM [GEOGRAXPSQL].[dbo].[Datos listado de diagnosticos] ";
+                                    Utils.SqlDatos += "WHERE [Datos listado de diagnosticos].[CodiDx] = '" + DxPr + "' ORDER BY [Datos listado de diagnosticos].[CodiDx] ";
+
+                                    SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                                    if (TablaAux1.HasRows == false)
+                                    {
+                                        RegExp = 1;
+                                        ObErr = ObErr + "El código " + TabHospi["DxRelacion3"].ToString() + ", del diagnóstico  Relacional 3 no existe la resolución vigente.";
+                                    }
+                                    TablaAux1.Close();
+                                }
+                            }
+                        }
+
+                        //Validamos el Diagnostico DxComplica
+
+                        if (string.IsNullOrEmpty(TabHospi["DxComplica"].ToString()) || TabHospi["DxComplica"].ToString() == "")
+                        {
+                            //Todo bien
+                        }
+                        else
+                        {
+
+                            string DxRelacion2 = TabHospi["DxComplica"].ToString();
+                            int lenDxRelacion2 = DxRelacion2.Length;
+                            if (lenDxRelacion2 < 4)
+                            {
+                                RegExp = 1;
+                                ObErr = ObErr + "El código " + TabHospi["DxComplica"].ToString() + ", del diagnóstico de la complicación no es valido.";
+                            }
+                            else
+                            {
+                                if (TabHospi["DxComplica"].ToString() == "0000")
+                                {
+                                    RegExp = 1;
+                                    ObErr = ObErr + "El código " + TabHospi["DxComplica"].ToString() + ", del diagnóstico de la complicación no es valido.";
+                                }
+                                else
+                                {
+                                    DxPr = TabHospi["DxComplica"].ToString();
+                                    //Si pasó todo lo anterior pasemos a verificar si el diagnóstico existe o no
+                                    Utils.SqlDatos = "SELECT [Datos listado de diagnosticos].*, [Datos listado de diagnosticos].[CodiDx] FROM [GEOGRAXPSQL].[dbo].[Datos listado de diagnosticos] ";
+                                    Utils.SqlDatos += "WHERE [Datos listado de diagnosticos].[CodiDx] = '" + DxPr + "' ORDER BY [Datos listado de diagnosticos].[CodiDx] ";
+
+                                    SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                                    if (TablaAux1.HasRows == false)
+                                    {
+                                        RegExp = 1;
+                                        ObErr = ObErr + "El código " + TabHospi["DxComplica"].ToString() + ", del diagnóstico  Relacional 3 no existe la resolución vigente.";
+                                    }
+                                    TablaAux1.Close();
+                                }
+                            }
+                        }
+
+                        //Validamos el estado a la salida
+
+                        switch (TabHospi["EstadoSal"].ToString())
+                        {
+                            case "1":
+                            case "2":
+
+                                //Si se murio debe llevar un codigo
+                                if (string.IsNullOrEmpty(TabHospi["DxMuerte"].ToString()) || TabHospi["DxMuerte"].ToString() == "")
+                                {
+                                    RegExp = 1;
+                                    ObErr = ObErr + "A pesar que el paciente murió, no tiene definido el diagnóstico de la causa básica";
+                                }
+                                else
+                                {
+
+                                    string DxRelacion2 = TabHospi["DxMuerte"].ToString();
+                                    int lenDxRelacion2 = DxRelacion2.Length;
+                                    if (lenDxRelacion2 < 4)
+                                    {
+                                        RegExp = 1;
+                                        ObErr = ObErr + "El código " + TabHospi["DxMuerte"].ToString() + ", del diagnóstico de la causa básica no es valido.";
+                                    }
+                                    else
+                                    {
+                                        if (TabHospi["DxMuerte"].ToString() == "0000")
+                                        {
+                                            RegExp = 1;
+                                            ObErr = ObErr + "El código " + TabHospi["DxMuerte"].ToString() + ",  del diagnóstico de la causa básica no es valido.";
+                                        }
+                                        else
+                                        {
+                                            DxPr = TabHospi["DxMuerte"].ToString();
+                                            //Si pasó todo lo anterior pasemos a verificar si el diagnóstico existe o no
+                                            Utils.SqlDatos = "SELECT [Datos listado de diagnosticos].*, [Datos listado de diagnosticos].[CodiDx] FROM [GEOGRAXPSQL].[dbo].[Datos listado de diagnosticos] ";
+                                            Utils.SqlDatos += "WHERE [Datos listado de diagnosticos].[CodiDx] = '" + DxPr + "' ORDER BY [Datos listado de diagnosticos].[CodiDx] ";
+
+                                            SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                                            if (TablaAux1.HasRows == false)
+                                            {
+                                                RegExp = 1;
+                                                ObErr = ObErr + "El código " + TabHospi["DxMuerte"].ToString() + ", del diagnóstico de la causa básica no existe en la resolución vigente.";
+                                            }
+                                            TablaAux1.Close();
+                                        }
+                                    }
+                                }
+
+                                break;
+
+                            default:
+                                RegExp = 1;
+                                ObErr = ObErr + "El identificador para determinar el estado a la salida no es valido para la normatividad vigente.";
+                                break;
+                        }
+
+                        //'Validamos si lleva la fecha de salida
+
+                        if (string.IsNullOrEmpty(TabHospi["FecSalida"].ToString()))
+                        {
+                            RegExp = 1;
+                            ObErr = ObErr + "El usuario no tiene la fecha de salida de observacion de urgencias ";
+                        }
+
+
+
+                        if (string.IsNullOrEmpty(TabHospi["HorSalida"].ToString()))
+                        {
+                            RegExp = 1;
+                            ObErr = ObErr + "El usuario no tiene la hora de salida de observacion de urgencias ";
+                        }
+
+
+                        if (RegExp == 1)
+                        {
+                            Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal errores RIPS] ";
+                            Utils.SqlDatos += "([CodDigita],[TipARchi],[TipDocu],[NumDocu],[CodEnti],[FacturaN],[Observa1]) ";
+                            Utils.SqlDatos += "VALUES('" + lblCodigoUser.Text + "', 'AH','" + TabHospi["TipoDocum"].ToString() + "','" + TabHospi["NumDocum"].ToString() + "','" + c + "','" + TabHospi["NumFactur"].ToString() + "','" + ObErr + "')";
+
+                            Boolean TabLocal2 = Conexion.SqlInsert(Utils.SqlDatos);
+                        }
+
+                        VR += 1;
+                    } //fin WHILE
+
+                    return 1;
+
+                } //'Final de TabLocal.BOF
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la función: ValidarHospi del" + "\r";
+                Utils.Informa += "Módulo gestión de RIPS" + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+            }
+        }
+        private int ValidaConsultas(string c, string AR, double T, string CodDg)
+        {
+            try
+            {
+
+                string SqlConsulTem, Dp, mMuCi, ObErr, Z, RutaGeo, Msj, DxPr, FunDx;
+                int RegExp, FunDpto, FunMuni, FiCon, VR;
+
+                SqlConsulTem = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal consultas RIPS] " +
+                "WHERE (([Datos temporal consultas RIPS].CodDigita) = '" + CodDg + "' ) and " +
+                "(([Datos temporal consultas RIPS].NumRemi) = '" + c + "');";
+
+
+                SqlDataReader TabConsul;
+
+                //   SqlDataReader TabConsul = Conexion.SQLDataReader(SqlConsulTem);
+
+                using (SqlConnection connection2 = new SqlConnection(Conexion.conexionSQL))
+                {
+                    SqlCommand command2 = new SqlCommand(SqlConsulTem, connection2);
+
+                    command2.Connection.Open();
+
+                    TabConsul = command2.ExecuteReader();
+
+                    if (TabConsul.HasRows == false)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        VR = 0;
+                        while (TabConsul.Read())
+                        {
+                            RegExp = 0;
+                            ObErr = "";
+
+                            // 'Solo validamos las cosas necesarias
+                            //'Se debe validar el código de la consulta de acuero al manual que utiliza la entidad
+                            //'Validamos la finalidad
+
+                            switch (TabConsul["FinalConsul"].ToString())
+                            {
+                                case "01":
+                                    break;
+                                case "02":
+                                    break;
+                                case "03":
+                                    break;
+                                case "04":
+                                    break;
+                                case "05":
+                                    break;
+                                case "06":
+                                    break;
+                                case "07":
+                                    break;
+                                case "08":
+                                    break;
+                                case "09":
+                                    break;
+                                case "10":
+                                    break;
+                                default:
+                                    RegExp = 1;
+                                    ObErr = "El código de laa finalidad de la consulta no es valida para la normatividad vigente.";
+                                    break;
+                            }
+
+                            if (AR == "0" || AR == "07")
+                            {
+                                //La empresa realiza o factura actividades de P y P, por tanto se necesita su finalidad
+                                //Validamos la finalidad de la consulta
+                                if (TabConsul["FinalConsul"].ToString() == "10")
+                                {
+                                    RegExp = 1;
+                                    ObErr += "La finalidad de la consulta no puede ser 10, porque se está facturando P y P.";
+                                }
+                            }
+                            else
+                            {
+                                if (TabConsul["FinalConsul"].ToString() != "10")
+                                {
+                                    RegExp = 1;
+                                    ObErr += "La finalidad de la consulta " + TabConsul["FinalConsul"].ToString() + " no aplica para entidades que no facturan P y P.";
+                                }
+                            }
+
+
+                            switch (TabConsul["CausExter"].ToString())
+                            {
+                                case "01":
+                                    break;
+                                case "02":
+                                    break;
+                                case "03":
+                                    break;
+                                case "04":
+                                    break;
+                                case "05":
+                                    break;
+                                case "06":
+                                    break;
+                                case "07":
+                                    break;
+                                case "08":
+                                    break;
+                                case "09":
+                                    break;
+                                case "10":
+                                    break;
+                                case "11":
+                                    break;
+                                case "12":
+                                    break;
+                                case "13":
+                                    break;
+                                case "14":
+                                    break;
+                                case "15":
+                                    break;
+                                default:
+                                    RegExp = 1;
+                                    ObErr = "La causa externa de la consulta no es valida para la normatividad vigente.";
+                                    break;
+                            }
+
+                            //Validamos el código del diagnóstico principal
+
+                            if (string.IsNullOrEmpty(TabConsul["DxPrincipal"].ToString()) || TabConsul["DxPrincipal"].ToString() == "")
+                            {
+                                RegExp = 1;
+                                ObErr = ObErr + "La consulta no tiene definido el diagnóstico principal";
+                            }
+                            else
+                            {
+                                string DxPrincipal = TabConsul["DxPrincipal"].ToString();
+                                int lenDxPrincipal = DxPrincipal.Length;
+                                if (lenDxPrincipal < 4)
+                                {
+                                    RegExp = 1;
+                                    ObErr = ObErr + "El código " + TabConsul["DxPrincipal"].ToString() + ", del diagnóstico principal no es valido.";
+                                }
+                                else
+                                {
+                                    if (TabConsul["DxPrincipal"].ToString() == "0000")
+                                    {
+                                        RegExp = 1;
+                                        ObErr = ObErr + "El código " + TabConsul["DxPrincipal"].ToString() + ", del diagnóstico principal no es valido.";
+                                    }
+                                    else
+                                    {
+                                        DxPr = TabConsul["DxPrincipal"].ToString();
+                                        //Si pasó todo lo anterior pasemos a verificar si el diagnóstico existe o no
+                                        Utils.SqlDatos = "SELECT [Datos listado de diagnosticos].*, [Datos listado de diagnosticos].[CodiDx] FROM [GEOGRAXPSQL].[dbo].[Datos listado de diagnosticos] ";
+                                        Utils.SqlDatos += "WHERE [Datos listado de diagnosticos].[CodiDx] = '" + DxPr + "' ORDER BY [Datos listado de diagnosticos].[CodiDx] ";
+
+                                        SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                                        if (TablaAux1.HasRows == false) //aqui
+                                        {
+                                            RegExp = 1;
+                                            ObErr = ObErr + "El código " + TabConsul["DxPrincipal"].ToString() + ", del diagnóstico principal no existe la resolución vigente.";
+                                        }
+
+                                        if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+                                    }
+                                }
+                            }
+
+                            //Validamos el Diagnostico Relacional 1
+
+                            if (string.IsNullOrEmpty(TabConsul["DxRelacion1"].ToString()) || TabConsul["DxRelacion1"].ToString() == "")
+                            {
+                                //Todo bien
+                            }
+                            else
+                            {
+
+                                string DxRelacion1 = TabConsul["DxRelacion1"].ToString();
+                                int lenDxRelacion1 = DxRelacion1.Length;
+                                if (lenDxRelacion1 < 4)
+                                {
+                                    RegExp = 1;
+                                    ObErr = ObErr + "El código " + TabConsul["DxRelacion1"].ToString() + ", del diagnóstico relacional 1  no es valido.";
+                                }
+                                else
+                                {
+                                    if (TabConsul["DxRelacion1"].ToString() == "0000")
+                                    {
+                                        RegExp = 1;
+                                        ObErr = ObErr + "El código " + TabConsul["DxRelacion1"].ToString() + ", del diagnóstico relacional 1  no es valido.";
+                                    }
+                                    else
+                                    {
+                                        DxPr = TabConsul["DxRelacion1"].ToString();
+                                        //Si pasó todo lo anterior pasemos a verificar si el diagnóstico existe o no
+                                        Utils.SqlDatos = "SELECT [Datos listado de diagnosticos].*, [Datos listado de diagnosticos].[CodiDx] FROM [GEOGRAXPSQL].[dbo].[Datos listado de diagnosticos] ";
+                                        Utils.SqlDatos += "WHERE [Datos listado de diagnosticos].[CodiDx] = '" + DxPr + "' ORDER BY [Datos listado de diagnosticos].[CodiDx] ";
+
+                                        SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                                        if (TablaAux1.HasRows == false)
+                                        {
+                                            RegExp = 1;
+                                            ObErr = ObErr + "El código " + TabConsul["DxRelacion1"].ToString() + ", del diagnóstico relacional 1 no existe la resolución vigente.";
+                                        }
+                                        TablaAux1.Close();
+
+                                        if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+                                    }
+
+                                }
+                            }
+
+                            //Validamos el Diagnostico Relacional 2
+
+                            if (string.IsNullOrEmpty(TabConsul["DxRelacion2"].ToString()) || TabConsul["DxRelacion2"].ToString() == "")
+                            {
+                                //Todo bien
+                            }
+                            else
+                            {
+
+                                string DxRelacion2 = TabConsul["DxRelacion2"].ToString();
+                                int lenDxRelacion2 = DxRelacion2.Length;
+                                if (lenDxRelacion2 < 4)
+                                {
+                                    RegExp = 1;
+                                    ObErr = ObErr + "El código " + TabConsul["DxRelacion2"].ToString() + ", del diagnóstico  Relacional 2 no es valido.";
+                                }
+                                else
+                                {
+                                    if (TabConsul["DxRelacion2"].ToString() == "0000")
+                                    {
+                                        RegExp = 1;
+                                        ObErr = ObErr + "El código " + TabConsul["DxRelacion2"].ToString() + ", del diagnóstico  Relacional 2 no es valido.";
+                                    }
+                                    else
+                                    {
+                                        DxPr = TabConsul["DxRelacion2"].ToString();
+                                        //Si pasó todo lo anterior pasemos a verificar si el diagnóstico existe o no
+                                        Utils.SqlDatos = "SELECT [Datos listado de diagnosticos].*, [Datos listado de diagnosticos].[CodiDx] FROM [GEOGRAXPSQL].[dbo].[Datos listado de diagnosticos] ";
+                                        Utils.SqlDatos += "WHERE [Datos listado de diagnosticos].[CodiDx] = '" + DxPr + "' ORDER BY [Datos listado de diagnosticos].[CodiDx] ";
+
+                                        SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                                        if (TablaAux1.HasRows == false)
+                                        {
+                                            RegExp = 1;
+                                            ObErr = ObErr + "El código " + TabConsul["DxRelacion2"].ToString() + ", del diagnóstico  Relacional 2 1 no existe la resolución vigente.";
+                                        }
+                                        TablaAux1.Close();
+                                    }
+                                }
+                            }
+
+                            //Validamos el tipo de diagnóstico
+
+                            switch (TabConsul["TipoDxPrin"].ToString())
+                            {
+                                case "1":
+                                    break;
+                                case "2":
+                                    break;
+                                case "3":
+                                    break;
+                                default:
+                                    RegExp = 1;
+                                    ObErr = ObErr + "El identificador " + TabConsul["TipoDxPrin"].ToString() + ", no es valido para determinar el tipo de Dx.";
+                                    break;
+                            }
+
+
+                            if (RegExp == 1)
+                            {
+                                Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal errores RIPS] ";
+                                Utils.SqlDatos += "([CodDigita],[TipARchi],[TipDocu],[NumDocu],[CodEnti],[FacturaN],[Observa1]) ";
+                                Utils.SqlDatos += "VALUES('" + lblCodigoUser.Text + "', 'AC','" + TabConsul["TipoDocum"].ToString() + "','" + TabConsul["NumDocum"].ToString() + "','" + c + "','" + TabConsul["NumFactur"].ToString() + "','" + ObErr + "')";
+
+                                Boolean TabLocal2 = Conexion.SqlInsert(Utils.SqlDatos);
+                            }
+
+                            VR += 1;
+                        }
+
+                        return 1;
+
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la función: ValidaConsultas del" + "\r";
+                Utils.Informa += "Módulo gestión de RIPS" + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+            }
+        }
+        private int ValidarFacturas(string c, double T, string CodDg)
+        {
+            try
+            {
+                string SqlFacTemp, Z, ObErr, Dp, MuCi;
+                int RegExp, FunDoc, FunDpto, VR;
+
+                SqlFacTemp = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal transacciones RIPS] " +
+                            "WHERE (([Datos temporal transacciones RIPS].CodDigita) = '" + CodDg + "') and " +
+                            "(([Datos temporal transacciones RIPS].NumRemi) = '" + c + "');";
+
+                SqlDataReader TabLoc = Conexion.SQLDataReader(SqlFacTemp);
+
+                if (TabLoc.HasRows == false)
+                {
+                    return 0;
+                }
+                else
+                {
+                    VR = 0;
+                    while (TabLoc.Read())
+                    {
+                        RegExp = 0;
+                        ObErr = "";
+
+                        // Solo validamos las cosas necesarios
+
+                        //Validar cuando la causa de ingreso es accidebte pedir poliza
+
+                        if (TabLoc["CausExter"].ToString() == "02") // Esto se empieza a validar desde el 22 de marzo de 2012
+                                                                    //Revisamos si se registro un numero de poliza
+                        {
+                            if (string.IsNullOrEmpty(TabLoc["NumPoli"].ToString()) || TabLoc["NumPoli"].ToString() == "0")
+                            {
+                                RegExp = 1;
+                                ObErr = "Por ser un accidente de transito, el número de la póliza es obligatorio.";
+                            }
+                        }
+
+                        //Validamos copago
+
+                        if (Convert.ToInt32(TabLoc["Copago"].ToString()) < 0)
+                        {
+                            RegExp = 1;
+                            ObErr = "El valor del copago de la factura no puede ser negativo.";
+                        }
+
+                        //Validamos el valor de la comision
+
+                        if (Convert.ToInt32(TabLoc["ValorComi"].ToString()) < 0)
+                        {
+                            RegExp = 1;
+                            ObErr += "El valor de la comisión de la factura no puede ser negativo.";
+                        }
+
+                        //Validamos el valor total de descuentos
+
+                        if (Convert.ToInt32(TabLoc["ValorDes"].ToString()) < 0)
+                        {
+                            RegExp = 1;
+                            ObErr += "El valor total del descuento de la factura no puede ser negativo.";
+                        }
+
+                        if (Convert.ToInt32(TabLoc["ValorNeto"].ToString()) < 0)
+                        {
+                            RegExp = 1;
+                            ObErr += "El valor neto de la factura no puede ser negativo.";
+                        }
+
+                        if ((Convert.ToDecimal(TabLoc["Copago"].ToString()) + Convert.ToDecimal(TabLoc["ValorNeto"].ToString())) != Convert.ToDecimal(TabLoc["VaLorDeta"].ToString()))
+                        {
+                            RegExp = 1;
+                            ObErr += "El valor neto de la factura no puede ser diferente al valor total del detalle.";
+                        }
+
+                        if (RegExp == 1)
+                        {
+                            Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal errores RIPS] ";
+                            Utils.SqlDatos += "([CodDigita],[TipARchi],[TipDocu],[NumDocu],[CodEnti],[FacturaN],[Observa1]) ";
+                            Utils.SqlDatos += "VALUES('" + lblCodigoUser.Text + "', 'AF','" + TabLoc["TipIdenti"].ToString() + "','" + TabLoc["NumIdenti"].ToString() + "','" + c + "','" + TabLoc["NumFactur"].ToString() + "','" + ObErr + "')";
+
+                            Boolean TabLocal2 = Conexion.SqlInsert(Utils.SqlDatos);
+                        }
+
+                        VR += 1;
+
+                    }//fINAL While
+
+                    return 1;
+
+                    TabLoc.Close();
+                }//Final TabLocal
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la función: ValidarFacturas del" + "\r";
+                Utils.Informa += "Módulo gestión de RIPS" + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+        }
+        private int AuditaDetaFacturas(string CI)
+        {
+            try
+            {
+                double TolCon = 0, TolMedi = 0, TolOtros = 0, TolProce = 0, VaLorDetaActual;
+                string TemEnti, NF;
+
+
+                Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos temporal transacciones RIPS] SET VaLorDeta = 0";
+
+                Boolean UpdateTrans = Conexion.SQLUpdate(Utils.SqlDatos);
+
+                //Auditamos cada una de las facturas de consultas
+
+
+                Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal consultas RIPS] WHERE NumRemi = '" + CI + "'";
+
+                SqlDataReader TabLocal1;
+
+                using (SqlConnection connection8 = new SqlConnection(Conexion.conexionSQL))
+                {
+                    SqlCommand command8 = new SqlCommand(Utils.SqlDatos, connection8);
+                    command8.Connection.Open();
+
+                    TabLocal1 = command8.ExecuteReader();
+
+                    if(TabLocal1.HasRows == false)
+                    {
+                        TolCon = 0;
+                    }
+                    else
+                    {
+                        while (TabLocal1.Read())
+                        {
+                            NF = TabLocal1["NumFactur"].ToString();
+                            TolCon = Convert.ToDouble(TabLocal1["ValorConsul"]);
+                            VaLorDetaActual = Convert.ToDouble(TabLocal1["VaLorDeta"]);
+
+                            Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos temporal transacciones RIPS] SET VaLorDeta = (" + VaLorDetaActual + " + " + TolOtros + ") WHERE NumRemi = '" + CI + "' and NumFactur = '" + NF + "' ";
+
+                            Boolean EstaAct = Conexion.SQLUpdate(Utils.SqlDatos);
+
+                        }                
+                    }
+                }
+
+                //'Suma los medicamentos
+
+
+                Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal medicamentos RIPS] WHERE NumRemi = '" + CI + "'";
+
+                SqlDataReader TabLocal2;
+
+                using (SqlConnection connection8 = new SqlConnection(Conexion.conexionSQL))
+                {
+                    SqlCommand command8 = new SqlCommand(Utils.SqlDatos, connection8);
+                    command8.Connection.Open();
+
+                    TabLocal2 = command8.ExecuteReader();
+
+                    if (TabLocal2.HasRows == false)
+                    {
+                        TolMedi = 0;
+                    }
+                    else
+                    {
+                        while (TabLocal2.Read())
+                        {
+                            NF = TabLocal2["NumFactur"].ToString();
+                            TolMedi = Convert.ToDouble(TabLocal2["ValorTotal"]);
+                            VaLorDetaActual = Convert.ToDouble(TabLocal2["VaLorDeta"]);
+
+                            Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos temporal medicamentos RIPS] SET VaLorDeta = (" + VaLorDetaActual + " + " + TolOtros + ") WHERE NumRemi = '" + CI + "' and NumFactur = '" + NF + "' ";
+
+                            Boolean EstaAct = Conexion.SQLUpdate(Utils.SqlDatos);
+
+                        }
+                    }
+                }
+
+
+                //Proceda a sumar otros servicios
+
+
+                Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal otros servicios RIPS] WHERE NumRemi = '" + CI + "'";
+
+                SqlDataReader TabLocal3;
+
+                using (SqlConnection connection8 = new SqlConnection(Conexion.conexionSQL))
+                {
+                    SqlCommand command8 = new SqlCommand(Utils.SqlDatos, connection8);
+                    command8.Connection.Open();
+
+                    TabLocal3 = command8.ExecuteReader();
+
+                    if (TabLocal3.HasRows == false)
+                    {
+                        TolOtros = 0;
+                    }
+                    else
+                    {
+                        while (TabLocal3.Read())
+                        {
+                            NF = TabLocal3["NumFactur"].ToString();
+                            TolOtros = Convert.ToDouble(TabLocal3["ValorTotal"]);
+                            VaLorDetaActual = Convert.ToDouble(TabLocal3["VaLorDeta"]);
+                            VaLorDetaActual = Convert.ToDouble(TabLocal3["VaLorDeta"]);
+
+                            Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos temporal otros servicios RIPS] SET VaLorDeta = (" + VaLorDetaActual + " + " + TolOtros + ") WHERE NumRemi = '" + CI + "' and NumFactur = '" + NF + "' ";
+
+                            Boolean EstaAct = Conexion.SQLUpdate(Utils.SqlDatos);
+
+                        }
+                    }
+                }
+
+                //Proceda a sumar los procedimientos
+
+
+                Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal procedimientos RIPS] WHERE NumRemi = '" + CI + "'";
+
+                SqlDataReader TabLocal4;
+
+                using (SqlConnection connection8 = new SqlConnection(Conexion.conexionSQL))
+                {
+                    SqlCommand command8 = new SqlCommand(Utils.SqlDatos, connection8);
+                    command8.Connection.Open();
+
+                    TabLocal4 = command8.ExecuteReader();
+
+                    if (TabLocal4.HasRows == false)
+                    {
+                        TolProce = 0;
+                    }
+                    else
+                    {
+                        while (TabLocal4.Read())
+                        {
+                            NF = TabLocal4["NumFactur"].ToString();
+                            TolProce = Convert.ToDouble(TabLocal4["ValorProce"]);
+                            VaLorDetaActual = Convert.ToDouble(TabLocal4["VaLorDeta"]);
+        
+                            Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos temporal procedimientos RIPS]  SET VaLorDeta = (" + VaLorDetaActual + " + " + TolOtros + ") WHERE NumRemi = '" + CI + "' and NumFactur = '" + NF + "' ";
+
+                            Boolean EstaAct = Conexion.SQLUpdate(Utils.SqlDatos);
+
+                        }
+                    }
+                }
+
+
+                return 1;
+
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la funcion AuditaDetaFacturas " + "\r";
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        private int ValidarUsuarios(string c, string TU, double T, string CodDg)
+        {
+            try
+            {
+                //'Permite validar los datos de los usuarios seleccionados de una entidad para los RIPS
+                string SqlUsuaTemp, TD, ND, ObErr, Dp, MuCi, Z;
+                int VR, VDev, RegExp;
+
+
+                SqlUsuaTemp = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal usuarios RIPS] " +
+                "WHERE (([Datos temporal usuarios RIPS].CodDigita) = '" + CodDg + "') and " +
+                "(([Datos temporal usuarios RIPS].NumRemi) = '" + c + "');";
+
+
+                SqlDataReader TabLocal;
+
+                using (SqlConnection connection2 = new SqlConnection(Conexion.conexionSQL))
+                {
+                    SqlCommand command2 = new SqlCommand(SqlUsuaTemp, connection2);
+                    command2.Connection.Open();
+                    TabLocal = command2.ExecuteReader();
+
+                    //  SqlDataReader TabLocal = Conexion.SQLDataReader(SqlUsuaTemp);
+
+                    if (TabLocal.HasRows == false)
+                    {
+                        //  'No hay usuarios para validar de esta esta entidad
+                        return 0;
+                    }
+                    else
+                    {
+                        VR = 0;
+                        while (TabLocal.Read())
+                        {
+                            RegExp = 0;
+                            ObErr = "";
+                            TD = TabLocal["TipoDocum"].ToString();
+                            ND = TabLocal["NumDocum"].ToString();
+
+                            //Validamos el tipo de documento
+
+                            Utils.SqlDatos = "SELECT * FROM [Datos documentos usuarios] ";
+                            Utils.SqlDatos = Utils.SqlDatos + "WHERE (([Datos documentos usuarios].CodIdenti) = '" + TD + "'); ";
+
+                            SqlDataReader TablaAux4;
+
+                            using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                            {
+                                SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+                                command.Connection.Open();
+                                TablaAux4 = command.ExecuteReader();
+
+                                if (TablaAux4.HasRows == false)
+                                {
+                                    RegExp = 1;
+                                    ObErr = "El tipo de documento " + TD + " no es valido";
+                                }
+
+                                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                            }
+
+                            //  SqlDataReader TablaAux4 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+
+                            //Validamos el tipo de usuario de la entidad
+
+                            if (TabLocal["TipUsuario"].ToString() != TU)
+                            {
+                                RegExp = 1;
+                                ObErr += " El tipo de usuario o regimen " + TabLocal["TipUsuario"].ToString() + " no corresponde a la entidad";
+                            }
+
+                            //Validamos la unidad de la edad.
+
+                            switch (Convert.ToInt32(TabLocal["EdadMedi"].ToString()))
+                            {
+                                case 1:
+                                    if (Convert.ToInt32(TabLocal["Edad"].ToString()) < 0 || Convert.ToInt32(TabLocal["Edad"].ToString()) > 150)
+                                    {
+                                        RegExp = 1;
+                                        ObErr += "Lo siento pero el valor de la edad no es valido en años.";
+                                    }
+                                    break;
+                                case 2:
+                                    if (Convert.ToInt32(TabLocal["Edad"].ToString()) < 0 || Convert.ToInt32(TabLocal["Edad"].ToString()) > 11)
+                                    {
+                                        RegExp = 1;
+                                        ObErr += "Lo siento pero el valor de la edad no es valido en meses.";
+                                    }
+                                    break;
+                                case 3:
+                                    if (Convert.ToInt32(TabLocal["Edad"].ToString()) < 0 || Convert.ToInt32(TabLocal["Edad"].ToString()) > 31)
+                                    {
+                                        RegExp = 1;
+                                        ObErr += "Lo siento pero el valor de la edad no es valido en días.";
+                                    }
+                                    break;
+                                default:
+                                    RegExp = 1;
+                                    ObErr += "Lo siento pero la unidad de la edad " + TabLocal["EdadMedi"].ToString() + ", no es valida.";
+                                    break;
+                            }
+
+                            //Validamos el sexo
+
+                            switch (TabLocal["Sexo"].ToString())
+                            {
+                                case "M":
+                                    break;
+                                case "F":
+                                    break;
+                                case "I":
+                                    break;
+                                default:
+                                    RegExp = 1;
+                                    ObErr += "Lo siento pero el identificador del sexo " + TabLocal["Sexo"].ToString() + ", no es valido.";
+                                    break;
+                            }
+
+                            //Validamos el codigo del DPTO
+
+                            Dp = TabLocal["CodDpto"].ToString();
+                            MuCi = TabLocal["CodDptoCity"].ToString();
+                            Z = TabLocal["ZonaResi"].ToString();
+
+                            Utils.SqlDatos = "SELECT * FROM [GEOGRAXPSQL].[dbo].[Datos de los Dpto o Estados] ";
+                            Utils.SqlDatos += "WHERE CodigoDpto = '" + Dp + "' ";
+
+                            SqlDataReader TablaAux9;
+
+                            using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                            {
+                                SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+                                command.Connection.Open();
+                                TablaAux9 = command.ExecuteReader();
+
+                                if (TablaAux9.HasRows == false)
+                                {
+                                    RegExp = 1;
+                                    ObErr = "El Código del DPTO " + Dp + ", no es valido.";
+                                }
+
+                                TablaAux9.Close();
+
+                            }
+
+
+
+                            //Validamos el codigo del municipio
+
+                            Utils.SqlDatos = "SELECT * FROM [GEOGRAXPSQL].[dbo].[Datos ciudades del dpto] ";
+                            Utils.SqlDatos += "WHERE CodigoDpto = '" + Dp + "' AND [Datos ciudades del dpto].CodDptoCity = '" + MuCi + "'";
+
+                            SqlDataReader TablaAux11;
+
+                            using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                            {
+                                SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+                                command.Connection.Open();
+                                TablaAux11 = command.ExecuteReader();
+
+
+                                if (TablaAux11.HasRows == false)
+                                {
+                                    RegExp = 1;
+                                    ObErr = "El Código del Municipio " + MuCi + ", no es valido para el DPTO.";
+                                }
+
+                                TablaAux11.Close();
+
+                                // SqlDataReader TablaAux11 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                            }
+
+
+
+                            //Validamos la Zona
+
+                            switch (Z)
+                            {
+                                case "U":
+                                    break;
+                                case "R":
+                                    break;
+                                default:
+                                    RegExp = 1;
+                                    ObErr = "El identificador " + Z + ", de la zona de residencia no es valido.";
+                                    break;
+                            }
+
+                            if (RegExp == 1)
+                            {
+                                Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal errores RIPS] ";
+                                Utils.SqlDatos += "([CodDigita],[TipARchi],[TipDocu],[NumDocu],[CodEnti],[FacturaN],[Observa1]) ";
+                                Utils.SqlDatos += "VALUES('" + lblCodigoUser.Text + "', 'US','" + TD + "','" + ND + "','" + c + "','0','" + ObErr + "')";
+
+                                Boolean TabLocal2 = Conexion.SqlInsert(Utils.SqlDatos);
+                            }
+
+                            VR += 1;
+
+                        }// final while
+
+                        return VR;
+
+                    }// final tabUsuarios
+
+                } //Final Using
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la función: ValidarUsuarios del" + "\r";
+                Utils.Informa += "Módulo gestión de RIPS" + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+        }
 
     }
 }
