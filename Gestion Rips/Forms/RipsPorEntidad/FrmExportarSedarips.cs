@@ -2775,118 +2775,119 @@ namespace Gestion_Rips.Forms.Exportar
                 if (Respuesta == DialogResult.Yes)
                 {
                     //Validamos el del usuarios
-                    FunUs = ValidarUsuarios(Coenti02, TUReg, TolUsa, UsSel);
+                        FunUs = ValidarUsuarios(Coenti02, TUReg, TolUsa, UsSel);
 
-                    switch (FunUs)
-                    {
-                        case -1: //error en la funcion
-                            return;
-                            break;
-                        case 0: // Casi imposible que entre aqui
-                            Utils.Informa = "El proceso de validación de este módulo no se";
-                            Utils.Informa += "puede realizar mientras no se seleccione los ";
-                            Utils.Informa += "usuarios de la entidad seleccionada.";
-                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            break;
-                        default:
-                            if (TolFac <= 0)
-                            {
+                        switch (FunUs)
+                        {
+                            case -1: //error en la funcion
+                                return;
+                                break;
+                            case 0: // Casi imposible que entre aqui
                                 Utils.Informa = "El proceso de validación de este módulo no se";
                                 Utils.Informa += "puede realizar mientras no se seleccione los ";
-                                Utils.Informa += "facturas de los procedimientos realizados.";
+                                Utils.Informa += "usuarios de la entidad seleccionada.";
                                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                            break;
-                    }
-                }
+                                break;
+                            default:
+                                if (TolFac <= 0)
+                                {
+                                    Utils.Informa = "El proceso de validación de este módulo no se";
+                                    Utils.Informa += "puede realizar mientras no se seleccione los ";
+                                    Utils.Informa += "facturas de los procedimientos realizados.";
+                                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                break;
+                        }
+                
 
-                //Empiece a validar las facturas
+                    //Empiece a validar las facturas
 
-                FunFac = ValidarFacturas(Coenti02, TolFac, UsSel);
+                    FunFac = ValidarFacturas(Coenti02, TolFac, UsSel);
 
-                if (FunFac == -1)
-                {
-                    return;
-                }
-
-                //Comience a validar cada uno de los archivos de prestaciones de servicios
-
-
-                if (TolConsul > 0)
-                {
-                    //Validar el de consultas
-                    FunCon = ValidaConsultas(Coenti02, AcRe, TolConsul, UsSel);
-                }
-
-
-                if (TolHos > 0)
-                {
-                    //'Validar el de hospitalizaciones
-                    FunHos = ValidarHospi(Coenti02, TolObs, UsSel);
-                }
-
-                if (TolMedi > 0)
-                {
-                    //'Validar el de medicamentos
-                    FunMedi = ValidarMedica(Coenti02, TolMedi, UsSel);
-                }
-
-                if (TolObs > 0)
-                {
-                    //'Validar el de observación de urgencias
-                    FunObs = ValidarObserva(Coenti02, TolObs, UsSel);
-                }
-
-
-                if (TolOtrosSer > 0)
-                {
-                    //'Validar el de otros servicios
-                    FunOtros = ValidarOtros(Coenti02, TolOtrosSer, UsSel);
-                }
-
-                if (TolReN > 0)
-                {
-                    //'Validar el de recien nacidos
-                    FunReN = ValidarReNan(Coenti02, TolReN, UsSel);
-                }
-
-                if (TolProce > 0)
-                {
-                    //'Validar el de procedimientos
-                    FunProce = ValidarProcedi(Coenti02, TolObs, UsSel);
-                }
-
-                Utils.SqlDatos = "SELECT COUNT(CodEnti) AS CuenCodEnti FROM [DARIPSXPSQL].[dbo].[Datos temporal errores RIPS] WHERE CodEnti = '" + Coenti01 + "' ";
-
-                SqlDataReader reader = Conexion.SQLDataReader(Utils.SqlDatos);
-
-                if (reader.HasRows)
-                {
-                    reader.Read();
-                    TolInco = Convert.ToInt32(reader["CuenCodEnti"].ToString());
-                }
-
-                if (TolInco == 0)
-                {
-                    Utils.Titulo01 = "Control de validacion";
-                    Utils.Informa = "Los datos de los seleccionados han validado exitosamente.";
-                    Utils.Informa = Utils.Informa + "Recuerde este no es el validador oficial de MinSalud.";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    if (TolInco > 0)
+                    if (FunFac == -1)
                     {
+                        return;
+                    }
 
-                        Utils.SqlDatos = "SELECT [CodDigita],[TipARchi],[TipDocu],[NumDocu],[CodEnti],[FacturaN],[Observa1] FROM [DARIPSXPSQL].[dbo].[Datos temporal errores RIPS] WHERE CodEnti = '" + Coenti01 + "' ORDER BY NumDocu ASC  ";
+                    //Comience a validar cada uno de los archivos de prestaciones de servicios
 
-                        Utils.infNombreInforme = "InfReporErroresRips";
 
-                        Utils.CarAdmin = Coenti01;
+                    if (TolConsul > 0)
+                    {
+                        //Validar el de consultas
+                        FunCon = ValidaConsultas(Coenti02, AcRe, TolConsul, UsSel);
+                    }
 
-                        Reportes.FrmInfErroresRips frm = new Reportes.FrmInfErroresRips();
-                        frm.ShowDialog();
 
+                    if (TolHos > 0)
+                    {
+                        //'Validar el de hospitalizaciones
+                        FunHos = ValidarHospi(Coenti02, TolObs, UsSel);
+                    }
+
+                    if (TolMedi > 0)
+                    {
+                        //'Validar el de medicamentos
+                        FunMedi = ValidarMedica(Coenti02, TolMedi, UsSel);
+                    }
+
+                    if (TolObs > 0)
+                    {
+                        //'Validar el de observación de urgencias
+                        FunObs = ValidarObserva(Coenti02, TolObs, UsSel);
+                    }
+
+
+                    if (TolOtrosSer > 0)
+                    {
+                        //'Validar el de otros servicios
+                        FunOtros = ValidarOtros(Coenti02, TolOtrosSer, UsSel);
+                    }
+
+                    if (TolReN > 0)
+                    {
+                        //'Validar el de recien nacidos
+                        FunReN = ValidarReNan(Coenti02, TolReN, UsSel);
+                    }
+
+                    if (TolProce > 0)
+                    {
+                        //'Validar el de procedimientos
+                        FunProce = ValidarProcedi(Coenti02, TolObs, UsSel);
+                    }
+
+                    Utils.SqlDatos = "SELECT COUNT(CodEnti) AS CuenCodEnti FROM [DARIPSXPSQL].[dbo].[Datos temporal errores RIPS] WHERE CodEnti = '" + Coenti01 + "' ";
+
+                    SqlDataReader reader = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                    if (reader.HasRows)
+                    {
+                        reader.Read();
+                        TolInco = Convert.ToInt32(reader["CuenCodEnti"].ToString());
+                    }
+
+                    if (TolInco == 0)
+                    {
+                        Utils.Titulo01 = "Control de validacion";
+                        Utils.Informa = "Los datos de los seleccionados han validado exitosamente.";
+                        Utils.Informa = Utils.Informa + "Recuerde este no es el validador oficial de MinSalud.";
+                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        if (TolInco > 0)
+                        {
+
+                            Utils.SqlDatos = "SELECT [CodDigita],[TipARchi],[TipDocu],[NumDocu],[CodEnti],[FacturaN],[Observa1] FROM [DARIPSXPSQL].[dbo].[Datos temporal errores RIPS] WHERE CodEnti = '" + Coenti01 + "' ORDER BY NumDocu ASC  ";
+
+                            Utils.infNombreInforme = "InfReporErroresRips";
+
+                            Utils.CarAdmin = Coenti01;
+
+                            Reportes.FrmInfErroresRips frm = new Reportes.FrmInfErroresRips();
+                            frm.ShowDialog();
+
+                        }
                     }
                 }
             }

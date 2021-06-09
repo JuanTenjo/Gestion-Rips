@@ -94,3 +94,13 @@ C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\obj\Debug\Gestion_Ri
 C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\bin\Debug\Forms\RipsPorEntidad\FrmExportarSedarips.Designer.cs
 C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\obj\Debug\Gestion_Rips.Forms.RipsPorRegimen.FrmRipsRegimen.resources
 C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\obj\Debug\Gestion_Rips.Forms.RipsPorRegimen.FrmReporteRipsRegimen.resources
+C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\bin\Debug\Reportes\rdlc\dsInfInformeConsultaTransaccionesRegi.rdlc
+C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\bin\Debug\Reportes\rdlc\dsInfInformeConsultaUsuariosRegi.rdlc
+C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\bin\Debug\Reportes\rdlc\dsInfInformeConsultaHospitalizacionRegi.rdlc
+C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\bin\Debug\Reportes\rdlc\dsInfInformeConsultaMedicamentosRegi.rdlc
+C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\bin\Debug\Reportes\rdlc\dsInfInformeConsultaObservacionRegi.rdlc
+C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\bin\Debug\Reportes\rdlc\dsInfInformeConsultaOtrosServiRegi.rdlc
+C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\bin\Debug\Reportes\rdlc\dsInfInformeConsultaProcedimientosRemi.rdlc
+C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\bin\Debug\Reportes\rdlc\dsInfInformeConsultaRecienNaciRemi.rdlc
+C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\bin\Debug\Reportes\rdlc\dsInfInformeConsultaAuditarRegi.rdlc
+C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\bin\Debug\Reportes\rdlc\dsInfInformeConsultaRemisionRemi.rdlc

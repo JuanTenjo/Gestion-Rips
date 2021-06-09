@@ -428,16 +428,22 @@ namespace Gestion_Rips.Forms.Exportar
 
                 Utils.SqlDatos = "SELECT * FROM DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS] WHERE [Datos temporal transacciones RIPS].[NumRemi] = '" + CI + "'  ";
 
-                SqlDataReader TabLocal5 = Conexion.SQLDataReader(Utils.SqlDatos);
+                SqlDataReader TabLocal5;
 
-                if (TabLocal5.HasRows)
+                using (SqlConnection connection3 = new SqlConnection(Conexion.conexionSQL))
                 {
+                    SqlCommand command3 = new SqlCommand(Utils.SqlDatos, connection3);
+                    command3.Connection.Open();
+                    TabLocal5 = command3.ExecuteReader();
 
-                    Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos temporal transacciones RIPS] SET [Datos temporal transacciones RIPS].[VaLorDeta] = 0 WHERE [Datos temporal transacciones RIPS].[NumRemi] = '" + CI + "'  ";
+                    if (TabLocal5.HasRows)
+                    {
+                        Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos temporal transacciones RIPS] SET [Datos temporal transacciones RIPS].[VaLorDeta] = 0 WHERE [Datos temporal transacciones RIPS].[NumRemi] = '" + CI + "'  ";
 
-                    Boolean ActConsul = Conexion.SQLUpdate(Utils.SqlDatos);
-
+                        Boolean ActConsul = Conexion.SQLUpdate(Utils.SqlDatos);
+                    }
                 }
+
 
                 TabLocal5.Close();
 
@@ -446,79 +452,113 @@ namespace Gestion_Rips.Forms.Exportar
 
                 Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal consultas RIPS] WHERE [Datos temporal consultas RIPS].[NumRemi] = '" + CI + "'  ";
 
-                SqlDataReader TabLocal1 = Conexion.SQLDataReader(Utils.SqlDatos);
 
-                if (TabLocal1.HasRows == false)
+                SqlDataReader TabLocal1;
+
+                using (SqlConnection connection3 = new SqlConnection(Conexion.conexionSQL))
                 {
-                    TolCon = 0;
-                }
-                else
-                {
-                    while (TabLocal1.Read())
+                    SqlCommand command3 = new SqlCommand(Utils.SqlDatos, connection3);
+                    command3.Connection.Open();
+                    TabLocal1 = command3.ExecuteReader();
+
+                    if (TabLocal1.HasRows == false)
                     {
-                        TemEnti = TabLocal1["NumRemi"].ToString();
-                        NF = TabLocal1["NumFactur"].ToString();
-                        TolCon = Convert.ToDouble(TabLocal1["ValorConsul"].ToString());
-
-                        Utils.SqlDatos = "SELECT * FROM DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS] WHERE [Datos temporal transacciones RIPS].[NumRemi] = '" + CI + "' AND [Datos temporal transacciones RIPS].[NumFactur] = '" + NF + "'   ";
-
-                        TabLocal5 = Conexion.SQLDataReader(Utils.SqlDatos);
-            
-
-                        if (TabLocal5.HasRows == false)
-                        {
-                            //NO COPIA NADA, DIFICILMENTE
-                        }
-                        else
-                        {
-                            TabLocal5.Read();
-                            SqlUpdate = "UPDATE [DARIPSXPSQL].[dbo].[Datos temporal transacciones RIPS] SET [Datos temporal transacciones RIPS].[VaLorDeta] = '" + (Convert.ToDouble(TabLocal5["VaLorDeta"]) + TolCon) + "'  WHERE [Datos temporal transacciones RIPS].[NumFactur] = '" + NF + "' AND [Datos temporal transacciones RIPS].[NumRemi] = '" + CI + "'  ";
-                            Boolean ActuValor = Conexion.SQLUpdate(SqlUpdate);
-                            TabLocal5.Close();
-                        }
-
+                        TolCon = 0;
                     }
-                } //Fianl TabLocal1
+                    else
+                    {
+                        while (TabLocal1.Read())
+                        {
+                            TemEnti = TabLocal1["NumRemi"].ToString();
+                            NF = TabLocal1["NumFactur"].ToString();
+                            TolCon = Convert.ToDouble(TabLocal1["ValorConsul"].ToString());
+
+                            Utils.SqlDatos = "SELECT * FROM DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS] WHERE [Datos temporal transacciones RIPS].[NumRemi] = '" + CI + "' AND [Datos temporal transacciones RIPS].[NumFactur] = '" + NF + "'   ";
+
+                            TabLocal5 = null;
+
+                            using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                            {
+                                SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+                                command.Connection.Open();
+                                TabLocal5 = command.ExecuteReader();
+
+                                if (TabLocal5.HasRows == false)
+                                {
+                                    TabLocal5.Close();
+                                    //NO COPIA NADA, DIFICILMENTE
+                                }
+                                else
+                                {
+                                    TabLocal5.Read();
+                                    SqlUpdate = "UPDATE [DARIPSXPSQL].[dbo].[Datos temporal transacciones RIPS] SET [Datos temporal transacciones RIPS].[VaLorDeta] = '" + (Convert.ToDouble(TabLocal5["VaLorDeta"]) + TolCon) + "'  WHERE [Datos temporal transacciones RIPS].[NumFactur] = '" + NF + "' AND [Datos temporal transacciones RIPS].[NumRemi] = '" + CI + "'  ";
+                                    Boolean ActuValor = Conexion.SQLUpdate(SqlUpdate);
+                                    TabLocal5.Close();
+                                }
+                            }
+                        }
+                    } //Fianl TabLocal1
+
+                }
 
                 TabLocal1.Close();
+
 
                 //'Suma los medicamentos
 
                 Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal medicamentos RIPS] WHERE [Datos temporal medicamentos RIPS].[NumRemi] = '" + CI + "'  ";
 
-                SqlDataReader TabLocal2 = Conexion.SQLDataReader(Utils.SqlDatos);
 
-                if (TabLocal2.HasRows == false)
+                SqlDataReader TabLocal2;
+
+                using (SqlConnection connection3 = new SqlConnection(Conexion.conexionSQL))
                 {
-                    TolMedi = 0;
-                }
-                else
-                {
-                    while (TabLocal2.Read())
+                    SqlCommand command3 = new SqlCommand(Utils.SqlDatos, connection3);
+                    command3.Connection.Open();
+                    TabLocal2 = command3.ExecuteReader();
+
+
+                    if (TabLocal2.HasRows == false)
                     {
-                        TemEnti = TabLocal2["NumRemi"].ToString();
-                        NF = TabLocal2["NumFactur"].ToString();
-                        TolMedi = Convert.ToDouble(TabLocal2["ValorTotal"].ToString());
-
-                        Utils.SqlDatos = "SELECT * FROM DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS] WHERE [Datos temporal transacciones RIPS].[NumRemi] = '" + CI + "' AND [Datos temporal transacciones RIPS].[NumFactur] = '" + NF + "'   ";
-
-                        TabLocal5 = Conexion.SQLDataReader(Utils.SqlDatos);
-
-                        if (TabLocal5.HasRows == false)
-                        {
-                            //NO COPIA NADA, DIFICILMENTE
-                        }
-                        else
-                        {
-                            TabLocal5.Read();
-                            SqlUpdate = "UPDATE [DARIPSXPSQL].[dbo].[Datos temporal transacciones RIPS] SET [Datos temporal transacciones RIPS].[VaLorDeta] = '" + (Convert.ToDouble(TabLocal5["VaLorDeta"]) + TolMedi) + "'  WHERE [Datos temporal transacciones RIPS].[NumFactur] = '" + NF + "' AND [Datos temporal transacciones RIPS].[NumRemi] = '" + CI + "'  ";
-                            Boolean ActuValor = Conexion.SQLUpdate(SqlUpdate);
-                            TabLocal5.Close();
-                        }
-
+                        TolMedi = 0;
                     }
+                    else
+                    {
+                        while (TabLocal2.Read())
+                        {
+                            TemEnti = TabLocal2["NumRemi"].ToString();
+                            NF = TabLocal2["NumFactur"].ToString();
+                            TolMedi = Convert.ToDouble(TabLocal2["ValorTotal"].ToString());
 
-                } //Fianl TabLocal1
+                            Utils.SqlDatos = "SELECT * FROM DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS] WHERE [Datos temporal transacciones RIPS].[NumRemi] = '" + CI + "' AND [Datos temporal transacciones RIPS].[NumFactur] = '" + NF + "'   ";
+
+                            TabLocal5 = null;
+
+                            using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                            {
+                                SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+                                command.Connection.Open();
+                                TabLocal5 = command.ExecuteReader();
+
+                                if (TabLocal5.HasRows == false)
+                                {
+                                    TabLocal5.Close();
+                                    //NO COPIA NADA, DIFICILMENTE
+                                }
+                                else
+                                {
+                                    TabLocal5.Read();
+                                    SqlUpdate = "UPDATE [DARIPSXPSQL].[dbo].[Datos temporal transacciones RIPS] SET [Datos temporal transacciones RIPS].[VaLorDeta] = '" + (Convert.ToDouble(TabLocal5["VaLorDeta"]) + TolMedi) + "'  WHERE [Datos temporal transacciones RIPS].[NumFactur] = '" + NF + "' AND [Datos temporal transacciones RIPS].[NumRemi] = '" + CI + "'  ";
+                                    Boolean ActuValor = Conexion.SQLUpdate(SqlUpdate);
+                                    TabLocal5.Close();
+                                }
+                            }
+                        }
+                    } //Fianl TabLocal2
+
+                }
+
+
 
                 TabLocal2.Close();
 
@@ -526,39 +566,52 @@ namespace Gestion_Rips.Forms.Exportar
 
                 Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal otros servicios RIPS] WHERE [Datos temporal otros servicios RIPS].[NumRemi] = '" + CI + "'  ";
 
-                SqlDataReader TabLocal3 = Conexion.SQLDataReader(Utils.SqlDatos);
+                SqlDataReader TabLocal3;
 
-                if (TabLocal3.HasRows == false)
+                using (SqlConnection connection3 = new SqlConnection(Conexion.conexionSQL))
                 {
-                    TolOtros = 0;
-                }
-                else
-                {
-                    while (TabLocal3.Read())
+                    SqlCommand command3 = new SqlCommand(Utils.SqlDatos, connection3);
+                    command3.Connection.Open();
+                    TabLocal3 = command3.ExecuteReader();
+
+                    if (TabLocal3.HasRows == false)
                     {
-                        TemEnti = TabLocal3["NumRemi"].ToString();
-                        NF = TabLocal3["NumFactur"].ToString();
-                        TolOtros = Convert.ToDouble(TabLocal3["ValorTotal"].ToString());
-
-                        Utils.SqlDatos = "SELECT * FROM DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS] WHERE [Datos temporal transacciones RIPS].[NumRemi] = '" + CI + "' AND [Datos temporal transacciones RIPS].[NumFactur] = '" + NF + "'   ";
-
-                        TabLocal5 = Conexion.SQLDataReader(Utils.SqlDatos);
-
-                        if (TabLocal5.HasRows == false)
-                        {
-                            //NO COPIA NADA, DIFICILMENTE
-                        }
-                        else
-                        {
-                            TabLocal5.Read();
-                            SqlUpdate = "UPDATE [DARIPSXPSQL].[dbo].[Datos temporal transacciones RIPS] SET [Datos temporal transacciones RIPS].[VaLorDeta] = '" + (Convert.ToDouble(TabLocal5["VaLorDeta"]) + TolOtros) + "'  WHERE [Datos temporal transacciones RIPS].[NumFactur] = '" + NF + "' AND [Datos temporal transacciones RIPS].[NumRemi] = '" + CI + "'  ";
-                            Boolean ActuValor = Conexion.SQLUpdate(SqlUpdate);
-                            TabLocal5.Close();
-                        }
-
+                        TolOtros = 0;
                     }
+                    else
+                    {
+                        while (TabLocal3.Read())
+                        {
+                            TemEnti = TabLocal3["NumRemi"].ToString();
+                            NF = TabLocal3["NumFactur"].ToString();
+                            TolOtros = Convert.ToDouble(TabLocal3["ValorTotal"].ToString());
 
-                } //Fianl TabLocal1
+                            Utils.SqlDatos = "SELECT * FROM DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS] WHERE [Datos temporal transacciones RIPS].[NumRemi] = '" + CI + "' AND [Datos temporal transacciones RIPS].[NumFactur] = '" + NF + "'   ";
+
+                            TabLocal5 = null;
+
+                            using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                            {
+                                SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+                                command.Connection.Open();
+                                TabLocal5 = command.ExecuteReader();
+
+                                if (TabLocal5.HasRows == false)
+                                {
+                                    TabLocal5.Close();
+                                    //NO COPIA NADA, DIFICILMENTE
+                                }
+                                else
+                                {
+                                    TabLocal5.Read();
+                                    SqlUpdate = "UPDATE [DARIPSXPSQL].[dbo].[Datos temporal transacciones RIPS] SET [Datos temporal transacciones RIPS].[VaLorDeta] = '" + (Convert.ToDouble(TabLocal5["VaLorDeta"]) + TolOtros) + "'  WHERE [Datos temporal transacciones RIPS].[NumFactur] = '" + NF + "' AND [Datos temporal transacciones RIPS].[NumRemi] = '" + CI + "'  ";
+                                    Boolean ActuValor = Conexion.SQLUpdate(SqlUpdate);
+                                    TabLocal5.Close();
+                                }
+                            }
+                        }
+                    } //Fianl TabLocal1
+                }
 
                 TabLocal3.Close();
 
@@ -566,39 +619,56 @@ namespace Gestion_Rips.Forms.Exportar
 
                 Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal procedimientos RIPS] WHERE [Datos temporal procedimientos RIPS].[NumRemi] = '" + CI + "'  ";
 
-                SqlDataReader TabLocal4 = Conexion.SQLDataReader(Utils.SqlDatos);
 
-                if (TabLocal4.HasRows == false)
+                SqlDataReader TabLocal4;
+
+                using (SqlConnection connection3 = new SqlConnection(Conexion.conexionSQL))
                 {
-                    TolProce = 0;
-                }
-                else
-                {
-                    while (TabLocal4.Read())
+                    SqlCommand command3 = new SqlCommand(Utils.SqlDatos, connection3);
+                    command3.Connection.Open();
+                    TabLocal4 = command3.ExecuteReader();
+
+
+                    if (TabLocal4.HasRows == false)
                     {
-                        TemEnti = TabLocal4["NumRemi"].ToString();
-                        NF = TabLocal4["NumFactur"].ToString();
-                        TolProce = Convert.ToDouble(TabLocal4["ValorProce"].ToString());
-
-                        Utils.SqlDatos = "SELECT * FROM DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS] WHERE [Datos temporal transacciones RIPS].[NumRemi] = '" + CI + "' AND [Datos temporal transacciones RIPS].[NumFactur] = '" + NF + "'   ";
-
-                        TabLocal5 = Conexion.SQLDataReader(Utils.SqlDatos);
-
-                        if (TabLocal5.HasRows == false)
-                        {
-                            //NO COPIA NADA, DIFICILMENTE
-                        }
-                        else
-                        {
-                            TabLocal5.Read();
-                            SqlUpdate = "UPDATE [DARIPSXPSQL].[dbo].[Datos temporal transacciones RIPS] SET [Datos temporal transacciones RIPS].[VaLorDeta] = '" + (Convert.ToDouble(TabLocal5["VaLorDeta"]) + TolProce) + "'  WHERE [Datos temporal transacciones RIPS].[NumFactur] = '" + NF + "' AND [Datos temporal transacciones RIPS].[NumRemi] = '" + CI + "'  ";
-                            Boolean ActuValor = Conexion.SQLUpdate(SqlUpdate);
-                            TabLocal5.Close();
-                        }
-
+                        TolProce = 0;
                     }
+                    else
+                    {
+                        while (TabLocal4.Read())
+                        {
+                            TemEnti = TabLocal4["NumRemi"].ToString();
+                            NF = TabLocal4["NumFactur"].ToString();
+                            TolProce = Convert.ToDouble(TabLocal4["ValorProce"].ToString());
 
-                } //Fianl TabLocal1
+                            Utils.SqlDatos = "SELECT * FROM DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS] WHERE [Datos temporal transacciones RIPS].[NumRemi] = '" + CI + "' AND [Datos temporal transacciones RIPS].[NumFactur] = '" + NF + "'   ";
+
+                            TabLocal5 = null;
+
+                            using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                            {
+                                SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+                                command.Connection.Open();
+                                TabLocal5 = command.ExecuteReader();
+
+                                if (TabLocal5.HasRows == false)
+                                {
+                                    TabLocal5.Close();
+                                    //NO COPIA NADA, DIFICILMENTE
+                                }
+                                else
+                                {
+                                    TabLocal5.Read();
+                                    SqlUpdate = "UPDATE [DARIPSXPSQL].[dbo].[Datos temporal transacciones RIPS] SET [Datos temporal transacciones RIPS].[VaLorDeta] = '" + (Convert.ToDouble(TabLocal5["VaLorDeta"]) + TolProce) + "'  WHERE [Datos temporal transacciones RIPS].[NumFactur] = '" + NF + "' AND [Datos temporal transacciones RIPS].[NumRemi] = '" + CI + "'  ";
+                                    Boolean ActuValor = Conexion.SQLUpdate(SqlUpdate);
+                                    TabLocal5.Close();
+                                }
+                            }  
+
+                        }
+                    } //Fianl TabLocal4
+                }
+
 
                 TabLocal4.Close();
 
@@ -676,9 +746,9 @@ namespace Gestion_Rips.Forms.Exportar
                                         "[Datos empresas y terceros].NumDocu, [Datos temporal transacciones RIPS].NumFactur, [Datos temporal transacciones RIPS].NumRemi, " +
                                         "[Datos temporal transacciones RIPS].Copago, [Datos temporal transacciones RIPS].ValorNeto, " +
                                         "[Datos temporal transacciones RIPS].VaLorDeta, Abs(([ValorNeto] +[Copago]) -[VaLorDeta]) AS DT " +
-                                        "FROM[Datos empresas y terceros] " +
-                                        "INNER JOIN[DARIPSXPSQL].[dbo].[Datos temporal transacciones RIPS] ON[Datos empresas y terceros].CarAdmin = [Datos temporal transacciones RIPS].NumRemi " +
-                                        "WHERE(((Abs(([ValorNeto] +[Copago]) -[VaLorDeta])) > 0)) AND [Datos temporal transacciones RIPS].NumRemi = '"+ Para01 +"'";
+                                        "FROM [Datos empresas y terceros] " +
+                                        "INNER JOIN [DARIPSXPSQL].[dbo].[Datos temporal transacciones RIPS] ON[Datos empresas y terceros].CarAdmin = [Datos temporal transacciones RIPS].NumRemi " +
+                                        "WHERE (((Abs(([ValorNeto] +[Copago]) -[VaLorDeta])) > 0)) AND [Datos temporal transacciones RIPS].NumRemi = '"+ Para01 +"'";
 
                         Utils.infNombreInforme = "dsInfInformeConsultaAuditar.rdlc";
 

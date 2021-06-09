@@ -233,10 +233,40 @@
     <EmbeddedResource Include="Reportes\FrmInInformeAuditar.resx">
       <DependentUpon>FrmInInformeAuditar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaAuditarRegi.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaHospitalizacionRegi.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaMedicamentosRegi.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaObservacionRegi.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaOtrosServiRegi.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaProcedimientosRemi.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaProcedimientos.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaAuditar.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaRecienNaciRemi.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaRemisionRemi.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaTransaccionesRegi.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaUsuariosRegi.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaUsuarios.rdlc">

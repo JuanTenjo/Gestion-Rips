@@ -18,15 +18,12 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
             InitializeComponent();
         }
 
-
-
         #region DatagridView
         private void DataGridFacturas_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             CalcularTotalFactura();
         }
         #endregion
-
 
         #region Texbox
 
@@ -167,6 +164,466 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
         #endregion
 
         #region Funciones
+        private int CopiaRipsTrans(string NR, string CI, double TolF, int RutCopy)
+        {
+            try
+            {
+                string NF, SqlTrans = null;
+                int VR = 0;
+
+                Utils.SqlDatos = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos temporal transacciones RIPS] WHERE NumRemi = '" + CI + "'";
+
+
+                SqlDataReader TabLocal;
+
+                using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                {
+                    SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+                    command.Connection.Open();
+                    TabLocal = command.ExecuteReader();
+
+                    if (TabLocal.HasRows == false)
+                    {
+                        //No hay transacciones para copiar para esta entidad
+                        return -2;
+                    }
+                    else
+                    {
+                        while (TabLocal.Read())
+                        {
+                            NF = TabLocal["NumFactur"].ToString();
+
+                            SqlTrans = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos archivo de transacciones] ";
+                            SqlTrans = SqlTrans + "WHERE (([Datos archivo de transacciones].NumRemi)= '" + NR + "') And ";
+                            SqlTrans = SqlTrans + "(([Datos archivo de transacciones].NumFactur)= '" + NF + "' ); ";
+
+                            SqlDataReader TabTrans;
+
+                            using (SqlConnection connection2 = new SqlConnection(Conexion.conexionSQL))
+                            {
+                                SqlCommand command2 = new SqlCommand(Utils.SqlDatos, connection2);
+                                command2.Connection.Open();
+                                TabTrans = command2.ExecuteReader();
+
+                                if (TabTrans.HasRows == false)
+                                {
+
+                                    //Adicionelo
+                                    Utils.SqlDatos = "INSERT INTO [DARIPSESSQL].[dbo].[Datos archivo de transacciones] " +
+                                           "(" +
+                                           "NumRemi," +
+                                           "CodIps," +
+                                           "RazonSocial," +
+                                           "TipIdenti," +
+                                           "NumIdenti," +
+                                           "NumFactur," +
+                                           "FecFactur," +
+                                           "FecInicio," +
+                                           "FecFinal," +
+                                           "CodAdmin," +
+                                           "NomAdmin," +
+                                           "NumContra," +
+                                           "PlanBene," +
+                                           "NumPoli," +
+                                           "Copago," +
+                                           "ValorComi," +
+                                           "ValorDes," +
+                                           "ValorNeto" +
+                                           ")" +
+                                           "VALUES" +
+                                           "(" +
+                                           "'" + NR + "'," +
+                                           "'" + TabLocal["CodIps"].ToString() + "'," +
+                                           "'" + TabLocal["RazonSocial"].ToString() + "'," +
+                                           "'" + TabLocal["TipIdenti"].ToString() + "'," +
+                                           "'" + TabLocal["NumIdenti"].ToString() + "'," +
+                                           "'" + NF + "'," +
+                                           "'" + Convert.ToDateTime(TabLocal["FecFactur"]).ToString("yyyy-MM-dd") + "'," +
+                                           "'" + Convert.ToDateTime(TabLocal["FecInicio"]).ToString("yyyy-MM-dd") + "'," +
+                                           "'" + Convert.ToDateTime(TabLocal["FecFinal"]).ToString("yyyy-MM-dd") + "'," +
+                                           "'" + TabLocal["CodAdmin"].ToString() + "'," +
+                                           "'" + TabLocal["NomAdmin"].ToString() + "'," +
+                                           "'" + TabLocal["NumContra"].ToString() + "'," +
+                                           "'" + TabLocal["PlanBene"].ToString() + "'," +
+                                           "'" + TabLocal["NumPoli"].ToString() + "'," +
+                                           "'" + TabLocal["Copago"].ToString() + "'," +
+                                           "'" + TabLocal["ValorComi"].ToString() + "'," +
+                                           "'" + TabLocal["ValorDes"].ToString() + "'," +
+                                           "'" + TabLocal["ValorNeto"].ToString() + "'" +
+                                           ")";
+
+                                    Boolean RegistrarArcTransacciones = Conexion.SqlInsert(Utils.SqlDatos);
+                                }
+                                else
+                                {
+                                    //Modifique algunos datos
+                                    Utils.SqlDatos = "UPDATE [DARIPSESSQL].[dbo].[Datos archivo de transacciones] SET " +
+                                   "CodIps = '" + TabLocal["CodIps"].ToString() + "'," +
+                                   "RazonSocial = '" + TabLocal["RazonSocial"].ToString() + "'," +
+                                   "TipIdenti = '" + TabLocal["TipIdenti"].ToString() + "'," +
+                                   "NumIdenti = '" + TabLocal["NumIdenti"].ToString() + "'," +
+                                   "FecFactur = '" + Convert.ToDateTime(TabLocal["FecFactur"]).ToString("yyyy-MM-dd") + "'," +
+                                   "FecInicio = '" + Convert.ToDateTime(TabLocal["FecInicio"]).ToString("yyyy-MM-dd") + "'," +
+                                   "FecFinal = '" + Convert.ToDateTime(TabLocal["FecFinal"]).ToString("yyyy-MM-dd") + "'," +
+                                   "CodAdmin = '" + TabLocal["CodAdmin"].ToString() + "'," +
+                                   "NomAdmin = '" + TabLocal["NomAdmin"].ToString() + "'," +
+                                   "NumContra = '" + TabLocal["NumContra"].ToString() + "'," +
+                                   "PlanBene = '" + TabLocal["PlanBene"].ToString() + "'," +
+                                   "NumPoli = '" + TabLocal["NumPoli"].ToString() + "'," +
+                                   "Copago = '" + TabLocal["Copago"].ToString() + "'," +
+                                   "ValorComi = '" + TabLocal["ValorComi"].ToString() + "'," +
+                                   "ValorDes = '" + TabLocal["ValorDes"].ToString() + "'," +
+                                   "ValorNeto = '" + TabLocal["ValorNeto"].ToString() + "' " +
+                                   "WHERE [Datos archivo de transacciones].[NumRemi] = '" + NR + "' AND [Datos archivo de transacciones].[NumFactur] =  '" + NF + "' ";
+
+                                    Boolean ActualizarArcUsuarios = Conexion.SQLUpdate(Utils.SqlDatos);
+                                }
+
+                                TabTrans.Close();
+                                TabTrans = null;
+
+                                //Edite el registro como exportado
+
+                                Utils.SqlDatos = "UPDATE [DARIPSESSQL].[dbo].[Datos archivo de transacciones] SET [Datos archivo de transacciones].[Exportado] = 1 WHERE ([Datos archivo de transacciones].[CodDigita] = N'" + lblCodigoUser.Text + "') AND " +
+                                "([Datos archivo de transacciones].[NumRemi] = N'" + NR + "')";
+
+                                Boolean ActComoExportado = Conexion.SQLUpdate(Utils.SqlDatos);
+
+
+                            }
+                            VR += 1;
+                        } //Fin while
+                    }
+                }//Fin using
+
+                return VR;
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la funcion CopiaRipsTrans" + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+        }
+        private int CopiaRipsUsa(string NR, string CI, double TolU, Int16 RutCopy)
+        {
+            try
+            {
+
+                int VR = 0;
+                string TD = null, ND = null, SqlUsua = null;
+                Int32 RegExp = 0;
+                //Permite copiar los usuarios para RIPS a SEDAS-RIPS
+
+                Utils.SqlDatos = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos temporal usuarios RIPS]";
+
+                SqlDataReader TabLocal;
+
+                using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                {
+                    SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+                    command.Connection.Open();
+                    TabLocal = command.ExecuteReader();
+
+                    if (TabLocal.HasRows == false)
+                    {
+                        //No hay usuarios para copiar para esta entidad
+                        return -2;
+                    }
+                    else
+                    {
+                        VR = 0;
+                        while (TabLocal.Read())
+                        {
+                            TD = TabLocal["TipoDocum"].ToString();
+                            ND = TabLocal["NumDocum"].ToString();
+
+                            SqlUsua = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos archivo usuarios] " +
+                            "WHERE (([Datos archivo usuarios].NumRemi)= '" + NR + "') And " +
+                            "(([Datos archivo usuarios].TipoDocum)= '" + TD + "' ) And " +
+                            "(([Datos archivo usuarios].NumDocum)= '" + ND + "' );";
+
+                            SqlDataReader TabUsuarios;
+
+                            using (SqlConnection connection2 = new SqlConnection(Conexion.conexionSQL))
+                            {
+                                SqlCommand command2 = new SqlCommand(SqlUsua, connection2);
+                                command2.Connection.Open();
+                                TabUsuarios = command2.ExecuteReader();
+
+                                if (TabUsuarios.HasRows == false)
+                                {
+                                    //Adicionelo
+                                    //Active la suguiente rutina de error
+
+                                    Utils.SqlDatos = "INSERT INTO [DARIPSESSQL].[dbo].[Datos archivo usuarios]" +
+                                    "(" +
+                                    "NumRemi," +
+                                    "TipoDocum," +
+                                    "NumDocum," +
+                                    "CodAdmin," +
+                                    "TipUsuario," +
+                                    "Apellido1," +
+                                    "Apellido2," +
+                                    "Nombre1," +
+                                    "Nombre2," +
+                                    "Edad," +
+                                    "EdadMedi," +
+                                    "Sexo," +
+                                    "CodDpto," +
+                                    "CodMuni," +
+                                    "ZonaResi" +
+                                    ")" +
+                                    "VALUES" +
+                                    "(" +
+                                    "'" + NR + "'," +
+                                    "'" + TD + "'," +
+                                    "'" + ND + "'," +
+                                    "'" + TabLocal["CodAdmin"].ToString() + "'," +
+                                    "'" + TabLocal["TipUsuario"].ToString() + "'," +
+                                    "'" + TabLocal["Apellido1"].ToString() + "'," +
+                                    "'" + TabLocal["Apellido2"].ToString() + "'," +
+                                    "'" + TabLocal["Nombre1"].ToString() + "'," +
+                                    "'" + TabLocal["Nombre2"].ToString() + "'," +
+                                    "'" + TabLocal["Edad"].ToString() + "'," +
+                                    "'" + TabLocal["EdadMedi"].ToString() + "'," +
+                                    "'" + TabLocal["Sexo"].ToString() + "'," +
+                                    "'" + TabLocal["CodDpto"].ToString() + "'," +
+                                    "'" + TabLocal["CodMuni"].ToString() + "'," +
+                                    "'" + TabLocal["ZonaResi"].ToString() + "'" +
+                                    ")";
+
+                                    Boolean RegistrarArcUsuarios = Conexion.SqlInsert(Utils.SqlDatos);
+
+                                    if (RegistrarArcUsuarios == false)
+                                    {
+                                        Utils.Informa = "Lo siento pero no se pudo insertar el usuario ";
+                                        Utils.Informa = Utils.Informa + "con el documento " + TD + ":" + ND + " ";
+                                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        return -1;
+                                    }
+
+                                }
+                                else
+                                {
+                                    //Modifique algunos datos
+                                    Utils.SqlDatos = "UPDATE [DARIPSESSQL].[dbo].[Datos archivo usuarios] SET " +
+                                    "CodAdmin = '" + TabLocal["CodAdmin"].ToString() + "'," +
+                                    "TipUsuario = '" + TabLocal["TipUsuario"].ToString() + "'," +
+                                    "Apellido1 = '" + TabLocal["Apellido1"].ToString() + "'," +
+                                    "Apellido2 = '" + TabLocal["Apellido2"].ToString() + "'," +
+                                    "Nombre1 = '" + TabLocal["Nombre1"].ToString() + "'," +
+                                    "Nombre2 = '" + TabLocal["Nombre2"].ToString() + "'," +
+                                    "Edad = '" + TabLocal["Edad"].ToString() + "'," +
+                                    "EdadMedi = '" + TabLocal["EdadMedi"].ToString() + "'," +
+                                    "Sexo = '" + TabLocal["Sexo"].ToString() + "'," +
+                                    "CodDpto = '" + TabLocal["CodDpto"].ToString() + "'," +
+                                    "CodMuni = '" + TabLocal["CodMuni"].ToString() + "'," +
+                                    "ZonaResi = '" + TabLocal["ZonaResi"].ToString() + "' " +
+                                    "WHERE NumRemi = '" + NR + "' AND TipoDocum = '" + TD + "' AND NumDocum = '" + ND + "' ";
+
+                                    Boolean ActualizarArcUsuarios = Conexion.SQLUpdate(Utils.SqlDatos);
+
+                                    if (ActualizarArcUsuarios == false)
+                                    {
+                                        Utils.Informa = "Lo siento pero no se pudo actualizar el usuario ";
+                                        Utils.Informa = Utils.Informa + "con el documento " + TD + ":" + ND + " ";
+                                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        return -1;
+                                    }
+
+
+                                }//Final Tab Usuarios
+
+                                TabUsuarios.Close();
+
+                                //Edite el registro como exportado
+
+                                Utils.SqlDatos = "UPDATE [DARIPSESSQL].[dbo].[Datos temporal usuarios RIPS] SET [Datos temporal usuarios RIPS].[Exportado] = 1 WHERE ([Datos temporal usuarios RIPS].[CodDigita] = N'" + lblCodigoUser.Text + "') AND " +
+                                "([Datos temporal usuarios RIPS].[NumRemi] = N'" + NR + "')";
+
+                                Boolean ActComoExportado = Conexion.SQLUpdate(Utils.SqlDatos);
+
+                            }
+                            RegExp += 1;
+                        }//Fin While
+                    }
+                }// Fin Using
+
+
+                return RegExp;
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la función: CopiaRipsUsa del Módulo gestión de RIPS" + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+        }
+        private string ConseRemisiones(Boolean a, string US)
+        {
+            try
+            {
+
+                string SqlContadores = null, Convertido = null;
+                string Date;
+                double Fac = 0;
+
+                SqlContadores = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos contadores sedas];";
+
+                SqlDataReader TabContadores = Conexion.SQLDataReader(SqlContadores);
+
+                if (TabContadores.HasRows == false)
+                {
+                    return "0";
+                }
+                else
+                {
+                    TabContadores.Read();
+
+                    if (Convert.ToInt32(TabContadores["UlConRemi"].ToString()) == 0)
+                    {
+                        //no existe remisiones perdidas
+                        Fac = Convert.ToInt32(TabContadores["ConsRemi"].ToString());
+                        Fac += 1;
+
+                        //Procesa a actualizar el campo de concecutivos
+
+                        Date = DateTime.Now.ToString("yyyy-MM-dd");
+
+                        if (a)
+                        {
+                            Utils.SqlDatos = "UPDATE [DARIPSESSQL].[dbo].[Datos contadores sedas] SET [ConsRemi] = '" + Fac + "', [UsarRemi] = '" + US + "', FecRemi = '" + Date + "'";
+
+                            Boolean EstaActConce = Conexion.SQLUpdate(Utils.SqlDatos);
+
+                            if (EstaActConce == false)
+                            {
+                                Utils.Informa = "Error de administración de datos. ";
+                                Utils.Informa += "al actualizar el concecutivo" + "\r";
+
+                                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        Fac = Convert.ToDouble(TabContadores["UlConRemi"].ToString());
+
+                        Utils.SqlDatos = "UPDATE [DARIPSESSQL].[dbo].[Datos contadores sedas] SET [UlConRemi] = '" + 0 + "'";
+
+                        Boolean EstaActConce = Conexion.SQLUpdate(Utils.SqlDatos);
+
+                        if (EstaActConce == false)
+                        {
+                            Utils.Informa = "Error de administración de datos. ";
+                            Utils.Informa += "al actualizar el campo UlConRemi " + "\r";
+                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    } // final   if (Convert.ToInt32(TabContadores["UlConRemi"].ToString()) == 0)
+
+                    //Devuelva el campo convertido en string
+
+                    Convertido = "";
+
+                    switch (Fac)
+                    {
+                        case double estado when Fac >= 1 && Fac <= 9:
+                            Convertido = "00000" + Fac;
+                            break;
+                        case double estado when Fac >= 10 && Fac <= 99:
+                            Convertido = "0000" + Fac;
+                            break;
+                        case double estado when Fac >= 100 && Fac <= 999:
+                            Convertido = "000" + Fac;
+                            break;
+                        case double estado when Fac >= 1000 && Fac <= 9999:
+                            Convertido = "00" + Fac;
+                            break;
+                        case double estado when Fac >= 10000 && Fac <= 99999:
+                            Convertido = "0" + Fac;
+                            break;
+                        case double estado when Fac >= 100000 && Fac <= 999999:
+                            Convertido = Convert.ToString(Fac);
+                            break;
+                        default:
+                            Utils.Informa = "El consecutivo de remisiones ha pasado el";
+                            Utils.Informa = Utils.Informa + "limite de seis (6) digitos, por lo tanto no";
+                            Utils.Informa = Utils.Informa + "se puede generar otra remisión hasta que el";
+                            Utils.Informa = Utils.Informa + "administrador del sistema amplie el rango.";
+                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Convertido = "-3";
+                            break;
+                    }
+
+                    TabContadores.Close();
+                    return Convertido;
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la funcion ConseRemisiones " + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return "-1";
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+            }
+        }
+        private string CodInterAdminEs(string CSgsss)
+        {
+            try
+            {
+                //Permite buscar el código interno de la entidad según el código del minsalud
+                //en la base de datos de SEDAS-RIPS
+
+                Utils.SqlDatos = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos administradoras de planes] WHERE CodAdmin = '" + CSgsss + "' ";
+
+                SqlDataReader reader = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (reader.HasRows)
+                {
+                    reader.Read();
+
+                    return reader["CodInterno"].ToString();
+
+                }
+                else
+                {
+                    return "0";
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la funcion CodInterAdminEs " + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return "-1";
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+            }
+        }
         private int ProceSoloPorFacturas(string NumFactur, string CodIPS, string NumRemi, string CT, string M, int TolDoc)
         {
             try
@@ -2716,7 +3173,6 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                 return -1;
             }
         }
-
         private int ElimdatosRIPS(string UsSel, string ConMinRips)
         {
             try
@@ -2819,7 +3275,6 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void CalcularTotalFactura()
         {
             try
@@ -2856,6 +3311,454 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
         #endregion
 
         #region Botones
+        private void btnReportes_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string Coenti02 = null, NomUsReal = null, Coenti01 = null, TDE = null, NCC = null, Para01 = null;
+                string Mj = null, UsSel = null, CodRegEsp = null, NEenti = null;
+                int NivPerReal;
+
+                object CR;
+
+                if (cboNameEntidades.SelectedIndex == -1)
+                {
+                    Utils.Titulo01 = "Control de errores de ejecución";
+                    Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                    Utils.Informa += "usted no ha seleccionado el nombre de la entidad" + "\r";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    cboNameEntidades.Select();
+                    return;
+                }
+
+                Coenti01 = cboNameEntidades.SelectedValue.ToString();
+
+                if (string.IsNullOrWhiteSpace(Coenti01))
+                {
+                    Utils.Titulo01 = "Control de errores de ejecución";
+                    Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                    Utils.Informa += "usted no ha seleccionado el nombre de la entidad" + "\r";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    cboNameEntidades.Select();
+                    return;
+                }
+                else
+                {
+                    //Cargamos los datos de la entidad
+                    Utils.SqlDatos = "SELECT CarAdmin, ([NomAdmin] + ' ' + [ProgrAmin]) AS NP, TipoDocu, NumDocu , CodiMinSalud, ManualTari, RegimenAdmin, ActiReali, PerEmpre " +
+                                          "FROM [ACDATOXPSQL].[dbo].[Datos empresas y terceros] WHERE ((([ACDATOXPSQL].[dbo].[Datos empresas y terceros].PerEmpre) = 1) AND(([ACDATOXPSQL].[dbo].[Datos empresas y terceros].HabilEmp) = 1)) " +
+                                          "AND ([NomAdmin] + ' ' + [ProgrAmin]) is not null AND CarAdmin = '" + Coenti01 + "' ORDER BY([NomAdmin] +' ' + [ProgrAmin])";
+                    SqlDataReader sqlDataReader = Conexion.SQLDataReader(Utils.SqlDatos);
+                    if (sqlDataReader.HasRows)
+                    {
+                        sqlDataReader.Read();
+                        Coenti02 = Coenti01;
+                        NEenti = sqlDataReader["NP"].ToString();
+                        TDE = sqlDataReader["TipoDocu"].ToString();
+                        NCC = sqlDataReader["NumDocu"].ToString();
+                        CodRegEsp = sqlDataReader["RegimenAdmin"].ToString();
+                        Para01 = Coenti01;
+                    }
+                    sqlDataReader.Close();
+                }
+
+                if (string.IsNullOrWhiteSpace(txtRips.Text))
+                {
+                    Utils.Titulo01 = "Control de errores de ejecución";
+                    Utils.Informa = "Lo siento pero el código de la Administradora" + "\r";
+                    Utils.Informa += "de pagos en salud, no se encuentra definido para seleccionar los datos. " + "\r";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtRips.Select();
+                    return;
+                }
+
+                CR = txtRips.Text;
+
+                if (string.IsNullOrWhiteSpace(lblCodigoUser.Text))
+                {
+                    Utils.Titulo01 = "Control de errores de ejecución";
+                    Utils.Informa = "Lo siento pero el código del usuario" + "\r";
+                    Utils.Informa += "no es valido para seleccionar datos. " + "\r";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    lblCodigoUser.Select();
+                    return;
+                }
+
+
+                UsSel = lblCodigoUser.Text;
+                NomUsReal = lblNombreUser.Text;
+                NivPerReal = Convert.ToInt32(lblNivelPermitido.Text);
+
+                Utils.CarAdmin = Coenti01;
+                Utils.CodRips = CR.ToString();
+                Utils.NomTerc = NEenti;
+
+                //'Abra el formulario de reportes de RIPS
+
+                FrmReporteRipsRegimen frmReporteRipsRegimen = new FrmReporteRipsRegimen();
+
+                frmReporteRipsRegimen.ShowDialog();
+
+                //'Como los datos temporales de RIPS ahara se registran en la tabla RIPS, procedemos a contar desde la misma
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "después de hacer click sobre el botón reportes" + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Utils.Titulo01 = "Control para seleccionar datos";
+                Boolean SqlInsert = true;
+                string Coenti01, TDE, NCC, Regimen = null, NEnti = null, FunCon = null, llamarfuncion = null, UsGra = null, MT = null, SqlDatos = null, CR = null, CinRips = null, NRemEnvi = null;
+                int FunEli, FunCopUs = 0, FunCopFac = 0;
+                string data;
+                double TolUsa = 0, TolFac = 0;
+                SqlDataReader ContarRips;
+                string Date = DateTime.Now.ToString("yyyy-MM-dd");
+                DateTime Fecha1 = DateInicial.Value;
+                DateTime Fecha2 = DateFinal.Value;
+                string Periodo1 = Fecha1.ToString("yyyy-MM-dd");
+                string Periodo2 = Fecha2.ToString("yyyy-MM-dd");
+
+
+                Utils.Titulo01 = "Control para exportar RIPS";
+
+                if (string.IsNullOrWhiteSpace(cboNameEntidades.SelectedValue.ToString()) == true || cboNameEntidades.SelectedIndex == -1)
+                {
+                    Utils.Informa = "Lo siento pero usted aún no ha";
+                    Utils.Informa += "seleccionado el nombre de la entidad.";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    cboNameEntidades.Select();
+                    return;
+                }
+                else
+                {
+                    Coenti01 = txtCardinal.Text;
+                    //Cargamos los datos de la entidad
+                    Utils.SqlDatos = "SELECT CarAdmin, ([NomAdmin] + ' ' + [ProgrAmin]) AS NP, TipoDocu, NumDocu , CodiMinSalud, ManualTari, RegimenAdmin, ActiReali, PerEmpre " +
+                                            "FROM [ACDATOXPSQL].[dbo].[Datos empresas y terceros] WHERE ((([ACDATOXPSQL].[dbo].[Datos empresas y terceros].PerEmpre) = 1) AND(([ACDATOXPSQL].[dbo].[Datos empresas y terceros].HabilEmp) = 1)) " +
+                                            "AND ([NomAdmin] + ' ' + [ProgrAmin]) is not null AND CarAdmin = '" + Coenti01 + "'";
+
+                    SqlDataReader sqlDataReader2 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                    if (sqlDataReader2.HasRows)
+                    {
+                        sqlDataReader2.Read();
+                        NEnti = sqlDataReader2["NP"].ToString();
+                        TDE = sqlDataReader2["TipoDocu"].ToString();
+                        NCC = sqlDataReader2["NumDocu"].ToString();
+                        Regimen = sqlDataReader2["RegimenAdmin"].ToString();
+                        CR = txtRips.Text;
+                    }
+
+                    sqlDataReader2.Close();
+                    sqlDataReader2 = null;
+
+                    if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                } //'Final de IsNull(Coenti01) Or (Coenti01 = " ")
+
+                //'Revisa si el código de la entidad está relacionada con alguna entidad
+
+                CinRips = CodInterAdminEs(CR);
+
+                switch (CinRips)
+                {
+                    case "-1": // error en la función
+                        return;
+                        break;
+                    case "0": // NO existe la administradora
+                        Utils.Informa = "Lo siento pero el código SGSSS " + CR + " no" + "\r";
+                        Utils.Informa += "pertenece a ninguna administradora de planes" + "\r";
+                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                        break;
+                    case "1": //'No existe la ruta
+                        Utils.Informa = "Lo siento pero los archivos de SEDAS-RIPS" + "\r";
+                        Utils.Informa += "no se han encontrado en la ruta de datos" + "\r";
+                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                        break;
+                    default:
+                        //todo bien
+                        break;
+                }
+
+                //'Proceda a contar cuantos usuarios hay para exportar, y cuantas facturas
+
+
+                //Usuarios
+
+                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolUsuarios FROM [DARIPSESSQL].[dbo].[Datos temporal usuarios RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (ContarRips.HasRows)
+                {
+                    ContarRips.Read();
+                    TolUsa = Convert.ToDouble(ContarRips["TolUsuarios"]);
+
+                    if (TolUsa <= 0)
+                    {
+                        Utils.Informa = "Lo siento pero no existen facturas para" + "\r";
+                        Utils.Informa += "realizar el RIPS a la entidad o convenio" + "\r";
+                        Utils.Informa += NEnti;
+                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                ContarRips.Close();
+                ContarRips = null;
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+
+                //transacciones 
+
+                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolFac FROM [DARIPSESSQL].[dbo].[Datos temporal transacciones RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (ContarRips.HasRows)
+                {
+                    ContarRips.Read();
+
+                    TolFac = Convert.ToDouble(ContarRips["TolFac"]);
+                    if (TolFac <= 0)
+                    {
+                        Utils.Informa = "Lo siento pero no existen usuarios para" + "\r";
+                        Utils.Informa += "realizar el RIPS a la entidad o convenio" + "\r";
+                        Utils.Informa += NEnti;
+                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                ContarRips.Close();
+                ContarRips = null;
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+
+
+                Utils.Informa = "¿Usted desea realizar la exportación de los" + "\r";
+                Utils.Informa += "archivos RIPS de la entidad o convenio" + "\r";
+                Utils.Informa += NEnti;
+                var res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+
+                if (res == DialogResult.Yes)
+                {
+                    //Proceda a revisar si la entidad ya tiene un archivo maestro abierto en SEDAS-RIPS
+
+                    UsGra = lblCodigoUser.Text;
+
+
+                    Utils.SqlDatos = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos archivo maestro] WHERE CodInterAdmi = '" + CinRips + "' and CerraRemi = 0";
+
+                    SqlDataReader ArchivoMaestro = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                    if (ArchivoMaestro.HasRows == false)
+                    {
+                        //'NO existe un maestro abierto para la entidad seleccionado
+                        Utils.Informa = "¿Acepta que el sistema cree automaticamente" + "\r";
+                        Utils.Informa += "el archivo maestro de la remisión de envío?" + "\r";
+                        res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (res == DialogResult.Yes)
+                        {
+                            //Proceda a crear el maestro
+
+
+                            FunCon = ConseRemisiones(true, UsGra);
+
+                            switch (FunCon)
+                            {
+                                case "-3":
+                                    Utils.Informa = "Lo siento pero el número consecutivo de" + "\r";
+                                    Utils.Informa += "remisiones de envío llegó a 999.999" + "\r";
+                                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                    break;
+                                case "-2":
+                                    Utils.Informa = "Lo siento pero la fecha del sistema es" + "\r";
+                                    Utils.Informa += "menor a la de la última remisión generada" + "\r";
+                                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                    break;
+                                case "-1":
+
+                                    return;
+                                    break;
+                                case "0":
+                                    Utils.Informa = "Error de administración de datos." + "\r";
+                                    Utils.Informa += "El registro único de contadores no fué posible encontrarlo." + "\r";
+                                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                    break;
+                                default: //TODO BIEN
+
+                                    //TERMINA
+
+                                    data = "INSERT INTO [DARIPSESSQL].[dbo].[Datos archivo maestro] " +
+                                     "(ConseArchivo," +
+                                     "CodInterAdmi," +
+                                     "CodIps," +
+                                     "CodAdmin," +
+                                     "FecRemite," +
+                                     "NomRespon," +
+                                     "Periodo1," +
+                                     "Periodo2," +
+                                     "NumFacturas," +
+                                     "TelResponsa," +
+                                     "CodRegEsp," +
+                                     "CerraRemi," +
+                                     "AnulRemi," +
+                                     "ActualRemi," +
+                                     "CodiRegis," +
+                                     "FecRegis)" +
+                                     "VALUES(" +
+                                     "'" + FunCon + "'," +
+                                     "'" + CinRips + "'," +
+                                     "'" + lblCodMinSalud.Text + "'," +
+                                     "'" + CR + "'," +
+                                     "'" + Date + "'," +
+                                     "'" + lblNombreUser.Text + "'," +
+                                     "'" + Periodo1 + "'," +
+                                     "'" + Periodo2 + "'," +
+                                     "'" + TolFac + "'," +
+                                     "'" + txtTeleIPS.Text + "'," +
+                                     "'" + Regimen + "'," +
+                                     "'" + 0 + "'," +
+                                     "'" + 0 + "'," +
+                                     "'" + 0 + "'," +
+                                     "'" + UsGra + "'," +
+                                     "'" + Date + "')";
+
+                                    SqlInsert = Conexion.SqlInsert(data);
+
+                                    //Comience el proceso de copiado de archivos
+                                    NRemEnvi = FunCon;
+
+                                    break;
+                            }//Fin swich
+
+
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        ArchivoMaestro.Read();
+                        NRemEnvi = ArchivoMaestro["ConseArchivo"].ToString();
+
+                        Utils.Informa = "El sistema ha encontrado abierta la remisión" + "\r";
+                        Utils.Informa += "Número " + NRemEnvi + " del codigo SGSS " + CR;
+                        res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (res == DialogResult.No)
+                        {
+                            return;
+                        }
+
+                    }
+                    ArchivoMaestro.Close();
+
+                    //'Inicia el proceso de copiados
+
+
+                    FunCopUs = CopiaRipsUsa(NRemEnvi, Coenti01, TolUsa, 2);
+
+
+                    switch (FunCopUs)
+                    {
+                        case -1:
+                            return; //Error en la funcion
+                            break;
+                        case -2:
+                            return; //No exiten datos para copiar
+                            break;
+                        default: //Siga a copiar las transacciones
+
+                            if (TolUsa > FunCopUs)
+                            {
+                                Utils.Titulo01 = "Control de ejecución";
+                                Utils.Informa = "Lo siento, pero de " + TolUsa + " usuarios" + "\r";
+                                Utils.Informa += "a exportar, solo se copiaron " + FunCopUs + "\r";
+                                Utils.Informa += "¿Quiere saber cuales son esos usuarios?" + "\r";
+                                res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                                if (res == DialogResult.Yes)
+                                {
+                                    //Muestre el informe 
+
+                                    string ReporUser = "SELECT [Datos temporal usuarios RIPS].CodDigita, [Datos temporal usuarios RIPS].NumRemi, [Datos temporal usuarios RIPS].CodAdmin, [Datos temporal usuarios RIPS].TipoDocum, [Datos temporal usuarios RIPS].NumDocum, [Datos temporal usuarios RIPS].TipUsuario, [Datos temporal usuarios RIPS].Apellido1, [Datos temporal usuarios RIPS].Apellido2, [Datos temporal usuarios RIPS].Nombre1, [Datos temporal usuarios RIPS].Nombre2, [Datos temporal usuarios RIPS].Edad, [Datos temporal usuarios RIPS].EdadMedi, [Datos temporal usuarios RIPS].Sexo, [Datos temporal usuarios RIPS].CodDpto, [Datos temporal usuarios RIPS].CodMuni, [Datos temporal usuarios RIPS].ZonaResi, Trim([Datos empresas y terceros].[NomAdmin] + ' ' + [Datos empresas y terceros].[ProgrAmin]) AS NoAdmin, [Datos empresas y terceros].NomPlan " +
+                                                " FROM [ACDATOXPSQL].[dbo].[Datos empresas y terceros] INNER JOIN [DARIPSESSQL].[dbo].[Datos temporal usuarios RIPS] ON [Datos empresas y terceros].CarAdmin = [Datos temporal usuarios RIPS].NumRemi " +
+                                                " WHERE [Datos empresas y terceros].[CodDigita] = '" + UsGra + "' AND [Datos empresas y terceros].[NumRemi] = '" + Coenti01 + "' AND [Datos empresas y terceros].[Exportado] = 0  " +
+                                                " ORDER BY [Datos temporal usuarios RIPS].TipoDocum, [Datos temporal usuarios RIPS].NumDocum; ";
+
+                                    Utils.SqlDatos = ReporUser;
+
+                                    Utils.infNombreInforme = "InfReporUserPorRemision";
+
+                                    Reportes.FrmInfUsuariosRemi frm = new Reportes.FrmInfUsuariosRemi();
+
+                                    frm.ShowDialog();
+
+                                }
+
+                            }
+                            break;
+                    }// Fin switch
+
+
+                    FunCopFac = CopiaRipsTrans(NRemEnvi, Coenti01, TolFac, 2);
+
+                    switch (FunCopFac)
+                    {
+                        case -1: //error en la funcion
+                            return;
+                            break;
+                        case -2: //NO existe nada para copiar
+                            return;
+                            break;
+                        default:
+
+                            //Contar todos lo demas archvios Juan
+
+
+
+
+
+
+
+                            break;
+                    }
+
+
+
+
+
+
+                }// Fin msgox si
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "después de hacer click sobre el botón exportar" + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         private void btnValidar_Click(object sender, EventArgs e)
         {
@@ -4429,7 +5332,6 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
 
         #endregion
 
-
         private void FrmRipsRegimen_Load(object sender, EventArgs e)
         {
             try
@@ -4450,563 +5352,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
 
         }
 
-        private void btnReportes_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string Coenti02 = null, NomUsReal = null, Coenti01 = null, TDE = null, NCC = null, Para01 = null;
-                string Mj = null, UsSel = null, CodRegEsp = null, NEenti = null;
-                int NivPerReal;
 
-                object CR;
-
-                if (cboNameEntidades.SelectedIndex == -1)
-                {
-                    Utils.Titulo01 = "Control de errores de ejecución";
-                    Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
-                    Utils.Informa += "usted no ha seleccionado el nombre de la entidad" + "\r";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    cboNameEntidades.Select();
-                    return;
-                }
-
-                Coenti01 = cboNameEntidades.SelectedValue.ToString();
-
-                if (string.IsNullOrWhiteSpace(Coenti01))
-                {
-                    Utils.Titulo01 = "Control de errores de ejecución";
-                    Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
-                    Utils.Informa += "usted no ha seleccionado el nombre de la entidad" + "\r";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    cboNameEntidades.Select();
-                    return;
-                }
-                else
-                {
-                    //Cargamos los datos de la entidad
-                    Utils.SqlDatos = "SELECT CarAdmin, ([NomAdmin] + ' ' + [ProgrAmin]) AS NP, TipoDocu, NumDocu , CodiMinSalud, ManualTari, RegimenAdmin, ActiReali, PerEmpre " +
-                                          "FROM [ACDATOXPSQL].[dbo].[Datos empresas y terceros] WHERE ((([ACDATOXPSQL].[dbo].[Datos empresas y terceros].PerEmpre) = 1) AND(([ACDATOXPSQL].[dbo].[Datos empresas y terceros].HabilEmp) = 1)) " +
-                                          "AND ([NomAdmin] + ' ' + [ProgrAmin]) is not null AND CarAdmin = '" + Coenti01 + "' ORDER BY([NomAdmin] +' ' + [ProgrAmin])";
-                    SqlDataReader sqlDataReader = Conexion.SQLDataReader(Utils.SqlDatos);
-                    if (sqlDataReader.HasRows)
-                    {
-                        sqlDataReader.Read();
-                        Coenti02 = Coenti01;
-                        NEenti = sqlDataReader["NP"].ToString();
-                        TDE = sqlDataReader["TipoDocu"].ToString();
-                        NCC = sqlDataReader["NumDocu"].ToString();
-                        CodRegEsp = sqlDataReader["RegimenAdmin"].ToString();
-                        Para01 = Coenti01;
-                    }
-                    sqlDataReader.Close();
-                }
-
-                if (string.IsNullOrWhiteSpace(txtRips.Text))
-                {
-                    Utils.Titulo01 = "Control de errores de ejecución";
-                    Utils.Informa = "Lo siento pero el código de la Administradora" + "\r";
-                    Utils.Informa += "de pagos en salud, no se encuentra definido para seleccionar los datos. " + "\r";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtRips.Select();
-                    return;
-                }
-
-                CR = txtRips.Text;
-
-                if (string.IsNullOrWhiteSpace(lblCodigoUser.Text))
-                {
-                    Utils.Titulo01 = "Control de errores de ejecución";
-                    Utils.Informa = "Lo siento pero el código del usuario" + "\r";
-                    Utils.Informa += "no es valido para seleccionar datos. " + "\r";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    lblCodigoUser.Select();
-                    return;
-                }
-
-
-                UsSel = lblCodigoUser.Text;
-                NomUsReal = lblNombreUser.Text;
-                NivPerReal = Convert.ToInt32(lblNivelPermitido.Text);
-
-                Utils.CarAdmin = Coenti01;
-                Utils.CodRips = CR.ToString();
-                Utils.NomTerc = NEenti;
-
-                //'Abra el formulario de reportes de RIPS
-
-                FrmReporteRipsRegimen frmReporteRipsRegimen = new FrmReporteRipsRegimen();
-
-                frmReporteRipsRegimen.ShowDialog();
-
-                //'Como los datos temporales de RIPS ahara se registran en la tabla RIPS, procedemos a contar desde la misma
-
-            }
-            catch (Exception ex)
-            {
-                Utils.Titulo01 = "Control de errores de ejecución";
-                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
-                Utils.Informa += "después de hacer click sobre el botón reportes" + "\r";
-                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
-                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnExportar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Utils.Titulo01 = "Control para seleccionar datos";
-                Boolean SqlInsert = true;
-                string Coenti01, TDE, NCC, Regimen = null, NEnti = null, FunCon = null, llamarfuncion = null, UsGra = null, MT = null, SqlDatos = null, CR = null, CinRips = null, NRemEnvi = null;
-                int FunEli, FunCopUs = 0;
-                string data;
-                double TolUsa = 0, TolFac = 0;
-                SqlDataReader ContarRips;
-                string Date = DateTime.Now.ToString("yyyy-MM-dd");
-                DateTime Fecha1 = DateInicial.Value;
-                DateTime Fecha2 = DateFinal.Value;
-                string Periodo1 = Fecha1.ToString("yyyy-MM-dd");
-                string Periodo2 = Fecha2.ToString("yyyy-MM-dd");
-
-                Utils.Titulo01 = "Control para exportar RIPS";
-
-                if (string.IsNullOrWhiteSpace(cboNameEntidades.SelectedValue.ToString()) == true || cboNameEntidades.SelectedIndex == -1)
-                {
-                    Utils.Informa = "Lo siento pero usted aún no ha";
-                    Utils.Informa += "seleccionado el nombre de la entidad.";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    cboNameEntidades.Select();
-                    return;
-                }
-                else
-                {
-                    Coenti01 = txtCardinal.Text;
-                    //Cargamos los datos de la entidad
-                    Utils.SqlDatos = "SELECT CarAdmin, ([NomAdmin] + ' ' + [ProgrAmin]) AS NP, TipoDocu, NumDocu , CodiMinSalud, ManualTari, RegimenAdmin, ActiReali, PerEmpre " +
-                                            "FROM [ACDATOXPSQL].[dbo].[Datos empresas y terceros] WHERE ((([ACDATOXPSQL].[dbo].[Datos empresas y terceros].PerEmpre) = 1) AND(([ACDATOXPSQL].[dbo].[Datos empresas y terceros].HabilEmp) = 1)) " +
-                                            "AND ([NomAdmin] + ' ' + [ProgrAmin]) is not null AND CarAdmin = '" + Coenti01 + "'";
-
-                    SqlDataReader sqlDataReader2 = Conexion.SQLDataReader(Utils.SqlDatos);
-
-                    if (sqlDataReader2.HasRows)
-                    {
-                        sqlDataReader2.Read();
-                        NEnti = sqlDataReader2["NP"].ToString();
-                        TDE = sqlDataReader2["TipoDocu"].ToString();
-                        NCC = sqlDataReader2["NumDocu"].ToString();
-                        Regimen = sqlDataReader2["RegimenAdmin"].ToString();
-                        CR = txtRips.Text;
-                    }
-
-                    sqlDataReader2.Close();
-                    sqlDataReader2 = null;
-
-                    if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
-
-                } //'Final de IsNull(Coenti01) Or (Coenti01 = " ")
-
-                //'Revisa si el código de la entidad está relacionada con alguna entidad
-
-                 CinRips = CodInterAdminEs(CR);
-
-                switch (CinRips)
-                {
-                    case "-1": // error en la función
-                        return;
-                        break;
-                    case "0": // NO existe la administradora
-                        Utils.Informa = "Lo siento pero el código SGSSS " + CR + " no" + "\r";
-                        Utils.Informa += "pertenece a ninguna administradora de planes" + "\r";
-                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                        break;
-                    case "1": //'No existe la ruta
-                        Utils.Informa = "Lo siento pero los archivos de SEDAS-RIPS" + "\r";
-                        Utils.Informa += "no se han encontrado en la ruta de datos" + "\r";
-                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                        break;
-                    default:
-                        //todo bien
-                        break;
-                }
-
-                //'Proceda a contar cuantos usuarios hay para exportar, y cuantas facturas
-
-
-                //Usuarios
-
-                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolUsuarios FROM [DARIPSESSQL].[dbo].[Datos temporal usuarios RIPS] WHERE NumRemi = '" + Coenti01 + "'";
-                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
-
-                if (ContarRips.HasRows)
-                {
-                    ContarRips.Read();
-                    TolUsa = Convert.ToDouble(ContarRips["TolUsuarios"]);
-
-                    if(TolUsa <= 0)
-                    {
-                        Utils.Informa = "Lo siento pero no existen facturas para" + "\r";
-                        Utils.Informa += "realizar el RIPS a la entidad o convenio" + "\r";
-                        Utils.Informa += NEnti;
-                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                }
-                ContarRips.Close();
-                ContarRips = null;
-                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
-
-
-                //transacciones 
-
-                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolFac FROM [DARIPSESSQL].[dbo].[Datos temporal transacciones RIPS] WHERE NumRemi = '" + Coenti01 + "'";
-
-                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
-
-                if (ContarRips.HasRows)
-                {
-                    ContarRips.Read();
-
-                    TolFac = Convert.ToDouble(ContarRips["TolFac"]);
-                    if (TolFac <= 0)
-                    {
-                        Utils.Informa = "Lo siento pero no existen usuarios para" + "\r";
-                        Utils.Informa += "realizar el RIPS a la entidad o convenio" + "\r";
-                        Utils.Informa += NEnti;
-                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                }
-                ContarRips.Close();
-                ContarRips = null;
-                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
-
-
-
-                Utils.Informa = "¿Usted desea realizar la exportación de los" + "\r";
-                Utils.Informa += "archivos RIPS de la entidad o convenio" + "\r";
-                Utils.Informa += NEnti;
-                var res  = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-
-                if(res == DialogResult.Yes)
-                {
-                    //Proceda a revisar si la entidad ya tiene un archivo maestro abierto en SEDAS-RIPS
-
-                    UsGra = lblCodigoUser.Text;
-
-
-                    Utils.SqlDatos = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos archivo maestro] WHERE CodInterAdmi = '"+ CinRips + "' and CerraRemi = 0";
-
-                    SqlDataReader ArchivoMaestro = Conexion.SQLDataReader(Utils.SqlDatos);
-
-                    if (ArchivoMaestro.HasRows == false)
-                    {
-                        //'NO existe un maestro abierto para la entidad seleccionado
-                        Utils.Informa = "¿Acepta que el sistema cree automaticamente" + "\r";
-                        Utils.Informa += "el archivo maestro de la remisión de envío?" + "\r";
-                        res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                        if (res == DialogResult.Yes)
-                        {
-                            //Proceda a crear el maestro
-
-
-                            FunCon = ConseRemisiones(true, UsGra);
-
-                            switch (FunCon)
-                            {
-                                case "-3":
-                                    Utils.Informa = "Lo siento pero el número consecutivo de" + "\r";
-                                    Utils.Informa += "remisiones de envío llegó a 999.999" + "\r";
-                                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    return;
-                                    break;
-                                case "-2":
-                                    Utils.Informa = "Lo siento pero la fecha del sistema es" + "\r";
-                                    Utils.Informa += "menor a la de la última remisión generada" + "\r";
-                                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    return;
-                                    break;
-                                case "-1":
-
-                                    return;
-                                    break;
-                                case "0":
-                                    Utils.Informa = "Error de administración de datos." + "\r";
-                                    Utils.Informa += "El registro único de contadores no fué posible encontrarlo." + "\r";
-                                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    return;
-                                    break;
-                                default: //TODO BIEN
-
-                                    //TERMINA
-
-                                    data = "INSERT INTO [DARIPSESSQL].[dbo].[Datos archivo maestro] " +
-                                     "(ConseArchivo," +
-                                     "CodInterAdmi," +
-                                     "CodIps," +
-                                     "CodAdmin," +
-                                     "FecRemite," +
-                                     "NomRespon," +
-                                     "Periodo1," +
-                                     "Periodo2," +
-                                     "NumFacturas," +
-                                     "TelResponsa," +
-                                     "CodRegEsp," +
-                                     "CerraRemi," +
-                                     "AnulRemi," +
-                                     "ActualRemi," +
-                                     "CodiRegis," +
-                                     "FecRegis)" +
-                                     "VALUES(" +
-                                     "'" + FunCon + "'," +
-                                     "'" + CinRips + "'," +
-                                     "'" + lblCodMinSalud.Text + "'," +
-                                     "'" + CR + "'," +
-                                     "'" + Date + "'," +
-                                     "'" + lblNombreUser.Text + "'," +
-                                     "'" + Periodo1 + "'," +
-                                     "'" + Periodo2 + "'," +
-                                     "'" + TolFac + "'," +
-                                     "'" + txtTeleIPS.Text + "'," +
-                                     "'" + Regimen + "'," +
-                                     "'" + 0 + "'," +
-                                     "'" + 0 + "'," +
-                                     "'" + 0 + "'," +
-                                     "'" + UsGra + "'," +
-                                     "'" + Date + "')";
-
-                                    SqlInsert = Conexion.SqlInsert(data);
-
-                                    //Comience el proceso de copiado de archivos
-                                    NRemEnvi = FunCon;
-
-                                    break;
-                            }//Fin swich
-
-
-                        }
-                        else
-                        {
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        ArchivoMaestro.Read();
-                        NRemEnvi = ArchivoMaestro["ConseArchivo"].ToString();
-
-                        Utils.Informa = "El sistema ha encontrado abierta la remisión" + "\r";
-                        Utils.Informa += "Número " + NRemEnvi + " del codigo SGSS " + CR;
-                        res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                        if(res == DialogResult.No)
-                        {
-                            return;
-                        }
-
-                    }
-
-
-                    FunCopUs = CopiaRipsUsa(NRemEnvi, Coenti01,TolUsa,2); 
-
-
-
-
-                }// Fin msgox si
-            }
-            catch (Exception ex)
-            {
-                Utils.Titulo01 = "Control de errores de ejecución";
-                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
-                Utils.Informa += "después de hacer click sobre el botón exportar" + "\r";
-                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
-                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private int CopiaRipsUsa(string NR, string CI, double TolU,Int16 RutCopy)
-        {
-            //Permite copiar los usuarios para RIPS a SEDAS-RIPS
-
-            Utils.SqlDatos = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos temporal usuarios RIPS]";
-
-            SqlDataReader TabLocal = Conexion.SQLDataReader(Utils.SqlDatos);
-
-            if(TabLocal.HasRows == false)
-            {
-                return -1;
-            }
-            else
-            {
-                return 1;
-            }
-
-
-
-        }
-
-
-
-        private string ConseRemisiones(Boolean a, string US)
-        {
-            try
-            {
-
-                string SqlContadores = null, Convertido = null;
-                string Date;
-                double Fac = 0;
-
-                SqlContadores = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos contadores sedas];";
-
-                SqlDataReader TabContadores = Conexion.SQLDataReader(SqlContadores);
-
-                if (TabContadores.HasRows == false)
-                {
-                   return "0";              
-                }
-                else
-                {
-                    TabContadores.Read();
-
-                    if (Convert.ToInt32(TabContadores["UlConRemi"].ToString()) == 0)
-                    {
-                        //no existe remisiones perdidas
-                        Fac = Convert.ToInt32(TabContadores["ConsRemi"].ToString());
-                        Fac += 1;
-
-                        //Procesa a actualizar el campo de concecutivos
-
-                        Date = DateTime.Now.ToString("yyyy-MM-dd");
-
-                        if (a)
-                        {
-                            Utils.SqlDatos = "UPDATE [DARIPSESSQL].[dbo].[Datos contadores sedas] SET [ConsRemi] = '" + Fac + "', [UsarRemi] = '" + US + "', FecRemi = '" + Date + "'";
-
-                            Boolean EstaActConce = Conexion.SQLUpdate(Utils.SqlDatos);
-
-                            if (EstaActConce == false)
-                            {
-                                Utils.Informa = "Error de administración de datos. ";
-                                Utils.Informa += "al actualizar el concecutivo" + "\r";
-
-                                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                        }
-                         
-                    }
-                    else
-                    {
-                        Fac = Convert.ToDouble(TabContadores["UlConRemi"].ToString());
-
-                        Utils.SqlDatos = "UPDATE [DARIPSESSQL].[dbo].[Datos contadores sedas] SET [UlConRemi] = '" + 0 + "'";
-
-                        Boolean EstaActConce = Conexion.SQLUpdate(Utils.SqlDatos);
-
-                        if (EstaActConce == false)
-                        {
-                            Utils.Informa = "Error de administración de datos. ";
-                            Utils.Informa += "al actualizar el campo UlConRemi " + "\r";
-                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    } // final   if (Convert.ToInt32(TabContadores["UlConRemi"].ToString()) == 0)
-
-                    //Devuelva el campo convertido en string
-
-                    Convertido = "";
-
-                    switch (Fac)
-                    {
-                        case double estado when Fac >= 1 && Fac <= 9:
-                            Convertido = "00000" + Fac;
-                            break;
-                        case double estado when Fac >= 10 && Fac <= 99:
-                            Convertido = "0000" + Fac;
-                            break;
-                        case double estado when Fac >= 100 && Fac <= 999:
-                            Convertido = "000" + Fac;
-                            break;
-                        case double estado when Fac >= 1000 && Fac <= 9999:
-                            Convertido = "00" + Fac;
-                            break;
-                        case double estado when Fac >= 10000 && Fac <= 99999:
-                            Convertido = "0" + Fac;
-                            break;
-                        case double estado when Fac >= 100000 && Fac <= 999999:
-                            Convertido = Convert.ToString(Fac);
-                            break;
-                        default:
-                            Utils.Informa = "El consecutivo de remisiones ha pasado el";
-                            Utils.Informa = Utils.Informa + "limite de seis (6) digitos, por lo tanto no";
-                            Utils.Informa = Utils.Informa + "se puede generar otra remisión hasta que el";
-                            Utils.Informa = Utils.Informa + "administrador del sistema amplie el rango.";
-                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            Convertido = "-3";
-                            break;
-                    }
-
-                    TabContadores.Close();
-                    return Convertido;
-
-                }
-
-             }
-            catch (Exception ex)
-            {
-                Utils.Titulo01 = "Control de errores de ejecución";
-                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
-                Utils.Informa += "en la funcion ConseRemisiones " + "\r";
-                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
-                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return "-1";
-            }
-            finally
-            {
-                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
-            }
-        }
-
-        private string CodInterAdminEs(string CSgsss)
-        {
-            try
-            {
-                //Permite buscar el código interno de la entidad según el código del minsalud
-                //en la base de datos de SEDAS-RIPS
-
-                Utils.SqlDatos = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos administradoras de planes] WHERE CodAdmin = '" + CSgsss + "' ";
-
-                SqlDataReader reader = Conexion.SQLDataReader(Utils.SqlDatos);
-
-                if (reader.HasRows)
-                {
-                    reader.Read();
-
-                    return reader["CodInterno"].ToString();
-
-                }
-                else
-                {
-                    return "0";
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                Utils.Titulo01 = "Control de errores de ejecución";
-                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
-                Utils.Informa += "en la funcion CodInterAdminEs " + "\r";
-                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
-                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return "-1";
-            }
-            finally
-            {
-                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
-            }
-        }
 
 
     }
