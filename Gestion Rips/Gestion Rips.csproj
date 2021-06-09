@@ -146,6 +146,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>dsInfInformesRips.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\DataSet\dsInfInformesRipsRegimen.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsInfInformesRipsRegimen.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\DataSet\dsInUserPorRemision.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -293,6 +298,17 @@
     </None>
     <None Include="Reportes\DataSet\dsInfInformesRips.xss">
       <DependentUpon>dsInfInformesRips.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\DataSet\dsInfInformesRipsRegimen.xsc">
+      <DependentUpon>dsInfInformesRipsRegimen.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\DataSet\dsInfInformesRipsRegimen.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsInfInformesRipsRegimen.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\DataSet\dsInfInformesRipsRegimen.xss">
+      <DependentUpon>dsInfInformesRipsRegimen.xsd</DependentUpon>
     </None>
     <None Include="Reportes\DataSet\dsInUserPorRemision.xsc">
       <DependentUpon>dsInUserPorRemision.xsd</DependentUpon>

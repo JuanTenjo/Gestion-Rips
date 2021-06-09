@@ -457,7 +457,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                 }
                 else
                 {
-                    while (TabLocal1.Read())
+                    while (TabLocal1.Read()) 
                     {
                         TemEnti = TabLocal1["NumRemi"].ToString();
                         NF = TabLocal1["NumFactur"].ToString();
