@@ -23,7 +23,7 @@
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.6cm</Height>
+              <Height>1.14797cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -222,7 +222,7 @@
         <DataSetName>dsDetalle</DataSetName>
         <Top>0.17639cm</Top>
         <Left>0.13228cm</Left>
-        <Height>0.6cm</Height>
+        <Height>1.14797cm</Height>
         <Width>18.32326cm</Width>
         <Style>
           <Border>
@@ -231,7 +231,7 @@
         </Style>
       </Tablix>
       <Line Name="Line3">
-        <Top>1.07742cm</Top>
+        <Top>1.50075cm</Top>
         <Height>0cm</Height>
         <Width>18.45555cm</Width>
         <ZIndex>1</ZIndex>
@@ -242,14 +242,14 @@
         </Style>
       </Line>
     </ReportItems>
-    <Height>0.52105in</Height>
+    <Height>0.66688in</Height>
     <Style>
       <Border>
         <Style>None</Style>
       </Border>
     </Style>
   </Body>
-  <Width>7.3071in</Width>
+  <Width>7.30764in</Width>
   <Page>
     <PageHeader>
       <Height>4.38036cm</Height>
@@ -579,7 +579,7 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>2.75166cm</Height>
+      <Height>3.01624cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -602,7 +602,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>NomEmpresa</rd:DefaultName>
-          <Left>0.00001cm</Left>
+          <Top>0.35964cm</Top>
           <Height>0.60028cm</Height>
           <Width>18.45555cm</Width>
           <Style>
@@ -635,7 +635,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>NomEmpresa</rd:DefaultName>
-          <Top>0.60028cm</Top>
+          <Top>0.95992cm</Top>
           <Height>0.60028cm</Height>
           <Width>18.45556cm</Width>
           <ZIndex>1</ZIndex>
@@ -669,8 +669,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>NomEmpresa</rd:DefaultName>
-          <Top>1.20056cm</Top>
-          <Left>0.00001cm</Left>
+          <Top>1.5602cm</Top>
           <Height>0.60028cm</Height>
           <Width>18.45555cm</Width>
           <ZIndex>2</ZIndex>
@@ -704,8 +703,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>PageNumber</rd:DefaultName>
-          <Top>1.97723cm</Top>
-          <Left>15.93736cm</Left>
+          <Top>2.33687cm</Top>
+          <Left>15.72433cm</Left>
           <Height>0.6cm</Height>
           <Width>0.90431cm</Width>
           <ZIndex>3</ZIndex>
@@ -738,8 +737,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>TotalPages</rd:DefaultName>
-          <Top>1.97723cm</Top>
-          <Left>17.50722cm</Left>
+          <Top>2.33687cm</Top>
+          <Left>17.29419cm</Left>
           <Height>0.6cm</Height>
           <Width>0.68322cm</Width>
           <ZIndex>4</ZIndex>
@@ -770,8 +769,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox29</rd:DefaultName>
-          <Top>1.97723cm</Top>
-          <Left>16.84167cm</Left>
+          <Top>2.33687cm</Top>
+          <Left>16.62864cm</Left>
           <Height>0.6cm</Height>
           <Width>0.66556cm</Width>
           <ZIndex>5</ZIndex>
@@ -802,8 +801,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox30</rd:DefaultName>
-          <Top>1.97723cm</Top>
-          <Left>14.90957cm</Left>
+          <Top>2.33687cm</Top>
+          <Left>14.69654cm</Left>
           <Height>0.6cm</Height>
           <Width>1.02779cm</Width>
           <ZIndex>6</ZIndex>
@@ -836,7 +835,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox5</rd:DefaultName>
-          <Top>1.97723cm</Top>
+          <Top>2.33687cm</Top>
           <Height>0.44125cm</Height>
           <Width>3.69604cm</Width>
           <ZIndex>7</ZIndex>

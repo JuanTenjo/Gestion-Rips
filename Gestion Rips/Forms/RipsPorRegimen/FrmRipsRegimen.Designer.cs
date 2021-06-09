@@ -855,6 +855,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
             this.btnExportar.Size = new System.Drawing.Size(43, 35);
             this.btnExportar.TabIndex = 3;
             this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
             // btnReportes
             // 
@@ -866,6 +867,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
             this.btnReportes.Size = new System.Drawing.Size(43, 35);
             this.btnReportes.TabIndex = 2;
             this.btnReportes.UseVisualStyleBackColor = true;
+            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
             // 
             // btnValidar
             // 

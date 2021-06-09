@@ -457,9 +457,9 @@ namespace Gestion_Rips.Forms.Exportar
                 string SqlReNaciTemp, Dp, mMuCi, ObErr, Z, RutaGeo, Msj, DxPr, FunDx;
                 int RegExp, FunDpto, FunMuni, FiCon, VR;
 
-                SqlReNaciTemp = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal observacion RIPS] ";
-                SqlReNaciTemp += "WHERE (([Datos temporal observacion RIPS].CodDigita) = '" + CodDg + "') and ";
-                SqlReNaciTemp += "((Datos temporal observacion RIPS].NumRemi) = '" + c + "');";
+                SqlReNaciTemp = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal recien nacidos RIPS] ";
+                SqlReNaciTemp += "WHERE (([Datos temporal recien nacidos RIPS].CodDigita) = '" + CodDg + "') and ";
+                SqlReNaciTemp += "(([Datos temporal recien nacidos RIPS].NumRemi) = '" + c + "');";
                 SqlDataReader TabReNan = Conexion.SQLDataReader(SqlReNaciTemp);
 
                 if (TabReNan.HasRows == false)
@@ -751,7 +751,7 @@ namespace Gestion_Rips.Forms.Exportar
 
                 SqlMediTem = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal observacion RIPS] ";
                 SqlMediTem += "WHERE (([Datos temporal observacion RIPS].CodDigita) = '" + CodDg + "') and ";
-                SqlMediTem += "((Datos temporal observacion RIPS].NumRemi) = '" + c + "');";
+                SqlMediTem += "(([Datos temporal observacion RIPS].NumRemi) = '" + c + "');";
                 SqlDataReader TabObserva = Conexion.SQLDataReader(SqlMediTem);
 
                 if (TabObserva.HasRows == false)
@@ -829,7 +829,7 @@ namespace Gestion_Rips.Forms.Exportar
                                     if (TablaAux1.HasRows == false)
                                     {
                                         RegExp = 1;
-                                        ObErr = ObErr + "El código " + TablaAux1["DxPrincIngre"].ToString() + ", del diagnóstico principal no existe la resolución vigente.";
+                                        ObErr = ObErr + "El código " + TabObserva["DxPrincIngre"].ToString() + ", del diagnóstico principal no existe la resolución vigente.";
                                     }
                                     TablaAux1.Close();
                                 }
@@ -871,7 +871,7 @@ namespace Gestion_Rips.Forms.Exportar
                                     if (TablaAux1.HasRows == false)
                                     {
                                         RegExp = 1;
-                                        ObErr = ObErr + "El código " + TablaAux1["DxRelacion1"].ToString() + ", del diagnóstico DxRelacion1 no existe la resolución vigente.";
+                                        ObErr = ObErr + "El código " + TabObserva["DxRelacion1"].ToString() + ", del diagnóstico DxRelacion1 no existe la resolución vigente.";
                                     }
                                     TablaAux1.Close();
                                 }
@@ -914,7 +914,7 @@ namespace Gestion_Rips.Forms.Exportar
                                     if (TablaAux1.HasRows == false)
                                     {
                                         RegExp = 1;
-                                        ObErr = ObErr + "El código " + TablaAux1["DxRelacion2"].ToString() + ", del diagnóstico DxRelacion2 no existe la resolución vigente.";
+                                        ObErr = ObErr + "El código " + TabObserva["DxRelacion2"].ToString() + ", del diagnóstico DxRelacion2 no existe la resolución vigente.";
                                     }
                                     TablaAux1.Close();
                                 }
@@ -1183,7 +1183,7 @@ namespace Gestion_Rips.Forms.Exportar
                 int RegExp, FunDpto, FunMuni, FiCon, VR;
 
                 SqlConsulTem = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos temporal hospitalizacion RIPS] " +
-                "WHERE ((Datos temporal hospitalizacion RIPS].CodDigita) = '" + CodDg + "' ) and " +
+                "WHERE (([Datos temporal hospitalizacion RIPS].CodDigita) = '" + CodDg + "' ) and " +
                 "(([Datos temporal hospitalizacion RIPS].NumRemi) = '" + c + "');";
 
                 SqlDataReader TabHospi = Conexion.SQLDataReader(SqlConsulTem);
@@ -1295,7 +1295,7 @@ namespace Gestion_Rips.Forms.Exportar
                                     if (TablaAux1.HasRows == false)
                                     {
                                         RegExp = 1;
-                                        ObErr = ObErr + "El código " + TablaAux1["DxPrincIngre"].ToString() + ", del diagnóstico principal no existe la resolución vigente.";
+                                        ObErr = ObErr + "El código " + TabHospi["DxPrincIngre"].ToString() + ", del diagnóstico principal no existe la resolución vigente.";
                                     }
                                     TablaAux1.Close();
                                 }
@@ -1339,7 +1339,7 @@ namespace Gestion_Rips.Forms.Exportar
                                     if (TablaAux1.HasRows == false)
                                     {
                                         RegExp = 1;
-                                        ObErr = ObErr + "El código " + TablaAux1["DxPrincEgre"].ToString() + ", el diagnóstico principal de egreso no existe la resolución vigente.";
+                                        ObErr = ObErr + "El código " + TabHospi["DxPrincEgre"].ToString() + ", el diagnóstico principal de egreso no existe la resolución vigente.";
                                     }
                                     TablaAux1.Close();
                                 }
@@ -6287,7 +6287,6 @@ namespace Gestion_Rips.Forms.Exportar
                                             if (codMuni.Length > 3 && codMuni.Length == 5)
                                             {
                                                 codMuni = codMuni.Substring(2, 3);
-                                                MessageBox.Show(codMuni);
                                             }
                                             else
                                             {

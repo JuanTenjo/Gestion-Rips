@@ -403,7 +403,7 @@ SELECT CarAdmin, CodiMinSalud, PerEmpre, NomAdmin, ProgrAmin, TipoDocu, NumDocu,
             <MainSource>
               <DbSource ConnectionRef="ACDATOXPSQLConnectionString (Settings)" DbObjectName="DARIPSXPSQL.dbo.[Datos temporal consultas RIPS]" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT        DARIPSXPSQL.dbo.[Datos temporal consultas RIPS].CodDigita, DARIPSXPSQL.dbo.[Datos temporal consultas RIPS].NumRemi, DARIPSXPSQL.dbo.[Datos temporal consultas RIPS].NumFactur, 
                          DARIPSXPSQL.dbo.[Datos temporal consultas RIPS].CodIPS, DARIPSXPSQL.dbo.[Datos temporal consultas RIPS].TipoDocum, DARIPSXPSQL.dbo.[Datos temporal consultas RIPS].NumDocum, 
                          DARIPSXPSQL.dbo.[Datos temporal consultas RIPS].FecConsul, DARIPSXPSQL.dbo.[Datos temporal consultas RIPS].AutoriNum, DARIPSXPSQL.dbo.[Datos temporal consultas RIPS].CodConsul, 
@@ -447,7 +447,7 @@ FROM            DARIPSXPSQL.dbo.[Datos temporal consultas RIPS] INNER JOIN
             <MainSource>
               <DbSource ConnectionRef="ACDATOXPSQLConnectionString (Settings)" DbObjectName="DARIPSXPSQL.dbo.[Datos temporal hospitalizacion RIPS]" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT        DARIPSXPSQL.dbo.[Datos temporal hospitalizacion RIPS].CodDigita, DARIPSXPSQL.dbo.[Datos temporal hospitalizacion RIPS].NumRemi, DARIPSXPSQL.dbo.[Datos temporal hospitalizacion RIPS].NumFactur, 
                          DARIPSXPSQL.dbo.[Datos temporal hospitalizacion RIPS].CodIPS, DARIPSXPSQL.dbo.[Datos temporal hospitalizacion RIPS].TipoDocum, DARIPSXPSQL.dbo.[Datos temporal hospitalizacion RIPS].NumDocum, 
                          DARIPSXPSQL.dbo.[Datos temporal hospitalizacion RIPS].ViaDIngreso, DARIPSXPSQL.dbo.[Datos temporal hospitalizacion RIPS].FecIngresa, DARIPSXPSQL.dbo.[Datos temporal hospitalizacion RIPS].HorIngresa, 
@@ -492,7 +492,7 @@ FROM            DARIPSXPSQL.dbo.[Datos temporal hospitalizacion RIPS] INNER JOIN
             <MainSource>
               <DbSource ConnectionRef="ACDATOXPSQLConnectionString (Settings)" DbObjectName="DARIPSXPSQL.dbo.[Datos temporal medicamentos RIPS]" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT        DARIPSXPSQL.dbo.[Datos temporal medicamentos RIPS].CodDigita, DARIPSXPSQL.dbo.[Datos temporal medicamentos RIPS].NumRemi, DARIPSXPSQL.dbo.[Datos temporal medicamentos RIPS].NumFactur, 
                          DARIPSXPSQL.dbo.[Datos temporal medicamentos RIPS].CodIPS, DARIPSXPSQL.dbo.[Datos temporal medicamentos RIPS].TipoDocum, DARIPSXPSQL.dbo.[Datos temporal medicamentos RIPS].NumDocum, 
                          DARIPSXPSQL.dbo.[Datos temporal medicamentos RIPS].AutoriNum, DARIPSXPSQL.dbo.[Datos temporal medicamentos RIPS].CodMedica, DARIPSXPSQL.dbo.[Datos temporal medicamentos RIPS].TipoMedica, 
@@ -531,7 +531,7 @@ FROM            DARIPSXPSQL.dbo.[Datos temporal medicamentos RIPS] INNER JOIN
             <MainSource>
               <DbSource ConnectionRef="ACDATOXPSQLConnectionString (Settings)" DbObjectName="DARIPSXPSQL.dbo.[Datos temporal observacion RIPS]" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT        DARIPSXPSQL.dbo.[Datos temporal observacion RIPS].CodDigita, DARIPSXPSQL.dbo.[Datos temporal observacion RIPS].NumRemi, DARIPSXPSQL.dbo.[Datos temporal observacion RIPS].NumFactur, 
                          DARIPSXPSQL.dbo.[Datos temporal observacion RIPS].CodIPS, DARIPSXPSQL.dbo.[Datos temporal observacion RIPS].TipoDocum, DARIPSXPSQL.dbo.[Datos temporal observacion RIPS].NumDocum, 
                          DARIPSXPSQL.dbo.[Datos temporal observacion RIPS].FecIngresa, DARIPSXPSQL.dbo.[Datos temporal observacion RIPS].HorIngresa, DARIPSXPSQL.dbo.[Datos temporal observacion RIPS].AutoriNum, 
@@ -574,7 +574,7 @@ FROM            DARIPSXPSQL.dbo.[Datos temporal observacion RIPS] INNER JOIN
             <MainSource>
               <DbSource ConnectionRef="ACDATOXPSQLConnectionString (Settings)" DbObjectName="DARIPSXPSQL.dbo.[Datos temporal otros servicios RIPS]" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT        DARIPSXPSQL.dbo.[Datos temporal otros servicios RIPS].CodDigita, DARIPSXPSQL.dbo.[Datos temporal otros servicios RIPS].NumRemi, DARIPSXPSQL.dbo.[Datos temporal otros servicios RIPS].NumFactur, 
                          DARIPSXPSQL.dbo.[Datos temporal otros servicios RIPS].CodIPS, DARIPSXPSQL.dbo.[Datos temporal otros servicios RIPS].TipoDocum, DARIPSXPSQL.dbo.[Datos temporal otros servicios RIPS].NumDocum, 
                          DARIPSXPSQL.dbo.[Datos temporal otros servicios RIPS].AutoriNum, DARIPSXPSQL.dbo.[Datos temporal otros servicios RIPS].TipoServicio, DARIPSXPSQL.dbo.[Datos temporal otros servicios RIPS].CodiServi, 
@@ -609,7 +609,7 @@ FROM            DARIPSXPSQL.dbo.[Datos temporal otros servicios RIPS] INNER JOIN
             <MainSource>
               <DbSource ConnectionRef="ACDATOXPSQLConnectionString (Settings)" DbObjectName="DARIPSXPSQL.dbo.[Datos temporal recien nacidos RIPS]" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT        DARIPSXPSQL.dbo.[Datos temporal recien nacidos RIPS].CodDigita, DARIPSXPSQL.dbo.[Datos temporal recien nacidos RIPS].NumRemi, DARIPSXPSQL.dbo.[Datos temporal recien nacidos RIPS].NumFactur, 
                          DARIPSXPSQL.dbo.[Datos temporal recien nacidos RIPS].CodIPS, DARIPSXPSQL.dbo.[Datos temporal recien nacidos RIPS].TipoDocum, DARIPSXPSQL.dbo.[Datos temporal recien nacidos RIPS].NumDocum, 
                          DARIPSXPSQL.dbo.[Datos temporal recien nacidos RIPS].FecNaci, DARIPSXPSQL.dbo.[Datos temporal recien nacidos RIPS].HorIngresa, DARIPSXPSQL.dbo.[Datos temporal recien nacidos RIPS].EdadGesta, 
@@ -648,7 +648,7 @@ FROM            DARIPSXPSQL.dbo.[Datos temporal recien nacidos RIPS] INNER JOIN
             <MainSource>
               <DbSource ConnectionRef="ACDATOXPSQLConnectionString (Settings)" DbObjectName="DARIPSXPSQL.dbo.[Datos temporal procedimientos RIPS]" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT        DARIPSXPSQL.dbo.[Datos temporal procedimientos RIPS].CodDigita, DARIPSXPSQL.dbo.[Datos temporal procedimientos RIPS].NumRemi, DARIPSXPSQL.dbo.[Datos temporal procedimientos RIPS].NumFactur, 
                          DARIPSXPSQL.dbo.[Datos temporal procedimientos RIPS].CodIPS, DARIPSXPSQL.dbo.[Datos temporal procedimientos RIPS].TipoDocum, DARIPSXPSQL.dbo.[Datos temporal procedimientos RIPS].NumDocum, 
                          DARIPSXPSQL.dbo.[Datos temporal procedimientos RIPS].FecProce, DARIPSXPSQL.dbo.[Datos temporal procedimientos RIPS].AutoriNum, DARIPSXPSQL.dbo.[Datos temporal procedimientos RIPS].CodProce, 
@@ -688,7 +688,7 @@ FROM            DARIPSXPSQL.dbo.[Datos temporal procedimientos RIPS] INNER JOIN
             <MainSource>
               <DbSource ConnectionRef="ACDATOXPSQLConnectionString (Settings)" DbObjectName="DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS]" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT        DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS].CodDigita, DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS].NumRemi, DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS].CodIPS, 
                          DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS].RazonSocial, DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS].TipIdenti, DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS].NumIdenti, 
                          DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS].NumFactur, DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS].FecFactur, DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS].FecInicio, 
@@ -733,7 +733,7 @@ FROM            DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS] INNER JOIN
             <MainSource>
               <DbSource ConnectionRef="ACDATOXPSQLConnectionString (Settings)" DbObjectName="DARIPSXPSQL.dbo.[Datos temporal usuarios RIPS]" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT        DARIPSXPSQL.dbo.[Datos temporal usuarios RIPS].CodDigita, DARIPSXPSQL.dbo.[Datos temporal usuarios RIPS].NumRemi, DARIPSXPSQL.dbo.[Datos temporal usuarios RIPS].TipoDocum, 
                          DARIPSXPSQL.dbo.[Datos temporal usuarios RIPS].NumDocum, DARIPSXPSQL.dbo.[Datos temporal usuarios RIPS].CodAdmin, DARIPSXPSQL.dbo.[Datos temporal usuarios RIPS].TipUsuario, 
                          DARIPSXPSQL.dbo.[Datos temporal usuarios RIPS].Apellido1, DARIPSXPSQL.dbo.[Datos temporal usuarios RIPS].Apellido2, DARIPSXPSQL.dbo.[Datos temporal usuarios RIPS].Nombre1, 
@@ -773,7 +773,7 @@ FROM            DARIPSXPSQL.dbo.[Datos temporal usuarios RIPS] INNER JOIN
             <MainSource>
               <DbSource ConnectionRef="ACDATOXPSQLConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT        [Datos empresas y terceros].CodiMinSalud, Trim([Datos empresas y terceros].NomAdmin + ' ' + [Datos empresas y terceros].ProgrAmin) AS NE, [Datos empresas y terceros].TipoDocu, [Datos empresas y terceros].NumDocu, 
                          DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS].NumFactur, DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS].NumRemi, DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS].Copago, 
                          DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS].ValorNeto, DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS].VaLorDeta, 
@@ -807,7 +807,7 @@ FROM            [Datos empresas y terceros] INNER JOIN
   <xs:element name="dsInfInformesRips" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsInfInformesRips" msprop:Generator_UserDSName="dsInfInformesRips">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Datos_x0020_Informacion_x0020_Empresa" msprop:Generator_TableClassName="Datos_Informacion_EmpresaDataTable" msprop:Generator_TableVarName="tableDatos_Informacion_Empresa" msprop:Generator_RowChangedName="Datos_Informacion_EmpresaRowChanged" msprop:Generator_TablePropName="Datos_Informacion_Empresa" msprop:Generator_RowDeletingName="Datos_Informacion_EmpresaRowDeleting" msprop:Generator_RowChangingName="Datos_Informacion_EmpresaRowChanging" msprop:Generator_RowEvHandlerName="Datos_Informacion_EmpresaRowChangeEventHandler" msprop:Generator_RowDeletedName="Datos_Informacion_EmpresaRowDeleted" msprop:Generator_RowClassName="Datos_Informacion_EmpresaRow" msprop:Generator_UserTableName="Datos Informacion Empresa" msprop:Generator_RowEvArgName="Datos_Informacion_EmpresaRowChangeEvent">
+        <xs:element name="Datos_x0020_Informacion_x0020_Empresa" msprop:Generator_TableClassName="Datos_Informacion_EmpresaDataTable" msprop:Generator_TableVarName="tableDatos_Informacion_Empresa" msprop:Generator_TablePropName="Datos_Informacion_Empresa" msprop:Generator_RowDeletingName="Datos_Informacion_EmpresaRowDeleting" msprop:Generator_RowChangingName="Datos_Informacion_EmpresaRowChanging" msprop:Generator_RowEvHandlerName="Datos_Informacion_EmpresaRowChangeEventHandler" msprop:Generator_RowDeletedName="Datos_Informacion_EmpresaRowDeleted" msprop:Generator_UserTableName="Datos Informacion Empresa" msprop:Generator_RowChangedName="Datos_Informacion_EmpresaRowChanged" msprop:Generator_RowEvArgName="Datos_Informacion_EmpresaRowChangeEvent" msprop:Generator_RowClassName="Datos_Informacion_EmpresaRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CodUnico" msprop:Generator_ColumnVarNameInTable="columnCodUnico" msprop:Generator_ColumnPropNameInRow="CodUnico" msprop:Generator_ColumnPropNameInTable="CodUnicoColumn" msprop:Generator_UserColumnName="CodUnico">
@@ -940,7 +940,7 @@ FROM            [Datos empresas y terceros] INNER JOIN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Datos_x0020_empresas_x0020_y_x0020_terceros" msprop:Generator_TableClassName="Datos_empresas_y_tercerosDataTable" msprop:Generator_TableVarName="tableDatos_empresas_y_terceros" msprop:Generator_RowChangedName="Datos_empresas_y_tercerosRowChanged" msprop:Generator_TablePropName="Datos_empresas_y_terceros" msprop:Generator_RowDeletingName="Datos_empresas_y_tercerosRowDeleting" msprop:Generator_RowChangingName="Datos_empresas_y_tercerosRowChanging" msprop:Generator_RowEvHandlerName="Datos_empresas_y_tercerosRowChangeEventHandler" msprop:Generator_RowDeletedName="Datos_empresas_y_tercerosRowDeleted" msprop:Generator_RowClassName="Datos_empresas_y_tercerosRow" msprop:Generator_UserTableName="Datos empresas y terceros" msprop:Generator_RowEvArgName="Datos_empresas_y_tercerosRowChangeEvent">
+        <xs:element name="Datos_x0020_empresas_x0020_y_x0020_terceros" msprop:Generator_TableClassName="Datos_empresas_y_tercerosDataTable" msprop:Generator_TableVarName="tableDatos_empresas_y_terceros" msprop:Generator_TablePropName="Datos_empresas_y_terceros" msprop:Generator_RowDeletingName="Datos_empresas_y_tercerosRowDeleting" msprop:Generator_RowChangingName="Datos_empresas_y_tercerosRowChanging" msprop:Generator_RowEvHandlerName="Datos_empresas_y_tercerosRowChangeEventHandler" msprop:Generator_RowDeletedName="Datos_empresas_y_tercerosRowDeleted" msprop:Generator_UserTableName="Datos empresas y terceros" msprop:Generator_RowChangedName="Datos_empresas_y_tercerosRowChanged" msprop:Generator_RowEvArgName="Datos_empresas_y_tercerosRowChangeEvent" msprop:Generator_RowClassName="Datos_empresas_y_tercerosRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CarAdmin" msprop:Generator_ColumnVarNameInTable="columnCarAdmin" msprop:Generator_ColumnPropNameInRow="CarAdmin" msprop:Generator_ColumnPropNameInTable="CarAdminColumn" msprop:Generator_UserColumnName="CarAdmin">
@@ -1247,7 +1247,7 @@ FROM            [Datos empresas y terceros] INNER JOIN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ConsultasPorRemision" msprop:Generator_TableClassName="ConsultasPorRemisionDataTable" msprop:Generator_TableVarName="tableConsultasPorRemision" msprop:Generator_RowChangedName="ConsultasPorRemisionRowChanged" msprop:Generator_TablePropName="ConsultasPorRemision" msprop:Generator_RowDeletingName="ConsultasPorRemisionRowDeleting" msprop:Generator_RowChangingName="ConsultasPorRemisionRowChanging" msprop:Generator_RowEvHandlerName="ConsultasPorRemisionRowChangeEventHandler" msprop:Generator_RowDeletedName="ConsultasPorRemisionRowDeleted" msprop:Generator_RowClassName="ConsultasPorRemisionRow" msprop:Generator_UserTableName="ConsultasPorRemision" msprop:Generator_RowEvArgName="ConsultasPorRemisionRowChangeEvent">
+        <xs:element name="ConsultasPorRemision" msprop:Generator_TableClassName="ConsultasPorRemisionDataTable" msprop:Generator_TableVarName="tableConsultasPorRemision" msprop:Generator_TablePropName="ConsultasPorRemision" msprop:Generator_RowDeletingName="ConsultasPorRemisionRowDeleting" msprop:Generator_RowChangingName="ConsultasPorRemisionRowChanging" msprop:Generator_RowEvHandlerName="ConsultasPorRemisionRowChangeEventHandler" msprop:Generator_RowDeletedName="ConsultasPorRemisionRowDeleted" msprop:Generator_UserTableName="ConsultasPorRemision" msprop:Generator_RowChangedName="ConsultasPorRemisionRowChanged" msprop:Generator_RowEvArgName="ConsultasPorRemisionRowChangeEvent" msprop:Generator_RowClassName="ConsultasPorRemisionRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CodDigita" msprop:Generator_ColumnVarNameInTable="columnCodDigita" msprop:Generator_ColumnPropNameInRow="CodDigita" msprop:Generator_ColumnPropNameInTable="CodDigitaColumn" msprop:Generator_UserColumnName="CodDigita">
@@ -1713,7 +1713,7 @@ FROM            [Datos empresas y terceros] INNER JOIN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ConsultaPorOtrosServi" msprop:Generator_TableClassName="ConsultaPorOtrosServiDataTable" msprop:Generator_TableVarName="tableConsultaPorOtrosServi" msprop:Generator_RowChangedName="ConsultaPorOtrosServiRowChanged" msprop:Generator_TablePropName="ConsultaPorOtrosServi" msprop:Generator_RowDeletingName="ConsultaPorOtrosServiRowDeleting" msprop:Generator_RowChangingName="ConsultaPorOtrosServiRowChanging" msprop:Generator_RowEvHandlerName="ConsultaPorOtrosServiRowChangeEventHandler" msprop:Generator_RowDeletedName="ConsultaPorOtrosServiRowDeleted" msprop:Generator_RowClassName="ConsultaPorOtrosServiRow" msprop:Generator_UserTableName="ConsultaPorOtrosServi" msprop:Generator_RowEvArgName="ConsultaPorOtrosServiRowChangeEvent">
+        <xs:element name="ConsultaPorOtrosServi" msprop:Generator_TableClassName="ConsultaPorOtrosServiDataTable" msprop:Generator_TableVarName="tableConsultaPorOtrosServi" msprop:Generator_TablePropName="ConsultaPorOtrosServi" msprop:Generator_RowDeletingName="ConsultaPorOtrosServiRowDeleting" msprop:Generator_RowChangingName="ConsultaPorOtrosServiRowChanging" msprop:Generator_RowEvHandlerName="ConsultaPorOtrosServiRowChangeEventHandler" msprop:Generator_RowDeletedName="ConsultaPorOtrosServiRowDeleted" msprop:Generator_UserTableName="ConsultaPorOtrosServi" msprop:Generator_RowChangedName="ConsultaPorOtrosServiRowChanged" msprop:Generator_RowEvArgName="ConsultaPorOtrosServiRowChangeEvent" msprop:Generator_RowClassName="ConsultaPorOtrosServiRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CodDigita" msprop:Generator_ColumnVarNameInTable="columnCodDigita" msprop:Generator_ColumnPropNameInRow="CodDigita" msprop:Generator_ColumnPropNameInTable="CodDigitaColumn" msprop:Generator_UserColumnName="CodDigita">
@@ -1792,7 +1792,7 @@ FROM            [Datos empresas y terceros] INNER JOIN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ConsultaPorRecienNaci" msprop:Generator_TableClassName="ConsultaPorRecienNaciDataTable" msprop:Generator_TableVarName="tableConsultaPorRecienNaci" msprop:Generator_RowChangedName="ConsultaPorRecienNaciRowChanged" msprop:Generator_TablePropName="ConsultaPorRecienNaci" msprop:Generator_RowDeletingName="ConsultaPorRecienNaciRowDeleting" msprop:Generator_RowChangingName="ConsultaPorRecienNaciRowChanging" msprop:Generator_RowEvHandlerName="ConsultaPorRecienNaciRowChangeEventHandler" msprop:Generator_RowDeletedName="ConsultaPorRecienNaciRowDeleted" msprop:Generator_RowClassName="ConsultaPorRecienNaciRow" msprop:Generator_UserTableName="ConsultaPorRecienNaci" msprop:Generator_RowEvArgName="ConsultaPorRecienNaciRowChangeEvent">
+        <xs:element name="ConsultaPorRecienNaci" msprop:Generator_TableClassName="ConsultaPorRecienNaciDataTable" msprop:Generator_TableVarName="tableConsultaPorRecienNaci" msprop:Generator_TablePropName="ConsultaPorRecienNaci" msprop:Generator_RowDeletingName="ConsultaPorRecienNaciRowDeleting" msprop:Generator_RowChangingName="ConsultaPorRecienNaciRowChanging" msprop:Generator_RowEvHandlerName="ConsultaPorRecienNaciRowChangeEventHandler" msprop:Generator_RowDeletedName="ConsultaPorRecienNaciRowDeleted" msprop:Generator_UserTableName="ConsultaPorRecienNaci" msprop:Generator_RowChangedName="ConsultaPorRecienNaciRowChanged" msprop:Generator_RowEvArgName="ConsultaPorRecienNaciRowChangeEvent" msprop:Generator_RowClassName="ConsultaPorRecienNaciRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CodDigita" msprop:Generator_ColumnVarNameInTable="columnCodDigita" msprop:Generator_ColumnPropNameInRow="CodDigita" msprop:Generator_ColumnPropNameInTable="CodDigitaColumn" msprop:Generator_UserColumnName="CodDigita">
@@ -1880,7 +1880,7 @@ FROM            [Datos empresas y terceros] INNER JOIN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ConsultasPorProcedimientos" msprop:Generator_TableClassName="ConsultasPorProcedimientosDataTable" msprop:Generator_TableVarName="tableConsultasPorProcedimientos" msprop:Generator_RowChangedName="ConsultasPorProcedimientosRowChanged" msprop:Generator_TablePropName="ConsultasPorProcedimientos" msprop:Generator_RowDeletingName="ConsultasPorProcedimientosRowDeleting" msprop:Generator_RowChangingName="ConsultasPorProcedimientosRowChanging" msprop:Generator_RowEvHandlerName="ConsultasPorProcedimientosRowChangeEventHandler" msprop:Generator_RowDeletedName="ConsultasPorProcedimientosRowDeleted" msprop:Generator_RowClassName="ConsultasPorProcedimientosRow" msprop:Generator_UserTableName="ConsultasPorProcedimientos" msprop:Generator_RowEvArgName="ConsultasPorProcedimientosRowChangeEvent">
+        <xs:element name="ConsultasPorProcedimientos" msprop:Generator_TableClassName="ConsultasPorProcedimientosDataTable" msprop:Generator_TableVarName="tableConsultasPorProcedimientos" msprop:Generator_TablePropName="ConsultasPorProcedimientos" msprop:Generator_RowDeletingName="ConsultasPorProcedimientosRowDeleting" msprop:Generator_RowChangingName="ConsultasPorProcedimientosRowChanging" msprop:Generator_RowEvHandlerName="ConsultasPorProcedimientosRowChangeEventHandler" msprop:Generator_RowDeletedName="ConsultasPorProcedimientosRowDeleted" msprop:Generator_UserTableName="ConsultasPorProcedimientos" msprop:Generator_RowChangedName="ConsultasPorProcedimientosRowChanged" msprop:Generator_RowEvArgName="ConsultasPorProcedimientosRowChangeEvent" msprop:Generator_RowClassName="ConsultasPorProcedimientosRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CodDigita" msprop:Generator_ColumnVarNameInTable="columnCodDigita" msprop:Generator_ColumnPropNameInRow="CodDigita" msprop:Generator_ColumnPropNameInTable="CodDigitaColumn" msprop:Generator_UserColumnName="CodDigita">
@@ -1993,7 +1993,7 @@ FROM            [Datos empresas y terceros] INNER JOIN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ConsultasPorTransacciones" msprop:Generator_TableClassName="ConsultasPorTransaccionesDataTable" msprop:Generator_TableVarName="tableConsultasPorTransacciones" msprop:Generator_RowChangedName="ConsultasPorTransaccionesRowChanged" msprop:Generator_TablePropName="ConsultasPorTransacciones" msprop:Generator_RowDeletingName="ConsultasPorTransaccionesRowDeleting" msprop:Generator_RowChangingName="ConsultasPorTransaccionesRowChanging" msprop:Generator_RowEvHandlerName="ConsultasPorTransaccionesRowChangeEventHandler" msprop:Generator_RowDeletedName="ConsultasPorTransaccionesRowDeleted" msprop:Generator_RowClassName="ConsultasPorTransaccionesRow" msprop:Generator_UserTableName="ConsultasPorTransacciones" msprop:Generator_RowEvArgName="ConsultasPorTransaccionesRowChangeEvent">
+        <xs:element name="ConsultasPorTransacciones" msprop:Generator_TableClassName="ConsultasPorTransaccionesDataTable" msprop:Generator_TableVarName="tableConsultasPorTransacciones" msprop:Generator_TablePropName="ConsultasPorTransacciones" msprop:Generator_RowDeletingName="ConsultasPorTransaccionesRowDeleting" msprop:Generator_RowChangingName="ConsultasPorTransaccionesRowChanging" msprop:Generator_RowEvHandlerName="ConsultasPorTransaccionesRowChangeEventHandler" msprop:Generator_RowDeletedName="ConsultasPorTransaccionesRowDeleted" msprop:Generator_UserTableName="ConsultasPorTransacciones" msprop:Generator_RowChangedName="ConsultasPorTransaccionesRowChanged" msprop:Generator_RowEvArgName="ConsultasPorTransaccionesRowChangeEvent" msprop:Generator_RowClassName="ConsultasPorTransaccionesRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CodDigita" msprop:Generator_ColumnVarNameInTable="columnCodDigita" msprop:Generator_ColumnPropNameInRow="CodDigita" msprop:Generator_ColumnPropNameInTable="CodDigitaColumn" msprop:Generator_UserColumnName="CodDigita">
@@ -2098,7 +2098,7 @@ FROM            [Datos empresas y terceros] INNER JOIN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ConsultasPorUsuarios" msprop:Generator_TableClassName="ConsultasPorUsuariosDataTable" msprop:Generator_TableVarName="tableConsultasPorUsuarios" msprop:Generator_RowChangedName="ConsultasPorUsuariosRowChanged" msprop:Generator_TablePropName="ConsultasPorUsuarios" msprop:Generator_RowDeletingName="ConsultasPorUsuariosRowDeleting" msprop:Generator_RowChangingName="ConsultasPorUsuariosRowChanging" msprop:Generator_RowEvHandlerName="ConsultasPorUsuariosRowChangeEventHandler" msprop:Generator_RowDeletedName="ConsultasPorUsuariosRowDeleted" msprop:Generator_RowClassName="ConsultasPorUsuariosRow" msprop:Generator_UserTableName="ConsultasPorUsuarios" msprop:Generator_RowEvArgName="ConsultasPorUsuariosRowChangeEvent">
+        <xs:element name="ConsultasPorUsuarios" msprop:Generator_TableClassName="ConsultasPorUsuariosDataTable" msprop:Generator_TableVarName="tableConsultasPorUsuarios" msprop:Generator_TablePropName="ConsultasPorUsuarios" msprop:Generator_RowDeletingName="ConsultasPorUsuariosRowDeleting" msprop:Generator_RowChangingName="ConsultasPorUsuariosRowChanging" msprop:Generator_RowEvHandlerName="ConsultasPorUsuariosRowChangeEventHandler" msprop:Generator_RowDeletedName="ConsultasPorUsuariosRowDeleted" msprop:Generator_UserTableName="ConsultasPorUsuarios" msprop:Generator_RowChangedName="ConsultasPorUsuariosRowChanged" msprop:Generator_RowEvArgName="ConsultasPorUsuariosRowChangeEvent" msprop:Generator_RowClassName="ConsultasPorUsuariosRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CodDigita" msprop:Generator_ColumnVarNameInTable="columnCodDigita" msprop:Generator_ColumnPropNameInRow="CodDigita" msprop:Generator_ColumnPropNameInTable="CodDigitaColumn" msprop:Generator_UserColumnName="CodDigita">

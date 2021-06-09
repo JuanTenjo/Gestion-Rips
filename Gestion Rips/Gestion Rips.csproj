@@ -119,6 +119,12 @@
     <Compile Include="Forms\FrmPrincipal.Designer.cs">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\RipsPorRegimen\FrmReporteRipsRegimen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RipsPorRegimen\FrmReporteRipsRegimen.Designer.cs">
+      <DependentUpon>FrmReporteRipsRegimen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\RipsPorRegimen\FrmRipsRegimen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,8 +142,8 @@
       <DependentUpon>dsInErroresRips.xsd</DependentUpon>
     </Compile>
     <Compile Include="Reportes\DataSet\dsInfInformesRips.Designer.cs">
-      <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
       <DependentUpon>dsInfInformesRips.xsd</DependentUpon>
     </Compile>
     <Compile Include="Reportes\DataSet\dsInUserPorRemision.Designer.cs">
@@ -193,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RipsPorRegimen\FrmReporteRipsRegimen.resx">
+      <DependentUpon>FrmReporteRipsRegimen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\RipsPorRegimen\FrmRipsRegimen.resx">
       <DependentUpon>FrmRipsRegimen.cs</DependentUpon>

@@ -4,3 +4,5 @@ CAMPO NUMFACT EN DATOS TEMPORAL TRANSACCIONES RIPS EN BASE DE DATOS BDRIPS. DE N
 
 
 cAMPO CodInterAdmin en [DARIPSXPSQL].[dbo].[Datos archivo maestro] A NVARCHAR 4
+
+Se debe añadir la tabla Datos Temporal Errores Rips a la base de datos [DARIPSESSQL]
