@@ -56,7 +56,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                         else
                         {
                             Utils.Titulo01 = "Control de ejecución";
-                            Utils.Informa += "no encontro ninguna entidad por el numero de cardinal digitado" + "\r";
+                            Utils.Informa = "no encontro ninguna entidad por el numero de cardinal digitado" + "\r";
                             MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         sqlDataReader.Close();
@@ -201,7 +201,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
 
                             using (SqlConnection connection2 = new SqlConnection(Conexion.conexionSQL))
                             {
-                                SqlCommand command2 = new SqlCommand(Utils.SqlDatos, connection2);
+                                SqlCommand command2 = new SqlCommand(SqlTrans, connection2);
                                 command2.Connection.Open();
                                 TabTrans = command2.ExecuteReader();
 
@@ -282,14 +282,6 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                 TabTrans.Close();
                                 TabTrans = null;
 
-                                //Edite el registro como exportado
-
-                                Utils.SqlDatos = "UPDATE [DARIPSESSQL].[dbo].[Datos archivo de transacciones] SET [Datos archivo de transacciones].[Exportado] = 1 WHERE ([Datos archivo de transacciones].[CodDigita] = N'" + lblCodigoUser.Text + "') AND " +
-                                "([Datos archivo de transacciones].[NumRemi] = N'" + NR + "')";
-
-                                Boolean ActComoExportado = Conexion.SQLUpdate(Utils.SqlDatos);
-
-
                             }
                             VR += 1;
                         } //Fin while
@@ -319,7 +311,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                 Int32 RegExp = 0;
                 //Permite copiar los usuarios para RIPS a SEDAS-RIPS
 
-                Utils.SqlDatos = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos temporal usuarios RIPS]";
+                Utils.SqlDatos = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos temporal usuarios RIPS] where NumRemi = '"+ CI + "'";
 
                 SqlDataReader TabLocal;
 
@@ -3419,16 +3411,15 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                 Utils.Titulo01 = "Control para seleccionar datos";
                 Boolean SqlInsert = true;
                 string Coenti01, TDE, NCC, Regimen = null, NEnti = null, FunCon = null, llamarfuncion = null, UsGra = null, MT = null, SqlDatos = null, CR = null, CinRips = null, NRemEnvi = null;
-                int FunEli, FunCopUs = 0, FunCopFac = 0;
-                string data;
-                double TolUsa = 0, TolFac = 0;
+                int FunEli, FunCopUs = 0, FunCopFac = 0, FunCopCon = 0, FunCopHos = 0, FunCopMed = 0, FunCopObs = 0, FunCopOtr = 0, FunCopRec = 0, FunCopPro = 0, FunElim = 0;
+                string data, MJ;
+                double TolUsa = 0, TolFac = 0, TolConsul = 0, TolHos = 0, TolMedi = 0, TolObs = 0, TolOtros = 0, TolReN = 0, TolProce = 0;
                 SqlDataReader ContarRips;
                 string Date = DateTime.Now.ToString("yyyy-MM-dd");
                 DateTime Fecha1 = DateInicial.Value;
                 DateTime Fecha2 = DateFinal.Value;
                 string Periodo1 = Fecha1.ToString("yyyy-MM-dd");
                 string Periodo2 = Fecha2.ToString("yyyy-MM-dd");
-
 
                 Utils.Titulo01 = "Control para exportar RIPS";
 
@@ -3731,22 +3722,177 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                             return;
                             break;
                         default:
+                            //Cuente cada uno de los archivos
 
-                            //Contar todos lo demas archvios Juan
+                            //Consultas
 
+                            Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolConsul FROM [DARIPSESSQL].[dbo].[Datos temporal consultas RIPS] WHERE NumRemi = '" + Coenti01 + "'";
 
+                            ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
 
+                            if (ContarRips.HasRows)
+                            {
+                                ContarRips.Read();
+                                TolConsul = Convert.ToDouble(ContarRips["TolConsul"]);
+                            }
+                            ContarRips.Close();
+                            ContarRips = null;
+                            if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
 
+                            //Hospitalizados
 
+                            Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolHos FROM [DARIPSESSQL].[dbo].[Datos temporal hospitalizacion RIPS] WHERE NumRemi = '" + Coenti01 + "'";
 
+                            ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
 
+                            if (ContarRips.HasRows)
+                            {
+                                ContarRips.Read();
+                                TolHos = Convert.ToDouble(ContarRips["TolHos"]);
+                            }
+                            ContarRips.Close();
+                            ContarRips = null;
+                            if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                            //Medicamentos
+
+                            Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolMedi FROM [DARIPSESSQL].[dbo].[Datos temporal medicamentos RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                            ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                            if (ContarRips.HasRows)
+                            {
+                                ContarRips.Read();
+                                TolMedi = Convert.ToDouble(ContarRips["TolMedi"]);
+                            }
+                            ContarRips.Close();
+                            ContarRips = null;
+                            if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                            //Observaciones
+
+                            Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolObs FROM [DARIPSESSQL].[dbo].[Datos temporal observacion RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                            ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                            if (ContarRips.HasRows)
+                            {
+                                ContarRips.Read();
+                                TolObs = Convert.ToDouble(ContarRips["TolObs"]);
+                            }
+                            ContarRips.Close();
+                            ContarRips = null;
+                            if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                            //OtroServicios
+
+                            Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolOtros FROM [DARIPSESSQL].[dbo].[Datos temporal otros servicios RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                            ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                            if (ContarRips.HasRows)
+                            {
+                                ContarRips.Read();
+                                TolOtros = Convert.ToDouble(ContarRips["TolOtros"]);
+                            }
+                            ContarRips.Close();
+                            ContarRips = null;
+                            if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                            //Recien Nacidos
+
+                            Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolReN FROM [DARIPSESSQL].[dbo].[Datos temporal recien nacidos RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                            ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                            if (ContarRips.HasRows)
+                            {
+                                ContarRips.Read();
+                                TolReN = Convert.ToDouble(ContarRips["TolReN"]);
+                            }
+                            ContarRips.Close();
+                            ContarRips = null;
+                            if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                            //Procedimientos
+
+                            Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolProce FROM [DARIPSESSQL].[dbo].[Datos temporal procedimientos RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                            ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                            if (ContarRips.HasRows)
+                            {
+                                ContarRips.Read();
+                                TolProce = Convert.ToDouble(ContarRips["TolProce"]);
+                            }
+                            ContarRips.Close();
+                            ContarRips = null;
+                            if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
                             break;
+                    }//Fin Swich
+
+                    MJ = "";
+
+                    if(TolConsul > 0)
+                    {
+                        //Copia las consultas
+                        FunCopCon = CopiaRipsConsul(NRemEnvi, Coenti01, TolConsul, 2);
+                        MJ = "Cantidad de consultas: " + FunCopCon + "\r";
+                    }
+
+                    if (TolHos > 0)
+                    {
+                        //Copia los usuarios hospitalizados
+                        FunCopHos = CopiaRipsHospi(NRemEnvi, Coenti01, TolHos, 2);
+                        MJ += "Cantidad de hospitalizaciones: " + FunCopHos + "\r";
+                    }
+
+                    if (TolMedi > 0)
+                    {
+                        //Copia los medicamentos
+                        FunCopMed = CopiaRipsMedica(NRemEnvi, Coenti01, TolMedi, 2);
+                        MJ += "Cantidad de medicamentos: " + FunCopMed + "\r";
+                    }
+
+                    if (TolObs > 0)
+                    {
+                        //Copia los usuarios en observación
+                        FunCopObs = CopiaRipsObserva(NRemEnvi, Coenti01, TolObs, 2);
+                        MJ += "Cantidad de observaciónes: " + FunCopObs + "\r";
+                    }
+
+                    if (TolOtros > 0)
+                    {
+                        //Copia los otros servicios
+                        FunCopOtr = CopiaRipsOtros(NRemEnvi, Coenti01, TolOtros, 2);
+                        MJ += "Cantidad de otros servicios: " + FunCopOtr + "\r";
+                    }
+
+                    if (TolReN > 0)
+                    {
+                        //Copia los recien nacidos
+                        FunCopRec = CopiaRipsRecien(NRemEnvi, Coenti01, TolReN, 2);
+                        MJ += "Cantidad de otros servicios: " + FunCopRec + "\r";
+                    }
+
+                    if (TolProce > 0)
+                    {
+                        //Copia los procedimientos
+                        FunCopPro = CopiaRipsProce(NRemEnvi, Coenti01, TolProce, 2);
+                        MJ += "Cantidad de procedimientos: " + FunCopPro + "\r";
                     }
 
 
+                    FunElim = ElimdatosRIPS(lblCodigoUser.Text, Coenti01);
 
+                    //'Resumen de los exportado
 
-
+                    Utils.Titulo01 = "Control de ejecución";
+                    Utils.Informa = "Se han exportado los siguientes datos:" + "\r";
+                    Utils.Informa += "Cantidad de usuarios: " + FunCopUs + "\r";
+                    Utils.Informa += "Cantidad de facturas: " + FunCopFac + "\r";
+                    Utils.Informa += MJ + "\r";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }// Fin msgox si
             }
@@ -3757,6 +3903,703 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                 Utils.Informa += "después de hacer click sobre el botón exportar" + "\r";
                 Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private int CopiaRipsProce(string NR, string CI, double TolC, int RutCopy)
+        {
+            try
+            {
+                int VR = 0;
+                bool SqlInsert;
+                //Permite copiar las consultas para RIPS a SEDAS-RIPS
+
+                Utils.SqlDatos = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos temporal procedimientos RIPS] WHERE NumRemi = '" + CI + "'";
+
+                SqlDataReader TabLocal;
+
+                using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                {
+                    SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+                    command.Connection.Open();
+                    TabLocal = command.ExecuteReader();
+
+                    if (TabLocal.HasRows == false)
+                    {
+                        //No hay medicamentos para copiar a esta entidad
+                        return -2;
+                    }
+                    else
+                    {
+                        VR = 0;
+
+                        //Simplemente adiciona los otros servicios
+
+                        string DxPrincipal;
+
+                        while (TabLocal.Read())
+                        {
+
+                             DxPrincipal = Convert.ToString(TabLocal["DxPrincipal"]) != "0000" ? TabLocal["DxPrincipal"].ToString() : "";
+
+                            Utils.SqlDatos = "INSERT INTO [DARIPSESSQL].[dbo].[Datos archivo de procedimientos] " +
+                                             "(NumRemi," +
+                                             "NumFactur," +
+                                             "CodIps," +
+                                             "TipoDocum," +
+                                             "NumDocum," +
+                                             "FecProce," +
+                                             "AutoriNum," +
+                                             "CodProce," +
+                                             "AmbitoReal," +
+                                             "FinalProce," +
+                                             "PersonAten," +
+                                             "DxPrincipal," +
+                                             "DxRelacion," +
+                                             "Complicacion," +
+                                             "RealiActo," +
+                                             "ValorProce)" +
+                                             "VALUES(" +
+                                             "'" + NR + "'," +
+                                             "'" + TabLocal["NumFactur"].ToString() + "'," +
+                                             "'" + TabLocal["CodIps"].ToString() + "'," +
+                                             "'" + TabLocal["TipoDocum"].ToString() + "'," +
+                                             "'" + TabLocal["NumDocum"].ToString() + "'," +
+                                             "'" + Convert.ToDateTime(TabLocal["FecProce"]).ToString("yyyy-MM-dd") + "'," +
+                                             "'" + TabLocal["AutoriNum"].ToString() + "'," +
+                                             "'" + TabLocal["CodProce"].ToString() + "'," +
+                                             "'" + TabLocal["AmbitoReal"].ToString() + "'," +
+                                             "'" + TabLocal["FinalProce"].ToString() + "'," +
+                                             "'" + TabLocal["PersonAten"].ToString() + "'," +
+                                             "'" + DxPrincipal + "'," +
+                                             "'" + TabLocal["DxRelacion"].ToString() + "'," +
+                                             "'" + TabLocal["Complicacion"].ToString() + "'," +
+                                             "'" + TabLocal["RealiActo"].ToString() + "'," +
+                                             "'" + TabLocal["ValorProce"].ToString() + "')";
+
+                            SqlInsert = Conexion.SqlInsert(Utils.SqlDatos);
+
+                            if (SqlInsert)
+                            {
+                                VR += 1;
+                            }
+
+                        }//Fin While
+
+                    }//Fin TabLocal.HasRows == false
+
+                    TabLocal.Close();
+
+                }//Fin Using
+
+                return VR;
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la funcion CopiaRipsProce" + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+            }
+        }
+
+        private int CopiaRipsRecien(string NR, string CI, double TolC, int RutCopy)
+        {
+            try
+            {
+                int VR = 0;
+                bool SqlInsert;
+                //Permite copiar las consultas para RIPS a SEDAS-RIPS
+
+                Utils.SqlDatos = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos temporal recien nacidos RIPS] WHERE NumRemi = '" + CI + "'";
+
+                SqlDataReader TabLocal;
+
+                using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                {
+                    SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+                    command.Connection.Open();
+                    TabLocal = command.ExecuteReader();
+
+                    if (TabLocal.HasRows == false)
+                    {
+                        //No hay medicamentos para copiar a esta entidad
+                        return -2;
+                    }
+                    else
+                    {
+                        VR = 0;
+
+                        //Simplemente adiciona los otros servicios
+
+                        while (TabLocal.Read())
+                        {
+                            Utils.SqlDatos = "INSERT INTO [DARIPSESSQL].[dbo].[Datos archivo de recien nacido] " +
+                                             "(NumRemi," +
+                                             "NumFactur," +
+                                             "CodIps," +
+                                             "TipoDocum," +
+                                             "NumDocum," +
+                                             "FecNaci," +
+                                             "HorIngresa," +
+                                             "EdadGesta," +
+                                             "ControlPrena," +
+                                             "SexoRecien," +
+                                             "PesoRecien," +
+                                             "DxRecien)" +
+                                             "VALUES(" +
+                                             "'" + NR + "'," +
+                                             "'" + TabLocal["NumFactur"].ToString() + "'," +
+                                             "'" + TabLocal["CodIps"].ToString() + "'," +
+                                             "'" + TabLocal["TipoDocum"].ToString() + "'," +
+                                             "'" + TabLocal["NumDocum"].ToString() + "'," +
+                                             "'" + Convert.ToDateTime(TabLocal["FecNaci"]).ToString("yyyy-MM-dd") + "'," +
+                                             "'" + Convert.ToDateTime(TabLocal["HorIngresa"]).ToString("hh:mm:ss") + "'," +
+                                             "'" + TabLocal["EdadGesta"].ToString() + "'," +
+                                             "'" + TabLocal["ControlPrena"].ToString() + "'," +
+                                             "'" + TabLocal["SexoRecien"].ToString() + "'," +
+                                             "'" + TabLocal["PesoRecien"].ToString() + "'," +
+                                             "'" + TabLocal["DxRecien"].ToString() + "')";
+
+                            SqlInsert = Conexion.SqlInsert(Utils.SqlDatos);
+
+                            if (SqlInsert)
+                            {
+                                VR += 1;
+                            }
+
+                        }//Fin While
+
+                    }//Fin TabLocal.HasRows == false
+
+                    TabLocal.Close();
+
+                }//Fin Using
+
+                return VR;
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la funcion CopiaRipsRecien" + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+            }
+        }
+
+        private int CopiaRipsOtros(string NR, string CI, double TolC, int RutCopy)
+        {
+            try
+            {
+                int VR = 0;
+                bool SqlInsert;
+                //Permite copiar las consultas para RIPS a SEDAS-RIPS
+
+                Utils.SqlDatos = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos temporal otros servicios RIPS] WHERE NumRemi = '" + CI + "'";
+
+                SqlDataReader TabLocal;
+
+                using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                {
+                    SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+                    command.Connection.Open();
+                    TabLocal = command.ExecuteReader();
+
+                    if (TabLocal.HasRows == false)
+                    {
+                        //No hay medicamentos para copiar a esta entidad
+                        return -2;
+                    }
+                    else
+                    {
+                        VR = 0;
+
+                        //Simplemente adiciona los otros servicios
+
+                        while (TabLocal.Read())
+                        {
+                            Utils.SqlDatos = "INSERT INTO [DARIPSESSQL].[dbo].[Datos archivo de otros servicios] " +
+                                             "(NumRemi," +
+                                             "NumFactur," +
+                                             "CodIps," +
+                                             "TipoDocum," +
+                                             "NumDocum," +
+                                             "AutoriNum," +
+                                             "TipoServicio," +
+                                             "CodiServi," +
+                                             "NomServi," +
+                                             "Cantidad," +
+                                             "ValorUnita," +
+                                             "ValorTotal)" +
+                                             "VALUES(" +
+                                             "'" + NR + "'," +
+                                             "'" + TabLocal["NumFactur"].ToString() + "'," +
+                                             "'" + TabLocal["CodIps"].ToString() + "'," +
+                                             "'" + TabLocal["TipoDocum"].ToString() + "'," +
+                                             "'" + TabLocal["NumDocum"].ToString() + "'," +
+                                             "'" + TabLocal["AutoriNum"].ToString() + "'," +
+                                             "'" + TabLocal["TipoServicio"].ToString() + "'," +
+                                             "'" + TabLocal["CodiServi"].ToString() + "'," +
+                                             "'" + TabLocal["NomServi"].ToString() + "'," +
+                                             "'" + TabLocal["Cantidad"].ToString() + "'," +
+                                             "'" + TabLocal["ValorUnita"].ToString() + "'," +
+                                             "'" + TabLocal["ValorTotal"].ToString() + "')";
+
+                            SqlInsert = Conexion.SqlInsert(Utils.SqlDatos);
+
+                            if (SqlInsert)
+                            {
+                                VR += 1;
+                            }
+
+                        }//Fin While
+
+                    }//Fin TabLocal.HasRows == false
+
+                    TabLocal.Close();
+
+                }//Fin Using
+
+                return VR;
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la funcion CopiaRipsOtros" + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+            }
+        }
+
+        private int CopiaRipsObserva(string NR, string CI, double TolC, int RutCopy)
+        {
+            try
+            {
+                int VR = 0;
+                bool SqlInsert;
+                //Permite copiar las consultas para RIPS a SEDAS-RIPS
+
+                Utils.SqlDatos = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos temporal observacion RIPS] WHERE NumRemi = '" + CI + "'";
+
+                SqlDataReader TabLocal;
+
+                using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                {
+                    SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+                    command.Connection.Open();
+                    TabLocal = command.ExecuteReader();
+
+                    if (TabLocal.HasRows == false)
+                    {
+                        //No hay medicamentos para copiar a esta entidad
+                        return -2;
+                    }
+                    else
+                    {
+                        VR = 0;
+
+                        //Simplemente adiciona las observacion
+
+                        while (TabLocal.Read())
+                        {
+                            Utils.SqlDatos = "INSERT INTO [DARIPSESSQL].[dbo].[Datos archivo de observacion urgencias] " +
+                                             "(NumRemi," +
+                                             "NumFactur," +
+                                             "CodIps," +
+                                             "TipoDocum," +
+                                             "NumDocum," +
+                                             "FecIngresa," +
+                                             "HorIngresa," +
+                                             "AutoriNum," +
+                                             "CausExter," +
+                                             "DxPrincIngre," +
+                                             "DxRelacion1," +
+                                             "DxRelacion2," +
+                                             "DxRelacion3," +
+                                             "Destino," +
+                                             "EstadoSal," +
+                                             "DxMuerte," +
+                                             "FecSalida," +
+                                             "HorSalida)" +
+                                             "VALUES(" +
+                                             "'" + NR + "'," +
+                                             "'" + TabLocal["NumFactur"].ToString() + "'," +
+                                             "'" + TabLocal["CodIps"].ToString() + "'," +
+                                             "'" + TabLocal["TipoDocum"].ToString() + "'," +
+                                             "'" + TabLocal["NumDocum"].ToString() + "'," +
+                                             "'" + Convert.ToDateTime(TabLocal["FecIngresa"]).ToString("yyyy-MM-dd") + "'," +
+                                             "'" + Convert.ToDateTime(TabLocal["HorIngresa"]).ToString("hh:mm:ss") + "'," +
+                                             "'" + TabLocal["AutoriNum"].ToString() + "'," +
+                                             "'" + TabLocal["CausExter"].ToString() + "'," +
+                                             "'" + TabLocal["DxPrincIngre"].ToString() + "'," +
+                                             "'" + TabLocal["DxRelacion1"].ToString() + "'," +
+                                             "'" + TabLocal["DxRelacion2"].ToString() + "'," +
+                                             "'" + TabLocal["DxRelacion3"].ToString() + "'," +
+                                             "'" + TabLocal["Destino"].ToString() + "'," +
+                                             "'" + TabLocal["EstadoSal"].ToString() + "'," +
+                                             "'" + TabLocal["DxMuerte"].ToString() + "'," +
+                                             "'" + Convert.ToDateTime(TabLocal["FecSalida"]).ToString("yyyy-MM-dd") + "'," +
+                                             "'" + Convert.ToDateTime(TabLocal["HorSalida"]).ToString("hh:mm:ss") + "')";
+
+                            SqlInsert = Conexion.SqlInsert(Utils.SqlDatos);
+
+                            if (SqlInsert)
+                            {
+                                VR += 1;
+                            }
+
+                        }//Fin While
+
+                    }//Fin TabLocal.HasRows == false
+
+                    TabLocal.Close();
+
+                }//Fin Using
+
+                return VR;
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la funcion CopiaRipsObserva" + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+            }
+        }
+
+        private int CopiaRipsMedica(string NR, string CI, double TolC, int RutCopy)
+        {
+            try
+            {
+                int VR = 0;
+                bool SqlInsert;
+                //Permite copiar las consultas para RIPS a SEDAS-RIPS
+
+                Utils.SqlDatos = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos temporal medicamentos RIPS] WHERE NumRemi = '" + CI + "'";
+
+                SqlDataReader TabLocal;
+
+                using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                {
+                    SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+                    command.Connection.Open();
+                    TabLocal = command.ExecuteReader();
+
+                    if (TabLocal.HasRows == false)
+                    {
+                        //No hay medicamentos para copiar a esta entidad
+                        return -2;
+                    }
+                    else
+                    {
+                        VR = 0;
+
+                        //Simplemente adiciona las consultas
+
+                        while (TabLocal.Read())
+                        {
+                            Utils.SqlDatos = "INSERT INTO [DARIPSESSQL].[dbo].[Datos archivo de medicamentos] " +
+                                             "(NumRemi," +
+                                             "NumFactur," +
+                                             "CodIps," +
+                                             "TipoDocum," +
+                                             "NumDocum," +
+                                             "AutoriNum," +
+                                             "CodMedica," +
+                                             "TipoMedica," +
+                                             "NomGenerico," +
+                                             "FormaFarma," +
+                                             "ConcenMedi," +
+                                             "UniMedida," +
+                                             "NumUnidad," +
+                                             "ValorUnita," +
+                                             "ValorTotal)" +
+                                             "VALUES(" +
+                                             "'" + NR + "'," +
+                                             "'" + TabLocal["NumFactur"].ToString() + "'," +
+                                             "'" + TabLocal["CodIps"].ToString() + "'," +
+                                             "'" + TabLocal["TipoDocum"].ToString() + "'," +
+                                             "'" + TabLocal["NumDocum"].ToString() + "'," +
+                                             "'" + TabLocal["AutoriNum"].ToString() + "'," +
+                                             "'" + TabLocal["CodMedica"].ToString() + "'," +
+                                             "'" + TabLocal["TipoMedica"].ToString() + "'," +
+                                             "'" + TabLocal["NomGenerico"].ToString() + "'," +
+                                             "'" + TabLocal["FormaFarma"].ToString() + "'," +
+                                             "'" + TabLocal["ConcenMedi"].ToString() + "'," +
+                                             "'" + TabLocal["UniMedida"].ToString() + "'," +
+                                             "'" + TabLocal["NumUnidad"].ToString() + "'," +
+                                             "'" + TabLocal["ValorUnita"].ToString() + "'," +
+                                             "'" + TabLocal["ValorTotal"].ToString() + "')";
+
+                            SqlInsert = Conexion.SqlInsert(Utils.SqlDatos);
+
+                            if (SqlInsert)
+                            {
+                                VR += 1;
+                            }
+
+                        }//Fin While
+
+                    }//Fin TabLocal.HasRows == false
+
+                    TabLocal.Close();
+
+                }//Fin Using
+
+                return VR;
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la funcion CopiaRipsMedica" + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+            }
+        }
+
+        private int CopiaRipsHospi(string NR, string CI, double TolC, int RutCopy)
+        {
+            try
+            {
+                int VR = 0;
+                bool SqlInsert;
+                //Permite copiar las consultas para RIPS a SEDAS-RIPS
+
+                Utils.SqlDatos = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos temporal hospitalizacion RIPS] WHERE NumRemi = '" + CI + "'";
+
+                SqlDataReader TabLocal;
+
+                using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                {
+                    SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+                    command.Connection.Open();
+                    TabLocal = command.ExecuteReader();
+
+                    if (TabLocal.HasRows == false)
+                    {
+                        //No hay consultas para copiar a esta entidad
+                        return -2;
+                    }
+                    else
+                    {
+                        VR = 0;
+
+                        //Simplemente adiciona las consultas
+
+                        while (TabLocal.Read())
+                        {
+                            Utils.SqlDatos = "INSERT INTO [DARIPSESSQL].[dbo].[Datos archivo de hospitalizacion] " +
+                                             "(NumRemi," +
+                                             "NumFactur," +
+                                             "CodIps," +
+                                             "TipoDocum," +
+                                             "NumDocum," +
+                                             "ViaDIngreso," +
+                                             "FecIngresa," +
+                                             "HorIngresa," +
+                                             "AutoriNum," +
+                                             "CausExter," +
+                                             "DxPrincIngre," +
+                                             "DxPrincEgre," +
+                                             "DxRelacion1," +
+                                             "DxRelacion2," +
+                                             "DxRelacion3," +
+                                             "DxComplica," +
+                                             "EstadoSal," +
+                                             "DxMuerte," +
+                                             "FecSalida," +
+                                             "HorSalida)" +
+                                             "VALUES(" +
+                                             "'" + NR + "'," +
+                                             "'" + TabLocal["NumFactur"].ToString() + "'," +
+                                             "'" + TabLocal["CodIps"].ToString() + "'," +
+                                             "'" + TabLocal["TipoDocum"].ToString() + "'," +
+                                             "'" + TabLocal["NumDocum"].ToString() + "'," +
+                                             "'" + TabLocal["ViaDIngreso"].ToString() + "'," +
+                                             "'" + Convert.ToDateTime(TabLocal["FecIngresa"]).ToString("yyyy-MM-dd") + "'," +
+                                             "'" + Convert.ToDateTime(TabLocal["HorIngresa"]).ToString("hh:mm:ss") + "'," +
+                                             "'" + TabLocal["AutoriNum"].ToString() + "'," +
+                                             "'" + TabLocal["CausExter"].ToString() + "'," +
+                                             "'" + TabLocal["DxPrincIngre"].ToString() + "'," +
+                                             "'" + TabLocal["DxPrincEgre"].ToString() + "'," +
+                                             "'" + TabLocal["DxRelacion1"].ToString() + "'," +
+                                             "'" + TabLocal["DxRelacion2"].ToString() + "'," +
+                                             "'" + TabLocal["DxRelacion3"].ToString() + "'," +
+                                             "'" + TabLocal["DxComplica"].ToString() + "'," +
+                                             "'" + TabLocal["EstadoSal"].ToString() + "'," +
+                                             "'" + TabLocal["DxMuerte"].ToString() + "'," +
+                                             "'" + Convert.ToDateTime(TabLocal["FecSalida"]).ToString("yyyy-MM-dd") + "'," +
+                                             "'" + Convert.ToDateTime(TabLocal["HorSalida"]).ToString("hh:mm:ss") + "')";
+
+                            SqlInsert = Conexion.SqlInsert(Utils.SqlDatos);
+
+                            if (SqlInsert)
+                            {
+                                VR += 1;
+                            }
+
+                        }//Fin While
+
+                    }//Fin TabLocal.HasRows == false
+
+                    TabLocal.Close();
+
+                }//Fin Using
+
+                return VR;
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la funcion CopiaRipsHospi" + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+            }
+        }
+
+        private int CopiaRipsConsul(string NR, string CI, double TolC, int RutCopy)
+        {
+            try
+            {
+                int VR = 0;
+                bool SqlInsert;
+                //Permite copiar las consultas para RIPS a SEDAS-RIPS
+
+                Utils.SqlDatos = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos temporal consultas RIPS] WHERE NumRemi = '" + CI + "'";
+
+                SqlDataReader TabLocal;
+
+                using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                {
+                    SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+                    command.Connection.Open();
+                    TabLocal = command.ExecuteReader();
+
+                    if(TabLocal.HasRows == false)
+                    {
+                        //No hay consultas para copiar a esta entidad
+                        return -2;
+                    }
+                    else
+                    {
+                        VR = 0;
+
+                        //Simplemente adiciona las consultas
+
+                        while (TabLocal.Read())
+                        {
+                            Utils.SqlDatos = "INSERT INTO [DARIPSESSQL].[dbo].[Datos archivo de consulta] " +
+                                             "(NumRemi," +
+                                             "NumFactur," +
+                                             "CodIps," +
+                                             "TipoDocum," +
+                                             "NumDocum," +
+                                             "FecConsul," +
+                                             "AutoriNum," +
+                                             "CodConsul," +
+                                             "FinalConsul," +
+                                             "CausExter," +
+                                             "DxPrincipal," +
+                                             "DxRelacion1," +
+                                             "DxRelacion2," +
+                                             "DxRelacion3," +
+                                             "TipoDxPrin," +
+                                             "ValorConsul," +
+                                             "ValorCuota," +
+                                             "ValorNeto)" +
+                                             "VALUES(" +
+                                             "'" + NR + "'," +
+                                             "'" + TabLocal["NumFactur"].ToString() + "'," +
+                                             "'" + TabLocal["CodIps"].ToString() + "'," +
+                                             "'" + TabLocal["TipoDocum"].ToString() + "'," +
+                                             "'" + TabLocal["NumDocum"].ToString() + "'," +
+                                             "'" + Convert.ToDateTime(TabLocal["FecConsul"]).ToString("yyy-MM-dd") + "'," +
+                                             "'" + TabLocal["AutoriNum"].ToString() + "'," +
+                                             "'" + TabLocal["CodConsul"].ToString() + "'," +
+                                             "'" + TabLocal["FinalConsul"].ToString() + "'," +
+                                             "'" + TabLocal["CausExter"].ToString() + "'," +
+                                             "'" + TabLocal["DxPrincipal"].ToString() + "'," +
+                                             "'" + TabLocal["DxRelacion1"].ToString() + "'," +
+                                             "'" + TabLocal["DxRelacion2"].ToString() + "'," +
+                                             "'" + TabLocal["DxRelacion3"].ToString() + "'," +
+                                             "'" + TabLocal["TipoDxPrin"].ToString() + "'," +
+                                             "'" + TabLocal["ValorConsul"].ToString() + "'," +
+                                             "'" + TabLocal["ValorCuota"].ToString() + "'," +
+                                             "'" + TabLocal["ValorNeto"].ToString() + "')";
+
+                            SqlInsert = Conexion.SqlInsert(Utils.SqlDatos);
+
+                            if (SqlInsert)
+                            {
+                                VR += 1;
+                            }
+
+                        }//Fin While
+
+                    }//Fin TabLocal.HasRows == false
+
+                    TabLocal.Close();
+                   
+                }//Fin Using
+
+                return VR;
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la funcion CopiaRipsConsul" + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
             }
         }
 
@@ -4370,6 +5213,8 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
         {
             try
             {
+                BarraSeleccionar.Minimum = 1;
+                BarraSeleccionar.Maximum = Convert.ToInt32(TxtMarcadas.Text);
                 Utils.Titulo01 = "Control para seleccionar datos";
                 Boolean SqlInsert = true;
                 string Coenti01, TDE, NCC, NEnti = null, MT = null, SqlDatos = null;
@@ -4440,6 +5285,8 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
 
                 if (re == DialogResult.Yes)
                 {
+                    BarraSeleccionar.Minimum = 1;
+                    BarraSeleccionar.Maximum = Convert.ToInt32(TxtMarcadas.Text);
 
                     string UsSel = lblCodigoUser.Text;
 
@@ -4478,6 +5325,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
 
                     foreach (DataGridViewRow Row in DataGridFacturas.Rows)
                     {
+    
 
                         int Estado = Convert.ToInt32(Row.Cells["Estado"].Value);
 
@@ -5170,7 +6018,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
 
                                     if (ArchivoRecienNacidos.HasRows)
                                     {
-                                  
+
                                         while (ArchivoRecienNacidos.Read())
                                         {
                                             string TipoIden = ArchivoRecienNacidos["TipoIden"].ToString();
@@ -5180,6 +6028,9 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                                 TipoIden = TipoIden.Substring(0, 2);
 
                                             }
+
+
+
 
                                             data = "INSERT INTO [DARIPSESSQL].[dbo].[Datos temporal recien nacidos RIPS]" +
                                                     "(CodDigita," +
@@ -5195,26 +6046,41 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                                     "SexoRecien," +
                                                     "PesoRecien," +
                                                     "DxRecien," +
-                                                    "DxMuerte," +
-                                                    "FecMuerte," +
-                                                    "HorMuerte)" +
-                                                    "VALUES(" +
-                                                    "'" + UsSel + "'," +
-                                                    "'" + Coenti01 + "'," +
-                                                    "'" + NumFactur + "'," +
-                                                    "'" + CodIPS + "'," +
-                                                    "'" + TipoIden + "'," +
-                                                    "'" + ArchivoRecienNacidos["NumIden"].ToString() + "'," +
-                                                    "'" + Convert.ToDateTime(ArchivoRecienNacidos["FechaNaci"]).ToString("yyyy-MM-dd") + "'," +
-                                                    "'" + Convert.ToDateTime(ArchivoRecienNacidos["HoraNaci"]).ToString("hh:mm:ss") + "'," +
-                                                    "'" + ArchivoRecienNacidos["EdadGesta"].ToString() + "'," +
-                                                    "'" + ArchivoRecienNacidos["ConPrena"].ToString() + "'," +
-                                                    "'" + ArchivoRecienNacidos["SexoNaci"].ToString() + "'," +
-                                                    "'" + ArchivoRecienNacidos["PesoNaci"].ToString() + "'," +
-                                                    "'" + ArchivoRecienNacidos["DxNaci"].ToString() + "'," +
-                                                    "'" + ArchivoRecienNacidos["DxMuerNaci"].ToString() + "'," +
-                                                    "'" + Convert.ToDateTime(ArchivoRecienNacidos["FecMuerNaci"]).ToString("yyyy-MM-dd") + "'," +
-                                                    "'" + Convert.ToDateTime(ArchivoRecienNacidos["HorMuerNaci"]).ToString("hh:mm:ss") + "')";
+                                                    "DxMuerte";
+                                                    if (string.IsNullOrWhiteSpace(ArchivoRecienNacidos["FecMuerNaci"].ToString())) //si la fecha viene null termine el insert aqui
+                                                    {
+                                                        data += ")";
+                                                    }
+                                                    else
+                                                    {
+                                                        data += ",FecMuerte," +
+                                                                "HorMuerte)";
+                                                    }
+
+                                            data += "VALUES(" +
+                                                     "'" + UsSel + "'," +
+                                                     "'" + Coenti01 + "'," +
+                                                     "'" + NumFactur + "'," +
+                                                     "'" + CodIPS + "'," +
+                                                     "'" + TipoIden + "'," +
+                                                     "'" + ArchivoRecienNacidos["NumIden"].ToString() + "'," +
+                                                     "'" + Convert.ToDateTime(ArchivoRecienNacidos["FechaNaci"]).ToString("yyyy-MM-dd") + "'," +
+                                                     "'" + Convert.ToDateTime(ArchivoRecienNacidos["HoraNaci"]).ToString("hh:mm:ss") + "'," +
+                                                     "'" + ArchivoRecienNacidos["EdadGesta"].ToString() + "'," +
+                                                     "'" + ArchivoRecienNacidos["ConPrena"].ToString() + "'," +
+                                                     "'" + ArchivoRecienNacidos["SexoNaci"].ToString() + "'," +
+                                                     "'" + ArchivoRecienNacidos["PesoNaci"].ToString() + "'," +
+                                                     "'" + ArchivoRecienNacidos["DxNaci"].ToString() + "'," +
+                                                     "'" + ArchivoRecienNacidos["DxMuerNaci"].ToString() + "'";
+                                                    if (string.IsNullOrWhiteSpace(ArchivoRecienNacidos["FecMuerNaci"].ToString()))
+                                                    {
+                                                        data += ")";
+                                                    }
+                                                    else
+                                                    {
+                                                        data += ",'" + Convert.ToDateTime(ArchivoRecienNacidos["FecMuerNaci"]).ToString("yyyy-MM-dd") + "'," +
+                                                            "'" + Convert.ToDateTime(ArchivoRecienNacidos["HorMuerNaci"]).ToString("hh:mm:ss") + "')";
+                                                    } 
 
                                             SqlInsert = Conexion.SqlInsert(data);
                                         }                  
@@ -5309,14 +6175,21 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
 
                         }//Estado Grilla
 
-
+                        BarraSeleccionar.Increment(1);
                     } //Foreach Grilla
 
 
                     if (SqlInsert)
                     {
-                        MessageBox.Show("Listo");
+                        Utils.Informa = "He terminado de procesar todos ";
+                        Utils.Informa += "los datos que conforman los RIPS ";
+                        Utils.Informa += "de las facturas seleccionadas.";
+                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+
+                    BarraSeleccionar.Minimum = 0;
+                    BarraSeleccionar.Maximum = 1;
+                    BarraSeleccionar.Value = 0;
 
                 } // Dialogo Yes
             }
@@ -5324,8 +6197,11 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
             {
                 Utils.Titulo01 = "Control de errores de ejecución";
                 Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
-                Utils.Informa += "después de hacer click sobre el botón agregar una" + "\r";
+                Utils.Informa += "después de hacer click sobre el boton seleccionar" + "\r";
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                BarraSeleccionar.Minimum = 0;
+                BarraSeleccionar.Maximum = 1;
+                BarraSeleccionar.Value = 0;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -5354,6 +6230,23 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
 
 
 
+        private void BarraSeleccionar_Click(object sender, EventArgs e)
+        {
+            ProgressBar progressBar = new ProgressBar();  
+        }
 
+        private void Empezar_Click(object sender, EventArgs e)
+        {
+            int num = 1000000;
+
+            BarraSeleccionar.Minimum = 1;
+            BarraSeleccionar.Maximum = num;
+
+            for (int i = 1; i <= num; i++)
+            {
+                BarraSeleccionar.Increment(1);
+            }
+
+        }
     }
 }
