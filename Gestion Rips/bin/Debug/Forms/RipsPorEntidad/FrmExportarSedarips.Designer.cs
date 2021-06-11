@@ -100,6 +100,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.lblCodMinSalud = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.lblTipoRips = new System.Windows.Forms.Label();
+            this.BarraSeleccionar = new System.Windows.Forms.ProgressBar();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -979,11 +980,19 @@ namespace Gestion_Rips.Forms.Exportar
             this.lblTipoRips.Text = "Facturas";
             this.lblTipoRips.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // BarraSeleccionar
+            // 
+            this.BarraSeleccionar.Location = new System.Drawing.Point(8, 466);
+            this.BarraSeleccionar.Name = "BarraSeleccionar";
+            this.BarraSeleccionar.Size = new System.Drawing.Size(810, 23);
+            this.BarraSeleccionar.TabIndex = 20;
+            // 
             // FrmExportarSedarips
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(825, 462);
+            this.ClientSize = new System.Drawing.Size(825, 498);
+            this.Controls.Add(this.BarraSeleccionar);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
@@ -1089,5 +1098,6 @@ namespace Gestion_Rips.Forms.Exportar
         private System.Windows.Forms.Label lblNivelPermitido;
         private System.Windows.Forms.TextBox txtFacturaDestino;
         private System.Windows.Forms.TextBox txtFacturaOrigen;
+        private System.Windows.Forms.ProgressBar BarraSeleccionar;
     }
 }

@@ -6229,6 +6229,10 @@ namespace Gestion_Rips.Forms.Exportar
 
                         while (TabFacSele.Read())
                         {
+
+                            BarraSeleccionar.Minimum = 1;
+                            BarraSeleccionar.Maximum = Convert.ToInt32(txtTotalCantidadDestino.Text);
+
                             ValdetaFac = 0; //En esta variable se va ha registrar los valores de detalle de cada factura para después auditar qquien tiene descuadre
                             CanFacSel += 1;
 
@@ -7228,6 +7232,8 @@ namespace Gestion_Rips.Forms.Exportar
 
                             Boolean ActFactur = Conexion.SQLUpdate(Utils.SqlDatos);
 
+                            BarraSeleccionar.Increment(1);
+
                         } // FINAL WHILE TABFACSELEC
 
                         Utils.Informa = "He terminado de procesar todos ";
@@ -7235,10 +7241,13 @@ namespace Gestion_Rips.Forms.Exportar
                         Utils.Informa += "de las facturas seleccionadas.";
                         MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                        BarraSeleccionar.Minimum = 0;
+                        BarraSeleccionar.Maximum = 1;
+                        BarraSeleccionar.Value = 0;
+
                     }//FINAL TABFACSELE.HASROW
 
                 } //Fin Suing
-
 
 
                 TabFacSele.Close();
@@ -7254,6 +7263,9 @@ namespace Gestion_Rips.Forms.Exportar
                 Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
                 Utils.Informa += "en el boton seleccionar" + "\r";
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                BarraSeleccionar.Minimum = 0;
+                BarraSeleccionar.Maximum = 1;
+                BarraSeleccionar.Value = 0;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
