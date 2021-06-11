@@ -3836,49 +3836,49 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                     if(TolConsul > 0)
                     {
                         //Copia las consultas
-                        FunCopCon = CopiaRipsConsul(NRemEnvi, Coenti01, TolConsul, 2);
+                        FunCopCon = CopiaRipsConsul(NRemEnvi, Coenti01, TolConsul);
                         MJ = "Cantidad de consultas: " + FunCopCon + "\r";
                     }
 
                     if (TolHos > 0)
                     {
                         //Copia los usuarios hospitalizados
-                        FunCopHos = CopiaRipsHospi(NRemEnvi, Coenti01, TolHos, 2);
+                        FunCopHos = CopiaRipsHospi(NRemEnvi, Coenti01, TolHos);
                         MJ += "Cantidad de hospitalizaciones: " + FunCopHos + "\r";
                     }
 
                     if (TolMedi > 0)
                     {
                         //Copia los medicamentos
-                        FunCopMed = CopiaRipsMedica(NRemEnvi, Coenti01, TolMedi, 2);
+                        FunCopMed = CopiaRipsMedica(NRemEnvi, Coenti01, TolMedi);
                         MJ += "Cantidad de medicamentos: " + FunCopMed + "\r";
                     }
 
                     if (TolObs > 0)
                     {
                         //Copia los usuarios en observación
-                        FunCopObs = CopiaRipsObserva(NRemEnvi, Coenti01, TolObs, 2);
+                        FunCopObs = CopiaRipsObserva(NRemEnvi, Coenti01, TolObs);
                         MJ += "Cantidad de observaciónes: " + FunCopObs + "\r";
                     }
 
                     if (TolOtros > 0)
                     {
                         //Copia los otros servicios
-                        FunCopOtr = CopiaRipsOtros(NRemEnvi, Coenti01, TolOtros, 2);
+                        FunCopOtr = CopiaRipsOtros(NRemEnvi, Coenti01, TolOtros);
                         MJ += "Cantidad de otros servicios: " + FunCopOtr + "\r";
                     }
 
                     if (TolReN > 0)
                     {
                         //Copia los recien nacidos
-                        FunCopRec = CopiaRipsRecien(NRemEnvi, Coenti01, TolReN, 2);
+                        FunCopRec = CopiaRipsRecien(NRemEnvi, Coenti01, TolReN);
                         MJ += "Cantidad de otros servicios: " + FunCopRec + "\r";
                     }
 
                     if (TolProce > 0)
                     {
                         //Copia los procedimientos
-                        FunCopPro = CopiaRipsProce(NRemEnvi, Coenti01, TolProce, 2);
+                        FunCopPro = CopiaRipsProce(NRemEnvi, Coenti01, TolProce);
                         MJ += "Cantidad de procedimientos: " + FunCopPro + "\r";
                     }
 
@@ -3907,7 +3907,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
         }
 
 
-        private int CopiaRipsProce(string NR, string CI, double TolC, int RutCopy)
+        private int CopiaRipsProce(string NR, string CI, double TolC)
         {
             try
             {
@@ -4011,7 +4011,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
             }
         }
 
-        private int CopiaRipsRecien(string NR, string CI, double TolC, int RutCopy)
+        private int CopiaRipsRecien(string NR, string CI, double TolC)
         {
             try
             {
@@ -4102,7 +4102,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
             }
         }
 
-        private int CopiaRipsOtros(string NR, string CI, double TolC, int RutCopy)
+        private int CopiaRipsOtros(string NR, string CI, double TolC)
         {
             try
             {
@@ -4193,7 +4193,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
             }
         }
 
-        private int CopiaRipsObserva(string NR, string CI, double TolC, int RutCopy)
+        private int CopiaRipsObserva(string NR, string CI, double TolC)
         {
             try
             {
@@ -4296,7 +4296,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
             }
         }
 
-        private int CopiaRipsMedica(string NR, string CI, double TolC, int RutCopy)
+        private int CopiaRipsMedica(string NR, string CI, double TolC)
         {
             try
             {
@@ -4393,7 +4393,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
             }
         }
 
-        private int CopiaRipsHospi(string NR, string CI, double TolC, int RutCopy)
+        private int CopiaRipsHospi(string NR, string CI, double TolC)
         {
             try
             {
@@ -4456,6 +4456,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                              "'" + Convert.ToDateTime(TabLocal["HorIngresa"]).ToString("hh:mm:ss") + "'," +
                                              "'" + TabLocal["AutoriNum"].ToString() + "'," +
                                              "'" + TabLocal["CausExter"].ToString() + "'," +
+
                                              "'" + TabLocal["DxPrincIngre"].ToString() + "'," +
                                              "'" + TabLocal["DxPrincEgre"].ToString() + "'," +
                                              "'" + TabLocal["DxRelacion1"].ToString() + "'," +
@@ -4500,7 +4501,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
             }
         }
 
-        private int CopiaRipsConsul(string NR, string CI, double TolC, int RutCopy)
+        private int CopiaRipsConsul(string NR, string CI, double TolC)
         {
             try
             {
