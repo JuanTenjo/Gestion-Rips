@@ -1,6 +1,7 @@
 ﻿using Gestion_Rips.Clases;
 using Gestion_Rips.Forms.Exportar;
 using Gestion_Rips.Forms.RipsPorRegimen;
+using Gestion_Rips.Forms.RipsTodos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -140,12 +141,14 @@ namespace Gestion_Rips.Forms
         {
             Utils.BaseDeDatosPrincipal = "DARIPSXPSQL";
 
+
             Conexion.conexionSQL = "Server=" + Conexion.servidor + "; " +
                                    "Initial Catalog=" + Utils.BaseDeDatosPrincipal + ";" +
                                    "User ID= " + Conexion.username + "; " +
                                    "Password=" + Conexion.password;
 
             FrmArchivoMaestro FrmArchivoMaestro = new FrmArchivoMaestro();
+            FrmArchivoMaestro.Text = "FrmGestionRipsEstandar";
             FrmArchivoMaestro.ShowDialog();
 
         }
@@ -160,7 +163,23 @@ namespace Gestion_Rips.Forms
                                    "Password=" + Conexion.password;
 
             FrmArchivoMaestro FrmArchivoMaestro = new FrmArchivoMaestro();
+            FrmArchivoMaestro.Text = "FrmGestionRipsEspecial";
             FrmArchivoMaestro.ShowDialog();
+        }
+
+        private void ripsTodosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.BaseDeDatosPrincipal = "DARIPSESSQL";
+
+            Conexion.conexionSQL = "Server=" + Conexion.servidor + "; " +
+                                   "Initial Catalog=" + Utils.BaseDeDatosPrincipal + ";" +
+                                   "User ID= " + Conexion.username + "; " +
+                                   "Password=" + Conexion.password;
+
+
+            FrmExportarSedaripsTodos frmExportarSedaripsTodos = new FrmExportarSedaripsTodos();
+            frmExportarSedaripsTodos.ShowDialog();
+
         }
     }
 }

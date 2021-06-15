@@ -93,7 +93,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
 
                 //'proceda a verificar si el usuario está creando o modificando
 
-                Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos archivo maestro] WHERE ConseArchivo = '" + RENum + "' ";
+                Utils.SqlDatos = "SELECT * FROM [Datos archivo maestro] WHERE ConseArchivo = '" + RENum + "' ";
 
                 SqlDataReader TablaAux7 = Conexion.SQLDataReader(Utils.SqlDatos);
 
@@ -157,7 +157,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                             default:
                                 string Date = DateTime.Now.ToString("yyyy-MM-dd");
                                 //'Proceda a registrar la nueva remisi'on
-                                Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos archivo maestro]" +
+                                Utils.SqlDatos = "INSERT INTO [Datos archivo maestro]" +
                                        "(" +
                                        "ConseArchivo," +
                                        "CodInterAdmi," +
@@ -230,7 +230,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                     {
                         //Procede a mofificar
 
-                        Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos archivo maestro] SET " +
+                        Utils.SqlDatos = "UPDATE [Datos archivo maestro] SET " +
                         "FecRemite = '" + DtFecEnvio.Value.ToString("yyyy-MM-dd") + "'," +
                         "NomRespon = '" + txtResponEnvia.Text + "'," +
                         "TelResponsa = '" + txtTeleRespon.Text + "'," +
@@ -269,7 +269,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                 DateTime FechaUltima;
                 double Fac = 0;
                 string Date2, Convertido;
-                Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos contadores sedas] WHERE CodiUNico = 1";
+                Utils.SqlDatos = "SELECT * FROM [Datos contadores sedas] WHERE CodiUNico = 1";
 
                 SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
 
@@ -306,7 +306,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
 
                                 Date2 = DateTime.Now.ToString("yyyy-MM-dd");
 
-                                Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos contadores sedas] SET [ConsRemi] = '" + Fac + "', [UsarRemi] = '" + Us + "', FecRemi = '" + Date2 + "'";
+                                Utils.SqlDatos = "UPDATE [Datos contadores sedas] SET [ConsRemi] = '" + Fac + "', [UsarRemi] = '" + Us + "', FecRemi = '" + Date2 + "'";
 
                                 Boolean EstaActConce = Conexion.SQLUpdate(Utils.SqlDatos);
 
@@ -324,7 +324,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                             Fac = Convert.ToDouble(TablaAux1["UlConRemi"].ToString());
                             if (A)
                             {
-                                Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos contadores sedas] SET [UlConRemi] = '" + 0 + "'";
+                                Utils.SqlDatos = "UPDATE [Datos contadores sedas] SET [UlConRemi] = '" + 0 + "'";
 
                                 Boolean EstaActConce = Conexion.SQLUpdate(Utils.SqlDatos);
 

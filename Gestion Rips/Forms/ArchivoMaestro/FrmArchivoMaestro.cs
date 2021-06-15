@@ -45,7 +45,7 @@ namespace Gestion_Rips.Forms.Exportar
                 this.cboNomAdmin.Items.Clear();
 
                 DataSet AdminPLanes = Conexion.SQLDataSet("SELECT [Datos administradoras de planes].CodInterno, [Datos administradoras de planes].NomAdmin, [Datos administradoras de planes].CodAdmin, [Datos administradoras de planes].NitCC, [Datos administradoras de planes].ManualTari " +
-                                                         " FROM [DARIPSXPSQL].[dbo].[Datos administradoras de planes] " +
+                                                         " FROM [Datos administradoras de planes] " +
                                                          " ORDER BY [Datos administradoras de planes].NomAdmin;");
 
 
@@ -115,7 +115,7 @@ namespace Gestion_Rips.Forms.Exportar
 
                 //'Abrimos la tabla nombre de archivos
 
-                Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos archivo maestro] WHERE ConseArchivo = '" + R + "' ";
+                Utils.SqlDatos = "SELECT * FROM [Datos archivo maestro] WHERE ConseArchivo = '" + R + "' ";
 
                 SqlDataReader TabNomArchi = Conexion.SQLDataReader(Utils.SqlDatos);
 
@@ -159,7 +159,7 @@ namespace Gestion_Rips.Forms.Exportar
             {
                 string SqlNomArchi;
 
-                SqlNomArchi = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos archivo maestro] WHERE [ConseArchivo] = '" + R + "'";
+                SqlNomArchi = "SELECT * FROM [Datos archivo maestro] WHERE [ConseArchivo] = '" + R + "'";
 
                 SqlDataReader TabNomArchi = Conexion.SQLDataReader(SqlNomArchi);
 
@@ -172,7 +172,7 @@ namespace Gestion_Rips.Forms.Exportar
 
                     string Date = DateTime.Now.ToString("yyyy-MM-dd");
 
-                    Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos archivo maestro] SET CerraRemi = 1, CodModi = '" + U + "', FecModi = '" + Date + "' WHERE [ConseArchivo] = '" + R + "' ";
+                    Utils.SqlDatos = "UPDATE [Datos archivo maestro] SET CerraRemi = 1, CodModi = '" + U + "', FecModi = '" + Date + "' WHERE [ConseArchivo] = '" + R + "' ";
 
                     Boolean EstaAct = Conexion.SQLUpdate(Utils.SqlDatos);
 
@@ -204,7 +204,7 @@ namespace Gestion_Rips.Forms.Exportar
         {
             try
             {
-                Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos control de remisiones] " +
+                Utils.SqlDatos = "INSERT INTO [Datos control de remisiones] " +
                     "(" +
                     "CodiMas," +
                      "AcReal," +
@@ -250,7 +250,7 @@ namespace Gestion_Rips.Forms.Exportar
         {
             try
             {
-                Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos archivo maestro] WHERE ConseArchivo = '" + R + "'";
+                Utils.SqlDatos = "SELECT * FROM [Datos archivo maestro] WHERE ConseArchivo = '" + R + "'";
 
                 SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
 
@@ -260,7 +260,7 @@ namespace Gestion_Rips.Forms.Exportar
                 }
                 else
                 {
-                    Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos archivo maestro] SET AnulRemi = 1, RazAnul = '" + Rz + "', CodAnul = '" + U + "', FecAnul = '" + F + "' WHERE ConseArchivo = '" + R + "'";
+                    Utils.SqlDatos = "UPDATE [Datos archivo maestro] SET AnulRemi = 1, RazAnul = '" + Rz + "', CodAnul = '" + U + "', FecAnul = '" + F + "' WHERE ConseArchivo = '" + R + "'";
 
                     Boolean EstaAnul = Conexion.SQLUpdate(Utils.SqlDatos);
 
@@ -303,7 +303,7 @@ namespace Gestion_Rips.Forms.Exportar
                 //********************** 02 de octubre  de 2009 ****************
 
                 SqlNomArchi = "SELECT [Datos nombres de archivos].CodArchivo, [Datos nombres de archivos].CodRIPS " +
-                              "  FROM [DARIPSXPSQL].[dbo].[Datos nombres de archivos] " +
+                              "  FROM [Datos nombres de archivos] " +
                               "  ORDER BY [Datos nombres de archivos].CodArchivo; ";
 
                 SqlDataReader TabNomArchi = Conexion.SQLDataReader(SqlNomArchi);
@@ -325,7 +325,7 @@ namespace Gestion_Rips.Forms.Exportar
                                 TolR = 0;
                                 break;
                             case "02": //'Totaliza los de archivo de control
-                                SqlDataReader reader = Conexion.SQLDataReader("SELECT COUNT(NumRemi) as TolNumRemi FROM [DARIPSXPSQL].[dbo].[Datos archivo de transacciones] WHERE NumRemi = '" + Para01 + "'");
+                                SqlDataReader reader = Conexion.SQLDataReader("SELECT COUNT(NumRemi) as TolNumRemi FROM [Datos archivo de transacciones] WHERE NumRemi = '" + Para01 + "'");
                                 if (reader.HasRows)
                                 {
                                     reader.Read();
@@ -337,7 +337,7 @@ namespace Gestion_Rips.Forms.Exportar
                                 }
                                 break;
                             case "03": //'Totaliza los de archivo de control
-                                reader = Conexion.SQLDataReader("SELECT COUNT(NumRemi) as TolNumRemi FROM [DARIPSXPSQL].[dbo].[Datos archivo usuarios] WHERE NumRemi = '" + Para01 + "'");
+                                reader = Conexion.SQLDataReader("SELECT COUNT(NumRemi) as TolNumRemi FROM [Datos archivo usuarios] WHERE NumRemi = '" + Para01 + "'");
                                 if (reader.HasRows)
                                 {
                                     reader.Read();
@@ -349,7 +349,7 @@ namespace Gestion_Rips.Forms.Exportar
                                 }
                                 break;
                             case "04": //'Totaliza los de archivo de control
-                                reader = Conexion.SQLDataReader("SELECT COUNT(NumRemi) as TolNumRemi FROM [DARIPSXPSQL].[dbo].[Datos archivo de servicios agrupados] WHERE NumRemi = '" + Para01 + "'");
+                                reader = Conexion.SQLDataReader("SELECT COUNT(NumRemi) as TolNumRemi FROM [Datos archivo de servicios agrupados] WHERE NumRemi = '" + Para01 + "'");
                                 if (reader.HasRows)
                                 {
                                     reader.Read();
@@ -361,7 +361,7 @@ namespace Gestion_Rips.Forms.Exportar
                                 }
                                 break;
                             case "05": //'Totaliza los de archivo de control
-                                reader = Conexion.SQLDataReader("SELECT COUNT(NumRemi) as TolNumRemi FROM [DARIPSXPSQL].[dbo].[Datos archivo de consulta] WHERE NumRemi = '" + Para01 + "'");
+                                reader = Conexion.SQLDataReader("SELECT COUNT(NumRemi) as TolNumRemi FROM [Datos archivo de consulta] WHERE NumRemi = '" + Para01 + "'");
                                 if (reader.HasRows)
                                 {
                                     reader.Read();
@@ -373,7 +373,7 @@ namespace Gestion_Rips.Forms.Exportar
                                 }
                                 break;
                             case "06": //'Totaliza los de archivo de control
-                                reader = Conexion.SQLDataReader("SELECT COUNT(NumRemi) as TolNumRemi FROM [DARIPSXPSQL].[dbo].[Datos archivo de procedimientos] WHERE NumRemi = '" + Para01 + "'");
+                                reader = Conexion.SQLDataReader("SELECT COUNT(NumRemi) as TolNumRemi FROM [Datos archivo de procedimientos] WHERE NumRemi = '" + Para01 + "'");
                                 if (reader.HasRows)
                                 {
                                     reader.Read();
@@ -385,7 +385,7 @@ namespace Gestion_Rips.Forms.Exportar
                                 }
                                 break;
                             case "07": //'Totaliza los de archivo de control
-                                reader = Conexion.SQLDataReader("SELECT COUNT(NumRemi) as TolNumRemi FROM [DARIPSXPSQL].[dbo].[Datos archivo de hospitalizacion] WHERE NumRemi = '" + Para01 + "'");
+                                reader = Conexion.SQLDataReader("SELECT COUNT(NumRemi) as TolNumRemi FROM [Datos archivo de hospitalizacion] WHERE NumRemi = '" + Para01 + "'");
                                 if (reader.HasRows)
                                 {
                                     reader.Read();
@@ -397,7 +397,7 @@ namespace Gestion_Rips.Forms.Exportar
                                 }
                                 break;
                             case "08": //'Totaliza los de archivo de control
-                                reader = Conexion.SQLDataReader("SELECT COUNT(NumRemi) as TolNumRemi FROM [DARIPSXPSQL].[dbo].[Datos archivo de observacion urgencias] WHERE NumRemi = '" + Para01 + "'");
+                                reader = Conexion.SQLDataReader("SELECT COUNT(NumRemi) as TolNumRemi FROM [Datos archivo de observacion urgencias] WHERE NumRemi = '" + Para01 + "'");
                                 if (reader.HasRows)
                                 {
                                     reader.Read();
@@ -409,7 +409,7 @@ namespace Gestion_Rips.Forms.Exportar
                                 }
                                 break;
                             case "9": //'Totaliza los de archivo de control
-                                reader = Conexion.SQLDataReader("SELECT COUNT(NumRemi) as TolNumRemi FROM [DARIPSXPSQL].[dbo].[Datos archivo de recien nacido] WHERE NumRemi = '" + Para01 + "'");
+                                reader = Conexion.SQLDataReader("SELECT COUNT(NumRemi) as TolNumRemi FROM [Datos archivo de recien nacido] WHERE NumRemi = '" + Para01 + "'");
                                 if (reader.HasRows)
                                 {
                                     reader.Read();
@@ -421,7 +421,7 @@ namespace Gestion_Rips.Forms.Exportar
                                 }
                                 break;
                             case "10": //'Totaliza los de archivo de control
-                                reader = Conexion.SQLDataReader("SELECT COUNT(NumRemi) as TolNumRemi FROM [DARIPSXPSQL].[dbo].[Datos archivo de medicamentos] WHERE NumRemi = '" + Para01 + "'");
+                                reader = Conexion.SQLDataReader("SELECT COUNT(NumRemi) as TolNumRemi FROM [Datos archivo de medicamentos] WHERE NumRemi = '" + Para01 + "'");
                                 if (reader.HasRows)
                                 {
                                     reader.Read();
@@ -433,7 +433,7 @@ namespace Gestion_Rips.Forms.Exportar
                                 }
                                 break;
                             case "11": //'Totaliza los de archivo de control
-                                reader = Conexion.SQLDataReader("SELECT COUNT(NumRemi) as TolNumRemi FROM [DARIPSXPSQL].[dbo].[Datos archivo de otros servicios] WHERE NumRemi = '" + Para01 + "'");
+                                reader = Conexion.SQLDataReader("SELECT COUNT(NumRemi) as TolNumRemi FROM [Datos archivo de otros servicios] WHERE NumRemi = '" + Para01 + "'");
                                 if (reader.HasRows)
                                 {
                                     reader.Read();
@@ -455,7 +455,7 @@ namespace Gestion_Rips.Forms.Exportar
                         if (TolR > 0)
                         {
                             SqlARControl = " SELECT [Datos archivo de control].* " +
-                                          " FROM [DARIPSXPSQL].[dbo].[Datos archivo de control] " +
+                                          " FROM [Datos archivo de control] " +
                                           " WHERE ((([Datos archivo de control].CodArchivo) = '" + NAr + "')) " +
                                           " ORDER BY [Datos archivo de control].CodArchivo; ";
 
@@ -465,7 +465,7 @@ namespace Gestion_Rips.Forms.Exportar
                             {
                                 //SE VA A CREAR POR PRIMERA VEZ
 
-                                Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos archivo de control] " +
+                                Utils.SqlDatos = "INSERT INTO [Datos archivo de control] " +
                                                     "(" +
                                                     "NumRemi, " +
                                                     "CodIPS, " +
@@ -487,7 +487,7 @@ namespace Gestion_Rips.Forms.Exportar
                             else
                             {
                                 //Ya existe, por lo tanto de debe modificar
-                                Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos archivo de control] SET " +
+                                Utils.SqlDatos = "UPDATE [Datos archivo de control] SET " +
                                                 "CodIPS = '" + CIPS + "', " +
                                                 "FechaRemi = '" + Convert.ToDateTime(FeN).ToString("yyyy-MM-dd") + "', " +
                                                 "CodArchivo  = '" + NAr + "', " +
@@ -530,7 +530,7 @@ namespace Gestion_Rips.Forms.Exportar
                 //'*********************** 02 de octubre  de 2009 ****************
 
                 SqlAgrupa = "SELECT Sum([Datos archivo de servicios agrupados].Valtotal) AS SumaDeValtotal " +
-                            "FROM [DARIPSXPSQL].[dbo].[Datos archivo de servicios agrupados] " +
+                            "FROM [Datos archivo de servicios agrupados] " +
                             "WHERE ((([Datos archivo de servicios agrupados].NumRemi) = '" + R + "'));";
 
                 SqlDataReader TabAgrupa = Conexion.SQLDataReader(SqlAgrupa);
@@ -572,7 +572,7 @@ namespace Gestion_Rips.Forms.Exportar
                 //'*********************** 02 de octubre  de 2009 ****************
 
                 SqlFactu = "SELECT Sum(([ValorNeto] + [Copago])) AS TolFactura " +
-                           " FROM [DARIPSXPSQL].[dbo].[Datos archivo de transacciones] " +
+                           " FROM [Datos archivo de transacciones] " +
                            " WHERE ((([Datos archivo de transacciones].NumRemi) = '" + R + "'));";
 
                 SqlDataReader TabFactu = Conexion.SQLDataReader(SqlFactu);
@@ -627,7 +627,7 @@ namespace Gestion_Rips.Forms.Exportar
                                 " [Datos archivo de otros servicios].CodIPS, [Datos archivo de otros servicios].CodiServi,  " +
                                 " Sum([Datos archivo de otros servicios].Cantidad) AS SumaDeCantidad, Sum([ValorTotal])/ Sum(CASE WHEN[Cantidad] = 0 THEN 1 ELSE[Cantidad] END) AS Unitario, " +
                                 " Sum([Datos archivo de otros servicios].ValorTotal) AS SumaDeValorTotal  " +
-                                " FROM [DARIPSXPSQL].[dbo].[Datos archivo de otros servicios] " +
+                                " FROM [Datos archivo de otros servicios] " +
                                 " GROUP BY [Datos archivo de otros servicios].NumRemi, [Datos archivo de otros servicios].NumFactur,  " +
                                 " [Datos archivo de otros servicios].CodIPS, [Datos archivo de otros servicios].CodiServi  " +
                                 " HAVING ((([Datos archivo de otros servicios].NumRemi) = '" + RM + "')) " +
@@ -655,7 +655,7 @@ namespace Gestion_Rips.Forms.Exportar
                         if (FunGr != "-1")
                         {
 
-                            Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos archivo de servicios agrupados] " +
+                            Utils.SqlDatos = "INSERT INTO [Datos archivo de servicios agrupados] " +
                                                 "(" +
                                                 "NumRemi, " +
                                                 "NumFactur, " +
@@ -723,7 +723,7 @@ namespace Gestion_Rips.Forms.Exportar
                                 " Sum([Datos archivo de medicamentos].NumUnidad) AS SumaDeNumUnidad, " +
                                 " Sum([ValorTotal])/ Sum(CASE WHEN[NumUnidad] = 0 THEN 1 ELSE[NumUnidad] END) AS Uni, " +
                                 " Sum([Datos archivo de medicamentos].ValorTotal) AS SumaDeValorTotal " +
-                                " FROM [DARIPSXPSQL].[dbo].[Datos archivo de medicamentos] " +
+                                " FROM [Datos archivo de medicamentos] " +
                                 " GROUP BY [Datos archivo de medicamentos].NumRemi, [Datos archivo de medicamentos].NumFactur, " +
                                 " [Datos archivo de medicamentos].CodIPS, [Datos archivo de medicamentos].TipoMedica " +
                                 " HAVING ((([Datos archivo de medicamentos].NumRemi) = '" + RM + "')); ";
@@ -750,7 +750,7 @@ namespace Gestion_Rips.Forms.Exportar
                         {
                             FunGr = "13";
                         } //'Final de TablaAux5![TipoMedica] = 1
-                        Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos archivo de servicios agrupados] " +
+                        Utils.SqlDatos = "INSERT INTO [Datos archivo de servicios agrupados] " +
                                             "(" +
                                             "NumRemi, " +
                                             "NumFactur, " +
@@ -817,7 +817,7 @@ namespace Gestion_Rips.Forms.Exportar
                         "[Datos archivo de procedimientos].CodIPS, [Datos archivo de procedimientos].CodProce, " +
                         "Sum([Datos archivo de procedimientos].ValorProce) AS SumaDeValorProce, " +
                         "Count([Datos archivo de procedimientos].IndiceRIPSAP) AS CuentaDeIndiceRIPSAP " +
-                        "FROM [DARIPSXPSQL].[dbo].[Datos archivo de procedimientos] " +
+                        "FROM [Datos archivo de procedimientos] " +
                         "GROUP BY [Datos archivo de procedimientos].NumRemi, [Datos archivo de procedimientos].NumFactur, " +
                         "[Datos archivo de procedimientos].CodIPS, [Datos archivo de procedimientos].CodProce " +
                         "HAVING ((([Datos archivo de procedimientos].NumRemi) = '" + Rm + "' ))" +
@@ -848,7 +848,7 @@ namespace Gestion_Rips.Forms.Exportar
                             CD = TabProce["CodProce"].ToString();
                             FunReg = GrupoProceServi(CD, TM);
 
-                            Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos archivo de servicios agrupados] " +
+                            Utils.SqlDatos = "INSERT INTO [Datos archivo de servicios agrupados] " +
                                                 "(" +
                                                 "NumRemi, " +
                                                 "NumFactur, " +
@@ -1005,7 +1005,7 @@ namespace Gestion_Rips.Forms.Exportar
                 SqlConsultas = "SELECT [Datos archivo de consulta].NumRemi, [Datos archivo de consulta].NumFactur, " +
                                 "[Datos archivo de consulta].CodIPS, Avg([Datos archivo de consulta].ValorConsul) AS PromedioDeValorConsul, " +
                                 "Count([Datos archivo de consulta].IndiceRIPSAC) As CuentaDeIndiceRIPSAC " +
-                                "FROM [DARIPSXPSQL].[dbo].[Datos archivo de consulta] " +
+                                "FROM [Datos archivo de consulta] " +
                                 "GROUP BY [Datos archivo de consulta].NumRemi, [Datos archivo de consulta].NumFactur, " +
                                 "[Datos archivo de consulta].CodIPS " +
                                 "HAVING ((([Datos archivo de consulta].NumRemi)= '" + Rm + "' ));";
@@ -1021,7 +1021,7 @@ namespace Gestion_Rips.Forms.Exportar
                 {
                     while (TabConsultas.Read())
                     {
-                        Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos archivo de servicios agrupados] " +
+                        Utils.SqlDatos = "INSERT INTO [Datos archivo de servicios agrupados] " +
                                         "(" +
                                         "NumRemi, " +
                                         "NumFactur, " +
@@ -1247,7 +1247,7 @@ namespace Gestion_Rips.Forms.Exportar
                     //Proceda a exportar los archivos
                     //Abrimos la tabla nombre de archivos
 
-                    Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos nombres de archivos]";
+                    Utils.SqlDatos = "SELECT * FROM [Datos nombres de archivos]";
 
                     SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
 
@@ -1262,9 +1262,11 @@ namespace Gestion_Rips.Forms.Exportar
                     else
                     {
                         NuT = 0;
-
+                        BarraExportar.Minimum = 1;
+                        BarraExportar.Maximum = Convert.ToInt32(11);
                         while (TablaAux1.Read())
                         {
+
                             TolReg = 0;
                             NT = TablaAux1["NomTabRemo"].ToString(); //Nombre de la tabla en sql
                             NE = TablaAux1["NomEspicifica"].ToString(); //Nombre de la especificación
@@ -1272,7 +1274,7 @@ namespace Gestion_Rips.Forms.Exportar
                             NLA = TablaAux1["NomArchivo"].ToString(); //Nombre de la especificación
                             TAE = TablaAux1["CodRIPS"].ToString(); //Nombre de la especificación
 
-                            Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                            Utils.SqlDatos = "SELECT * FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
 
                             SqlDataReader TablaAux3 = Conexion.SQLDataReader(Utils.SqlDatos);
 
@@ -1319,41 +1321,41 @@ namespace Gestion_Rips.Forms.Exportar
                                     switch (NT)
                                     {
                                         case "Datos archivo de control":
-                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(CodIPS)), CONVERT(varchar,FechaRemi,103), LTRIM(RTRIM(CodArchivo)), LTRIM(RTRIM(TotalRegis)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(CodIPS)), CONVERT(varchar,FechaRemi,103), LTRIM(RTRIM(CodArchivo)), LTRIM(RTRIM(TotalRegis)) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
                                             break;
                                         case "Datos archivo de transacciones":
-                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(CodIPS)),LTRIM(RTRIM(RazonSocial)),LTRIM(RTRIM(TipIdenti)),LTRIM(RTRIM(NumIdenti)),LTRIM(RTRIM(NumFactur)),CONVERT(varchar,FecFactur,103),CONVERT(varchar,FecInicio,103),CONVERT(varchar,FecFinal,103),LTRIM(RTRIM(CodAdmin)),LTRIM(RTRIM(NomAdmin)),LTRIM(RTRIM(NumContra)),LTRIM(RTRIM(PlanBene)),LTRIM(RTRIM(NumPoli)),LTRIM(RTRIM(Copago)),LTRIM(RTRIM(ValorComi)),LTRIM(RTRIM(ValorDes)),LTRIM(RTRIM(ValorNeto)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(CodIPS)),LTRIM(RTRIM(RazonSocial)),LTRIM(RTRIM(TipIdenti)),LTRIM(RTRIM(NumIdenti)),LTRIM(RTRIM(NumFactur)),CONVERT(varchar,FecFactur,103),CONVERT(varchar,FecInicio,103),CONVERT(varchar,FecFinal,103),LTRIM(RTRIM(CodAdmin)),LTRIM(RTRIM(NomAdmin)),LTRIM(RTRIM(NumContra)),LTRIM(RTRIM(PlanBene)),LTRIM(RTRIM(NumPoli)),LTRIM(RTRIM(Copago)),LTRIM(RTRIM(ValorComi)),LTRIM(RTRIM(ValorDes)),LTRIM(RTRIM(ValorNeto)) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
                                             break;
                                         case "Datos archivo usuarios":
-                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)), LTRIM(RTRIM(CodAdmin)), LTRIM(RTRIM(TipUsuario)),LTRIM(RTRIM(Apellido1)),LTRIM(RTRIM(Apellido2)),LTRIM(RTRIM(Nombre1)),LTRIM(RTRIM(Nombre2)),LTRIM(RTRIM(Edad)),LTRIM(RTRIM(EdadMedi)),LTRIM(RTRIM(Sexo)),LTRIM(RTRIM(CodDpto)),LTRIM(RTRIM(CodMuni)),LTRIM(RTRIM(ZonaResi)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)), LTRIM(RTRIM(CodAdmin)), LTRIM(RTRIM(TipUsuario)),LTRIM(RTRIM(Apellido1)),LTRIM(RTRIM(Apellido2)),LTRIM(RTRIM(Nombre1)),LTRIM(RTRIM(Nombre2)),LTRIM(RTRIM(Edad)),LTRIM(RTRIM(EdadMedi)),LTRIM(RTRIM(Sexo)),LTRIM(RTRIM(CodDpto)),LTRIM(RTRIM(CodMuni)),LTRIM(RTRIM(ZonaResi)) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
                                             break;
                                         case "Datos archivo de servicios agrupados":
-                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(CodConcepto)), LTRIM(RTRIM(CantiGrupo)),LTRIM(RTRIM(ValUnita)),LTRIM(RTRIM(Valtotal)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(CodConcepto)), LTRIM(RTRIM(CantiGrupo)),LTRIM(RTRIM(ValUnita)),LTRIM(RTRIM(Valtotal)) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
                                             break;
                                         case "Datos archivo de consulta":
-                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),CONVERT(varchar,FecConsul,103),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CodConsul)),LTRIM(RTRIM(CausExter)),LTRIM(RTRIM(DxPrincipal)),LTRIM(RTRIM(DxRelacion1)),LTRIM(RTRIM(DxRelacion2)),LTRIM(RTRIM(DxRelacion3)),LTRIM(RTRIM(TipoDxPrin)),LTRIM(RTRIM(ValorConsul)),LTRIM(RTRIM(ValorCuota)),LTRIM(RTRIM(ValorNeto)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),CONVERT(varchar,FecConsul,103),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CodConsul)),LTRIM(RTRIM(CausExter)),LTRIM(RTRIM(DxPrincipal)),LTRIM(RTRIM(DxRelacion1)),LTRIM(RTRIM(DxRelacion2)),LTRIM(RTRIM(DxRelacion3)),LTRIM(RTRIM(TipoDxPrin)),LTRIM(RTRIM(ValorConsul)),LTRIM(RTRIM(ValorCuota)),LTRIM(RTRIM(ValorNeto)) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
                                             break;
                                         case "Datos archivo de procedimientos":
-                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),CONVERT(varchar,FecProce,103),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CodProce)),LTRIM(RTRIM(AmbitoReal)),LTRIM(RTRIM(FinalProce)),LTRIM(RTRIM(PersonAten)),LTRIM(RTRIM(DxPrincipal)),LTRIM(RTRIM(DxRelacion)),LTRIM(RTRIM(Complicacion)),LTRIM(RTRIM(RealiActo)),LTRIM(RTRIM(ValorProce)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),CONVERT(varchar,FecProce,103),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CodProce)),LTRIM(RTRIM(AmbitoReal)),LTRIM(RTRIM(FinalProce)),LTRIM(RTRIM(PersonAten)),LTRIM(RTRIM(DxPrincipal)),LTRIM(RTRIM(DxRelacion)),LTRIM(RTRIM(Complicacion)),LTRIM(RTRIM(RealiActo)),LTRIM(RTRIM(ValorProce)) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
                                             break;
                                         case "Datos archivo de hospitalizacion":
-                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),LTRIM(RTRIM(ViaDIngreso)),CONVERT(varchar,FecIngresa,103) ,LTRIM(RTRIM(HorIngresa)),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CausExter)),LTRIM(RTRIM(DxPrincIngre)),LTRIM(RTRIM(DxPrincEgre)),LTRIM(RTRIM(DxRelacion1)),LTRIM(RTRIM(DxRelacion2)),LTRIM(RTRIM(DxRelacion3)),LTRIM(RTRIM(DxComplica)),LTRIM(RTRIM(EstadoSal)),LTRIM(RTRIM(DxMuerte)),CONVERT(varchar,FecSalida,103),LTRIM(RTRIM(HorSalida)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),LTRIM(RTRIM(ViaDIngreso)), CONVERT(varchar,FecIngresa,103) ,SUBSTRING(CONVERT(varchar,HorIngresa,24),1,5),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CausExter)),LTRIM(RTRIM(DxPrincIngre)),LTRIM(RTRIM(DxPrincEgre)),LTRIM(RTRIM(DxRelacion1)),LTRIM(RTRIM(DxRelacion2)),LTRIM(RTRIM(DxRelacion3)),LTRIM(RTRIM(DxComplica)),LTRIM(RTRIM(EstadoSal)),LTRIM(RTRIM(DxMuerte)),CONVERT(varchar,FecSalida,103),SUBSTRING(CONVERT(varchar,HorSalida,24),1,5) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
                                             break;
                                         case "Datos archivo de observacion urgencias":
-                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),CONVERT(varchar,FecIngresa,103),LTRIM(RTRIM(HorIngresa)),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CausExter)),LTRIM(RTRIM(DxPrincipal)),LTRIM(RTRIM(DxRelacion1)),LTRIM(RTRIM(DxRelacion2)),LTRIM(RTRIM(DxRelacion3)),LTRIM(RTRIM(Destino)),LTRIM(RTRIM(EstadoSal)),LTRIM(RTRIM(DxMuerte)),CONVERT(varchar,FecSalida,103),LTRIM(RTRIM(HorSalida)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),CONVERT(varchar,FecIngresa,103),SUBSTRING(CONVERT(varchar,HorIngresa,24),1,5),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CausExter)),LTRIM(RTRIM(DxPrincIngre)),LTRIM(RTRIM(DxRelacion1)),LTRIM(RTRIM(DxRelacion2)),LTRIM(RTRIM(DxRelacion3)),LTRIM(RTRIM(Destino)),LTRIM(RTRIM(EstadoSal)),LTRIM(RTRIM(DxMuerte)),CONVERT(varchar,FecSalida,103),SUBSTRING(CONVERT(varchar,HorSalida,24),1,5) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
                                             break;
                                         case "Datos archivo de recien nacido":
-                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),CONVERT(varchar,FecNaci,103),LTRIM(RTRIM(HorIngresa)),LTRIM(RTRIM(EdadGesta)),LTRIM(RTRIM(ControlPrena)),LTRIM(RTRIM(SexoRecien)),LTRIM(RTRIM(PesoRecien)),LTRIM(RTRIM(DxRecien)),LTRIM(RTRIM(DxMuerte)),CONVERT(varchar,FecMuerte,103),LTRIM(RTRIM(HorMuerte)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),CONVERT(varchar,FecNaci,103),SUBSTRING(CONVERT(varchar,HorIngresa,24),1,5),LTRIM(RTRIM(EdadGesta)),LTRIM(RTRIM(ControlPrena)),LTRIM(RTRIM(SexoRecien)),LTRIM(RTRIM(PesoRecien)),LTRIM(RTRIM(DxRecien)),LTRIM(RTRIM(DxMuerte)),CONVERT(varchar,FecMuerte,103),SUBSTRING(CONVERT(varchar,HorMuerte,24),1,5) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
                                             break;
                                         case "Datos archivo de medicamentos":
-                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)), LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CodMedica)),LTRIM(RTRIM(TipoMedica)),LTRIM(RTRIM(NomGenerico)),LTRIM(RTRIM(FormaFarma)),LTRIM(RTRIM(ConcenMedi)),LTRIM(RTRIM(UniMedida)),LTRIM(RTRIM(NumUnidad)),LTRIM(RTRIM(ValorUnita)),LTRIM(RTRIM(ValorTotal)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)), LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CodMedica)),LTRIM(RTRIM(TipoMedica)),LTRIM(RTRIM(NomGenerico)),LTRIM(RTRIM(FormaFarma)),LTRIM(RTRIM(ConcenMedi)),LTRIM(RTRIM(UniMedida)),LTRIM(RTRIM(NumUnidad)),LTRIM(RTRIM(ValorUnita)),LTRIM(RTRIM(ValorTotal)) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
                                             break;
                                         case "Datos archivo de otros servicios":
-                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(TipoServicio)),LTRIM(RTRIM(CodiServi)),LTRIM(RTRIM(NomServi)),LTRIM(RTRIM(Cantidad)),LTRIM(RTRIM(ValorUnita)),LTRIM(RTRIM(ValorTotal)) FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(TipoServicio)),LTRIM(RTRIM(CodiServi)),LTRIM(RTRIM(NomServi)),LTRIM(RTRIM(Cantidad)),LTRIM(RTRIM(ValorUnita)),LTRIM(RTRIM(ValorTotal)) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
                                             break;
 
                                         default:
-                                            Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            Utils.SqlDatos = "SELECT * FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
                                             break;
                                     }
 
@@ -1381,6 +1383,8 @@ namespace Gestion_Rips.Forms.Exportar
 
                             }// fiNAL TolReg > 0
 
+                            BarraExportar.Increment(1);
+
                         }// Final while 
 
                         //'Muestrelos resultados
@@ -1395,6 +1399,10 @@ namespace Gestion_Rips.Forms.Exportar
 
                         MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                        BarraExportar.Minimum = 0;
+                        BarraExportar.Maximum = 1;
+                        BarraExportar.Value = 0;
+
                     } // TablaAux1.HasRows == false
 
 
@@ -1408,6 +1416,9 @@ namespace Gestion_Rips.Forms.Exportar
                 Utils.Informa += "Lo siento pero se ha presentado un error" + "\r";
                 Utils.Informa += "despues de dar click al boton de exportar " + "\r";
                 Utils.Informa += "Módulo gestión de RIPS" + "\r";
+                BarraExportar.Minimum = 0;
+                BarraExportar.Maximum = 1;
+                BarraExportar.Value = 0;
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -1421,7 +1432,7 @@ namespace Gestion_Rips.Forms.Exportar
 
                 string Estandatos, ConverCodigo;
 
-                Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos archivo maestro] WHERE CodInterAdmi= '" + CI + "' AND CerraRemi= '" + RA + "'";
+                Utils.SqlDatos = "SELECT * FROM [Datos archivo maestro] WHERE CodInterAdmi= '" + CI + "' AND CerraRemi= '" + RA + "'";
 
                 SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
 
@@ -1489,7 +1500,7 @@ namespace Gestion_Rips.Forms.Exportar
                 if (Bandera == 1)
                 {
                     SqlDataReader AdminPLanes = Conexion.SQLDataReader("SELECT [Datos administradoras de planes].CodInterno, [Datos administradoras de planes].NomAdmin, [Datos administradoras de planes].CodAdmin, [Datos administradoras de planes].NitCC, [Datos administradoras de planes].ManualTari " +
-                                            " FROM [DARIPSXPSQL].[dbo].[Datos administradoras de planes] WHERE [Datos administradoras de planes].CodInterno = '" + cboNomAdmin.SelectedValue + "' " +
+                                            " FROM [Datos administradoras de planes] WHERE [Datos administradoras de planes].CodInterno = '" + cboNomAdmin.SelectedValue + "' " +
                                             " ORDER BY [Datos administradoras de planes].NomAdmin;");
 
                     if (AdminPLanes.HasRows)
@@ -1503,7 +1514,7 @@ namespace Gestion_Rips.Forms.Exportar
                     }
 
                     DataSet DatosMaestro = Conexion.SQLDataSet("SELECT [Datos archivo maestro].ConseArchivo, [Datos archivo maestro].CodInterAdmi, [Datos archivo maestro].CodIPS, [Datos archivo maestro].FecRemite, [Datos archivo maestro].NomRespon, [Datos archivo maestro].TelResponsa, [Datos archivo maestro].Periodo1, [Datos archivo maestro].Periodo2, [Datos archivo maestro].NumFacturas, [Datos archivo maestro].CerraRemi, [Datos archivo maestro].AnulRemi  " +
-                                                                        "FROM [DARIPSXPSQL].[dbo].[Datos archivo maestro] " +
+                                                                        "FROM [Datos archivo maestro] " +
                                                                         "WHERE [Datos archivo maestro].CodInterAdmi = '" + cboNomAdmin.SelectedValue + "' " +
                                                                         "ORDER BY [Datos archivo maestro].ConseArchivo DESC; ");
 
@@ -1547,7 +1558,7 @@ namespace Gestion_Rips.Forms.Exportar
 
                 //Abrimos la tabla nombre de archivos
 
-                Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos archivo de servicios agrupados] WHERE NumRemi = '" + RM + "'";
+                Utils.SqlDatos = "SELECT * FROM [Datos archivo de servicios agrupados] WHERE NumRemi = '" + RM + "'";
                 /// SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
 
                 SqlDataReader TablaAux1;
@@ -1568,7 +1579,7 @@ namespace Gestion_Rips.Forms.Exportar
 
                 }
 
-                Utils.SqlDatos = "DELETE FROM [DARIPSXPSQL].[dbo].[Datos archivo de servicios agrupados] WHERE NumRemi = '" + RM + "' ";
+                Utils.SqlDatos = "DELETE FROM [Datos archivo de servicios agrupados] WHERE NumRemi = '" + RM + "' ";
 
                     Boolean EliminaDatosAgri = Conexion.SQLDelete(Utils.SqlDatos);
 
@@ -1609,7 +1620,7 @@ namespace Gestion_Rips.Forms.Exportar
                     {
 
                         SqlDataReader AdminPLanes = Conexion.SQLDataReader("SELECT [Datos administradoras de planes].CodInterno, [Datos administradoras de planes].NomAdmin, [Datos administradoras de planes].CodAdmin, [Datos administradoras de planes].NitCC, [Datos administradoras de planes].ManualTari " +
-                                                                  " FROM [DARIPSXPSQL].[dbo].[Datos administradoras de planes] WHERE CodAdmin = '" + txtCodigAdmin.Text + "' ");
+                                                                  " FROM [Datos administradoras de planes] WHERE CodAdmin = '" + txtCodigAdmin.Text + "' ");
 
                         if (AdminPLanes.HasRows)
                         {
@@ -1649,7 +1660,7 @@ namespace Gestion_Rips.Forms.Exportar
                     {
 
                         SqlDataReader AdminPLanes = Conexion.SQLDataReader("SELECT [Datos administradoras de planes].CodInterno, [Datos administradoras de planes].NomAdmin, [Datos administradoras de planes].CodAdmin, [Datos administradoras de planes].NitCC, [Datos administradoras de planes].ManualTari " +
-                                                                  " FROM [DARIPSXPSQL].[dbo].[Datos administradoras de planes] WHERE NitCC = '" + txtNitCCAdmin.Text + "' ");
+                                                                  " FROM [Datos administradoras de planes] WHERE NitCC = '" + txtNitCCAdmin.Text + "' ");
 
                         if (AdminPLanes.HasRows)
                         {
@@ -1927,7 +1938,7 @@ namespace Gestion_Rips.Forms.Exportar
                         //Proceda a marcar como sí (actualizada) el registro de la remisión
                         //Abrimos la tabla nombre de archivos
 
-                        Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos archivo maestro] WHERE ConseArchivo = '" + NR + "' ";
+                        Utils.SqlDatos = "SELECT * FROM [Datos archivo maestro] WHERE ConseArchivo = '" + NR + "' ";
 
                         SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
 
@@ -1939,7 +1950,7 @@ namespace Gestion_Rips.Forms.Exportar
                         }
                         else
                         {
-                            Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos archivo maestro] SET ActualRemi = '" + 1 + "' WHERE ConseArchivo = '" + NR + "'";
+                            Utils.SqlDatos = "UPDATE [Datos archivo maestro] SET ActualRemi = '" + 1 + "' WHERE ConseArchivo = '" + NR + "'";
 
                             Boolean eSTAaCT = Conexion.SQLUpdate(Utils.SqlDatos);
 

@@ -45,7 +45,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                 this.CboArchiBorrar.DataSource = null;
                 this.CboArchiBorrar.Items.Clear();
 
-                Utils.SqlDatos = "SELECT CodArchivo, NomArchivo, NomTabRemo FROM [DARIPSXPSQL].[dbo].[Datos nombres de archivos] ";
+                Utils.SqlDatos = "SELECT CodArchivo, NomArchivo, NomTabRemo FROM [Datos nombres de archivos] ";
 
                 DataSet dataSet = Conexion.SQLDataSet(Utils.SqlDatos);
 
@@ -144,7 +144,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
 
                 //'Buscamos el número de remisión
 
-                Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos archivo maestro] WHERE ConseArchivo = '" + R + "' ";
+                Utils.SqlDatos = "SELECT * FROM [Datos archivo maestro] WHERE ConseArchivo = '" + R + "' ";
 
                 SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
 
@@ -207,7 +207,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
 
                             TB = CboArchiBorrar.SelectedValue.ToString();
 
-                            Utils.SqlDatos = "SELECT COUNT(NumRemi) as TotalRemi FROM [DARIPSXPSQL].[dbo].[" + TB + "] WHERE [NumRemi]  = '" + R + "'";
+                            Utils.SqlDatos = "SELECT COUNT(NumRemi) as TotalRemi FROM [" + TB + "] WHERE [NumRemi]  = '" + R + "'";
 
                             TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
 
@@ -237,7 +237,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                                     return;
                                 }
 
-                                Utils.SqlDatos = "DELETE FROM [DARIPSXPSQL].[dbo].[" + TB + "] WHERE [NumRemi]  = '" + R + "'";
+                                Utils.SqlDatos = "DELETE FROM [" + TB + "] WHERE [NumRemi]  = '" + R + "'";
 
                                 Boolean EstaEli = Conexion.SQLDelete(Utils.SqlDatos);
 
@@ -283,7 +283,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
 
                             //Hacemos el bucle por la tabla de nombres de archivos para eliminar los datos
 
-                            Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos nombres de archivos]";
+                            Utils.SqlDatos = "SELECT * FROM [Datos nombres de archivos]";
 
                             SqlDataReader NombreDeArchivos = Conexion.SQLDataReader(Utils.SqlDatos);
 
@@ -303,7 +303,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                                 TB = NombreDeArchivos["NomTabRemo"].ToString();
                                 NArch = NombreDeArchivos["NomArchivo"].ToString();
 
-                                Utils.SqlDatos = "SELECT Count(NumRemi) as TolRemi FROM [DARIPSXPSQL].[dbo].[" + TB + "] WHERE [NumRemi]  = '" + R + "'";
+                                Utils.SqlDatos = "SELECT Count(NumRemi) as TolRemi FROM [" + TB + "] WHERE [NumRemi]  = '" + R + "'";
 
                                 SqlDataReader TolTablas = Conexion.SQLDataReader(Utils.SqlDatos);
 
@@ -326,25 +326,25 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                             //Eliminamos Los usuarios junto con los demas archivos que tienen TD y NUMDOCU en cascada
                             Boolean EstadoEli;
 
-                            Utils.SqlDatos = "DELETE FROM [DARIPSXPSQL].[dbo].[Datos archivo usuarios] WHERE NumRemi = '" + R + "'";
+                            Utils.SqlDatos = "DELETE FROM [Datos archivo usuarios] WHERE NumRemi = '" + R + "'";
 
                             EstadoEli = Conexion.SQLDelete(Utils.SqlDatos);
 
                             //Eliminamos control
 
-                            Utils.SqlDatos = "DELETE FROM [DARIPSXPSQL].[dbo].[Datos archivo de control] WHERE NumRemi = '" + R + "'";
+                            Utils.SqlDatos = "DELETE FROM [Datos archivo de control] WHERE NumRemi = '" + R + "'";
 
                             EstadoEli = Conexion.SQLDelete(Utils.SqlDatos);
 
                             //  'Eliminamos Transacciones
 
-                            Utils.SqlDatos = "DELETE FROM [DARIPSXPSQL].[dbo].[Datos archivo de transacciones] WHERE NumRemi = '" + R + "'";
+                            Utils.SqlDatos = "DELETE FROM [Datos archivo de transacciones] WHERE NumRemi = '" + R + "'";
 
                             EstadoEli = Conexion.SQLDelete(Utils.SqlDatos);
 
                             //Eliminamos Agrupados
 
-                            Utils.SqlDatos = "DELETE FROM [DARIPSXPSQL].[dbo].[Datos archivo de servicios agrupados] WHERE NumRemi = '" + R + "'";
+                            Utils.SqlDatos = "DELETE FROM [Datos archivo de servicios agrupados] WHERE NumRemi = '" + R + "'";
 
                             EstadoEli = Conexion.SQLDelete(Utils.SqlDatos);
 
@@ -352,7 +352,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
 
                             //Actualiza el campo de Numfacturas a 0 -- Juan Diego Pimentel 2021
 
-                            Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos archivo maestro] SET NumFacturas = 0 WHERE ConseArchivo = '" + R + "' ";
+                            Utils.SqlDatos = "UPDATE [Datos archivo maestro] SET NumFacturas = 0 WHERE ConseArchivo = '" + R + "' ";
 
                             Boolean EstaAct = Conexion.SQLUpdate(Utils.SqlDatos);
 
@@ -385,14 +385,14 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
         {
             try
             {
-                Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos control de remisiones] WHERE CodiMas = '" + Rm + "' and AcReal = '" + A + "'";
+                Utils.SqlDatos = "SELECT * FROM [Datos control de remisiones] WHERE CodiMas = '" + Rm + "' and AcReal = '" + A + "'";
 
                 SqlDataReader TablaAux2 = Conexion.SQLDataReader(Utils.SqlDatos);
 
                 if(TablaAux2.HasRows == false)
                 {
                     //Es la primer vez que se ejecuta la accion sobre la remision
-                    Utils.SqlDatos = "INSERT INTO  [DARIPSXPSQL].[dbo].[Datos control de remisiones] (" +
+                    Utils.SqlDatos = "INSERT INTO  [Datos control de remisiones] (" +
                                      "CodiMas," +
                                      "AcReal," +
                                      "RazReal," +
@@ -425,7 +425,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                     TablaAux2.Read();
                     int V = Convert.ToInt32(TablaAux2["VezAccion"]) + 1;
 
-                    Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos control de remisiones] SET " +
+                    Utils.SqlDatos = "UPDATE [Datos control de remisiones] SET " +
                         "RazReal = '" + Rz + "'," +
                         "VezAccion = '" + V + "'," +
                         "FecRegis = '" + F + "'," +
@@ -491,7 +491,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
 
     
 
-                Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos archivo maestro] WHERE ConseArchivo = '" + NumRemi + "'";
+                Utils.SqlDatos = "SELECT * FROM [Datos archivo maestro] WHERE ConseArchivo = '" + NumRemi + "'";
 
 
                 SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
@@ -510,7 +510,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                     this.DtPer01.Value = Convert.ToDateTime(TablaAux1["Periodo1"].ToString());
                     this.DtPer02.Value = Convert.ToDateTime(TablaAux1["Periodo2"].ToString());
 
-                    string Data = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos administradoras de planes] WHERE CodInterno = '" + CA + "'";
+                    string Data = "SELECT * FROM [Datos administradoras de planes] WHERE CodInterno = '" + CA + "'";
 
                     SqlDataReader TablaAux4 = Conexion.SQLDataReader(Data);
 

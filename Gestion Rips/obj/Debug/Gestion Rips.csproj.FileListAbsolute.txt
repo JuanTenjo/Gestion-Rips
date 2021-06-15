@@ -104,3 +104,4 @@ C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\bin\Debug\Reportes\r
 C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\bin\Debug\Reportes\rdlc\dsInfInformeConsultaRecienNaciRemi.rdlc
 C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\bin\Debug\Reportes\rdlc\dsInfInformeConsultaAuditarRegi.rdlc
 C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\bin\Debug\Reportes\rdlc\dsInfInformeConsultaRemisionRemi.rdlc
+C:\Users\tenjo\OneDrive\Escritorio\GestionRips\Gestion Rips\obj\Debug\Gestion_Rips.Forms.RipsTodos.FrmExportarSedaripsTodos.resources

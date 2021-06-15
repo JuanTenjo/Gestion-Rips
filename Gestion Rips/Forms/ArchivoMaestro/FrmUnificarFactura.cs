@@ -127,7 +127,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
 
                 Utils.SqlDatos = "Convertir en única factura";
 
-                Utils.SqlDatos = "SELECT Count(NumRemi) as TotalRemi, NumRemi FROM [DARIPSXPSQL].[dbo].[Datos archivo de consulta] WHERE NumRemi = '" + R + "' GROUP BY NumRemi";
+                Utils.SqlDatos = "SELECT Count(NumRemi) as TotalRemi, NumRemi FROM [Datos archivo de consulta] WHERE NumRemi = '" + R + "' GROUP BY NumRemi";
 
                 //Consulta
 
@@ -147,7 +147,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                     {
                         TRC = TablaAux2["NumRemi"].ToString();
 
-                        Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos archivo de consulta] SET NumFactur = '" + F + "' WHERE NumRemi = '" + R + "'";
+                        Utils.SqlDatos = "UPDATE [Datos archivo de consulta] SET NumFactur = '" + F + "' WHERE NumRemi = '" + R + "'";
 
                         EstadoAct = Conexion.SQLUpdate(Utils.SqlDatos);
 
@@ -159,7 +159,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
 
                 //Hospitalizacion
 
-                Utils.SqlDatos = "SELECT Count(NumRemi) as TotalRemi, NumRemi FROM [DARIPSXPSQL].[dbo].[Datos archivo de hospitalizacion] WHERE NumRemi = '" + R + "'  GROUP BY NumRemi";
+                Utils.SqlDatos = "SELECT Count(NumRemi) as TotalRemi, NumRemi FROM [Datos archivo de hospitalizacion] WHERE NumRemi = '" + R + "'  GROUP BY NumRemi";
 
 
                 TablaAux2 = Conexion.SQLDataReader(Utils.SqlDatos);
@@ -178,7 +178,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                     {
                         TRH = TablaAux2["NumRemi"].ToString();
 
-                        Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos archivo de hospitalizacion] SET NumFactur = '" + F + "' WHERE NumRemi = '" + R + "'";
+                        Utils.SqlDatos = "UPDATE [Datos archivo de hospitalizacion] SET NumFactur = '" + F + "' WHERE NumRemi = '" + R + "'";
 
                         EstadoAct = Conexion.SQLUpdate(Utils.SqlDatos);
 
@@ -191,7 +191,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                 //Medicamentos
 
 
-                Utils.SqlDatos = "SELECT Count(NumRemi) as TotalRemi, NumRemi FROM [DARIPSXPSQL].[dbo].[Datos archivo de medicamentos] WHERE NumRemi = '" + R + "' GROUP BY NumRemi";
+                Utils.SqlDatos = "SELECT Count(NumRemi) as TotalRemi, NumRemi FROM [Datos archivo de medicamentos] WHERE NumRemi = '" + R + "' GROUP BY NumRemi";
 
 
                 TablaAux2 = Conexion.SQLDataReader(Utils.SqlDatos);
@@ -210,7 +210,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                     {
                         TRM = TablaAux2["NumRemi"].ToString();
 
-                        Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos archivo de medicamentos] SET NumFactur = '" + F + "' WHERE NumRemi = '" + R + "'";
+                        Utils.SqlDatos = "UPDATE [Datos archivo de medicamentos] SET NumFactur = '" + F + "' WHERE NumRemi = '" + R + "'";
 
                         EstadoAct = Conexion.SQLUpdate(Utils.SqlDatos);
 
@@ -222,7 +222,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
 
                 //Datos archivo de observacion urgencias
 
-                Utils.SqlDatos = "SELECT Count(NumRemi) as TotalRemi, NumRemi FROM [DARIPSXPSQL].[dbo].[Datos archivo de observacion urgencias] WHERE NumRemi = '" + R + "'  GROUP BY NumRemi";
+                Utils.SqlDatos = "SELECT Count(NumRemi) as TotalRemi, NumRemi FROM [Datos archivo de observacion urgencias] WHERE NumRemi = '" + R + "'  GROUP BY NumRemi";
 
 
                 TablaAux2 = Conexion.SQLDataReader(Utils.SqlDatos);
@@ -241,7 +241,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                     {
                         TRU = TablaAux2["NumRemi"].ToString();
 
-                        Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos archivo de observacion urgencias] SET NumFactur = '" + F + "' WHERE NumRemi = '" + R + "'";
+                        Utils.SqlDatos = "UPDATE [Datos archivo de observacion urgencias] SET NumFactur = '" + F + "' WHERE NumRemi = '" + R + "'";
 
                         EstadoAct = Conexion.SQLUpdate(Utils.SqlDatos);
 
@@ -256,7 +256,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                 //Datos archivo de otros servicios
 
 
-                Utils.SqlDatos = "SELECT Count(NumRemi) as TotalRemi, NumRemi FROM [DARIPSXPSQL].[dbo].[Datos archivo de otros servicios] WHERE NumRemi = '" + R + "'  GROUP BY NumRemi";
+                Utils.SqlDatos = "SELECT Count(NumRemi) as TotalRemi, NumRemi FROM [Datos archivo de otros servicios] WHERE NumRemi = '" + R + "'  GROUP BY NumRemi";
 
 
                 TablaAux2 = Conexion.SQLDataReader(Utils.SqlDatos);
@@ -275,7 +275,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                     {
                         TRO = TablaAux2["NumRemi"].ToString();
 
-                        Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos archivo de otros servicios] SET NumFactur = '" + F + "' WHERE NumRemi = '" + R + "'";
+                        Utils.SqlDatos = "UPDATE [Datos archivo de otros servicios] SET NumFactur = '" + F + "' WHERE NumRemi = '" + R + "'";
 
                         EstadoAct = Conexion.SQLUpdate(Utils.SqlDatos);
 
@@ -289,7 +289,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                 //Datos archivo de procedimientos
 
 
-                Utils.SqlDatos = "SELECT Count(NumRemi) as TotalRemi, NumRemi FROM [DARIPSXPSQL].[dbo].[Datos archivo de procedimientos] WHERE NumRemi = '" + R + "'  GROUP BY NumRemi";
+                Utils.SqlDatos = "SELECT Count(NumRemi) as TotalRemi, NumRemi FROM [Datos archivo de procedimientos] WHERE NumRemi = '" + R + "'  GROUP BY NumRemi";
 
 
                 TablaAux2 = Conexion.SQLDataReader(Utils.SqlDatos);
@@ -309,7 +309,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                     {
                         TRP = TablaAux2["NumRemi"].ToString();
 
-                        Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos archivo de procedimientos] SET NumFactur = '" + F + "' WHERE NumRemi = '" + R + "'";
+                        Utils.SqlDatos = "UPDATE [Datos archivo de procedimientos] SET NumFactur = '" + F + "' WHERE NumRemi = '" + R + "'";
 
                         EstadoAct = Conexion.SQLUpdate(Utils.SqlDatos);
 
@@ -323,7 +323,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
 
                 //archivo de recien nacido
 
-                Utils.SqlDatos = "SELECT Count(NumRemi) as TotalRemi, NumRemi FROM [DARIPSXPSQL].[dbo].[Datos archivo de recien nacido] WHERE NumRemi = '" + R + "'  GROUP BY NumRemi";
+                Utils.SqlDatos = "SELECT Count(NumRemi) as TotalRemi, NumRemi FROM [Datos archivo de recien nacido] WHERE NumRemi = '" + R + "'  GROUP BY NumRemi";
 
 
                 TablaAux2 = Conexion.SQLDataReader(Utils.SqlDatos);
@@ -343,7 +343,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                     {
                         TRN = TablaAux2["NumRemi"].ToString();
 
-                        Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[archivo de recien nacido] SET NumFactur = '" + F + "' WHERE NumRemi = '" + R + "'";
+                        Utils.SqlDatos = "UPDATE [archivo de recien nacido] SET NumFactur = '" + F + "' WHERE NumRemi = '" + R + "'";
 
                         EstadoAct = Conexion.SQLUpdate(Utils.SqlDatos);
 
@@ -359,7 +359,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                 //Datos archivo de transacciones
 
                 Utils.SqlDatos = "SELECT Count(NumRemi) as TotalRemi,NumRemi, SUM(Copago) as TolCopago, SUM(ValorComi) as TolValComi, Sum(ValorDes) as TolValDes, Sum(ValorNeto) as TolValNeto" +
-                    " FROM [DARIPSXPSQL].[dbo].[Datos archivo de transacciones] " +
+                    " FROM [Datos archivo de transacciones] " +
                     " WHERE NumRemi = '" + R + "' GROUP BY NumRemi ";
 
                 TablaAux2 = Conexion.SQLDataReader(Utils.SqlDatos);
@@ -395,7 +395,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
 
                     //Modificamos el numero de factura del primer registro de la consulta a la remision
 
-                    Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos archivo de transacciones] WHERE NumRemi = '" + R  + "' order by NumRemi, NumFactur ";
+                    Utils.SqlDatos = "SELECT * FROM [Datos archivo de transacciones] WHERE NumRemi = '" + R  + "' order by NumRemi, NumFactur ";
 
                     TablaAux2 = Conexion.SQLDataReader(Utils.SqlDatos);
 
@@ -403,7 +403,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                     {
                         TablaAux2.Read();
                         string NumFac = TablaAux2["NumFactur"].ToString();
-                        Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos archivo de transacciones] " +
+                        Utils.SqlDatos = "UPDATE [Datos archivo de transacciones] " +
                                         "SET NumFactur = '" + F + "' " +
                                         "WHERE NumRemi = '" + R + "' " +
                                         "and NumFactur = '" + NumFac + "'"; //Se modificara la factura del primer registro de la consulta
@@ -411,7 +411,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
 
                         if (EstadoAct)
                         {
-                            Utils.SqlDatos = "DELETE FROM [DARIPSXPSQL].[dbo].[Datos archivo de transacciones] " +
+                            Utils.SqlDatos = "DELETE FROM [Datos archivo de transacciones] " +
                                         "WHERE NumRemi = '" + R + "' " +
                                         "and NumFactur <> '" + F + "'"; //Se eliminaran los registros de esa remision y que sean diferentes a al numero de factura ingresado
                             EstadoAct = Conexion.SQLDelete(Utils.SqlDatos);
@@ -424,13 +424,13 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                 //Buscanos nuevamente el número de factura unico para agregarle los totales
 
 
-                Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos archivo de transacciones] WHERE NumRemi = '" + R + "' and NumFactur = '" + F + "'";
+                Utils.SqlDatos = "SELECT * FROM [Datos archivo de transacciones] WHERE NumRemi = '" + R + "' and NumFactur = '" + F + "'";
 
                 SqlDataReader Validacion = Conexion.SQLDataReader(Utils.SqlDatos);
 
                 if(Validacion.HasRows)
                 {
-                    Utils.SqlDatos =" UPDATE [DARIPSXPSQL].[dbo].[Datos archivo de transacciones] SET " +
+                    Utils.SqlDatos =" UPDATE [Datos archivo de transacciones] SET " +
                                     " Copago = "+ CP +", ValorComi = "+ Comi +", ValorDes = "+ DesC +", ValorNeto = "+ VN +" " +
                                     " WHERE NumRemi = '" + R + "' and NumFactur = '" + F + "'";
 
@@ -448,11 +448,11 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                 Validacion.Close();
 
 
-                Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos archivo de servicios agrupados] (NumRemi, NumFactur, CodIPS, CodConcepto, CantiGrupo, ValUnita, Valtotal) " +
+                Utils.SqlDatos = "INSERT INTO [Datos archivo de servicios agrupados] (NumRemi, NumFactur, CodIPS, CodConcepto, CantiGrupo, ValUnita, Valtotal) " +
                 " SELECT [Datos archivo de servicios agrupados].NumRemi, '" + F + "' AS NFV, [Datos archivo de servicios agrupados].CodIPS, " +
                 " [Datos archivo de servicios agrupados].CodConcepto, Sum([Datos archivo de servicios agrupados].CantiGrupo) " +
                 " AS SumaDeCantiGrupo, (Sum([Valtotal])/ Sum([CantiGrupo])) AS VU, Sum([Datos archivo de servicios agrupados].Valtotal) AS SumaDeValtotal " +
-                " FROM [DARIPSXPSQL].[dbo].[Datos archivo de servicios agrupados] " +
+                " FROM [Datos archivo de servicios agrupados] " +
                 " GROUP BY [Datos archivo de servicios agrupados].NumRemi, [Datos archivo de servicios agrupados].CodIPS, " +
                 " [Datos archivo de servicios agrupados].CodConcepto" +
                 " HAVING ((([Datos archivo de servicios agrupados].NumRemi) = '" + R + "'  )); ";
@@ -461,7 +461,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
 
                 //'Proceda a eliminar las que sean distintas a la nueva factura
 
-                Utils.SqlDatos = "DELETE FROM [DARIPSXPSQL].[dbo].[Datos archivo de servicios agrupados] " +
+                Utils.SqlDatos = "DELETE FROM [Datos archivo de servicios agrupados] " +
                                  "WHERE ((([Datos archivo de servicios agrupados].NumRemi)= '" + R + "' ) AND " +
                                  "(([Datos archivo de servicios agrupados].NumFactur) <> '" + F + "' ));";
 
@@ -469,7 +469,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
 
                 //Contamos cuantos registros de agrupados quedan
 
-                Utils.SqlDatos = "SELECT Count(NumRemi) as TolRemi FROM [DARIPSXPSQL].[dbo].[Datos archivo de servicios agrupados] WHERE NumRemi = '" + R + "'";
+                Utils.SqlDatos = "SELECT Count(NumRemi) as TolRemi FROM [Datos archivo de servicios agrupados] WHERE NumRemi = '" + R + "'";
 
                 TablaAux2 = Conexion.SQLDataReader(Utils.SqlDatos);
 
@@ -489,7 +489,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                 //'Actualizamos el archivo de control
 
 
-                Utils.SqlDatos = "SELECT * FROM [DARIPSXPSQL].[dbo].[Datos archivo de control] WHERE NumRemi = '" + R + "'";
+                Utils.SqlDatos = "SELECT * FROM [Datos archivo de control] WHERE NumRemi = '" + R + "'";
 
                 TablaAux2 = Conexion.SQLDataReader(Utils.SqlDatos); //Se hace con un ciclo
 
@@ -505,10 +505,10 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                         string op1 = "AD" + TRCN;
                         string op2 = "AF" + TRCN;
               
-                        Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos archivo de control] SET TotalRegis = '" + TA + "'  WHERE NumRemi = '" + R + "' and CodArchivo = '"+ op1 + "' ";
+                        Utils.SqlDatos = "UPDATE [Datos archivo de control] SET TotalRegis = '" + TA + "'  WHERE NumRemi = '" + R + "' and CodArchivo = '"+ op1 + "' ";
                         EstadoAct = Conexion.SQLUpdate(Utils.SqlDatos);
 
-                        Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos archivo de control] SET TotalRegis = '" + 1 + "'  WHERE NumRemi = '" + R + "' and CodArchivo = '" + op2 + "'";
+                        Utils.SqlDatos = "UPDATE [Datos archivo de control] SET TotalRegis = '" + 1 + "'  WHERE NumRemi = '" + R + "' and CodArchivo = '" + op2 + "'";
                         EstadoAct = Conexion.SQLUpdate(Utils.SqlDatos);
                    
                 }
