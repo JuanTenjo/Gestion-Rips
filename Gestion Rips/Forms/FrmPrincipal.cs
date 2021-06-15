@@ -34,6 +34,7 @@ namespace Gestion_Rips.Forms
         {
             try
             {
+                Utils.BaseDeDatosPrincipal = "ACDATOXPSQL";
 
                 Conexion.conexionACCESS = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\SIIGHOSPLUS\LogPlus.LogSip;Jet OLEDB:Database Password=SIIGHOS33";
 
@@ -53,7 +54,7 @@ namespace Gestion_Rips.Forms
                     Conexion.password = dr["PassWusa"].ToString();
 
                     Conexion.conexionSQL = "Server=" + Conexion.servidor + "; " +
-                                           "Initial Catalog=ACDATOXPSQL; " +
+                                           "Initial Catalog=" + Utils.BaseDeDatosPrincipal + ";" +
                                            "User ID= " + Conexion.username + "; " +
                                            "Password=" + Conexion.password;
 
@@ -110,22 +111,56 @@ namespace Gestion_Rips.Forms
             }
         }
 
-        private void exportarToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void exportarToolStripMenuItem1_Click(object sender, EventArgs e) //Exportar Rips Entandar
         {
+            Utils.BaseDeDatosPrincipal = "ACDATOXPSQL";
+
+            Conexion.conexionSQL = "Server=" + Conexion.servidor + "; " +
+                                   "Initial Catalog=" + Utils.BaseDeDatosPrincipal + ";" +
+                                   "User ID= " + Conexion.username + "; " +
+                                   "Password=" + Conexion.password;
+
             FrmExportarSedarips frmExportarSedarips = new FrmExportarSedarips();
             frmExportarSedarips.ShowDialog();
         }
-
-        private void archivoMaestroToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void ripsPorRegimenToolStripMenuItem_Click(object sender, EventArgs e) //Exportar Rips por Regimen
         {
-            FrmArchivoMaestro FrmArchivoMaestro = new FrmArchivoMaestro();
-            FrmArchivoMaestro.ShowDialog();
-        }
+            Utils.BaseDeDatosPrincipal = "ACDATOXPSQL";
 
-        private void ripsPorRegimenToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+            Conexion.conexionSQL = "Server=" + Conexion.servidor + "; " +
+                                   "Initial Catalog=" + Utils.BaseDeDatosPrincipal + ";" +
+                                   "User ID= " + Conexion.username + "; " +
+                                   "Password=" + Conexion.password;
+
             FrmRipsRegimen FrmRipRegimen = new FrmRipsRegimen();
             FrmRipRegimen.ShowDialog();
+        }
+
+        private void archivoMaestroToolStripMenuItem1_Click(object sender, EventArgs e) //Maestro con Rips Estandar
+        {
+            Utils.BaseDeDatosPrincipal = "DARIPSXPSQL";
+
+            Conexion.conexionSQL = "Server=" + Conexion.servidor + "; " +
+                                   "Initial Catalog=" + Utils.BaseDeDatosPrincipal + ";" +
+                                   "User ID= " + Conexion.username + "; " +
+                                   "Password=" + Conexion.password;
+
+            FrmArchivoMaestro FrmArchivoMaestro = new FrmArchivoMaestro();
+            FrmArchivoMaestro.ShowDialog();
+
+        }
+
+        private void gestionRipsEspecialToolStripMenuItem_Click(object sender, EventArgs e)  //Maestro con Rips Especial
+        {
+            Utils.BaseDeDatosPrincipal = "DARIPSESSQL";
+
+            Conexion.conexionSQL = "Server=" + Conexion.servidor + "; " +
+                                   "Initial Catalog=" + Utils.BaseDeDatosPrincipal + ";" +
+                                   "User ID= " + Conexion.username + "; " +
+                                   "Password=" + Conexion.password;
+
+            FrmArchivoMaestro FrmArchivoMaestro = new FrmArchivoMaestro();
+            FrmArchivoMaestro.ShowDialog();
         }
     }
 }

@@ -50,5 +50,9 @@ namespace Gestion_Rips.Clases
         public static string CodigAdmin { get; set; }
         public static string NumRemi { get; set; }
 
+        //Para abrir la conexion principal de la base de datos 
+
+        public static string BaseDeDatosPrincipal { get; set; }
+
     }
 }

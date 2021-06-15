@@ -44,6 +44,7 @@ namespace Gestion_Rips.Forms
             this.lblCodUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblNomUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.gestionRipsEspecialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -96,13 +97,14 @@ namespace Gestion_Rips.Forms
             // 
             this.ripsPorRegimenToolStripMenuItem.Name = "ripsPorRegimenToolStripMenuItem";
             this.ripsPorRegimenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.ripsPorRegimenToolStripMenuItem.Text = "Rips por Regimen";
+            this.ripsPorRegimenToolStripMenuItem.Text = "Rips por Régimen";
             this.ripsPorRegimenToolStripMenuItem.Click += new System.EventHandler(this.ripsPorRegimenToolStripMenuItem_Click);
             // 
             // exportarToolStripMenuItem2
             // 
             this.exportarToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.archivoMaestroToolStripMenuItem1});
+            this.archivoMaestroToolStripMenuItem1,
+            this.gestionRipsEspecialToolStripMenuItem});
             this.exportarToolStripMenuItem2.Name = "exportarToolStripMenuItem2";
             this.exportarToolStripMenuItem2.Size = new System.Drawing.Size(63, 20);
             this.exportarToolStripMenuItem2.Text = "Exportar";
@@ -110,8 +112,8 @@ namespace Gestion_Rips.Forms
             // archivoMaestroToolStripMenuItem1
             // 
             this.archivoMaestroToolStripMenuItem1.Name = "archivoMaestroToolStripMenuItem1";
-            this.archivoMaestroToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.archivoMaestroToolStripMenuItem1.Text = "Archivo Maestro";
+            this.archivoMaestroToolStripMenuItem1.Size = new System.Drawing.Size(187, 22);
+            this.archivoMaestroToolStripMenuItem1.Text = "Gestión Rips Estándar";
             this.archivoMaestroToolStripMenuItem1.Click += new System.EventHandler(this.archivoMaestroToolStripMenuItem1_Click);
             // 
             // statusStrip
@@ -144,6 +146,13 @@ namespace Gestion_Rips.Forms
             this.lblNomUsuario.Name = "lblNomUsuario";
             this.lblNomUsuario.Size = new System.Drawing.Size(118, 17);
             this.lblNomUsuario.Text = "toolStripStatusLabel2";
+            // 
+            // gestionRipsEspecialToolStripMenuItem
+            // 
+            this.gestionRipsEspecialToolStripMenuItem.Name = "gestionRipsEspecialToolStripMenuItem";
+            this.gestionRipsEspecialToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.gestionRipsEspecialToolStripMenuItem.Text = "Gestión Rips Especial";
+            this.gestionRipsEspecialToolStripMenuItem.Click += new System.EventHandler(this.gestionRipsEspecialToolStripMenuItem_Click);
             // 
             // FrmPrincipal
             // 
@@ -183,6 +192,7 @@ namespace Gestion_Rips.Forms
         private System.Windows.Forms.ToolStripMenuItem exportarToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem archivoMaestroToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ripsPorRegimenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gestionRipsEspecialToolStripMenuItem;
     }
 }
 

@@ -952,7 +952,6 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
             this.BarraSeleccionar.Name = "BarraSeleccionar";
             this.BarraSeleccionar.Size = new System.Drawing.Size(697, 23);
             this.BarraSeleccionar.TabIndex = 34;
-            this.BarraSeleccionar.Click += new System.EventHandler(this.BarraSeleccionar_Click);
             // 
             // FrmRipsRegimen
             // 

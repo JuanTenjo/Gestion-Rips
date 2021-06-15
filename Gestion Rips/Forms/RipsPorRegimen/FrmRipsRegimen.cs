@@ -6230,24 +6230,5 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
         }
 
 
-
-        private void BarraSeleccionar_Click(object sender, EventArgs e)
-        {
-            ProgressBar progressBar = new ProgressBar();  
-        }
-
-        private void Empezar_Click(object sender, EventArgs e)
-        {
-            int num = 1000000;
-
-            BarraSeleccionar.Minimum = 1;
-            BarraSeleccionar.Maximum = num;
-
-            for (int i = 1; i <= num; i++)
-            {
-                BarraSeleccionar.Increment(1);
-            }
-
-        }
     }
 }
