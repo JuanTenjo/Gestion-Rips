@@ -30,13 +30,9 @@ namespace Gestion_Rips.Forms.RipsTodos
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmExportarSedaripsTodos));
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.TxtCodMinSalud = new System.Windows.Forms.TextBox();
@@ -79,24 +75,9 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.RbTodosRegistros = new System.Windows.Forms.RadioButton();
             this.label13 = new System.Windows.Forms.Label();
             this.DataGridFacturas = new System.Windows.Forms.DataGridView();
-            this.Estado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.NumCuenFac = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NumPoliza = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cartercero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NumContra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HistoNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ValorEdad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnidadEdad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NumFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NomAdmin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NomTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ValorFac = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Copago = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TxtMarcadas = new System.Windows.Forms.TextBox();
+            this.TxtCanFacMar = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.TxtTotalFact = new System.Windows.Forms.TextBox();
+            this.TxtCanFacMos = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.BarraSeleccionar = new System.Windows.Forms.ProgressBar();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -117,6 +98,21 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.lblNombreUser = new System.Windows.Forms.Label();
             this.lblCodigoUser = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
+            this.TolFacMar = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.TxtTolFacMos = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.TxtTolCopMar = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.TxtTolCopMos = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.Estado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.NumCuenFac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumPoliza = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreEAPB = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CodigoEAPB = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VrFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VrCopago = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -626,6 +622,7 @@ namespace Gestion_Rips.Forms.RipsTodos
             // 
             this.DataGridFacturas.AllowUserToAddRows = false;
             this.DataGridFacturas.AllowUserToDeleteRows = false;
+            this.DataGridFacturas.AllowUserToOrderColumns = true;
             this.DataGridFacturas.AllowUserToResizeRows = false;
             this.DataGridFacturas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataGridFacturas.BackgroundColor = System.Drawing.Color.White;
@@ -644,197 +641,66 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.Estado,
             this.NumCuenFac,
             this.NumPoliza,
-            this.Cartercero,
-            this.NumContra,
-            this.HistoNum,
-            this.TipoUsuario,
-            this.ValorEdad,
-            this.UnidadEdad,
-            this.NumFactura,
-            this.Fecha,
-            this.NomAdmin,
-            this.NomTipo,
-            this.ValorFac,
-            this.Copago});
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridFacturas.DefaultCellStyle = dataGridViewCellStyle7;
+            this.NombreEAPB,
+            this.CodigoEAPB,
+            this.VrFactura,
+            this.VrCopago});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridFacturas.DefaultCellStyle = dataGridViewCellStyle3;
             this.DataGridFacturas.Location = new System.Drawing.Point(4, 235);
             this.DataGridFacturas.MultiSelect = false;
             this.DataGridFacturas.Name = "DataGridFacturas";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridFacturas.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridFacturas.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.DataGridFacturas.RowHeadersVisible = false;
             this.DataGridFacturas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGridFacturas.Size = new System.Drawing.Size(703, 156);
             this.DataGridFacturas.TabIndex = 28;
+            this.DataGridFacturas.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridFacturas_CellValueChanged);
             // 
-            // Estado
+            // TxtCanFacMar
             // 
-            this.Estado.DataPropertyName = "Estado";
-            this.Estado.FillWeight = 48.45598F;
-            this.Estado.HeaderText = "Estado";
-            this.Estado.Name = "Estado";
-            // 
-            // NumCuenFac
-            // 
-            this.NumCuenFac.DataPropertyName = "NumCuenFac";
-            this.NumCuenFac.HeaderText = "NumCuenFac";
-            this.NumCuenFac.Name = "NumCuenFac";
-            this.NumCuenFac.Visible = false;
-            // 
-            // NumPoliza
-            // 
-            this.NumPoliza.DataPropertyName = "NumPoliza";
-            this.NumPoliza.HeaderText = "NumPoliza";
-            this.NumPoliza.Name = "NumPoliza";
-            this.NumPoliza.Visible = false;
-            // 
-            // Cartercero
-            // 
-            this.Cartercero.DataPropertyName = "Cartercero";
-            this.Cartercero.HeaderText = "Cartercero";
-            this.Cartercero.Name = "Cartercero";
-            this.Cartercero.Visible = false;
-            // 
-            // NumContra
-            // 
-            this.NumContra.DataPropertyName = "NumContra";
-            this.NumContra.HeaderText = "NumContra";
-            this.NumContra.Name = "NumContra";
-            this.NumContra.Visible = false;
-            // 
-            // HistoNum
-            // 
-            this.HistoNum.DataPropertyName = "HistoNum";
-            this.HistoNum.HeaderText = "HistoNum";
-            this.HistoNum.Name = "HistoNum";
-            this.HistoNum.Visible = false;
-            // 
-            // TipoUsuario
-            // 
-            this.TipoUsuario.DataPropertyName = "TipoUsuario";
-            this.TipoUsuario.HeaderText = "TipoUsuario";
-            this.TipoUsuario.Name = "TipoUsuario";
-            this.TipoUsuario.Visible = false;
-            // 
-            // ValorEdad
-            // 
-            this.ValorEdad.DataPropertyName = "ValorEdad";
-            this.ValorEdad.HeaderText = "ValorEdad";
-            this.ValorEdad.Name = "ValorEdad";
-            this.ValorEdad.Visible = false;
-            // 
-            // UnidadEdad
-            // 
-            this.UnidadEdad.DataPropertyName = "UnidadEdad";
-            this.UnidadEdad.HeaderText = "UnidadEdad";
-            this.UnidadEdad.Name = "UnidadEdad";
-            this.UnidadEdad.Visible = false;
-            // 
-            // NumFactura
-            // 
-            this.NumFactura.DataPropertyName = "NumFactura";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.NumFactura.DefaultCellStyle = dataGridViewCellStyle2;
-            this.NumFactura.FillWeight = 94.96603F;
-            this.NumFactura.HeaderText = "NumFactura";
-            this.NumFactura.Name = "NumFactura";
-            this.NumFactura.ReadOnly = true;
-            // 
-            // Fecha
-            // 
-            this.Fecha.DataPropertyName = "FechaFac";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "d";
-            dataGridViewCellStyle3.NullValue = null;
-            this.Fecha.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Fecha.FillWeight = 94.81275F;
-            this.Fecha.HeaderText = "Fecha";
-            this.Fecha.Name = "Fecha";
-            this.Fecha.ReadOnly = true;
-            // 
-            // NomAdmin
-            // 
-            this.NomAdmin.DataPropertyName = "NomAdmin";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.NomAdmin.DefaultCellStyle = dataGridViewCellStyle4;
-            this.NomAdmin.FillWeight = 197.9695F;
-            this.NomAdmin.HeaderText = "NomAdmin";
-            this.NomAdmin.Name = "NomAdmin";
-            this.NomAdmin.ReadOnly = true;
-            // 
-            // NomTipo
-            // 
-            this.NomTipo.DataPropertyName = "NomTipo";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.NomTipo.DefaultCellStyle = dataGridViewCellStyle5;
-            this.NomTipo.FillWeight = 78.02859F;
-            this.NomTipo.HeaderText = "Regimen";
-            this.NomTipo.Name = "NomTipo";
-            this.NomTipo.ReadOnly = true;
-            // 
-            // ValorFac
-            // 
-            this.ValorFac.DataPropertyName = "ValorFac";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "C0";
-            dataGridViewCellStyle6.NullValue = null;
-            this.ValorFac.DefaultCellStyle = dataGridViewCellStyle6;
-            this.ValorFac.FillWeight = 85.76708F;
-            this.ValorFac.HeaderText = "ValorFac";
-            this.ValorFac.Name = "ValorFac";
-            this.ValorFac.ReadOnly = true;
-            // 
-            // Copago
-            // 
-            this.Copago.DataPropertyName = "Copago";
-            this.Copago.HeaderText = "Copago";
-            this.Copago.Name = "Copago";
-            this.Copago.Visible = false;
-            // 
-            // TxtMarcadas
-            // 
-            this.TxtMarcadas.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtMarcadas.Location = new System.Drawing.Point(182, 394);
-            this.TxtMarcadas.Multiline = true;
-            this.TxtMarcadas.Name = "TxtMarcadas";
-            this.TxtMarcadas.ReadOnly = true;
-            this.TxtMarcadas.Size = new System.Drawing.Size(48, 23);
-            this.TxtMarcadas.TabIndex = 37;
+            this.TxtCanFacMar.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCanFacMar.Location = new System.Drawing.Point(122, 412);
+            this.TxtCanFacMar.Multiline = true;
+            this.TxtCanFacMar.Name = "TxtCanFacMar";
+            this.TxtCanFacMar.ReadOnly = true;
+            this.TxtCanFacMar.Size = new System.Drawing.Size(97, 18);
+            this.TxtCanFacMar.TabIndex = 37;
             // 
             // label14
             // 
             this.label14.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label14.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(119, 394);
+            this.label14.Location = new System.Drawing.Point(5, 412);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(67, 23);
+            this.label14.Size = new System.Drawing.Size(117, 18);
             this.label14.TabIndex = 36;
             this.label14.Text = "Marcadas";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // TxtTotalFact
+            // TxtCanFacMos
             // 
-            this.TxtTotalFact.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtTotalFact.Location = new System.Drawing.Point(71, 394);
-            this.TxtTotalFact.Multiline = true;
-            this.TxtTotalFact.Name = "TxtTotalFact";
-            this.TxtTotalFact.ReadOnly = true;
-            this.TxtTotalFact.Size = new System.Drawing.Size(48, 23);
-            this.TxtTotalFact.TabIndex = 34;
+            this.TxtCanFacMos.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCanFacMos.Location = new System.Drawing.Point(122, 394);
+            this.TxtCanFacMos.Multiline = true;
+            this.TxtCanFacMos.Name = "TxtCanFacMos";
+            this.TxtCanFacMos.ReadOnly = true;
+            this.TxtCanFacMos.Size = new System.Drawing.Size(97, 18);
+            this.TxtCanFacMos.TabIndex = 34;
             // 
             // label26
             // 
@@ -843,14 +709,14 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.label26.ForeColor = System.Drawing.Color.White;
             this.label26.Location = new System.Drawing.Point(4, 394);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(67, 23);
+            this.label26.Size = new System.Drawing.Size(118, 18);
             this.label26.TabIndex = 35;
-            this.label26.Text = "TotalFac";
+            this.label26.Text = "Cantidad Facturas:";
             this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BarraSeleccionar
             // 
-            this.BarraSeleccionar.Location = new System.Drawing.Point(7, 423);
+            this.BarraSeleccionar.Location = new System.Drawing.Point(7, 457);
             this.BarraSeleccionar.Maximum = 1000000;
             this.BarraSeleccionar.Name = "BarraSeleccionar";
             this.BarraSeleccionar.Size = new System.Drawing.Size(697, 23);
@@ -870,7 +736,7 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.groupBox7.Controls.Add(this.btnReportes);
             this.groupBox7.Controls.Add(this.btnValidar);
             this.groupBox7.Controls.Add(this.btnSeleccionar);
-            this.groupBox7.Location = new System.Drawing.Point(7, 452);
+            this.groupBox7.Location = new System.Drawing.Point(7, 486);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(417, 67);
             this.groupBox7.TabIndex = 39;
@@ -896,6 +762,7 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.BtnDesmarcarTodas.Size = new System.Drawing.Size(43, 35);
             this.BtnDesmarcarTodas.TabIndex = 10;
             this.BtnDesmarcarTodas.UseVisualStyleBackColor = true;
+            this.BtnDesmarcarTodas.Click += new System.EventHandler(this.BtnDesmarcarTodas_Click);
             // 
             // label17
             // 
@@ -917,6 +784,7 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.BtnMarcarTodas.Size = new System.Drawing.Size(43, 35);
             this.BtnMarcarTodas.TabIndex = 8;
             this.BtnMarcarTodas.UseVisualStyleBackColor = true;
+            this.BtnMarcarTodas.Click += new System.EventHandler(this.BtnMarcarTodas_Click);
             // 
             // label15
             // 
@@ -990,6 +858,7 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.btnValidar.Size = new System.Drawing.Size(43, 35);
             this.btnValidar.TabIndex = 1;
             this.btnValidar.UseVisualStyleBackColor = true;
+            this.btnValidar.Click += new System.EventHandler(this.btnValidar_Click);
             // 
             // btnSeleccionar
             // 
@@ -1001,6 +870,7 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.btnSeleccionar.Size = new System.Drawing.Size(43, 35);
             this.btnSeleccionar.TabIndex = 0;
             this.btnSeleccionar.UseVisualStyleBackColor = true;
+            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
             // 
             // groupBox8
             // 
@@ -1008,7 +878,7 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.groupBox8.Controls.Add(this.lblNombreUser);
             this.groupBox8.Controls.Add(this.lblCodigoUser);
             this.groupBox8.Controls.Add(this.label22);
-            this.groupBox8.Location = new System.Drawing.Point(440, 452);
+            this.groupBox8.Location = new System.Drawing.Point(440, 486);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(263, 51);
             this.groupBox8.TabIndex = 23;
@@ -1053,18 +923,169 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.label22.Text = "ID:";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // TolFacMar
+            // 
+            this.TolFacMar.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TolFacMar.Location = new System.Drawing.Point(370, 413);
+            this.TolFacMar.Multiline = true;
+            this.TolFacMar.Name = "TolFacMar";
+            this.TolFacMar.ReadOnly = true;
+            this.TolFacMar.Size = new System.Drawing.Size(97, 18);
+            this.TolFacMar.TabIndex = 43;
+            // 
+            // label11
+            // 
+            this.label11.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.label11.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(252, 413);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(118, 18);
+            this.label11.TabIndex = 42;
+            this.label11.Text = "Total Marcadas:";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // TxtTolFacMos
+            // 
+            this.TxtTolFacMos.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtTolFacMos.Location = new System.Drawing.Point(370, 395);
+            this.TxtTolFacMos.Multiline = true;
+            this.TxtTolFacMos.Name = "TxtTolFacMos";
+            this.TxtTolFacMos.ReadOnly = true;
+            this.TxtTolFacMos.Size = new System.Drawing.Size(97, 18);
+            this.TxtTolFacMos.TabIndex = 40;
+            // 
+            // label23
+            // 
+            this.label23.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.label23.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.Color.White;
+            this.label23.Location = new System.Drawing.Point(252, 395);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(118, 18);
+            this.label23.TabIndex = 41;
+            this.label23.Text = "Total Facturado:";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // TxtTolCopMar
+            // 
+            this.TxtTolCopMar.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtTolCopMar.Location = new System.Drawing.Point(610, 412);
+            this.TxtTolCopMar.Multiline = true;
+            this.TxtTolCopMar.Name = "TxtTolCopMar";
+            this.TxtTolCopMar.ReadOnly = true;
+            this.TxtTolCopMar.Size = new System.Drawing.Size(97, 18);
+            this.TxtTolCopMar.TabIndex = 47;
+            // 
+            // label24
+            // 
+            this.label24.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.label24.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.ForeColor = System.Drawing.Color.White;
+            this.label24.Location = new System.Drawing.Point(493, 412);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(117, 18);
+            this.label24.TabIndex = 46;
+            this.label24.Text = "Copagos Marca:";
+            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // TxtTolCopMos
+            // 
+            this.TxtTolCopMos.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtTolCopMos.Location = new System.Drawing.Point(610, 394);
+            this.TxtTolCopMos.Multiline = true;
+            this.TxtTolCopMos.Name = "TxtTolCopMos";
+            this.TxtTolCopMos.ReadOnly = true;
+            this.TxtTolCopMos.Size = new System.Drawing.Size(97, 18);
+            this.TxtTolCopMos.TabIndex = 44;
+            // 
+            // label25
+            // 
+            this.label25.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.label25.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.Color.White;
+            this.label25.Location = new System.Drawing.Point(492, 394);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(118, 18);
+            this.label25.TabIndex = 45;
+            this.label25.Text = "Total Copagos:";
+            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Estado
+            // 
+            this.Estado.DataPropertyName = "Estado";
+            this.Estado.FillWeight = 44.22174F;
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
+            // 
+            // NumCuenFac
+            // 
+            this.NumCuenFac.DataPropertyName = "NumCuenFac";
+            this.NumCuenFac.FillWeight = 77.90952F;
+            this.NumCuenFac.HeaderText = "Factura";
+            this.NumCuenFac.Name = "NumCuenFac";
+            this.NumCuenFac.ReadOnly = true;
+            // 
+            // NumPoliza
+            // 
+            this.NumPoliza.DataPropertyName = "NumPoliza";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.NumPoliza.DefaultCellStyle = dataGridViewCellStyle2;
+            this.NumPoliza.FillWeight = 82.29137F;
+            this.NumPoliza.HeaderText = "Facturada";
+            this.NumPoliza.Name = "NumPoliza";
+            this.NumPoliza.ReadOnly = true;
+            // 
+            // NombreEAPB
+            // 
+            this.NombreEAPB.FillWeight = 170.2483F;
+            this.NombreEAPB.HeaderText = "Nombre de la EAPB";
+            this.NombreEAPB.Name = "NombreEAPB";
+            this.NombreEAPB.ReadOnly = true;
+            // 
+            // CodigoEAPB
+            // 
+            this.CodigoEAPB.FillWeight = 91.26169F;
+            this.CodigoEAPB.HeaderText = "Código EAPB";
+            this.CodigoEAPB.Name = "CodigoEAPB";
+            this.CodigoEAPB.ReadOnly = true;
+            // 
+            // VrFactura
+            // 
+            this.VrFactura.FillWeight = 91.26169F;
+            this.VrFactura.HeaderText = "Vr. Factura";
+            this.VrFactura.Name = "VrFactura";
+            this.VrFactura.ReadOnly = true;
+            // 
+            // VrCopago
+            // 
+            this.VrCopago.FillWeight = 91.26169F;
+            this.VrCopago.HeaderText = "Vr. Copago";
+            this.VrCopago.Name = "VrCopago";
+            this.VrCopago.ReadOnly = true;
+            // 
             // FrmExportarSedaripsTodos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(711, 525);
+            this.ClientSize = new System.Drawing.Size(711, 561);
+            this.Controls.Add(this.TxtTolCopMar);
+            this.Controls.Add(this.label24);
+            this.Controls.Add(this.TxtTolCopMos);
+            this.Controls.Add(this.label25);
+            this.Controls.Add(this.TolFacMar);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.TxtTolFacMos);
+            this.Controls.Add(this.label23);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.BarraSeleccionar);
-            this.Controls.Add(this.TxtMarcadas);
+            this.Controls.Add(this.TxtCanFacMar);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.TxtTotalFact);
+            this.Controls.Add(this.TxtCanFacMos);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.DataGridFacturas);
             this.Controls.Add(this.groupBox6);
@@ -1141,24 +1162,9 @@ namespace Gestion_Rips.Forms.RipsTodos
         private System.Windows.Forms.RadioButton RbTodosRegistros;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.DataGridView DataGridFacturas;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Estado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NumCuenFac;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NumPoliza;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cartercero;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NumContra;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HistoNum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TipoUsuario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ValorEdad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnidadEdad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NumFactura;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NomAdmin;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NomTipo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ValorFac;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Copago;
-        private System.Windows.Forms.TextBox TxtMarcadas;
+        private System.Windows.Forms.TextBox TxtCanFacMar;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox TxtTotalFact;
+        private System.Windows.Forms.TextBox TxtCanFacMos;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.ProgressBar BarraSeleccionar;
         private System.Windows.Forms.GroupBox groupBox7;
@@ -1179,5 +1185,20 @@ namespace Gestion_Rips.Forms.RipsTodos
         private System.Windows.Forms.Label lblNombreUser;
         private System.Windows.Forms.Label lblCodigoUser;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox TolFacMar;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox TxtTolFacMos;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox TxtTolCopMar;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox TxtTolCopMos;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NumCuenFac;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NumPoliza;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombreEAPB;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodigoEAPB;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VrFactura;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VrCopago;
     }
 }

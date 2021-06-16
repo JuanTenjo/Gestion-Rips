@@ -139,26 +139,36 @@ namespace Gestion_Rips.Forms.Exportar
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private string NomDiagnostico(string CoDx)
         {
             try
             {
                 string SqlDatos = "SELECT [Datos listado de diagnosticos].* ";
                 SqlDatos = SqlDatos + "FROM [GEOGRAXPSQL].[dbo].[Datos listado de diagnosticos]";
-                SqlDatos = SqlDatos + "WHERE ((([[Datos listado de diagnosticos]].[CodiDx]) = '" + CoDx + "')) ";
-                SqlDatos = SqlDatos + "ORDER BY [[Datos listado de diagnosticos]].[CodiDx];";
+                SqlDatos = SqlDatos + "WHERE ((([Datos listado de diagnosticos].[CodiDx]) = '" + CoDx + "')) ";
+                SqlDatos = SqlDatos + "ORDER BY [Datos listado de diagnosticos].[CodiDx];";
 
-                SqlDataReader TablaAux9 = Conexion.SQLDataReader(SqlDatos);
 
-                if (TablaAux9.HasRows == false)
+                SqlDataReader TablaAux9;
+
+                using (SqlConnection connection2 = new SqlConnection(Conexion.conexionSQL))
                 {
-                    return "0";
+                    SqlCommand command2 = new SqlCommand(SqlDatos, connection2);
+                    command2.Connection.Open();
+                    TablaAux9 = command2.ExecuteReader();
+
+                    if (TablaAux9.HasRows == false)
+                    {
+                        return "0";
+                    }
+                    else
+                    {
+                        TablaAux9.Read();
+                        string NombreDx = TablaAux9["NombreDx"].ToString();
+                        return NombreDx;
+                    }
                 }
-                else
-                {
-                    return TablaAux9["NombreDx"].ToString();
-                }
+
 
             }
 
@@ -173,7 +183,6 @@ namespace Gestion_Rips.Forms.Exportar
                 return "-1";
             }
         }
-
         private int ValidarProcedi(string c, double T, string CodDg)
         {
             try
@@ -1942,87 +1951,96 @@ namespace Gestion_Rips.Forms.Exportar
                             "WHERE (([Datos temporal transacciones RIPS].CodDigita) = '" + CodDg + "') and " +
                             "(([Datos temporal transacciones RIPS].NumRemi) = '" + c + "');";
 
-                SqlDataReader TabLoc = Conexion.SQLDataReader(SqlFacTemp);
+                SqlDataReader TabLoc;
 
-                if (TabLoc.HasRows == false)
+                using (SqlConnection connection2 = new SqlConnection(Conexion.conexionSQL))
                 {
-                    return 0;
-                }
-                else
-                {
-                    VR = 0;
-                    while (TabLoc.Read())
+                    SqlCommand command2 = new SqlCommand(SqlFacTemp, connection2);
+                    command2.Connection.Open();
+                    TabLoc = command2.ExecuteReader();
+
+                    if (TabLoc.HasRows == false)
                     {
-                        RegExp = 0;
-                        ObErr = "";
-
-                        // Solo validamos las cosas necesarios
-
-                        //Validar cuando la causa de ingreso es accidebte pedir poliza
-
-                        if (TabLoc["CausExter"].ToString() == "02") // Esto se empieza a validar desde el 22 de marzo de 2012
-                                                                    //Revisamos si se registro un numero de poliza
+                        return 0;
+                    }
+                    else
+                    {
+                        VR = 0;
+                        while (TabLoc.Read())
                         {
-                            if (string.IsNullOrEmpty(TabLoc["NumPoli"].ToString()) || TabLoc["NumPoli"].ToString() == "0")
+                            RegExp = 0;
+                            ObErr = "";
+
+                            // Solo validamos las cosas necesarios
+
+                            //Validar cuando la causa de ingreso es accidebte pedir poliza
+
+                            if (TabLoc["CausExter"].ToString() == "02") // Esto se empieza a validar desde el 22 de marzo de 2012
+                                                                        //Revisamos si se registro un numero de poliza
+                            {
+                                if (string.IsNullOrEmpty(TabLoc["NumPoli"].ToString()) || TabLoc["NumPoli"].ToString() == "0")
+                                {
+                                    RegExp = 1;
+                                    ObErr = "Por ser un accidente de transito, el número de la póliza es obligatorio.";
+                                }
+                            }
+
+                            //Validamos copago
+
+                            if (Convert.ToInt32(TabLoc["Copago"].ToString()) < 0)
                             {
                                 RegExp = 1;
-                                ObErr = "Por ser un accidente de transito, el número de la póliza es obligatorio.";
+                                ObErr = "El valor del copago de la factura no puede ser negativo.";
                             }
-                        }
 
-                        //Validamos copago
+                            //Validamos el valor de la comision
 
-                        if (Convert.ToInt32(TabLoc["Copago"].ToString()) < 0)
-                        {
-                            RegExp = 1;
-                            ObErr = "El valor del copago de la factura no puede ser negativo.";
-                        }
+                            if (Convert.ToInt32(TabLoc["ValorComi"].ToString()) < 0)
+                            {
+                                RegExp = 1;
+                                ObErr += "El valor de la comisión de la factura no puede ser negativo.";
+                            }
 
-                        //Validamos el valor de la comision
+                            //Validamos el valor total de descuentos
 
-                        if (Convert.ToInt32(TabLoc["ValorComi"].ToString()) < 0)
-                        {
-                            RegExp = 1;
-                            ObErr += "El valor de la comisión de la factura no puede ser negativo.";
-                        }
+                            if (Convert.ToInt32(TabLoc["ValorDes"].ToString()) < 0)
+                            {
+                                RegExp = 1;
+                                ObErr += "El valor total del descuento de la factura no puede ser negativo.";
+                            }
 
-                        //Validamos el valor total de descuentos
+                            if (Convert.ToInt32(TabLoc["ValorNeto"].ToString()) < 0)
+                            {
+                                RegExp = 1;
+                                ObErr += "El valor neto de la factura no puede ser negativo.";
+                            }
 
-                        if (Convert.ToInt32(TabLoc["ValorDes"].ToString()) < 0)
-                        {
-                            RegExp = 1;
-                            ObErr += "El valor total del descuento de la factura no puede ser negativo.";
-                        }
+                            if ((Convert.ToDecimal(TabLoc["Copago"].ToString()) + Convert.ToDecimal(TabLoc["ValorNeto"].ToString())) != Convert.ToDecimal(TabLoc["VaLorDeta"].ToString()))
+                            {
+                                RegExp = 1;
+                                ObErr += "El valor neto de la factura no puede ser diferente al valor total del detalle.";
+                            }
 
-                        if (Convert.ToInt32(TabLoc["ValorNeto"].ToString()) < 0)
-                        {
-                            RegExp = 1;
-                            ObErr += "El valor neto de la factura no puede ser negativo.";
-                        }
+                            if (RegExp == 1)
+                            {
+                                Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal errores RIPS] ";
+                                Utils.SqlDatos += "([CodDigita],[TipARchi],[TipDocu],[NumDocu],[CodEnti],[FacturaN],[Observa1]) ";
+                                Utils.SqlDatos += "VALUES('" + lblCodigoUser.Text + "', 'AF','" + TabLoc["TipIdenti"].ToString() + "','" + TabLoc["NumIdenti"].ToString() + "','" + c + "','" + TabLoc["NumFactur"].ToString() + "','" + ObErr + "')";
 
-                        if ((Convert.ToDecimal(TabLoc["Copago"].ToString()) + Convert.ToDecimal(TabLoc["ValorNeto"].ToString())) != Convert.ToDecimal(TabLoc["VaLorDeta"].ToString()))
-                        {
-                            RegExp = 1;
-                            ObErr += "El valor neto de la factura no puede ser diferente al valor total del detalle.";
-                        }
+                                Boolean TabLocal2 = Conexion.SqlInsert(Utils.SqlDatos);
+                            }
 
-                        if (RegExp == 1)
-                        {
-                            Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal errores RIPS] ";
-                            Utils.SqlDatos += "([CodDigita],[TipARchi],[TipDocu],[NumDocu],[CodEnti],[FacturaN],[Observa1]) ";
-                            Utils.SqlDatos += "VALUES('" + lblCodigoUser.Text + "', 'AF','" + TabLoc["TipIdenti"].ToString() + "','" + TabLoc["NumIdenti"].ToString() + "','" + c + "','" + TabLoc["NumFactur"].ToString() + "','" + ObErr + "')";
+                            VR += 1;
 
-                            Boolean TabLocal2 = Conexion.SqlInsert(Utils.SqlDatos);
-                        }
+                        }//fINAL While
 
-                        VR += 1;
+                        TabLoc.Close();
 
-                    }//fINAL While
+                        return 1;
 
-                    return 1;
+                    }//Final TabLocal
 
-                    TabLoc.Close();
-                }//Final TabLocal
+                }
 
             }
             catch (Exception ex)
@@ -6226,12 +6244,12 @@ namespace Gestion_Rips.Forms.Exportar
                         "[Datos del Paciente].HistorPaci = [Datos cuentas de consumos].HistoNum) ON " +
                         "[Datos catalogo de servicios].CodInterno = [Datos registros de consumos].CodInter ";
 
+                        BarraSeleccionar.Minimum = 1;
+                        BarraSeleccionar.Maximum = Convert.ToInt32(txtTotalCantidadDestino.Text);
 
                         while (TabFacSele.Read())
                         {
-
-                            BarraSeleccionar.Minimum = 1;
-                            BarraSeleccionar.Maximum = Convert.ToInt32(txtTotalCantidadDestino.Text);
+                      
 
                             ValdetaFac = 0; //En esta variable se va ha registrar los valores de detalle de cada factura para después auditar qquien tiene descuadre
                             CanFacSel += 1;
