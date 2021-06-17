@@ -137,6 +137,12 @@
     <Compile Include="Forms\RipsTodos\FrmExportarSedaripsTodos.Designer.cs">
       <DependentUpon>FrmExportarSedaripsTodos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\RipsTodos\FrmReporteRipsTodos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RipsTodos\FrmReporteRipsTodos.Designer.cs">
+      <DependentUpon>FrmReporteRipsTodos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reportes\DataSet\dsInErroresRips.cs">
@@ -219,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\RipsTodos\FrmExportarSedaripsTodos.resx">
       <DependentUpon>FrmExportarSedaripsTodos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RipsTodos\FrmReporteRipsTodos.resx">
+      <DependentUpon>FrmReporteRipsTodos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

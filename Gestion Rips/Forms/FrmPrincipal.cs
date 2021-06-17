@@ -169,7 +169,7 @@ namespace Gestion_Rips.Forms
 
         private void ripsTodosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utils.BaseDeDatosPrincipal = "DARIPSESSQL";
+            Utils.BaseDeDatosPrincipal = "ACDATOXPSQL";
 
             Conexion.conexionSQL = "Server=" + Conexion.servidor + "; " +
                                    "Initial Catalog=" + Utils.BaseDeDatosPrincipal + ";" +

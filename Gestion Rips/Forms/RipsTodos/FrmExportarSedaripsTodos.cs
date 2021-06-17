@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Gestion_Rips.Forms.RipsPorRegimen;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -23,8 +24,6 @@ namespace Gestion_Rips.Forms.RipsTodos
         int MarLimRegis = 1;
 
         #region ComboBox
-
-
         private void CargarComboBox()
         {
             try
@@ -38,19 +37,19 @@ namespace Gestion_Rips.Forms.RipsTodos
                 this.cboSedeVivi.Items.Clear();
 
 
-                Utils.SqlDatos = "SELECT CodInterno, NomAdmin, TipoDocumento, NitCC, CodAdmin  " +
-                                " FROM [Datos administradoras de planes] " +
-                                " ORDER BY NomAdmin ";
-
+                Utils.SqlDatos = "SELECT CarAdmin, ([NomAdmin] + ' ' + [ProgrAmin]) AS NP, TipoDocu, NumDocu , CodiMinSalud, ManualTari, RegimenAdmin, ActiReali, PerEmpre" +
+                                 " FROM [ACDATOXPSQL].[dbo].[Datos empresas y terceros] WHERE((([ACDATOXPSQL].[dbo].[Datos empresas y terceros].PerEmpre) = 'True') and (([ACDATOXPSQL].[dbo].[Datos empresas y terceros].HabilEmp) = 'True'))" +
+                                 " and ([NomAdmin] + ' ' + [ProgrAmin]) is not null ORDER BY([NomAdmin] +' ' + [ProgrAmin])";
 
                 DataSet dataSet = Conexion.SQLDataSet(Utils.SqlDatos);
 
                 if (dataSet != null && dataSet.Tables.Count > 0)
                 {
                     this.cboNameEntidades.DataSource = dataSet.Tables[0];
-                    this.cboNameEntidades.ValueMember = "CodInterno";
-                    this.cboNameEntidades.DisplayMember = "NomAdmin";
+                    this.cboNameEntidades.ValueMember = "CarAdmin";
+                    this.cboNameEntidades.DisplayMember = "NP";
                 }
+   
 
                 string SqlSedesIns = "SELECT CodSede, NomSede, PrefiFac, TipSede, HabilSede " +
                              "FROM [BDADMINSIG].[dbo].[Datos sedes de instalacion] " +
@@ -122,6 +121,703 @@ namespace Gestion_Rips.Forms.RipsTodos
         #endregion
 
         #region Funciones
+
+        private int CopiaRipsProce(string NR, string CI, double TolC)
+        {
+            try
+            {
+                int VR = 0;
+                bool SqlInsert;
+                //Permite copiar las consultas para RIPS a SEDAS-RIPS
+
+                Utils.SqlDatos = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos temporal procedimientos RIPS] WHERE NumRemi = '" + CI + "'";
+
+                SqlDataReader TabLocal;
+
+                using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                {
+                    SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+                    command.Connection.Open();
+                    TabLocal = command.ExecuteReader();
+
+                    if (TabLocal.HasRows == false)
+                    {
+                        //No hay medicamentos para copiar a esta entidad
+                        return -2;
+                    }
+                    else
+                    {
+                        VR = 0;
+
+                        //Simplemente adiciona los otros servicios
+
+                        string DxPrincipal;
+
+                        while (TabLocal.Read())
+                        {
+
+                            DxPrincipal = Convert.ToString(TabLocal["DxPrincipal"]) != "0000" ? TabLocal["DxPrincipal"].ToString() : "";
+
+                            Utils.SqlDatos = "INSERT INTO [DARIPSESSQL].[dbo].[Datos archivo de procedimientos] " +
+                                             "(NumRemi," +
+                                             "NumFactur," +
+                                             "CodIps," +
+                                             "TipoDocum," +
+                                             "NumDocum," +
+                                             "FecProce," +
+                                             "AutoriNum," +
+                                             "CodProce," +
+                                             "AmbitoReal," +
+                                             "FinalProce," +
+                                             "PersonAten," +
+                                             "DxPrincipal," +
+                                             "DxRelacion," +
+                                             "Complicacion," +
+                                             "RealiActo," +
+                                             "ValorProce)" +
+                                             "VALUES(" +
+                                             "'" + NR + "'," +
+                                             "'" + TabLocal["NumFactur"].ToString() + "'," +
+                                             "'" + TabLocal["CodIps"].ToString() + "'," +
+                                             "'" + TabLocal["TipoDocum"].ToString() + "'," +
+                                             "'" + TabLocal["NumDocum"].ToString() + "'," +
+                                             "'" + Convert.ToDateTime(TabLocal["FecProce"]).ToString("yyyy-MM-dd") + "'," +
+                                             "'" + TabLocal["AutoriNum"].ToString() + "'," +
+                                             "'" + TabLocal["CodProce"].ToString() + "'," +
+                                             "'" + TabLocal["AmbitoReal"].ToString() + "'," +
+                                             "'" + TabLocal["FinalProce"].ToString() + "'," +
+                                             "'" + TabLocal["PersonAten"].ToString() + "'," +
+                                             "'" + DxPrincipal + "'," +
+                                             "'" + TabLocal["DxRelacion"].ToString() + "'," +
+                                             "'" + TabLocal["Complicacion"].ToString() + "'," +
+                                             "'" + TabLocal["RealiActo"].ToString() + "'," +
+                                             "'" + TabLocal["ValorProce"].ToString() + "')";
+
+                            SqlInsert = Conexion.SqlInsert(Utils.SqlDatos);
+
+                            if (SqlInsert)
+                            {
+                                VR += 1;
+                            }
+
+                        }//Fin While
+
+                    }//Fin TabLocal.HasRows == false
+
+                    TabLocal.Close();
+
+                }//Fin Using
+
+                return VR;
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la funcion CopiaRipsProce" + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+            }
+        }
+
+        private int CopiaRipsRecien(string NR, string CI, double TolC)
+        {
+            try
+            {
+                int VR = 0;
+                bool SqlInsert;
+                //Permite copiar las consultas para RIPS a SEDAS-RIPS
+
+                Utils.SqlDatos = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos temporal recien nacidos RIPS] WHERE NumRemi = '" + CI + "'";
+
+                SqlDataReader TabLocal;
+
+                using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                {
+                    SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+                    command.Connection.Open();
+                    TabLocal = command.ExecuteReader();
+
+                    if (TabLocal.HasRows == false)
+                    {
+                        //No hay medicamentos para copiar a esta entidad
+                        return -2;
+                    }
+                    else
+                    {
+                        VR = 0;
+
+                        //Simplemente adiciona los otros servicios
+
+                        while (TabLocal.Read())
+                        {
+                            Utils.SqlDatos = "INSERT INTO [DARIPSESSQL].[dbo].[Datos archivo de recien nacido] " +
+                                             "(NumRemi," +
+                                             "NumFactur," +
+                                             "CodIps," +
+                                             "TipoDocum," +
+                                             "NumDocum," +
+                                             "FecNaci," +
+                                             "HorIngresa," +
+                                             "EdadGesta," +
+                                             "ControlPrena," +
+                                             "SexoRecien," +
+                                             "PesoRecien," +
+                                             "DxRecien)" +
+                                             "VALUES(" +
+                                             "'" + NR + "'," +
+                                             "'" + TabLocal["NumFactur"].ToString() + "'," +
+                                             "'" + TabLocal["CodIps"].ToString() + "'," +
+                                             "'" + TabLocal["TipoDocum"].ToString() + "'," +
+                                             "'" + TabLocal["NumDocum"].ToString() + "'," +
+                                             "'" + Convert.ToDateTime(TabLocal["FecNaci"]).ToString("yyyy-MM-dd") + "'," +
+                                             "'" + Convert.ToDateTime(TabLocal["HorIngresa"]).ToString("hh:mm:ss") + "'," +
+                                             "'" + TabLocal["EdadGesta"].ToString() + "'," +
+                                             "'" + TabLocal["ControlPrena"].ToString() + "'," +
+                                             "'" + TabLocal["SexoRecien"].ToString() + "'," +
+                                             "'" + TabLocal["PesoRecien"].ToString() + "'," +
+                                             "'" + TabLocal["DxRecien"].ToString() + "')";
+
+                            SqlInsert = Conexion.SqlInsert(Utils.SqlDatos);
+
+                            if (SqlInsert)
+                            {
+                                VR += 1;
+                            }
+
+                        }//Fin While
+
+                    }//Fin TabLocal.HasRows == false
+
+                    TabLocal.Close();
+
+                }//Fin Using
+
+                return VR;
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la funcion CopiaRipsRecien" + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+            }
+        }
+
+        private int CopiaRipsOtros(string NR, string CI, double TolC)
+        {
+            try
+            {
+                int VR = 0;
+                bool SqlInsert;
+                //Permite copiar las consultas para RIPS a SEDAS-RIPS
+
+                Utils.SqlDatos = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos temporal otros servicios RIPS] WHERE NumRemi = '" + CI + "'";
+
+                SqlDataReader TabLocal;
+
+                using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                {
+                    SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+                    command.Connection.Open();
+                    TabLocal = command.ExecuteReader();
+
+                    if (TabLocal.HasRows == false)
+                    {
+                        //No hay medicamentos para copiar a esta entidad
+                        return -2;
+                    }
+                    else
+                    {
+                        VR = 0;
+
+                        //Simplemente adiciona los otros servicios
+
+                        while (TabLocal.Read())
+                        {
+                            Utils.SqlDatos = "INSERT INTO [DARIPSESSQL].[dbo].[Datos archivo de otros servicios] " +
+                                             "(NumRemi," +
+                                             "NumFactur," +
+                                             "CodIps," +
+                                             "TipoDocum," +
+                                             "NumDocum," +
+                                             "AutoriNum," +
+                                             "TipoServicio," +
+                                             "CodiServi," +
+                                             "NomServi," +
+                                             "Cantidad," +
+                                             "ValorUnita," +
+                                             "ValorTotal)" +
+                                             "VALUES(" +
+                                             "'" + NR + "'," +
+                                             "'" + TabLocal["NumFactur"].ToString() + "'," +
+                                             "'" + TabLocal["CodIps"].ToString() + "'," +
+                                             "'" + TabLocal["TipoDocum"].ToString() + "'," +
+                                             "'" + TabLocal["NumDocum"].ToString() + "'," +
+                                             "'" + TabLocal["AutoriNum"].ToString() + "'," +
+                                             "'" + TabLocal["TipoServicio"].ToString() + "'," +
+                                             "'" + TabLocal["CodiServi"].ToString() + "'," +
+                                             "'" + TabLocal["NomServi"].ToString() + "'," +
+                                             "'" + TabLocal["Cantidad"].ToString() + "'," +
+                                             "'" + TabLocal["ValorUnita"].ToString() + "'," +
+                                             "'" + TabLocal["ValorTotal"].ToString() + "')";
+
+                            SqlInsert = Conexion.SqlInsert(Utils.SqlDatos);
+
+                            if (SqlInsert)
+                            {
+                                VR += 1;
+                            }
+
+                        }//Fin While
+
+                    }//Fin TabLocal.HasRows == false
+
+                    TabLocal.Close();
+
+                }//Fin Using
+
+                return VR;
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la funcion CopiaRipsOtros" + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+            }
+        }
+
+        private int CopiaRipsObserva(string NR, string CI, double TolC)
+        {
+            try
+            {
+                int VR = 0;
+                bool SqlInsert;
+                //Permite copiar las consultas para RIPS a SEDAS-RIPS
+
+                Utils.SqlDatos = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos temporal observacion RIPS] WHERE NumRemi = '" + CI + "'";
+
+                SqlDataReader TabLocal;
+
+                using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                {
+                    SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+                    command.Connection.Open();
+                    TabLocal = command.ExecuteReader();
+
+                    if (TabLocal.HasRows == false)
+                    {
+                        //No hay medicamentos para copiar a esta entidad
+                        return -2;
+                    }
+                    else
+                    {
+                        VR = 0;
+
+                        //Simplemente adiciona las observacion
+
+                        while (TabLocal.Read())
+                        {
+                            Utils.SqlDatos = "INSERT INTO [DARIPSESSQL].[dbo].[Datos archivo de observacion urgencias] " +
+                                             "(NumRemi," +
+                                             "NumFactur," +
+                                             "CodIps," +
+                                             "TipoDocum," +
+                                             "NumDocum," +
+                                             "FecIngresa," +
+                                             "HorIngresa," +
+                                             "AutoriNum," +
+                                             "CausExter," +
+                                             "DxPrincIngre," +
+                                             "DxRelacion1," +
+                                             "DxRelacion2," +
+                                             "DxRelacion3," +
+                                             "Destino," +
+                                             "EstadoSal," +
+                                             "DxMuerte," +
+                                             "FecSalida," +
+                                             "HorSalida)" +
+                                             "VALUES(" +
+                                             "'" + NR + "'," +
+                                             "'" + TabLocal["NumFactur"].ToString() + "'," +
+                                             "'" + TabLocal["CodIps"].ToString() + "'," +
+                                             "'" + TabLocal["TipoDocum"].ToString() + "'," +
+                                             "'" + TabLocal["NumDocum"].ToString() + "'," +
+                                             "'" + Convert.ToDateTime(TabLocal["FecIngresa"]).ToString("yyyy-MM-dd") + "'," +
+                                             "'" + Convert.ToDateTime(TabLocal["HorIngresa"]).ToString("hh:mm:ss") + "'," +
+                                             "'" + TabLocal["AutoriNum"].ToString() + "'," +
+                                             "'" + TabLocal["CausExter"].ToString() + "'," +
+                                             "'" + TabLocal["DxPrincIngre"].ToString() + "'," +
+                                             "'" + TabLocal["DxRelacion1"].ToString() + "'," +
+                                             "'" + TabLocal["DxRelacion2"].ToString() + "'," +
+                                             "'" + TabLocal["DxRelacion3"].ToString() + "'," +
+                                             "'" + TabLocal["Destino"].ToString() + "'," +
+                                             "'" + TabLocal["EstadoSal"].ToString() + "'," +
+                                             "'" + TabLocal["DxMuerte"].ToString() + "'," +
+                                             "'" + Convert.ToDateTime(TabLocal["FecSalida"]).ToString("yyyy-MM-dd") + "'," +
+                                             "'" + Convert.ToDateTime(TabLocal["HorSalida"]).ToString("hh:mm:ss") + "')";
+
+                            SqlInsert = Conexion.SqlInsert(Utils.SqlDatos);
+
+                            if (SqlInsert)
+                            {
+                                VR += 1;
+                            }
+
+                        }//Fin While
+
+                    }//Fin TabLocal.HasRows == false
+
+                    TabLocal.Close();
+
+                }//Fin Using
+
+                return VR;
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la funcion CopiaRipsObserva" + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+            }
+        }
+
+        private int CopiaRipsMedica(string NR, string CI, double TolC)
+        {
+            try
+            {
+                int VR = 0;
+                bool SqlInsert;
+                //Permite copiar las consultas para RIPS a SEDAS-RIPS
+
+                Utils.SqlDatos = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos temporal medicamentos RIPS] WHERE NumRemi = '" + CI + "'";
+
+                SqlDataReader TabLocal;
+
+                using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                {
+                    SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+                    command.Connection.Open();
+                    TabLocal = command.ExecuteReader();
+
+                    if (TabLocal.HasRows == false)
+                    {
+                        //No hay medicamentos para copiar a esta entidad
+                        return -2;
+                    }
+                    else
+                    {
+                        VR = 0;
+
+                        //Simplemente adiciona las consultas
+
+                        while (TabLocal.Read())
+                        {
+                            Utils.SqlDatos = "INSERT INTO [DARIPSESSQL].[dbo].[Datos archivo de medicamentos] " +
+                                             "(NumRemi," +
+                                             "NumFactur," +
+                                             "CodIps," +
+                                             "TipoDocum," +
+                                             "NumDocum," +
+                                             "AutoriNum," +
+                                             "CodMedica," +
+                                             "TipoMedica," +
+                                             "NomGenerico," +
+                                             "FormaFarma," +
+                                             "ConcenMedi," +
+                                             "UniMedida," +
+                                             "NumUnidad," +
+                                             "ValorUnita," +
+                                             "ValorTotal)" +
+                                             "VALUES(" +
+                                             "'" + NR + "'," +
+                                             "'" + TabLocal["NumFactur"].ToString() + "'," +
+                                             "'" + TabLocal["CodIps"].ToString() + "'," +
+                                             "'" + TabLocal["TipoDocum"].ToString() + "'," +
+                                             "'" + TabLocal["NumDocum"].ToString() + "'," +
+                                             "'" + TabLocal["AutoriNum"].ToString() + "'," +
+                                             "'" + TabLocal["CodMedica"].ToString() + "'," +
+                                             "'" + TabLocal["TipoMedica"].ToString() + "'," +
+                                             "'" + TabLocal["NomGenerico"].ToString() + "'," +
+                                             "'" + TabLocal["FormaFarma"].ToString() + "'," +
+                                             "'" + TabLocal["ConcenMedi"].ToString() + "'," +
+                                             "'" + TabLocal["UniMedida"].ToString() + "'," +
+                                             "'" + TabLocal["NumUnidad"].ToString() + "'," +
+                                             "'" + TabLocal["ValorUnita"].ToString() + "'," +
+                                             "'" + TabLocal["ValorTotal"].ToString() + "')";
+
+                            SqlInsert = Conexion.SqlInsert(Utils.SqlDatos);
+
+                            if (SqlInsert)
+                            {
+                                VR += 1;
+                            }
+
+                        }//Fin While
+
+                    }//Fin TabLocal.HasRows == false
+
+                    TabLocal.Close();
+
+                }//Fin Using
+
+                return VR;
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la funcion CopiaRipsMedica" + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+            }
+        }
+
+        private int CopiaRipsHospi(string NR, string CI, double TolC)
+        {
+            try
+            {
+                int VR = 0;
+                bool SqlInsert;
+                //Permite copiar las consultas para RIPS a SEDAS-RIPS
+
+                Utils.SqlDatos = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos temporal hospitalizacion RIPS] WHERE NumRemi = '" + CI + "'";
+
+                SqlDataReader TabLocal;
+
+                using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                {
+                    SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+                    command.Connection.Open();
+                    TabLocal = command.ExecuteReader();
+
+                    if (TabLocal.HasRows == false)
+                    {
+                        //No hay consultas para copiar a esta entidad
+                        return -2;
+                    }
+                    else
+                    {
+                        VR = 0;
+
+                        //Simplemente adiciona las consultas
+
+                        while (TabLocal.Read())
+                        {
+                            Utils.SqlDatos = "INSERT INTO [DARIPSESSQL].[dbo].[Datos archivo de hospitalizacion] " +
+                                             "(NumRemi," +
+                                             "NumFactur," +
+                                             "CodIps," +
+                                             "TipoDocum," +
+                                             "NumDocum," +
+                                             "ViaDIngreso," +
+                                             "FecIngresa," +
+                                             "HorIngresa," +
+                                             "AutoriNum," +
+                                             "CausExter," +
+                                             "DxPrincIngre," +
+                                             "DxPrincEgre," +
+                                             "DxRelacion1," +
+                                             "DxRelacion2," +
+                                             "DxRelacion3," +
+                                             "DxComplica," +
+                                             "EstadoSal," +
+                                             "DxMuerte," +
+                                             "FecSalida," +
+                                             "HorSalida)" +
+                                             "VALUES(" +
+                                             "'" + NR + "'," +
+                                             "'" + TabLocal["NumFactur"].ToString() + "'," +
+                                             "'" + TabLocal["CodIps"].ToString() + "'," +
+                                             "'" + TabLocal["TipoDocum"].ToString() + "'," +
+                                             "'" + TabLocal["NumDocum"].ToString() + "'," +
+                                             "'" + TabLocal["ViaDIngreso"].ToString() + "'," +
+                                             "'" + Convert.ToDateTime(TabLocal["FecIngresa"]).ToString("yyyy-MM-dd") + "'," +
+                                             "'" + Convert.ToDateTime(TabLocal["HorIngresa"]).ToString("hh:mm:ss") + "'," +
+                                             "'" + TabLocal["AutoriNum"].ToString() + "'," +
+                                             "'" + TabLocal["CausExter"].ToString() + "'," +
+
+                                             "'" + TabLocal["DxPrincIngre"].ToString() + "'," +
+                                             "'" + TabLocal["DxPrincEgre"].ToString() + "'," +
+                                             "'" + TabLocal["DxRelacion1"].ToString() + "'," +
+                                             "'" + TabLocal["DxRelacion2"].ToString() + "'," +
+                                             "'" + TabLocal["DxRelacion3"].ToString() + "'," +
+                                             "'" + TabLocal["DxComplica"].ToString() + "'," +
+                                             "'" + TabLocal["EstadoSal"].ToString() + "'," +
+                                             "'" + TabLocal["DxMuerte"].ToString() + "'," +
+                                             "'" + Convert.ToDateTime(TabLocal["FecSalida"]).ToString("yyyy-MM-dd") + "'," +
+                                             "'" + Convert.ToDateTime(TabLocal["HorSalida"]).ToString("hh:mm:ss") + "')";
+
+                            SqlInsert = Conexion.SqlInsert(Utils.SqlDatos);
+
+                            if (SqlInsert)
+                            {
+                                VR += 1;
+                            }
+
+                        }//Fin While
+
+                    }//Fin TabLocal.HasRows == false
+
+                    TabLocal.Close();
+
+                }//Fin Using
+
+                return VR;
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la funcion CopiaRipsHospi" + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+            }
+        }
+
+        private int CopiaRipsConsul(string NR, string CI, double TolC)
+        {
+            try
+            {
+                int VR = 0;
+                bool SqlInsert;
+                //Permite copiar las consultas para RIPS a SEDAS-RIPS
+
+                Utils.SqlDatos = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos temporal consultas RIPS] WHERE NumRemi = '" + CI + "'";
+
+                SqlDataReader TabLocal;
+
+                using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
+                {
+                    SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
+                    command.Connection.Open();
+                    TabLocal = command.ExecuteReader();
+
+                    if (TabLocal.HasRows == false)
+                    {
+                        //No hay consultas para copiar a esta entidad
+                        return -2;
+                    }
+                    else
+                    {
+                        VR = 0;
+
+                        //Simplemente adiciona las consultas
+
+                        while (TabLocal.Read())
+                        {
+                            Utils.SqlDatos = "INSERT INTO [DARIPSESSQL].[dbo].[Datos archivo de consulta] " +
+                                             "(NumRemi," +
+                                             "NumFactur," +
+                                             "CodIps," +
+                                             "TipoDocum," +
+                                             "NumDocum," +
+                                             "FecConsul," +
+                                             "AutoriNum," +
+                                             "CodConsul," +
+                                             "FinalConsul," +
+                                             "CausExter," +
+                                             "DxPrincipal," +
+                                             "DxRelacion1," +
+                                             "DxRelacion2," +
+                                             "DxRelacion3," +
+                                             "TipoDxPrin," +
+                                             "ValorConsul," +
+                                             "ValorCuota," +
+                                             "ValorNeto)" +
+                                             "VALUES(" +
+                                             "'" + NR + "'," +
+                                             "'" + TabLocal["NumFactur"].ToString() + "'," +
+                                             "'" + TabLocal["CodIps"].ToString() + "'," +
+                                             "'" + TabLocal["TipoDocum"].ToString() + "'," +
+                                             "'" + TabLocal["NumDocum"].ToString() + "'," +
+                                             "'" + Convert.ToDateTime(TabLocal["FecConsul"]).ToString("yyy-MM-dd") + "'," +
+                                             "'" + TabLocal["AutoriNum"].ToString() + "'," +
+                                             "'" + TabLocal["CodConsul"].ToString() + "'," +
+                                             "'" + TabLocal["FinalConsul"].ToString() + "'," +
+                                             "'" + TabLocal["CausExter"].ToString() + "'," +
+                                             "'" + TabLocal["DxPrincipal"].ToString() + "'," +
+                                             "'" + TabLocal["DxRelacion1"].ToString() + "'," +
+                                             "'" + TabLocal["DxRelacion2"].ToString() + "'," +
+                                             "'" + TabLocal["DxRelacion3"].ToString() + "'," +
+                                             "'" + TabLocal["TipoDxPrin"].ToString() + "'," +
+                                             "'" + TabLocal["ValorConsul"].ToString() + "'," +
+                                             "'" + TabLocal["ValorCuota"].ToString() + "'," +
+                                             "'" + TabLocal["ValorNeto"].ToString() + "')";
+
+                            SqlInsert = Conexion.SqlInsert(Utils.SqlDatos);
+
+                            if (SqlInsert)
+                            {
+                                VR += 1;
+                            }
+
+                        }//Fin While
+
+                    }//Fin TabLocal.HasRows == false
+
+                    TabLocal.Close();
+
+                }//Fin Using
+
+                return VR;
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la funcion CopiaRipsConsul" + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+            }
+        }
         private int CopiaRipsTrans(string NR, string CI, double TolF, int RutCopy)
         {
             try
@@ -3332,28 +4028,15 @@ namespace Gestion_Rips.Forms.RipsTodos
             {
                 if (this.cboNameEntidades.Items.Count > 0)
                 {
-
-
-                    Utils.SqlDatos = "SELECT CodInterno, NomAdmin, TipoDocumento, NitCC, CodAdmin  " +
-                    " FROM [Datos administradoras de planes] WHERE CodInterno  = '" + cboNameEntidades.SelectedValue + "' " +
-                    " ORDER BY NomAdmin ";
-
-
-
-
-                    SqlDataReader sqlDataReader = Conexion.SQLDataReader(Utils.SqlDatos);
-
+                    SqlDataReader sqlDataReader = Conexion.SQLDataReader("SELECT [CarAdmin],[NomAdmin] ,[TipoDocu],[NumDocu],[CodiMinSalud] FROM [ACDATOXPSQL].[dbo].[Datos empresas y terceros] WHERE CarAdmin = '" + cboNameEntidades.SelectedValue + "' ");
                     if (sqlDataReader.HasRows)
                     {
                         sqlDataReader.Read();
-                        this.txtCardinal.Text = sqlDataReader["CodInterno"].ToString();
-                        this.txtTipoDocu.Text = sqlDataReader["TipoDocumento"].ToString();
-                        this.txtDocumento.Text = sqlDataReader["NitCC"].ToString();
-                        this.txtRips.Text = sqlDataReader["CodAdmin"].ToString();
-
-
+                        this.txtCardinal.Text = sqlDataReader["CarAdmin"].ToString();
+                        this.txtTipoDocu.Text = sqlDataReader["TipoDocu"].ToString();
+                        this.txtDocumento.Text = sqlDataReader["NumDocu"].ToString();
+                        this.txtRips.Text = sqlDataReader["CodiMinSalud"].ToString();
                     }
-
                     sqlDataReader.Close();
 
                 }
@@ -3371,6 +4054,979 @@ namespace Gestion_Rips.Forms.RipsTodos
         #endregion
 
         #region Texbox y button
+        private void btnValidar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //  *******************  Diciembre 02 de 2.003  **************************
+                //  *******************  Junio 2021 Juan Diego   **************************
+
+                //Permite validar los datos de los RIPS
+
+
+                Utils.Titulo01 = "Control para validar datos";
+
+                string Coenti01, UsSel = null, NEnti, TDE, NCC, CD, CR, Para02, Para01, TUReg = null, AcRe = null;
+                double TolUsa = 0, TolConsul = 0, TolHos = 0, TolMedi = 0, TolObs = 0, TolOtros = 0, TolReN = 0, TolProce = 0, TolFac = 0, FunAudi = 0;
+
+                int FunUs, FunFac, FunCon, FunHos, FunObs, FunMedi, FunOtros, FunReN, FunProce, TolInco = 0;
+
+                SqlDataReader ContarRips;
+
+                UsSel = lblCodigoUser.Text;
+
+                if (string.IsNullOrWhiteSpace(cboNameEntidades.SelectedValue.ToString()) == true || cboNameEntidades.SelectedIndex == -1)
+                {
+                    Utils.Informa = "Lo siento pero usted aún no ha";
+                    Utils.Informa += "seleccionado el nombre de la entidad.";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    cboNameEntidades.Select();
+                    return;
+                }
+                else
+                {
+                    Coenti01 = txtCardinal.Text;
+                    //Cargamos los datos de la entidad
+                    Utils.SqlDatos = "SELECT CarAdmin, ([NomAdmin] + ' ' + [ProgrAmin]) AS NP, TipoDocu, NumDocu , CodiMinSalud, ManualTari, RegimenAdmin, ActiReali, PerEmpre " +
+                                            "FROM [ACDATOXPSQL].[dbo].[Datos empresas y terceros] WHERE ((([ACDATOXPSQL].[dbo].[Datos empresas y terceros].PerEmpre) = 1) AND(([ACDATOXPSQL].[dbo].[Datos empresas y terceros].HabilEmp) = 1)) " +
+                                            "AND ([NomAdmin] + ' ' + [ProgrAmin]) is not null AND CarAdmin = '" + Coenti01 + "'";
+
+                    SqlDataReader sqlDataReader2 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                    if (sqlDataReader2.HasRows)
+                    {
+                        sqlDataReader2.Read();
+                        NEnti = sqlDataReader2["NP"].ToString();
+                        TDE = sqlDataReader2["TipoDocu"].ToString();
+                        NCC = sqlDataReader2["NumDocu"].ToString();
+                        TUReg = sqlDataReader2["RegimenAdmin"].ToString();
+                        AcRe = sqlDataReader2["ActiReali"].ToString();
+                        CR = TxtCodMinSalud.Text;
+                    }
+
+                    sqlDataReader2.Close();
+                    sqlDataReader2 = null;
+
+                    if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                } //'Final de IsNull(Coenti01) Or (Coenti01 = " ")
+
+                //Usuarios
+
+                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolUsuarios FROM [DARIPSESSQL].[dbo].[Datos temporal usuarios RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (ContarRips.HasRows)
+                {
+                    ContarRips.Read();
+                    TolUsa = Convert.ToDouble(ContarRips["TolUsuarios"]);
+
+                }
+                else
+                {
+                    Utils.Informa = "El proceso de validación de este módulo no se" + "\r";
+                    Utils.Informa += "puede realizar mientras no se seleccione los" + "\r";
+                    Utils.Informa += "pusuarios de la entidad seleccionada." + "\r";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                ContarRips.Close();
+                ContarRips = null;
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+
+                //transacciones 
+
+                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolFac FROM [DARIPSESSQL].[dbo].[Datos temporal transacciones RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (ContarRips.HasRows)
+                {
+                    ContarRips.Read();
+                    TolFac = Convert.ToDouble(ContarRips["TolFac"]);
+                }
+                ContarRips.Close();
+                ContarRips = null;
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+
+                //Consultas
+
+                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolConsul FROM [DARIPSESSQL].[dbo].[Datos temporal consultas RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (ContarRips.HasRows)
+                {
+                    ContarRips.Read();
+                    TolConsul = Convert.ToDouble(ContarRips["TolConsul"]);
+                }
+                ContarRips.Close();
+                ContarRips = null;
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                //Hospitalizados
+
+                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolHos FROM [DARIPSESSQL].[dbo].[Datos temporal hospitalizacion RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (ContarRips.HasRows)
+                {
+                    ContarRips.Read();
+                    TolHos = Convert.ToDouble(ContarRips["TolHos"]);
+                }
+                ContarRips.Close();
+                ContarRips = null;
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                //Medicamentos
+
+                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolMedi FROM [DARIPSESSQL].[dbo].[Datos temporal medicamentos RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (ContarRips.HasRows)
+                {
+                    ContarRips.Read();
+                    TolMedi = Convert.ToDouble(ContarRips["TolMedi"]);
+                }
+                ContarRips.Close();
+                ContarRips = null;
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                //Observaciones
+
+                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolObs FROM [DARIPSESSQL].[dbo].[Datos temporal observacion RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (ContarRips.HasRows)
+                {
+                    ContarRips.Read();
+                    TolObs = Convert.ToDouble(ContarRips["TolObs"]);
+                }
+                ContarRips.Close();
+                ContarRips = null;
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                //OtroServicios
+
+                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolOtros FROM [DARIPSESSQL].[dbo].[Datos temporal otros servicios RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (ContarRips.HasRows)
+                {
+                    ContarRips.Read();
+                    TolOtros = Convert.ToDouble(ContarRips["TolOtros"]);
+                }
+                ContarRips.Close();
+                ContarRips = null;
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                //Recien Nacidos
+
+                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolReN FROM [DARIPSESSQL].[dbo].[Datos temporal recien nacidos RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (ContarRips.HasRows)
+                {
+                    ContarRips.Read();
+                    TolReN = Convert.ToDouble(ContarRips["TolReN"]);
+                }
+                ContarRips.Close();
+                ContarRips = null;
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                //Procedimientos
+
+                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolProce FROM [DARIPSESSQL].[dbo].[Datos temporal procedimientos RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (ContarRips.HasRows)
+                {
+                    ContarRips.Read();
+                    TolProce = Convert.ToDouble(ContarRips["TolProce"]);
+                }
+                ContarRips.Close();
+                ContarRips = null;
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+
+                //Elimine los datos de la tabla temporal
+
+
+                Utils.SqlDatos = "DELETE FROM [DARIPSESSQL].[dbo].[Datos temporal errores RIPS]";
+
+
+                Boolean EliDatos = Conexion.SQLDelete(Utils.SqlDatos);
+
+                Utils.Informa = "¿Usted desea validar los datos de los RIPS" + "\r";
+                Utils.Informa += "previamente seleccionados a la entidad " + "\r";
+
+                var res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (res == DialogResult.Yes)
+                {
+                    // 'Validamos el de usuarios
+
+                    FunUs = ValidarUsuarios(Coenti01, TUReg, TolUsa, UsSel); //US
+
+
+                    switch (FunUs)
+                    {
+                        case -1: //error en la funcion
+                            return;
+                            break;
+                        case 0: // Casi imposible que entre aqui
+                            Utils.Informa = "El proceso de validación de este módulo no se";
+                            Utils.Informa += "puede realizar mientras no se seleccione los ";
+                            Utils.Informa += "usuarios de la entidad seleccionada.";
+                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                            break;
+                        default:
+                            if (TolFac <= 0)
+                            {
+                                Utils.Informa = "El proceso de validación de este módulo no se";
+                                Utils.Informa += "puede realizar mientras no se seleccione los ";
+                                Utils.Informa += "facturas de los procedimientos realizados.";
+                                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                            break;
+                    }
+
+
+
+                    //Empiece a validar las facturas
+
+                    FunFac = ValidarFacturas(Coenti01, TolFac, UsSel); //AF
+
+                    if (FunFac == -1)
+                    {
+                        return;
+                    }
+
+
+
+                    if (TolConsul > 0)
+                    {
+                        //Validar el de consultas
+                        FunCon = ValidaConsultas(Coenti01, AcRe, TolConsul, UsSel);  //AC 
+                    }
+
+
+                    if (TolHos > 0)
+                    {
+                        //'Validar el de hospitalizaciones
+                        FunHos = ValidarHospi(Coenti01, TolObs, UsSel); //AH
+                    }
+
+                    if (TolMedi > 0)
+                    {
+                        //'Validar el de medicamentos
+                        FunMedi = ValidarMedica(Coenti01, TolMedi, UsSel); //AM
+                    }
+
+                    if (TolObs > 0)
+                    {
+                        //'Validar el de observación de urgencias
+                        FunObs = ValidarObserva(Coenti01, TolObs, UsSel); //AU
+                    }
+
+
+                    if (TolOtros > 0)
+                    {
+                        //'Validar el de otros servicios
+                        FunOtros = ValidarOtros(Coenti01, TolOtros, UsSel); //AT
+                    }
+
+                    if (TolReN > 0)
+                    {
+                        //'Validar el de recien nacidos
+                        FunReN = ValidarReNan(Coenti01, TolReN, UsSel); //AN
+                    }
+
+                    if (TolProce > 0)
+                    {
+                        //'Validar el de procedimientos
+                        FunProce = ValidarProcedi(Coenti01, TolObs, UsSel); //AP
+                    }
+
+
+                    Utils.SqlDatos = "SELECT COUNT(CodEnti) AS CuenCodEnti FROM [DARIPSESSQL].[dbo].[Datos temporal errores RIPS] WHERE CodEnti = '" + Coenti01 + "' ";
+
+
+                    SqlDataReader reader;
+
+                    using (SqlConnection connection2 = new SqlConnection(Conexion.conexionSQL))
+                    {
+                        SqlCommand command2 = new SqlCommand(Utils.SqlDatos, connection2);
+
+                        command2.Connection.Open();
+
+                        reader = command2.ExecuteReader();
+
+                        if (reader.HasRows)
+                        {
+                            reader.Read();
+                            TolInco = Convert.ToInt32(reader["CuenCodEnti"].ToString());
+                        }
+                    }
+
+
+                    if (TolInco == 0)
+                    {
+                        Utils.Titulo01 = "Control de validacion";
+                        Utils.Informa = "Los datos de los seleccionados han validado exitosamente.";
+                        Utils.Informa = Utils.Informa + "Recuerde este no es el validador oficial de MinSalud.";
+                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        if (TolInco > 0)
+                        {
+
+                            Utils.SqlDatos = "SELECT [CodDigita],[TipARchi],[TipDocu],[NumDocu],[CodEnti],[FacturaN],[Observa1] FROM [DARIPSESSQL].[dbo].[Datos temporal errores RIPS] WHERE CodEnti = '" + Coenti01 + "' ORDER BY NumDocu ASC  ";
+
+                            Utils.infNombreInforme = "InfReporErroresRips";
+
+                            Utils.CarAdmin = Coenti01;
+
+                            Reportes.FrmInfErroresRips frm = new Reportes.FrmInfErroresRips();
+                            frm.ShowDialog();
+
+                        }
+                    }
+                    reader.Close();
+
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "despues de dar click en el boton validar " + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void btnReportes_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string Coenti02 = null, NomUsReal = null, Coenti01 = null, TDE = null, NCC = null, Para01 = null;
+                string Mj = null, UsSel = null, CodRegEsp = null, NEenti = null;
+                int NivPerReal;
+
+                object CR;
+
+                if (cboNameEntidades.SelectedIndex == -1)
+                {
+                    Utils.Titulo01 = "Control de errores de ejecución";
+                    Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                    Utils.Informa += "usted no ha seleccionado el nombre de la entidad" + "\r";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    cboNameEntidades.Select();
+                    return;
+                }
+
+                Coenti01 = cboNameEntidades.SelectedValue.ToString();
+
+                if (string.IsNullOrWhiteSpace(Coenti01))
+                {
+                    Utils.Titulo01 = "Control de errores de ejecución";
+                    Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                    Utils.Informa += "usted no ha seleccionado el nombre de la entidad" + "\r";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    cboNameEntidades.Select();
+                    return;
+                }
+                else
+                {
+
+                    Coenti02 = txtCardinal.Text;
+                    //Cargamos los datos de la entidad
+                    Utils.SqlDatos = "SELECT CarAdmin, ([NomAdmin] + ' ' + [ProgrAmin]) AS NP, TipoDocu, NumDocu , CodiMinSalud, ManualTari, RegimenAdmin, ActiReali, PerEmpre " +
+                                            "FROM [ACDATOXPSQL].[dbo].[Datos empresas y terceros] WHERE ((([ACDATOXPSQL].[dbo].[Datos empresas y terceros].PerEmpre) = 1) AND(([ACDATOXPSQL].[dbo].[Datos empresas y terceros].HabilEmp) = 1)) " +
+                                            "AND ([NomAdmin] + ' ' + [ProgrAmin]) is not null AND CarAdmin = '" + Coenti02 + "'";
+
+                    SqlDataReader sqlDataReader2 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                    if (sqlDataReader2.HasRows)
+                    {
+                        sqlDataReader2.Read();
+                        TDE = sqlDataReader2["TipoDocu"].ToString();
+                        NCC = sqlDataReader2["NumDocu"].ToString();
+                        NEenti = sqlDataReader2["NP"].ToString();
+
+                    }
+
+                    sqlDataReader2.Close();
+                    sqlDataReader2 = null;
+
+                    if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+                }
+
+                if (string.IsNullOrWhiteSpace(txtRips.Text))
+                {
+                    Utils.Titulo01 = "Control de errores de ejecución";
+                    Utils.Informa = "Lo siento pero el código de la Administradora" + "\r";
+                    Utils.Informa += "de pagos en salud, no se encuentra definido para seleccionar los datos. " + "\r";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtRips.Select();
+                    return;
+                }
+
+                CR = txtRips.Text;
+
+                if (string.IsNullOrWhiteSpace(lblCodigoUser.Text))
+                {
+                    Utils.Titulo01 = "Control de errores de ejecución";
+                    Utils.Informa = "Lo siento pero el código del usuario" + "\r";
+                    Utils.Informa += "no es valido para seleccionar datos. " + "\r";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    lblCodigoUser.Select();
+                    return;
+                }
+
+
+                UsSel = lblCodigoUser.Text;
+                NomUsReal = lblNombreUser.Text;
+                NivPerReal = Convert.ToInt32(lblNivelPermitido.Text);
+
+                Utils.CarAdmin = Coenti01;
+                Utils.CodRips = CR.ToString();
+                Utils.NomTerc = NEenti;
+
+                //'Abra el formulario de reportes de RIPS
+
+                FrmReporteRipsRegimen frmReporteRipsRegimen = new FrmReporteRipsRegimen();
+
+                frmReporteRipsRegimen.ShowDialog();
+
+                //'Como los datos temporales de RIPS ahara se registran en la tabla RIPS, procedemos a contar desde la misma
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "después de hacer click sobre el botón reportes" + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Utils.Titulo01 = "Control para seleccionar datos";
+                Boolean SqlInsert = true;
+                string Coenti01, TDE, NCC, Regimen = null, NEnti = null, FunCon = null, llamarfuncion = null, UsGra = null, MT = null, SqlDatos = null, CR = null, CinRips = null, NRemEnvi = null;
+                int FunEli, FunCopUs = 0, FunCopFac = 0, FunCopCon = 0, FunCopHos = 0, FunCopMed = 0, FunCopObs = 0, FunCopOtr = 0, FunCopRec = 0, FunCopPro = 0, FunElim = 0;
+                string data, MJ;
+                double TolUsa = 0, TolFac = 0, TolConsul = 0, TolHos = 0, TolMedi = 0, TolObs = 0, TolOtros = 0, TolReN = 0, TolProce = 0;
+                SqlDataReader ContarRips;
+                string Date = DateTime.Now.ToString("yyyy-MM-dd");
+                DateTime Fecha1 = DateInicial.Value;
+                DateTime Fecha2 = DateFinal.Value;
+                string Periodo1 = Fecha1.ToString("yyyy-MM-dd");
+                string Periodo2 = Fecha2.ToString("yyyy-MM-dd");
+
+                Utils.Titulo01 = "Control para exportar RIPS";
+
+                if (string.IsNullOrWhiteSpace(cboNameEntidades.SelectedValue.ToString()) == true || cboNameEntidades.SelectedIndex == -1)
+                {
+                    Utils.Informa = "Lo siento pero usted aún no ha";
+                    Utils.Informa += "seleccionado el nombre de la entidad.";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    cboNameEntidades.Select();
+                    return;
+                }
+                else
+                {
+                    Coenti01 = txtCardinal.Text;
+                    //Cargamos los datos de la entidad
+                    Utils.SqlDatos = "SELECT CarAdmin, ([NomAdmin] + ' ' + [ProgrAmin]) AS NP, TipoDocu, NumDocu , CodiMinSalud, ManualTari, RegimenAdmin, ActiReali, PerEmpre " +
+                                            "FROM [ACDATOXPSQL].[dbo].[Datos empresas y terceros] WHERE ((([ACDATOXPSQL].[dbo].[Datos empresas y terceros].PerEmpre) = 1) AND(([ACDATOXPSQL].[dbo].[Datos empresas y terceros].HabilEmp) = 1)) " +
+                                            "AND ([NomAdmin] + ' ' + [ProgrAmin]) is not null AND CarAdmin = '" + Coenti01 + "'";
+
+                    SqlDataReader sqlDataReader2 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                    if (sqlDataReader2.HasRows)
+                    {
+                        sqlDataReader2.Read();
+                        NEnti = sqlDataReader2["NP"].ToString();
+                        MT = sqlDataReader2["ManualTari"].ToString();
+                        TDE = sqlDataReader2["TipoDocu"].ToString();
+                        NCC = sqlDataReader2["NumDocu"].ToString();
+                        CR = txtRips.Text;
+                    }
+
+                    sqlDataReader2.Close();
+                    sqlDataReader2 = null;
+
+                    if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                } //'Final de IsNull(Coenti01) Or (Coenti01 = " ")
+
+                //'Revisa si el código de la entidad está relacionada con alguna entidad
+
+                CinRips = CodInterAdminEs(CR);
+
+                switch (CinRips)
+                {
+                    case "-1": // error en la función
+                        return;
+                        break;
+                    case "0": // NO existe la administradora
+                        Utils.Informa = "Lo siento pero el código SGSSS " + CR + " no" + "\r";
+                        Utils.Informa += "pertenece a ninguna administradora de planes" + "\r";
+                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                        break;
+                    case "1": //'No existe la ruta
+                        Utils.Informa = "Lo siento pero los archivos de SEDAS-RIPS" + "\r";
+                        Utils.Informa += "no se han encontrado en la ruta de datos" + "\r";
+                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                        break;
+                    default:
+                        //todo bien
+                        break;
+                }
+
+                //'Proceda a contar cuantos usuarios hay para exportar, y cuantas facturas
+
+
+                //Usuarios
+
+                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolUsuarios FROM [DARIPSESSQL].[dbo].[Datos temporal usuarios RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (ContarRips.HasRows)
+                {
+                    ContarRips.Read();
+                    TolUsa = Convert.ToDouble(ContarRips["TolUsuarios"]);
+
+                    if (TolUsa <= 0)
+                    {
+                        Utils.Informa = "Lo siento pero no existen facturas para" + "\r";
+                        Utils.Informa += "realizar el RIPS a la entidad o convenio" + "\r";
+                        Utils.Informa += NEnti;
+                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                ContarRips.Close();
+                ContarRips = null;
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+
+                //transacciones 
+
+                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolFac FROM [DARIPSESSQL].[dbo].[Datos temporal transacciones RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                if (ContarRips.HasRows)
+                {
+                    ContarRips.Read();
+
+                    TolFac = Convert.ToDouble(ContarRips["TolFac"]);
+                    if (TolFac <= 0)
+                    {
+                        Utils.Informa = "Lo siento pero no existen usuarios para" + "\r";
+                        Utils.Informa += "realizar el RIPS a la entidad o convenio" + "\r";
+                        Utils.Informa += NEnti;
+                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                ContarRips.Close();
+                ContarRips = null;
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+
+
+                Utils.Informa = "¿Usted desea realizar la exportación de los" + "\r";
+                Utils.Informa += "archivos RIPS de la entidad o convenio" + "\r";
+                Utils.Informa += NEnti;
+                Utils.Informa += " al programa SEDAS-RIPS- Especial.?" + "\r";
+                var res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+
+                if (res == DialogResult.Yes)
+                {
+                    //Proceda a revisar si la entidad ya tiene un archivo maestro abierto en SEDAS-RIPS
+
+                    UsGra = lblCodigoUser.Text;
+
+
+                    Utils.SqlDatos = "SELECT * FROM [DARIPSESSQL].[dbo].[Datos archivo maestro] WHERE CodInterAdmi = '" + CinRips + "' and CerraRemi = 0";
+
+                    SqlDataReader ArchivoMaestro = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                    if (ArchivoMaestro.HasRows == false)
+                    {
+                        //'NO existe un maestro abierto para la entidad seleccionado
+                        Utils.Informa = "¿Acepta que el sistema cree automaticamente" + "\r";
+                        Utils.Informa += "el archivo maestro de la remisión de envío?" + "\r";
+                        res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (res == DialogResult.Yes)
+                        {
+                            //Proceda a crear el maestro
+
+
+                            FunCon = ConseRemisiones(true, UsGra);
+
+                            switch (FunCon)
+                            {
+                                case "-3":
+                                    Utils.Informa = "Lo siento pero el número consecutivo de" + "\r";
+                                    Utils.Informa += "remisiones de envío llegó a 999.999" + "\r";
+                                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                    break;
+                                case "-2":
+                                    Utils.Informa = "Lo siento pero la fecha del sistema es" + "\r";
+                                    Utils.Informa += "menor a la de la última remisión generada" + "\r";
+                                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                    break;
+                                case "-1":
+
+                                    return;
+                                    break;
+                                case "0":
+                                    Utils.Informa = "Error de administración de datos." + "\r";
+                                    Utils.Informa += "El registro único de contadores no fué posible encontrarlo." + "\r";
+                                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                    break;
+                                default: //TODO BIEN
+
+                                    //TERMINA
+
+                                    data = "INSERT INTO [DARIPSESSQL].[dbo].[Datos archivo maestro] " +
+                                     "(ConseArchivo," +
+                                     "CodInterAdmi," +
+                                     "CodIps," +
+                                     "CodAdmin," +
+                                     "FecRemite," +
+                                     "NomRespon," +
+                                     "Periodo1," +
+                                     "Periodo2," +
+                                     "NumFacturas," +
+                                     "TelResponsa," +
+                                     "CodRegEsp," +
+                                     "CerraRemi," +
+                                     "AnulRemi," +
+                                     "ActualRemi," +
+                                     "CodiRegis," +
+                                     "FecRegis)" +
+                                     "VALUES(" +
+                                     "'" + FunCon + "'," +
+                                     "'" + CinRips + "'," +
+                                     "'" + TxtCodMinSalud.Text + "'," +
+                                     "'" + CR + "'," +
+                                     "'" + Date + "'," +
+                                     "'" + lblNombreUser.Text + "'," +
+                                     "'" + Periodo1 + "'," +
+                                     "'" + Periodo2 + "'," +
+                                     "'" + TolFac + "'," +
+                                     "'" + txtTeleIPS.Text + "'," +
+                                     "'" + 0 + "'," +
+                                     "'" + 0 + "'," +
+                                     "'" + 0 + "'," +
+                                     "'" + 0 + "'," +
+                                     "'" + UsGra + "'," +
+                                     "'" + Date + "')";
+
+                                    SqlInsert = Conexion.SqlInsert(data);
+
+                                    //Comience el proceso de copiado de archivos
+                                    NRemEnvi = FunCon;
+
+                                    break;
+                            }//Fin swich
+
+
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        ArchivoMaestro.Read();
+                        NRemEnvi = ArchivoMaestro["ConseArchivo"].ToString();
+
+                        Utils.Informa = "El sistema ha encontrado abierta la remisión" + "\r";
+                        Utils.Informa += "Número " + NRemEnvi + " del codigo SGSS " + CR;
+                        res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (res == DialogResult.No)
+                        {
+                            return;
+                        }
+
+                    }
+                    ArchivoMaestro.Close();
+
+                    //'Inicia el proceso de copiados
+
+
+                    FunCopUs = CopiaRipsUsa(NRemEnvi, Coenti01, TolUsa, 2);
+
+
+                    switch (FunCopUs)
+                    {
+                        case -1:
+                            return; //Error en la funcion
+                            break;
+                        case -2:
+                            return; //No exiten datos para copiar
+                            break;
+                        default: //Siga a copiar las transacciones
+
+                            if (TolUsa > FunCopUs)
+                            {
+                                Utils.Titulo01 = "Control de ejecución";
+                                Utils.Informa = "Lo siento, pero de " + TolUsa + " usuarios" + "\r";
+                                Utils.Informa += "a exportar, solo se copiaron " + FunCopUs + "\r";
+                                Utils.Informa += "¿Quiere saber cuales son esos usuarios?" + "\r";
+                                res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                                if (res == DialogResult.Yes)
+                                {
+                                    //Muestre el informe 
+
+                                    string ReporUser = "SELECT [Datos temporal usuarios RIPS].CodDigita, [Datos temporal usuarios RIPS].NumRemi, [Datos temporal usuarios RIPS].CodAdmin, [Datos temporal usuarios RIPS].TipoDocum, [Datos temporal usuarios RIPS].NumDocum, [Datos temporal usuarios RIPS].TipUsuario, [Datos temporal usuarios RIPS].Apellido1, [Datos temporal usuarios RIPS].Apellido2, [Datos temporal usuarios RIPS].Nombre1, [Datos temporal usuarios RIPS].Nombre2, [Datos temporal usuarios RIPS].Edad, [Datos temporal usuarios RIPS].EdadMedi, [Datos temporal usuarios RIPS].Sexo, [Datos temporal usuarios RIPS].CodDpto, [Datos temporal usuarios RIPS].CodMuni, [Datos temporal usuarios RIPS].ZonaResi, Trim([Datos empresas y terceros].[NomAdmin] + ' ' + [Datos empresas y terceros].[ProgrAmin]) AS NoAdmin, [Datos empresas y terceros].NomPlan " +
+                                                " FROM [ACDATOXPSQL].[dbo].[Datos empresas y terceros] INNER JOIN [DARIPSESSQL].[dbo].[Datos temporal usuarios RIPS] ON [Datos empresas y terceros].CarAdmin = [Datos temporal usuarios RIPS].NumRemi " +
+                                                " WHERE [Datos empresas y terceros].[CodDigita] = '" + UsGra + "' AND [Datos empresas y terceros].[NumRemi] = '" + Coenti01 + "' AND [Datos empresas y terceros].[Exportado] = 0  " +
+                                                " ORDER BY [Datos temporal usuarios RIPS].TipoDocum, [Datos temporal usuarios RIPS].NumDocum; ";
+
+                                    Utils.SqlDatos = ReporUser;
+
+                                    Utils.infNombreInforme = "InfReporUserPorRemision";
+
+                                    Reportes.FrmInfUsuariosRemi frm = new Reportes.FrmInfUsuariosRemi();
+
+                                    frm.ShowDialog();
+
+                                }
+
+                            }
+                            break;
+                    }// Fin switch
+
+
+                    FunCopFac = CopiaRipsTrans(NRemEnvi, Coenti01, TolFac, 2);
+
+                    switch (FunCopFac)
+                    {
+                        case -1: //error en la funcion
+                            return;
+                            break;
+                        case -2: //NO existe nada para copiar
+                            return;
+                            break;
+                        default:
+                            //Cuente cada uno de los archivos
+
+                            //Consultas
+
+                            Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolConsul FROM [DARIPSESSQL].[dbo].[Datos temporal consultas RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                            ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                            if (ContarRips.HasRows)
+                            {
+                                ContarRips.Read();
+                                TolConsul = Convert.ToDouble(ContarRips["TolConsul"]);
+                            }
+                            ContarRips.Close();
+                            ContarRips = null;
+                            if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                            //Hospitalizados
+
+                            Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolHos FROM [DARIPSESSQL].[dbo].[Datos temporal hospitalizacion RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                            ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                            if (ContarRips.HasRows)
+                            {
+                                ContarRips.Read();
+                                TolHos = Convert.ToDouble(ContarRips["TolHos"]);
+                            }
+                            ContarRips.Close();
+                            ContarRips = null;
+                            if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                            //Medicamentos
+
+                            Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolMedi FROM [DARIPSESSQL].[dbo].[Datos temporal medicamentos RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                            ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                            if (ContarRips.HasRows)
+                            {
+                                ContarRips.Read();
+                                TolMedi = Convert.ToDouble(ContarRips["TolMedi"]);
+                            }
+                            ContarRips.Close();
+                            ContarRips = null;
+                            if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                            //Observaciones
+
+                            Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolObs FROM [DARIPSESSQL].[dbo].[Datos temporal observacion RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                            ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                            if (ContarRips.HasRows)
+                            {
+                                ContarRips.Read();
+                                TolObs = Convert.ToDouble(ContarRips["TolObs"]);
+                            }
+                            ContarRips.Close();
+                            ContarRips = null;
+                            if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                            //OtroServicios
+
+                            Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolOtros FROM [DARIPSESSQL].[dbo].[Datos temporal otros servicios RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                            ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                            if (ContarRips.HasRows)
+                            {
+                                ContarRips.Read();
+                                TolOtros = Convert.ToDouble(ContarRips["TolOtros"]);
+                            }
+                            ContarRips.Close();
+                            ContarRips = null;
+                            if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                            //Recien Nacidos
+
+                            Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolReN FROM [DARIPSESSQL].[dbo].[Datos temporal recien nacidos RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                            ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                            if (ContarRips.HasRows)
+                            {
+                                ContarRips.Read();
+                                TolReN = Convert.ToDouble(ContarRips["TolReN"]);
+                            }
+                            ContarRips.Close();
+                            ContarRips = null;
+                            if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                            //Procedimientos
+
+                            Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolProce FROM [DARIPSESSQL].[dbo].[Datos temporal procedimientos RIPS] WHERE NumRemi = '" + Coenti01 + "'";
+
+                            ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                            if (ContarRips.HasRows)
+                            {
+                                ContarRips.Read();
+                                TolProce = Convert.ToDouble(ContarRips["TolProce"]);
+                            }
+                            ContarRips.Close();
+                            ContarRips = null;
+                            if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+                            break;
+                    }//Fin Swich
+
+                    MJ = "";
+
+                    if (TolConsul > 0)
+                    {
+                        //Copia las consultas
+                        FunCopCon = CopiaRipsConsul(NRemEnvi, Coenti01, TolConsul);
+                        MJ = "Cantidad de consultas: " + FunCopCon + "\r";
+                    }
+
+                    if (TolHos > 0)
+                    {
+                        //Copia los usuarios hospitalizados
+                        FunCopHos = CopiaRipsHospi(NRemEnvi, Coenti01, TolHos);
+                        MJ += "Cantidad de hospitalizaciones: " + FunCopHos + "\r";
+                    }
+
+                    if (TolMedi > 0)
+                    {
+                        //Copia los medicamentos
+                        FunCopMed = CopiaRipsMedica(NRemEnvi, Coenti01, TolMedi);
+                        MJ += "Cantidad de medicamentos: " + FunCopMed + "\r";
+                    }
+
+                    if (TolObs > 0)
+                    {
+                        //Copia los usuarios en observación
+                        FunCopObs = CopiaRipsObserva(NRemEnvi, Coenti01, TolObs);
+                        MJ += "Cantidad de observaciónes: " + FunCopObs + "\r";
+                    }
+
+                    if (TolOtros > 0)
+                    {
+                        //Copia los otros servicios
+                        FunCopOtr = CopiaRipsOtros(NRemEnvi, Coenti01, TolOtros);
+                        MJ += "Cantidad de otros servicios: " + FunCopOtr + "\r";
+                    }
+
+                    if (TolReN > 0)
+                    {
+                        //Copia los recien nacidos
+                        FunCopRec = CopiaRipsRecien(NRemEnvi, Coenti01, TolReN);
+                        MJ += "Cantidad de otros servicios: " + FunCopRec + "\r";
+                    }
+
+                    if (TolProce > 0)
+                    {
+                        //Copia los procedimientos
+                        FunCopPro = CopiaRipsProce(NRemEnvi, Coenti01, TolProce);
+                        MJ += "Cantidad de procedimientos: " + FunCopPro + "\r";
+                    }
+
+
+                    FunElim = ElimdatosRIPS(lblCodigoUser.Text, Coenti01);
+
+                    //'Resumen de los exportado
+
+                    Utils.Titulo01 = "Control de ejecución";
+                    Utils.Informa = "Se han exportado los siguientes datos:" + "\r";
+                    Utils.Informa += "Cantidad de usuarios: " + FunCopUs + "\r";
+                    Utils.Informa += "Cantidad de facturas: " + FunCopFac + "\r";
+                    Utils.Informa += MJ + "\r";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }// Fin msgox si
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "después de hacer click sobre el botón exportar" + "\r";
+                Utils.Informa += "Mensaje del error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void btnMostrar_Click(object sender, EventArgs e)
         {
             try
@@ -3408,7 +5064,7 @@ namespace Gestion_Rips.Forms.RipsTodos
 
 
                     SqlEmTer = "SELECT CodInterno, NomAdmin, TipoDocumento, NitCC, CodAdmin  " +
-                                " FROM [Datos administradoras de planes] WHERE CodInterno = '" + cboNameEntidades.SelectedValue + "' ";
+                                " FROM DARIPSESSQL.dbo.[Datos administradoras de planes] WHERE CodInterno = '" + cboNameEntidades.SelectedValue + "' ";
 
                     SqlDataReader sqlDataReader2 = Conexion.SQLDataReader(SqlEmTer);
 
@@ -3682,21 +5338,29 @@ namespace Gestion_Rips.Forms.RipsTodos
                 }
                 else
                 {
+                    Coenti02 = txtCardinal.Text;
                     //Cargamos los datos de la entidad
-                   SqlEmTer = "SELECT CodInterno, NomAdmin, TipoDocumento, NitCC, CodAdmin  " +
-                                " FROM [Datos administradoras de planes] WHERE CodInterno = '" + cboNameEntidades.SelectedValue + "' ";
-                    SqlDataReader sqlDataReader2 = Conexion.SQLDataReader(SqlEmTer);
+                    Utils.SqlDatos = "SELECT CarAdmin, ([NomAdmin] + ' ' + [ProgrAmin]) AS NP, TipoDocu, NumDocu , CodiMinSalud, ManualTari, RegimenAdmin, ActiReali, PerEmpre " +
+                                            "FROM [ACDATOXPSQL].[dbo].[Datos empresas y terceros] WHERE ((([ACDATOXPSQL].[dbo].[Datos empresas y terceros].PerEmpre) = 1) AND(([ACDATOXPSQL].[dbo].[Datos empresas y terceros].HabilEmp) = 1)) " +
+                                            "AND ([NomAdmin] + ' ' + [ProgrAmin]) is not null AND CarAdmin = '" + Coenti02 + "'";
+
+                    SqlDataReader sqlDataReader2 = Conexion.SQLDataReader(Utils.SqlDatos);
+
                     if (sqlDataReader2.HasRows)
                     {
                         sqlDataReader2.Read();
-                        Coenti02 = sqlDataReader2["CodInterno"].ToString();
-                        NEnti = sqlDataReader2["NomAdmin"].ToString();
-                        TDE = sqlDataReader2["TipoDocumento"].ToString();
-                        NCC = sqlDataReader2["NitCC"].ToString();
+                        NEnti = sqlDataReader2["NP"].ToString();
+                        MT = sqlDataReader2["ManualTari"].ToString();
+                        TDE = sqlDataReader2["TipoDocu"].ToString();
+                        NCC = sqlDataReader2["NumDocu"].ToString();
+              
                     }
+
                     sqlDataReader2.Close();
                     sqlDataReader2 = null;
+
                     if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
                 } //Fin  if (string.IsNullOrWhiteSpace(cboNameEntidades.SelectedValue.ToString()) == true || cboNameEntidades.SelectedIndex == -1)
 
                 if (string.IsNullOrWhiteSpace(txtRips.Text))
@@ -4779,8 +6443,6 @@ namespace Gestion_Rips.Forms.RipsTodos
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
         private int ElimdatosRIPS(string UsSel, string ConMinRips)
         {
             try
@@ -4826,7 +6488,6 @@ namespace Gestion_Rips.Forms.RipsTodos
                 return -1;
             }
         }
-
         private void BtnMarcarTodas_Click(object sender, EventArgs e)
         {
             try
@@ -4849,7 +6510,6 @@ namespace Gestion_Rips.Forms.RipsTodos
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void BtnDesmarcarTodas_Click(object sender, EventArgs e)
         {
             try
@@ -4872,7 +6532,6 @@ namespace Gestion_Rips.Forms.RipsTodos
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void txtCardinal_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -4881,38 +6540,26 @@ namespace Gestion_Rips.Forms.RipsTodos
                 {
                     if (string.IsNullOrWhiteSpace(txtCardinal.Text) == false)
                     {
+                        Utils.SqlDatos = "SELECT CarAdmin, ([NomAdmin] + ' ' + [ProgrAmin]) AS NP, TipoDocu, NumDocu , CodiMinSalud, ManualTari, RegimenAdmin, ActiReali, PerEmpre " +
+                        " FROM [ACDATOXPSQL].[dbo].[Datos empresas y terceros] " +
+                        " WHERE CarAdmin = '" + txtCardinal.Text + "' AND ((([ACDATOXPSQL].[dbo].[Datos empresas y terceros].PerEmpre) = 'True') and (([ACDATOXPSQL].[dbo].[Datos empresas y terceros].HabilEmp) = 'True')) " +
+                        " AND ([NomAdmin] + ' ' + [ProgrAmin]) is not null ";
 
-                        string SqlEmTer;
-
-
-
-                        SqlEmTer = "SELECT CodInterno, NomAdmin, TipoDocumento, NitCC, CodAdmin  " +
-                                    " FROM [Datos administradoras de planes] WHERE CodInterno = '" + txtCardinal.Text + "' " +
-                                    " ORDER BY NomAdmin ";
-
-
-
-                        SqlDataReader sqlDataReader = Conexion.SQLDataReader(SqlEmTer);
+                        SqlDataReader sqlDataReader = Conexion.SQLDataReader(Utils.SqlDatos);
 
                         if (sqlDataReader.HasRows)
                         {
                             sqlDataReader.Read();
-
-                            this.txtCardinal.Text = sqlDataReader["CodInterno"].ToString();
-                            this.txtTipoDocu.Text = sqlDataReader["TipoDocumento"].ToString();
-                            this.txtDocumento.Text = sqlDataReader["NitCC"].ToString();
-                            cboNameEntidades.SelectedValue = sqlDataReader["CodInterno"].ToString();
-                            this.txtRips.Text = sqlDataReader["CodAdmin"].ToString();
+                            this.txtCardinal.Text = sqlDataReader["CarAdmin"].ToString();
+                            this.txtTipoDocu.Text = sqlDataReader["TipoDocu"].ToString();
+                            this.txtDocumento.Text = sqlDataReader["NumDocu"].ToString();
+                            cboNameEntidades.SelectedValue = sqlDataReader["CarAdmin"].ToString();
+                            this.txtRips.Text = sqlDataReader["CodiMinSalud"].ToString();
 
 
                         }
                         else
                         {
-                            this.txtCardinal.Text = null;
-                            this.txtTipoDocu.Text = null;
-                            this.txtDocumento.Text = null;
-                            cboNameEntidades.Text = "";
-                            this.txtRips.Text = null;
                             Utils.Titulo01 = "Control de ejecución";
                             Utils.Informa = "no encontro ninguna entidad por el numero de cardinal digitado" + "\r";
                             MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -4930,6 +6577,7 @@ namespace Gestion_Rips.Forms.RipsTodos
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         #endregion
 
         #region DataGrid
@@ -4959,370 +6607,6 @@ namespace Gestion_Rips.Forms.RipsTodos
             }
         }
 
-        private void btnValidar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //  *******************  Diciembre 02 de 2.003  **************************
-                //  *******************  Junio 2021 Juan Diego   **************************
 
-                //Permite validar los datos de los RIPS
-
-
-                Utils.Titulo01 = "Control para validar datos";
-
-                string Coenti01, UsSel = null, NEnti, TDE, NCC, CD, CR, Para02, Para01, TUReg = null, AcRe = null;
-                double TolUsa = 0, TolConsul = 0, TolHos = 0, TolMedi = 0, TolObs = 0, TolOtros = 0, TolReN = 0, TolProce = 0, TolFac = 0, FunAudi = 0;
-
-                int FunUs, FunFac, FunCon, FunHos, FunObs, FunMedi, FunOtros, FunReN, FunProce, TolInco = 0;
-
-                SqlDataReader ContarRips;
-
-                UsSel = lblCodigoUser.Text;
-
-                if (string.IsNullOrWhiteSpace(cboNameEntidades.SelectedValue.ToString()) == true || cboNameEntidades.SelectedIndex == -1)
-                {
-                    Utils.Informa = "Lo siento pero usted aún no ha";
-                    Utils.Informa += "seleccionado el nombre de la entidad.";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    cboNameEntidades.Select();
-                    return;
-                }
-                else
-                {
-                    Coenti01 = txtCardinal.Text;
-                    //Cargamos los datos de la entidad
-                    Utils.SqlDatos = "SELECT CarAdmin, ([NomAdmin] + ' ' + [ProgrAmin]) AS NP, TipoDocu, NumDocu , CodiMinSalud, ManualTari, RegimenAdmin, ActiReali, PerEmpre " +
-                                            "FROM [ACDATOXPSQL].[dbo].[Datos empresas y terceros] WHERE ((([ACDATOXPSQL].[dbo].[Datos empresas y terceros].PerEmpre) = 1) AND(([ACDATOXPSQL].[dbo].[Datos empresas y terceros].HabilEmp) = 1)) " +
-                                            "AND ([NomAdmin] + ' ' + [ProgrAmin]) is not null AND CarAdmin = '" + Coenti01 + "'";
-
-                    SqlDataReader sqlDataReader2 = Conexion.SQLDataReader(Utils.SqlDatos);
-
-                    if (sqlDataReader2.HasRows)
-                    {
-                        sqlDataReader2.Read();
-                        NEnti = sqlDataReader2["NP"].ToString();
-                        TDE = sqlDataReader2["TipoDocu"].ToString();
-                        NCC = sqlDataReader2["NumDocu"].ToString();
-                        TUReg = sqlDataReader2["RegimenAdmin"].ToString();
-                        AcRe = sqlDataReader2["ActiReali"].ToString();
-                        CR = TxtCodMinSalud.Text;
-                    }
-
-                    sqlDataReader2.Close();
-                    sqlDataReader2 = null;
-
-                    if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
-
-                } //'Final de IsNull(Coenti01) Or (Coenti01 = " ")
-
-                //Usuarios
-
-                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolUsuarios FROM [DARIPSESSQL].[dbo].[Datos temporal usuarios RIPS] WHERE NumRemi = '" + Coenti01 + "'";
-                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
-
-                if (ContarRips.HasRows)
-                {
-                    ContarRips.Read();
-                    TolUsa = Convert.ToDouble(ContarRips["TolUsuarios"]);
-
-                }
-                else
-                {
-                    Utils.Informa = "El proceso de validación de este módulo no se" + "\r";
-                    Utils.Informa += "puede realizar mientras no se seleccione los" + "\r";
-                    Utils.Informa += "pusuarios de la entidad seleccionada." + "\r";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                ContarRips.Close();
-                ContarRips = null;
-                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
-
-
-                //transacciones 
-
-                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolFac FROM [DARIPSESSQL].[dbo].[Datos temporal transacciones RIPS] WHERE NumRemi = '" + Coenti01 + "'";
-
-                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
-
-                if (ContarRips.HasRows)
-                {
-                    ContarRips.Read();
-                    TolFac = Convert.ToDouble(ContarRips["TolFac"]);
-                }
-                ContarRips.Close();
-                ContarRips = null;
-                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
-
-
-                //Consultas
-
-                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolConsul FROM [DARIPSESSQL].[dbo].[Datos temporal consultas RIPS] WHERE NumRemi = '" + Coenti01 + "'";
-
-                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
-
-                if (ContarRips.HasRows)
-                {
-                    ContarRips.Read();
-                    TolConsul = Convert.ToDouble(ContarRips["TolConsul"]);
-                }
-                ContarRips.Close();
-                ContarRips = null;
-                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
-
-                //Hospitalizados
-
-                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolHos FROM [DARIPSESSQL].[dbo].[Datos temporal hospitalizacion RIPS] WHERE NumRemi = '" + Coenti01 + "'";
-
-                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
-
-                if (ContarRips.HasRows)
-                {
-                    ContarRips.Read();
-                    TolHos = Convert.ToDouble(ContarRips["TolHos"]);
-                }
-                ContarRips.Close();
-                ContarRips = null;
-                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
-
-                //Medicamentos
-
-                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolMedi FROM [DARIPSESSQL].[dbo].[Datos temporal medicamentos RIPS] WHERE NumRemi = '" + Coenti01 + "'";
-
-                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
-
-                if (ContarRips.HasRows)
-                {
-                    ContarRips.Read();
-                    TolMedi = Convert.ToDouble(ContarRips["TolMedi"]);
-                }
-                ContarRips.Close();
-                ContarRips = null;
-                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
-
-                //Observaciones
-
-                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolObs FROM [DARIPSESSQL].[dbo].[Datos temporal observacion RIPS] WHERE NumRemi = '" + Coenti01 + "'";
-
-                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
-
-                if (ContarRips.HasRows)
-                {
-                    ContarRips.Read();
-                    TolObs = Convert.ToDouble(ContarRips["TolObs"]);
-                }
-                ContarRips.Close();
-                ContarRips = null;
-                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
-
-                //OtroServicios
-
-                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolOtros FROM [DARIPSESSQL].[dbo].[Datos temporal otros servicios RIPS] WHERE NumRemi = '" + Coenti01 + "'";
-
-                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
-
-                if (ContarRips.HasRows)
-                {
-                    ContarRips.Read();
-                    TolOtros = Convert.ToDouble(ContarRips["TolOtros"]);
-                }
-                ContarRips.Close();
-                ContarRips = null;
-                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
-
-                //Recien Nacidos
-
-                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolReN FROM [DARIPSESSQL].[dbo].[Datos temporal recien nacidos RIPS] WHERE NumRemi = '" + Coenti01 + "'";
-
-                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
-
-                if (ContarRips.HasRows)
-                {
-                    ContarRips.Read();
-                    TolReN = Convert.ToDouble(ContarRips["TolReN"]);
-                }
-                ContarRips.Close();
-                ContarRips = null;
-                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
-
-                //Procedimientos
-
-                Utils.SqlDatos = "SELECT COUNT(NumRemi) AS TolProce FROM [DARIPSESSQL].[dbo].[Datos temporal procedimientos RIPS] WHERE NumRemi = '" + Coenti01 + "'";
-
-                ContarRips = Conexion.SQLDataReader(Utils.SqlDatos);
-
-                if (ContarRips.HasRows)
-                {
-                    ContarRips.Read();
-                    TolProce = Convert.ToDouble(ContarRips["TolProce"]);
-                }
-                ContarRips.Close();
-                ContarRips = null;
-                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
-
-
-                //Elimine los datos de la tabla temporal
-
-
-                Utils.SqlDatos = "DELETE FROM [DARIPSESSQL].[dbo].[Datos temporal errores RIPS]";
-
-
-                Boolean EliDatos = Conexion.SQLDelete(Utils.SqlDatos);
-
-                Utils.Informa = "¿Usted desea validar los datos de los RIPS" + "\r";
-                Utils.Informa += "previamente seleccionados a la entidad " + "\r";
-
-                var res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-                if (res == DialogResult.Yes)
-                {
-                    // 'Validamos el de usuarios
-
-                    FunUs = ValidarUsuarios(Coenti01, TUReg, TolUsa, UsSel); //US
-
-
-                    switch (FunUs)
-                    {
-                        case -1: //error en la funcion
-                            return;
-                            break;
-                        case 0: // Casi imposible que entre aqui
-                            Utils.Informa = "El proceso de validación de este módulo no se";
-                            Utils.Informa += "puede realizar mientras no se seleccione los ";
-                            Utils.Informa += "usuarios de la entidad seleccionada.";
-                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                            break;
-                        default:
-                            if (TolFac <= 0)
-                            {
-                                Utils.Informa = "El proceso de validación de este módulo no se";
-                                Utils.Informa += "puede realizar mientras no se seleccione los ";
-                                Utils.Informa += "facturas de los procedimientos realizados.";
-                                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return;
-                            }
-                            break;
-                    }
-
-
-
-                    //Empiece a validar las facturas
-
-                    FunFac = ValidarFacturas(Coenti01, TolFac, UsSel); //AF
-
-                    if (FunFac == -1)
-                    {
-                        return;
-                    }
-
-
-
-                    if (TolConsul > 0)
-                    {
-                        //Validar el de consultas
-                        FunCon = ValidaConsultas(Coenti01, AcRe, TolConsul, UsSel);  //AC 
-                    }
-
-
-                    if (TolHos > 0)
-                    {
-                        //'Validar el de hospitalizaciones
-                        FunHos = ValidarHospi(Coenti01, TolObs, UsSel); //AH
-                    }
-
-                    if (TolMedi > 0)
-                    {
-                        //'Validar el de medicamentos
-                        FunMedi = ValidarMedica(Coenti01, TolMedi, UsSel); //AM
-                    }
-
-                    if (TolObs > 0)
-                    {
-                        //'Validar el de observación de urgencias
-                        FunObs = ValidarObserva(Coenti01, TolObs, UsSel); //AU
-                    }
-
-
-                    if (TolOtros > 0)
-                    {
-                        //'Validar el de otros servicios
-                        FunOtros = ValidarOtros(Coenti01, TolOtros, UsSel); //AT
-                    }
-
-                    if (TolReN > 0)
-                    {
-                        //'Validar el de recien nacidos
-                        FunReN = ValidarReNan(Coenti01, TolReN, UsSel); //AN
-                    }
-
-                    if (TolProce > 0)
-                    {
-                        //'Validar el de procedimientos
-                        FunProce = ValidarProcedi(Coenti01, TolObs, UsSel); //AP
-                    }
-
-
-                    Utils.SqlDatos = "SELECT COUNT(CodEnti) AS CuenCodEnti FROM [DARIPSESSQL].[dbo].[Datos temporal errores RIPS] WHERE CodEnti = '" + Coenti01 + "' ";
-
-
-                    SqlDataReader reader;
-
-                    using (SqlConnection connection2 = new SqlConnection(Conexion.conexionSQL))
-                    {
-                        SqlCommand command2 = new SqlCommand(Utils.SqlDatos, connection2);
-
-                        command2.Connection.Open();
-
-                        reader = command2.ExecuteReader();
-
-                        if (reader.HasRows)
-                        {
-                            reader.Read();
-                            TolInco = Convert.ToInt32(reader["CuenCodEnti"].ToString());
-                        }
-                    }
-
-
-                    if (TolInco == 0)
-                    {
-                        Utils.Titulo01 = "Control de validacion";
-                        Utils.Informa = "Los datos de los seleccionados han validado exitosamente.";
-                        Utils.Informa = Utils.Informa + "Recuerde este no es el validador oficial de MinSalud.";
-                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        if (TolInco > 0)
-                        {
-
-                            Utils.SqlDatos = "SELECT [CodDigita],[TipARchi],[TipDocu],[NumDocu],[CodEnti],[FacturaN],[Observa1] FROM [DARIPSESSQL].[dbo].[Datos temporal errores RIPS] WHERE CodEnti = '" + Coenti01 + "' ORDER BY NumDocu ASC  ";
-
-                            Utils.infNombreInforme = "InfReporErroresRips";
-
-                            Utils.CarAdmin = Coenti01;
-
-                            Reportes.FrmInfErroresRips frm = new Reportes.FrmInfErroresRips();
-                            frm.ShowDialog();
-
-                        }
-                    }
-                    reader.Close();
-
-
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                Utils.Titulo01 = "Control de errores de ejecución";
-                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
-                Utils.Informa += "despues de dar click en el boton validar " + "\r";
-                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
-                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
     }
 }
