@@ -178,14 +178,14 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                                        "'" + Utils.NomAdmin + "'," +
                                        "'" + Utils.CodiIPS + "'," +
                                        "'" + Utils.CodigAdmin + "'," +
-                                       "'" + DtFecEnvio.Value.ToString("yyyy-MM-dd") + "'," +
+                                       "CONVERT(DATETIME,'" + Convert.ToDateTime(DtFecEnvio.Value).ToString("yyyy-MM-dd") + "',102)," +
                                        "'" + txtResponEnvia.Text + "'," +
                                        "'" + txtTeleRespon.Text + "'," +
-                                       "'" + DpFecInicial.Value.ToString("yyyy-MM-dd") + "'," +
-                                       "'" + DpFecFinal.Value.ToString("yyyy-MM-dd") + "'," +
+                                       "CONVERT(DATETIME,'" + Convert.ToDateTime(DpFecInicial.Value).ToString("yyyy-MM-dd") + "',102)," +        
+                                       "CONVERT(DATETIME,'" + Convert.ToDateTime(DpFecFinal.Value).ToString("yyyy-MM-dd") + "',102)," +
                                        "'" + txtCantifact.Text + "'," +
                                        "'" + UsGra + "'," +
-                                       "'" + Date + "'" +
+                                       "CONVERT(DATETIME,'" + Convert.ToDateTime(Date).ToString("yyyy-MM-dd") + "',102)" +
                                        ")";
 
                                     Boolean RegistraRemision = Conexion.SqlInsert(Utils.SqlDatos);
@@ -306,7 +306,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
 
                                 Date2 = DateTime.Now.ToString("yyyy-MM-dd");
 
-                                Utils.SqlDatos = "UPDATE [Datos contadores sedas] SET [ConsRemi] = '" + Fac + "', [UsarRemi] = '" + Us + "', FecRemi = '" + Date2 + "'";
+                                Utils.SqlDatos = "UPDATE [Datos contadores sedas] SET [ConsRemi] = '" + Fac + "', [UsarRemi] = '" + Us + "', FecRemi =  CONVERT(DATETIME,'" + Date2 + "',102)";
 
                                 Boolean EstaActConce = Conexion.SQLUpdate(Utils.SqlDatos);
 

@@ -60,19 +60,23 @@ namespace Gestion_Rips.Reportes
             this.reportViewer2.LocalReport.DataSources.Add(rdsDetalle);
             this.reportViewer2.LocalReport.DataSources.Add(rdsInfoEmpresa);
 
-            this.reportViewer2.LocalReport.ReportPath = System.IO.Path.Combine(Application.StartupPath + @"\Reportes\rdlc","InfReporErroresRips.rdlc");
+
+            //this.reportViewer2.LocalReport.ReportPath = System.IO.Path.Combine(Application.StartupPath + @"\Reportes\rdlc","InfReporErroresRips.rdlc");
+
+            //String reporte = "Gestion_Rips." + Utils.infNombreInforme + ".rdlc";
+
+            string reporte = "Gestion_Rips.Reportes.Rdlc." + Utils.infNombreInforme;
 
 
-            String reporte = "Gestion_Rips." + Utils.infNombreInforme + ".rdlc";
-
-
-            this.reportViewer2.LocalReport.ReportEmbeddedResource = reporte;
+            this.reportViewer2.LocalReport.ReportEmbeddedResource = "Gestion_Rips.Reportes.Rdlc."+Utils.infNombreInforme+"";
 
             this.reportViewer2.SetDisplayMode(DisplayMode.PrintLayout);
 
             this.reportViewer2.ZoomMode = ZoomMode.Percent;
 
             this.reportViewer2.ZoomPercent = 100;
+
+
 
         }
     }

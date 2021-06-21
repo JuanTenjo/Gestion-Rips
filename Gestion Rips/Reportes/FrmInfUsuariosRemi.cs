@@ -40,11 +40,7 @@ namespace Gestion_Rips.Reportes
 
             this.reportViewer1.LocalReport.DataSources.Add(rdsDetalle);
 
-            this.reportViewer1.LocalReport.ReportPath = System.IO.Path.Combine(Application.StartupPath + @"\Reportes\rdlc", "InfReporUserPorRemision.rdlc");
-
-
-            String reporte = "Gestion_Rips." + Utils.infNombreInforme + ".rdlc";
-
+            string reporte = "Gestion_Rips.Reportes.Rdlc."+ Utils.infNombreInforme +"rdlc";
 
             this.reportViewer1.LocalReport.ReportEmbeddedResource = reporte;
 

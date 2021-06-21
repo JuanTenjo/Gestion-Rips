@@ -577,7 +577,7 @@
         <Top>0.17639cm</Top>
         <Left>0.1781cm</Left>
         <Height>0.6cm</Height>
-        <Width>18.08019cm</Width>
+        <Width>18.08018cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -608,7 +608,7 @@
               <TextRun>
                 <Value>Totales</Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
+                  <FontSize>9pt</FontSize>
                   <FontWeight>SemiBold</FontWeight>
                 </Style>
               </TextRun>
@@ -620,9 +620,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
         <Top>1.12917cm</Top>
-        <Left>15.10595cm</Left>
+        <Left>14.90894cm</Left>
         <Height>0.6cm</Height>
-        <Width>1.24939cm</Width>
+        <Width>1.4464cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -644,7 +644,7 @@
               <TextRun>
                 <Value>=Sum(Fields!ValorProce.Value, "dsDetalle")</Value>
                 <Style>
-                  <FontSize>6pt</FontSize>
+                  <FontSize>9pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Format>0.00;(0.00)</Format>
                 </Style>

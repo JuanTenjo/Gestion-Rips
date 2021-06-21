@@ -175,7 +175,7 @@ namespace Gestion_Rips.Forms
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
             this.Name = "FrmPrincipal";
-            this.Text = "GAP-RIPS  0.0.1 (03-FEB-2020) *** SIIGHOS PLUS ***";
+            this.Text = "SEDAS-RIPS  3.0.0     (17-JUN-2021) *** SIIGHOS PLUS ***";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             this.menuStrip.ResumeLayout(false);

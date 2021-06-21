@@ -172,7 +172,7 @@ namespace Gestion_Rips.Forms.Exportar
 
                     string Date = DateTime.Now.ToString("yyyy-MM-dd");
 
-                    Utils.SqlDatos = "UPDATE [Datos archivo maestro] SET CerraRemi = 1, CodModi = '" + U + "', FecModi = '" + Date + "' WHERE [ConseArchivo] = '" + R + "' ";
+                    Utils.SqlDatos = "UPDATE [Datos archivo maestro] SET CerraRemi = 1, CodModi = '" + U + "', FecModi = CONVERT(DATETIME,'" + Date + "',102) WHERE [ConseArchivo] = '" + R + "' ";
 
                     Boolean EstaAct = Conexion.SQLUpdate(Utils.SqlDatos);
 
@@ -260,7 +260,7 @@ namespace Gestion_Rips.Forms.Exportar
                 }
                 else
                 {
-                    Utils.SqlDatos = "UPDATE [Datos archivo maestro] SET AnulRemi = 1, RazAnul = '" + Rz + "', CodAnul = '" + U + "', FecAnul = '" + F + "' WHERE ConseArchivo = '" + R + "'";
+                    Utils.SqlDatos = "UPDATE [Datos archivo maestro] SET AnulRemi = 1, RazAnul = '" + Rz + "', CodAnul = '" + U + "', FecAnul = CONVERT(DATETIME,'" + F + "',102) WHERE ConseArchivo = '" + R + "'";
 
                     Boolean EstaAnul = Conexion.SQLUpdate(Utils.SqlDatos);
 
@@ -1010,55 +1010,64 @@ namespace Gestion_Rips.Forms.Exportar
                                 "[Datos archivo de consulta].CodIPS " +
                                 "HAVING ((([Datos archivo de consulta].NumRemi)= '" + Rm + "' ));";
 
-                SqlDataReader TabConsultas = Conexion.SQLDataReader(SqlConsultas);
+                SqlDataReader TabConsultas;
 
-                if (TabConsultas.HasRows == false)
+
+
+                using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
                 {
-                    //El numero de Remision no se encutra
-                    return 0;
-                }
-                else
-                {
-                    while (TabConsultas.Read())
+                    SqlCommand command = new SqlCommand(SqlConsultas, connection);
+                    command.Connection.Open();
+                    TabConsultas = command.ExecuteReader();
+
+                    if (TabConsultas.HasRows == false)
                     {
-                        Utils.SqlDatos = "INSERT INTO [Datos archivo de servicios agrupados] " +
-                                        "(" +
-                                        "NumRemi, " +
-                                        "NumFactur, " +
-                                        "CodIPS, " +
-                                        "CodConcepto, " +
-                                        "CantiGrupo, " +
-                                        "ValUnita, " +
-                                        "Valtotal" +
-                                        ") " +
-                                        "VALUES" +
-                                        "(" +
-                                        "'" + TabConsultas["NumRemi"].ToString() + "'," +
-                                        "'" + TabConsultas["NumFactur"].ToString() + "'," +
-                                        "'" + TabConsultas["CodIPS"].ToString() + "'," +
-                                        "'" + GruDefec + "'," +
-                                        "'" + TabConsultas["CuentaDeIndiceRIPSAC"].ToString() + "'," +
-                                        "'" + TabConsultas["PromedioDeValorConsul"].ToString() + "'," +
-                                        "'" + Convert.ToDouble(TabConsultas["PromedioDeValorConsul"].ToString()) * Convert.ToDouble(TabConsultas["CuentaDeIndiceRIPSAC"].ToString()) + "'" +
-                                        ")";
-
-                        Boolean sqlInsert = Conexion.SqlInsert(Utils.SqlDatos);
-
-                        if (sqlInsert)
-                        {
-                            Esta = 1;
-                        }
-                        else
-                        {
-                            Esta = 0;
-                        }
+                        return 0;
                     }
+                    else
+                    {
+                        while (TabConsultas.Read())
+                        {
+                            Utils.SqlDatos = "INSERT INTO [Datos archivo de servicios agrupados] " +
+                                            "(" +
+                                            "NumRemi, " +
+                                            "NumFactur, " +
+                                            "CodIPS, " +
+                                            "CodConcepto, " +
+                                            "CantiGrupo, " +
+                                            "ValUnita, " +
+                                            "Valtotal" +
+                                            ") " +
+                                            "VALUES" +
+                                            "(" +
+                                            "'" + TabConsultas["NumRemi"].ToString() + "'," +
+                                            "'" + TabConsultas["NumFactur"].ToString() + "'," +
+                                            "'" + TabConsultas["CodIPS"].ToString() + "'," +
+                                            "'" + GruDefec + "'," +
+                                            "'" + TabConsultas["CuentaDeIndiceRIPSAC"].ToString() + "'," +
+                                            "'" + TabConsultas["PromedioDeValorConsul"].ToString() + "'," +
+                                            "'" + Convert.ToDouble(TabConsultas["PromedioDeValorConsul"].ToString()) * Convert.ToDouble(TabConsultas["CuentaDeIndiceRIPSAC"].ToString()) + "'" +
+                                            ")";
 
-                    TabConsultas.Close();
-                    if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
-                    return Esta;
+                            Boolean sqlInsert = Conexion.SqlInsert(Utils.SqlDatos);
 
-                } //Fin TabConsultas.HasRows 
+                            if (sqlInsert)
+                            {
+                                Esta = 1;
+                            }
+                            else
+                            {
+                                Esta = 0;
+                            }
+                        }
+
+                        TabConsultas.Close();
+                        if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+                        return Esta;
+
+                    } //Fin TabConsultas.HasRows 
+
+                }
 
             }
             catch (Exception ex)
@@ -1092,7 +1101,7 @@ namespace Gestion_Rips.Forms.Exportar
                     Utils.Informa = "Lo siento pero la IPS no tiene un " + "\r";
                     Utils.Informa += "código de SGSSS, el cual permita " + "\r";
                     Utils.Informa += "crear la remisión de envío." + "\r";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -1101,7 +1110,7 @@ namespace Gestion_Rips.Forms.Exportar
                     Utils.Informa = "Lo siento pero la IPS no tiene un " + "\r";
                     Utils.Informa += "seleccionado el nombre de la" + "\r";
                     Utils.Informa += "cadministradora de planes." + "\r";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -1118,7 +1127,7 @@ namespace Gestion_Rips.Forms.Exportar
                 {
                     Utils.Informa = "Lo siento  pero  usted no ha seleccionado " + "\r";
                     Utils.Informa += "la remisión de envío a exportar." + "\r";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -1194,7 +1203,7 @@ namespace Gestion_Rips.Forms.Exportar
                     Utils.Informa += "Si = Para que se guarden en la anterior ruta " + "\r";
                     Utils.Informa += "NO = Para seleccionar una nueva carpeta " + "\r";
 
-                    var Res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    var Res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (Res == DialogResult.Yes)
                     {
@@ -1572,25 +1581,31 @@ namespace Gestion_Rips.Forms.Exportar
                     if (TablaAux1.HasRows == false)
                     {
                         //El numero de factura no se encuentra
+                        TablaAux1.Close();
                         return 0;
-                    }
-
-                    TablaAux1.Close();
-
-                }
-
-                Utils.SqlDatos = "DELETE FROM [Datos archivo de servicios agrupados] WHERE NumRemi = '" + RM + "' ";
-
-                    Boolean EliminaDatosAgri = Conexion.SQLDelete(Utils.SqlDatos);
-
-                    if (EliminaDatosAgri)
-                    {
-                        return 1;
                     }
                     else
                     {
-                        return 0;
+                        TablaAux1.Close();
+
+                        Utils.SqlDatos = "DELETE FROM [Datos archivo de servicios agrupados] WHERE NumRemi = '" + RM + "' ";
+
+                        Boolean EliminaDatosAgri = Conexion.SQLDelete(Utils.SqlDatos);
+
+                        if (EliminaDatosAgri)
+                        {
+                            return 1;
+                        }
+                        else
+                        {
+                            return 0;
+                        }
+
+                     
                     }
+  
+
+                }
 
             }
             catch (Exception ex)
@@ -1787,7 +1802,7 @@ namespace Gestion_Rips.Forms.Exportar
                     Utils.Informa = "Lo siento pero la IPS no tiene un " + "\r";
                     Utils.Informa += "código de SGSSS, el cual permita " + "\r";
                     Utils.Informa += "crear la remisión de envío." + "\r";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -1796,7 +1811,7 @@ namespace Gestion_Rips.Forms.Exportar
                     Utils.Informa = "Lo siento pero la IPS no tiene un " + "\r";
                     Utils.Informa += "seleccionado el nombre de la" + "\r";
                     Utils.Informa += "cadministradora de planes." + "\r";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -1815,7 +1830,7 @@ namespace Gestion_Rips.Forms.Exportar
                         Utils.Informa = "Lo siento pero la remisión " + NR + "\r";
                         Utils.Informa += "se encuentra cerrada, por tanto no se" + "\r";
                         Utils.Informa += "le puede ejecutar la actualización." + "\r";
-                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
                 }
@@ -1823,7 +1838,7 @@ namespace Gestion_Rips.Forms.Exportar
                 {
                     Utils.Informa = "Lo siento  pero  usted no ha " + "\r";
                     Utils.Informa += "el número de la remisión a actualizar" + "\r";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -1875,7 +1890,7 @@ namespace Gestion_Rips.Forms.Exportar
                         case -2:
                             Utils.Informa = "Lo siento pero en el archivo de transacciones no" + "\r";
                             Utils.Informa += "existen facturas registradas a la remisión No. " + NR + "\r";
-                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                             break;
                         case -1:
@@ -1893,7 +1908,7 @@ namespace Gestion_Rips.Forms.Exportar
                         case -2: //'NO tiene registros en el archivo grupo
                             Utils.Informa = "Lo siento pero en el archivo de agrupados no" + "\r";
                             Utils.Informa += "existen grupos registrados a la remisión No. " + NR + "\r";
-                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                             break;
                         case -1:
@@ -1924,7 +1939,7 @@ namespace Gestion_Rips.Forms.Exportar
                             case 0: //La tabla de nombres de archivos no tiene datos
                                 Utils.Informa = "Lo siento pero la tabla de nombres" + "\r";
                                 Utils.Informa += "de archivos no contiene información, por tanto no se puede actualizar " + "\r";
-                                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 return;
                                 break;
                             case 1:
@@ -1973,7 +1988,7 @@ namespace Gestion_Rips.Forms.Exportar
                         Utils.Informa += "transacciones y el archivo agrupados" + "\r";
                         Utils.Informa += "existe una diferencia de " + DFA + "\r";
                         Utils.Informa += "por tanto no se puede actualizar." + "\r";
-                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
 
@@ -2123,7 +2138,7 @@ namespace Gestion_Rips.Forms.Exportar
                     Utils.Informa = "Lo siento pero la IPS no tiene un " + "\r";
                     Utils.Informa += "código de SGSSS, el cual permita " + "\r";
                     Utils.Informa += "crear la remisión de envío." + "\r";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -2132,7 +2147,7 @@ namespace Gestion_Rips.Forms.Exportar
                     Utils.Informa = "Lo siento pero la IPS no tiene un " + "\r";
                     Utils.Informa += "seleccionado el nombre de la" + "\r";
                     Utils.Informa += "cadministradora de planes." + "\r";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -2149,7 +2164,7 @@ namespace Gestion_Rips.Forms.Exportar
                 {
                     Utils.Informa = "Lo siento  pero  usted no ha seleccionado " + "\r";
                     Utils.Informa += "la remisión de envío a exportar." + "\r";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -2162,7 +2177,7 @@ namespace Gestion_Rips.Forms.Exportar
                     Utils.Informa = "Lo siento pero la remisión " + NR + "\r";
                     Utils.Informa += "se encuentra cerrada, por tanto no se" + "\r";
                     Utils.Informa += "le puede exportar los archivos RIPS." + "\r";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -2172,7 +2187,7 @@ namespace Gestion_Rips.Forms.Exportar
                 Utils.Informa = "¿Usted desea CERRAR la remisión " + NR + "\r";
                 Utils.Informa += "registrada a la administradora de planes@" + "\r";
                 Utils.Informa += NAP + "\r";
-                var res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                var res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (res == DialogResult.Yes)
                 {
@@ -2226,7 +2241,7 @@ namespace Gestion_Rips.Forms.Exportar
                                 case -2: //No tiene registros en el archivo grupo
                                     Utils.Informa = "Lo siento pero en el archivo de agrupados no" + "\r";
                                     Utils.Informa += "existen grupos registrados a la remisión No. " + NR + "\r";
-                                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     return;
                                     break;
                                 case -1: //error en la funcion
@@ -2252,7 +2267,7 @@ namespace Gestion_Rips.Forms.Exportar
                                 Utils.Informa += "transacciones y el archivo agrupados" + "\r";
                                 Utils.Informa += "existe una diferencia de " + DFA + "\r";
                                 Utils.Informa += "a pesar de estar este actualizado." + "\r";
-                                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 return;
                             }
 
@@ -2260,7 +2275,7 @@ namespace Gestion_Rips.Forms.Exportar
                         case 2: //No se ha actualizado
                             Utils.Informa = "Lo siento pero a la remisión No. " + NR + "\r";
                             Utils.Informa += "no se le ha ejecutado el proceso de actualización" + "\r";
-                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                             break;
                         default:

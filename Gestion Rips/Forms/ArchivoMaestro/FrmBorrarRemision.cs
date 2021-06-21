@@ -124,7 +124,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                     Utils.Informa = "Lo siento pero usted no ha digitado" + "\r";
                     Utils.Informa += "el número de la remisión a la cual" + "\r";
                     Utils.Informa += "le piensa borrar los datos." + "\r";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -138,7 +138,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                     Utils.Informa = "Lo siento pero usted no tiene categoría" + "\r";
                     Utils.Informa += "de administrador del sistema, para poder" + "\r";
                     Utils.Informa += "ejecutar este proceso." + "\r";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -152,7 +152,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                 {
                     Utils.Informa = "Lo siento pero el número de remisión" + "\r";
                     Utils.Informa += "digitado no existe en este sistema." + "\r";
-                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 else
@@ -186,14 +186,14 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                             Utils.Informa = "Lo siento pero usted aún no ha" + "\r";
                             Utils.Informa += "seleccionado el nombre del archivo" + "\r";
                             Utils.Informa += "a borrar los datos de la remisión " + "\r";
-                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
 
                         Utils.Informa = "¿Usted desea BORRAR los datos contenidos en el" + "\r";
                         Utils.Informa += CboArchiBorrar.Text + "\r";
                         Utils.Informa += "de la remisión número " + R + "\r";
-                        var res =  MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        var res =  MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                         if(res == DialogResult.Yes)
                         {
@@ -218,7 +218,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                                 Utils.Informa = "Lo siento pero no existen registros para borrar del " + "\r";
                                 Utils.Informa += CboArchiBorrar.Text + "\r";
                                 Utils.Informa += "de la remisión número " + R + "\r";
-                                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 return;
                             }
                             else
@@ -233,7 +233,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                                     Utils.Informa = "Lo siento pero no existen registros para borrar del " + "\r";
                                     Utils.Informa += CboArchiBorrar.Text + "\r";
                                     Utils.Informa += "de la remisión número " + R + "\r";
-                                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     return;
                                 }
 
@@ -266,7 +266,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                             //Pregunte
                         Utils.Informa = "¿Usted desea BORRAR todos los datos" + "\r";
                         Utils.Informa += "contenidos en el la remisión No. " + R + "\r";
-                        var Res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        var Res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                         if(Res == DialogResult.Yes)
                         {
@@ -404,7 +404,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                                      "'" + A + "'," +
                                      "'" + Rz + "'," +
                                      "'" + 1 + "'," +
-                                     "'" + F + "'," +
+                                    "CONVERT(DATETIME,'" + Convert.ToDateTime(F).ToString("yyyy-MM-dd") + "',102)," +
                                      "'" + Us + "')";
 
                     Boolean estaRegis = Conexion.SqlInsert(Utils.SqlDatos);

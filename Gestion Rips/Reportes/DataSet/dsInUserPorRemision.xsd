@@ -15,7 +15,7 @@
                     <CommandText>SELECT        [Datos temporal usuarios RIPS].CodDigita, [Datos temporal usuarios RIPS].NumRemi, [Datos temporal usuarios RIPS].CodAdmin, [Datos temporal usuarios RIPS].TipoDocum, [Datos temporal usuarios RIPS].NumDocum, 
                          [Datos temporal usuarios RIPS].TipUsuario, [Datos temporal usuarios RIPS].Apellido1, [Datos temporal usuarios RIPS].Apellido2, [Datos temporal usuarios RIPS].Nombre1, [Datos temporal usuarios RIPS].Nombre2, 
                          [Datos temporal usuarios RIPS].Edad, [Datos temporal usuarios RIPS].EdadMedi, [Datos temporal usuarios RIPS].Sexo, [Datos temporal usuarios RIPS].CodDpto, [Datos temporal usuarios RIPS].CodMuni, 
-                         [Datos temporal usuarios RIPS].ZonaResi, Trim(ACDATOXPSQL.dbo.[Datos empresas y terceros].NomAdmin + ' ' + ACDATOXPSQL.dbo.[Datos empresas y terceros].ProgrAmin) AS NoAdmin, 
+                         [Datos temporal usuarios RIPS].ZonaResi, RTrim(ACDATOXPSQL.dbo.[Datos empresas y terceros].NomAdmin + ' ' + ACDATOXPSQL.dbo.[Datos empresas y terceros].ProgrAmin) AS NoAdmin, 
                          ACDATOXPSQL.dbo.[Datos empresas y terceros].NomPlan
 FROM            ACDATOXPSQL.dbo.[Datos empresas y terceros] INNER JOIN
                          [Datos temporal usuarios RIPS] ON ACDATOXPSQL.dbo.[Datos empresas y terceros].CarAdmin = [Datos temporal usuarios RIPS].NumRemi

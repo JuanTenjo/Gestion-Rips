@@ -686,7 +686,7 @@
               <TextRun>
                 <Value>=Sum(Fields!ValorConsul.Value, "dsDetalle")</Value>
                 <Style>
-                  <FontSize>6pt</FontSize>
+                  <FontSize>9pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Format>0.00;(0.00)</Format>
                 </Style>
@@ -699,9 +699,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox56</rd:DefaultName>
         <Top>1.12917cm</Top>
-        <Left>13.84008cm</Left>
+        <Left>13.34618cm</Left>
         <Height>0.6cm</Height>
-        <Width>1.40875cm</Width>
+        <Width>1.61161cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -723,7 +723,7 @@
               <TextRun>
                 <Value>Totales</Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
+                  <FontSize>9pt</FontSize>
                   <FontWeight>SemiBold</FontWeight>
                 </Style>
               </TextRun>
@@ -735,7 +735,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
         <Top>1.12917cm</Top>
-        <Left>11.97318cm</Left>
+        <Left>11.65568cm</Left>
         <Height>0.6cm</Height>
         <Width>1.6905cm</Width>
         <ZIndex>3</ZIndex>
@@ -759,7 +759,7 @@
               <TextRun>
                 <Value>=Sum(Fields!ValorCuota.Value, "dsDetalle")</Value>
                 <Style>
-                  <FontSize>6pt</FontSize>
+                  <FontSize>9pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Format>0.00;(0.00)</Format>
                 </Style>
@@ -772,9 +772,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox56</rd:DefaultName>
         <Top>1.12917cm</Top>
-        <Left>15.24882cm</Left>
+        <Left>14.95779cm</Left>
         <Height>0.6cm</Height>
-        <Width>1.37095cm</Width>
+        <Width>1.52087cm</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
@@ -796,7 +796,7 @@
               <TextRun>
                 <Value>=Sum(Fields!ValorNeto.Value, "dsDetalle")</Value>
                 <Style>
-                  <FontSize>6pt</FontSize>
+                  <FontSize>9pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Format>0.00;(0.00)</Format>
                 </Style>
@@ -809,9 +809,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox56</rd:DefaultName>
         <Top>1.12917cm</Top>
-        <Left>16.61977cm</Left>
+        <Left>16.47866cm</Left>
         <Height>0.6cm</Height>
-        <Width>1.59002cm</Width>
+        <Width>1.73113cm</Width>
         <ZIndex>5</ZIndex>
         <Style>
           <Border>

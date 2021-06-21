@@ -258,7 +258,6 @@
               <TextRun>
                 <Value>=Sum(Fields!VaLorDeta.Value, "dsDetalle")</Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Format>0.00;(0.00)</Format>
                 </Style>
@@ -295,7 +294,6 @@
               <TextRun>
                 <Value>Totales</Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
                   <FontWeight>SemiBold</FontWeight>
                 </Style>
               </TextRun>
@@ -331,7 +329,6 @@
               <TextRun>
                 <Value>=Sum(Fields!DT.Value, "dsDetalle")</Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Format>0.00;(0.00)</Format>
                 </Style>
@@ -368,7 +365,6 @@
               <TextRun>
                 <Value>=Sum(Fields!Copago.Value, "dsDetalle")</Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Format>0.00;(0.00)</Format>
                 </Style>
@@ -405,7 +401,6 @@
               <TextRun>
                 <Value>=Sum(Fields!ValorNeto.Value, "dsDetalle")</Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Format>0.00;(0.00)</Format>
                 </Style>

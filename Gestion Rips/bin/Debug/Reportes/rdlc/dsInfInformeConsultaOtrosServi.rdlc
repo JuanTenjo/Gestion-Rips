@@ -450,7 +450,7 @@
               <TextRun>
                 <Value>Totales</Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
+                  <FontSize>9pt</FontSize>
                   <FontWeight>SemiBold</FontWeight>
                 </Style>
               </TextRun>
@@ -462,7 +462,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
         <Top>1.04938cm</Top>
-        <Left>15.04565cm</Left>
+        <Left>14.72815cm</Left>
         <Height>0.6cm</Height>
         <Width>1.43963cm</Width>
         <ZIndex>2</ZIndex>
@@ -486,7 +486,7 @@
               <TextRun>
                 <Value>=Sum(Fields!ValorTotal.Value, "dsDetalle")</Value>
                 <Style>
-                  <FontSize>6pt</FontSize>
+                  <FontSize>9pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Format>0.00;(0.00)</Format>
                 </Style>
@@ -499,9 +499,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox56</rd:DefaultName>
         <Top>1.04938cm</Top>
-        <Left>16.48528cm</Left>
+        <Left>16.16778cm</Left>
         <Height>0.6cm</Height>
-        <Width>1.54641cm</Width>
+        <Width>1.86391cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>

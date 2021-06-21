@@ -742,7 +742,7 @@ namespace Gestion_Rips.Forms.Exportar
                     if(FunAudi == 1)
                     {
                         Utils.SqlDatos = "SELECT [Datos empresas y terceros].CodiMinSalud,  " +
-                                        "Trim([Datos empresas y terceros].[NomAdmin] + ' ' + [ProgrAmin]) AS NE, [Datos empresas y terceros].TipoDocu, " +
+                                        "RTrim([Datos empresas y terceros].[NomAdmin] + ' ' + [ProgrAmin]) AS NE, [Datos empresas y terceros].TipoDocu, " +
                                         "[Datos empresas y terceros].NumDocu, [Datos temporal transacciones RIPS].NumFactur, [Datos temporal transacciones RIPS].NumRemi, " +
                                         "[Datos temporal transacciones RIPS].Copago, [Datos temporal transacciones RIPS].ValorNeto, " +
                                         "[Datos temporal transacciones RIPS].VaLorDeta, Abs(([ValorNeto] +[Copago]) -[VaLorDeta]) AS DT " +

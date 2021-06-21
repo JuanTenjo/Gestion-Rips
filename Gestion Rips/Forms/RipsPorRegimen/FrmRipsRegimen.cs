@@ -493,7 +493,9 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
 
                         if (a)
                         {
-                            Utils.SqlDatos = "UPDATE [DARIPSESSQL].[dbo].[Datos contadores sedas] SET [ConsRemi] = '" + Fac + "', [UsarRemi] = '" + US + "', FecRemi = '" + Date + "'";
+
+                            
+                            Utils.SqlDatos = "UPDATE [DARIPSESSQL].[dbo].[Datos contadores sedas] SET [ConsRemi] = '" + Fac + "', [UsarRemi] = '" + US + "', FecRemi = CONVERT(DATETIME,'" + Date +"',102)";
 
                             Boolean EstaActConce = Conexion.SQLUpdate(Utils.SqlDatos);
 
@@ -3723,13 +3725,13 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                     case "0": // NO existe la administradora
                         Utils.Informa = "Lo siento pero el código SGSSS " + CR + " no" + "\r";
                         Utils.Informa += "pertenece a ninguna administradora de planes" + "\r";
-                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                         break;
                     case "1": //'No existe la ruta
                         Utils.Informa = "Lo siento pero los archivos de SEDAS-RIPS" + "\r";
                         Utils.Informa += "no se han encontrado en la ruta de datos" + "\r";
-                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                         break;
                     default:
@@ -3755,7 +3757,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                         Utils.Informa = "Lo siento pero no existen facturas para" + "\r";
                         Utils.Informa += "realizar el RIPS a la entidad o convenio" + "\r";
                         Utils.Informa += NEnti;
-                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
                 }
@@ -3780,7 +3782,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                         Utils.Informa = "Lo siento pero no existen usuarios para" + "\r";
                         Utils.Informa += "realizar el RIPS a la entidad o convenio" + "\r";
                         Utils.Informa += NEnti;
-                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
                 }
@@ -3871,10 +3873,10 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                      "'" + CinRips + "'," +
                                      "'" + lblCodMinSalud.Text + "'," +
                                      "'" + CR + "'," +
-                                     "'" + Date + "'," +
+                                     "CONVERT(DATETIME,'" + Convert.ToDateTime(Date).ToString("yyyy-MM-dd") + "',102)," +
                                      "'" + lblNombreUser.Text + "'," +
-                                     "'" + Periodo1 + "'," +
-                                     "'" + Periodo2 + "'," +
+                                     "CONVERT(DATETIME,'" + Convert.ToDateTime(Periodo1).ToString("yyyy-MM-dd") + "',102)," +
+                                     "CONVERT(DATETIME,'" + Convert.ToDateTime(Periodo2).ToString("yyyy-MM-dd") + "',102)," +
                                      "'" + TolFac + "'," +
                                      "'" + txtTeleIPS.Text + "'," +
                                      "'" + Regimen + "'," +
@@ -3882,7 +3884,8 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                      "'" + 0 + "'," +
                                      "'" + 0 + "'," +
                                      "'" + UsGra + "'," +
-                                     "'" + Date + "')";
+                                     "CONVERT(DATETIME,'" + Convert.ToDateTime(Date).ToString("yyyy-MM-dd") + "',102)" +
+                                     ")";
 
                                     SqlInsert = Conexion.SqlInsert(data);
 
@@ -3944,7 +3947,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                 {
                                     //Muestre el informe 
 
-                                    string ReporUser = "SELECT [Datos temporal usuarios RIPS].CodDigita, [Datos temporal usuarios RIPS].NumRemi, [Datos temporal usuarios RIPS].CodAdmin, [Datos temporal usuarios RIPS].TipoDocum, [Datos temporal usuarios RIPS].NumDocum, [Datos temporal usuarios RIPS].TipUsuario, [Datos temporal usuarios RIPS].Apellido1, [Datos temporal usuarios RIPS].Apellido2, [Datos temporal usuarios RIPS].Nombre1, [Datos temporal usuarios RIPS].Nombre2, [Datos temporal usuarios RIPS].Edad, [Datos temporal usuarios RIPS].EdadMedi, [Datos temporal usuarios RIPS].Sexo, [Datos temporal usuarios RIPS].CodDpto, [Datos temporal usuarios RIPS].CodMuni, [Datos temporal usuarios RIPS].ZonaResi, Trim([Datos empresas y terceros].[NomAdmin] + ' ' + [Datos empresas y terceros].[ProgrAmin]) AS NoAdmin, [Datos empresas y terceros].NomPlan " +
+                                    string ReporUser = "SELECT [Datos temporal usuarios RIPS].CodDigita, [Datos temporal usuarios RIPS].NumRemi, [Datos temporal usuarios RIPS].CodAdmin, [Datos temporal usuarios RIPS].TipoDocum, [Datos temporal usuarios RIPS].NumDocum, [Datos temporal usuarios RIPS].TipUsuario, [Datos temporal usuarios RIPS].Apellido1, [Datos temporal usuarios RIPS].Apellido2, [Datos temporal usuarios RIPS].Nombre1, [Datos temporal usuarios RIPS].Nombre2, [Datos temporal usuarios RIPS].Edad, [Datos temporal usuarios RIPS].EdadMedi, [Datos temporal usuarios RIPS].Sexo, [Datos temporal usuarios RIPS].CodDpto, [Datos temporal usuarios RIPS].CodMuni, [Datos temporal usuarios RIPS].ZonaResi, RTrim([Datos empresas y terceros].[NomAdmin] + ' ' + [Datos empresas y terceros].[ProgrAmin]) AS NoAdmin, [Datos empresas y terceros].NomPlan " +
                                                 " FROM [ACDATOXPSQL].[dbo].[Datos empresas y terceros] INNER JOIN [DARIPSESSQL].[dbo].[Datos temporal usuarios RIPS] ON [Datos empresas y terceros].CarAdmin = [Datos temporal usuarios RIPS].NumRemi " +
                                                 " WHERE [Datos empresas y terceros].[CodDigita] = '" + UsGra + "' AND [Datos empresas y terceros].[NumRemi] = '" + Coenti01 + "' AND [Datos empresas y terceros].[Exportado] = 0  " +
                                                 " ORDER BY [Datos temporal usuarios RIPS].TipoDocum, [Datos temporal usuarios RIPS].NumDocum; ";
@@ -4159,7 +4162,6 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
             }
         }
 
-
         private int CopiaRipsProce(string NR, string CI, double TolC)
         {
             try
@@ -4219,7 +4221,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                              "'" + TabLocal["CodIps"].ToString() + "'," +
                                              "'" + TabLocal["TipoDocum"].ToString() + "'," +
                                              "'" + TabLocal["NumDocum"].ToString() + "'," +
-                                             "'" + Convert.ToDateTime(TabLocal["FecProce"]).ToString("yyyy-MM-dd") + "'," +
+                                             "CONVERT(DATETIME,'" + Convert.ToDateTime(TabLocal["FecProce"]).ToString("yyyy-MM-dd") + "',102)," +
                                              "'" + TabLocal["AutoriNum"].ToString() + "'," +
                                              "'" + TabLocal["CodProce"].ToString() + "'," +
                                              "'" + TabLocal["AmbitoReal"].ToString() + "'," +
@@ -4295,34 +4297,82 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
 
                         while (TabLocal.Read())
                         {
-                            Utils.SqlDatos = "INSERT INTO [DARIPSESSQL].[dbo].[Datos archivo de recien nacido] " +
-                                             "(NumRemi," +
-                                             "NumFactur," +
-                                             "CodIps," +
-                                             "TipoDocum," +
-                                             "NumDocum," +
-                                             "FecNaci," +
-                                             "HorIngresa," +
-                                             "EdadGesta," +
-                                             "ControlPrena," +
-                                             "SexoRecien," +
-                                             "PesoRecien," +
-                                             "DxRecien)" +
-                                             "VALUES(" +
-                                             "'" + NR + "'," +
-                                             "'" + TabLocal["NumFactur"].ToString() + "'," +
-                                             "'" + TabLocal["CodIps"].ToString() + "'," +
-                                             "'" + TabLocal["TipoDocum"].ToString() + "'," +
-                                             "'" + TabLocal["NumDocum"].ToString() + "'," +
-                                             "'" + Convert.ToDateTime(TabLocal["FecNaci"]).ToString("yyyy-MM-dd") + "'," +
-                                             "'" + Convert.ToDateTime(TabLocal["HorIngresa"]).ToString("hh:mm:ss") + "'," +
-                                             "'" + TabLocal["EdadGesta"].ToString() + "'," +
-                                             "'" + TabLocal["ControlPrena"].ToString() + "'," +
-                                             "'" + TabLocal["SexoRecien"].ToString() + "'," +
-                                             "'" + TabLocal["PesoRecien"].ToString() + "'," +
-                                             "'" + TabLocal["DxRecien"].ToString() + "')";
+                            //Utils.SqlDatos = "INSERT INTO [DARIPSESSQL].[dbo].[Datos archivo de recien nacido] " +
+                            //                 "(NumRemi," +
+                            //                 "NumFactur," +
+                            //                 "CodIps," +
+                            //                 "TipoDocum," +
+                            //                 "NumDocum," +
+                            //                 "FecNaci," +
+                            //                 "HorIngresa," +
+                            //                 "EdadGesta," +
+                            //                 "ControlPrena," +
+                            //                 "SexoRecien," +
+                            //                 "PesoRecien," +
+                            //                 "DxRecien)" +
+                            //                 "VALUES(" +
+                            //                 "'" + NR + "'," +
+                            //                 "'" + TabLocal["NumFactur"].ToString() + "'," +
+                            //                 "'" + TabLocal["CodIps"].ToString() + "'," +
+                            //                 "'" + TabLocal["TipoDocum"].ToString() + "'," +
+                            //                 "'" + TabLocal["NumDocum"].ToString() + "'," +
+                            //                 "'" + Convert.ToDateTime(TabLocal["FecNaci"]).ToString("yyyy-MM-dd") + "'," +
+                            //                 "'" + Convert.ToDateTime(TabLocal["HorIngresa"]).ToString("hh:mm:ss") + "'," +
+                            //                 "'" + TabLocal["EdadGesta"].ToString() + "'," +
+                            //                 "'" + TabLocal["ControlPrena"].ToString() + "'," +
+                            //                 "'" + TabLocal["SexoRecien"].ToString() + "'," +
+                            //                 "'" + TabLocal["PesoRecien"].ToString() + "'," +
+                            //                 "'" + TabLocal["DxRecien"].ToString() + "')";
 
-                            SqlInsert = Conexion.SqlInsert(Utils.SqlDatos);
+                            string data = "INSERT INTO [DARIPSESSQL].[dbo].[Datos archivo de recien nacido]" +
+                            "(NumRemi," +
+                            "NumFactur," +
+                            "CodIPS," +
+                            "TipoDocum," +
+                            "NumDocum," +
+                            "FecNaci," +
+                            "HorIngresa," +
+                            "EdadGesta," +
+                            "ControlPrena," +
+                            "SexoRecien," +
+                            "PesoRecien," +
+                            "DxRecien," +
+                            "DxMuerte";
+                            if (string.IsNullOrWhiteSpace(TabLocal["FecMuerte"].ToString())) //si la fecha viene null termine el insert aqui
+                            {
+                                data += ")";
+                            }
+                            else
+                            {
+                                data += ",FecMuerte," +
+                                        "HorMuerte)";
+                            }
+
+                            data += "VALUES(" +
+                                     "'" + NR + "'," +
+                                     "'" + TabLocal["NumFactur"].ToString() + "'," +
+                                     "'" + TabLocal["CodIps"].ToString() + "'," +
+                                     "'" + TabLocal["TipoDocum"].ToString() + "'," +
+                                     "'" + TabLocal["NumDocum"].ToString() + "'," +
+                                     "CONVERT(DATETIME,'" + Convert.ToDateTime(TabLocal["FecNaci"]).ToString("yyyy-MM-dd") + "',102)," +
+                                     "'" + Convert.ToDateTime(TabLocal["HorIngresa"]).ToString("hh:mm:ss") + "'," +
+                                     "'" + TabLocal["EdadGesta"].ToString() + "'," +
+                                     "'" + TabLocal["ControlPrena"].ToString() + "'," +
+                                     "'" + TabLocal["SexoRecien"].ToString() + "'," +
+                                     "'" + TabLocal["PesoRecien"].ToString() + "'," +
+                                     "'" + TabLocal["DxRecien"].ToString() + "'," +
+                                     "'" + TabLocal["DxMuerte"].ToString() + "'";
+                            if (string.IsNullOrWhiteSpace(TabLocal["FecMuerte"].ToString())) //si la fecha viene null termine el insert aqui
+                            {
+                                data += ")";
+                            }
+                            else
+                            {
+                                data += ",'" + Convert.ToDateTime(TabLocal["FecMuerte"]).ToString("yyyy-MM-dd") + "'," +
+                                    "'" + Convert.ToDateTime(TabLocal["HorMuerte"]).ToString("hh:mm:ss") + "')";
+                            }
+
+                            SqlInsert = Conexion.SqlInsert(data);
 
                             if (SqlInsert)
                             {
@@ -4502,7 +4552,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                              "'" + TabLocal["CodIps"].ToString() + "'," +
                                              "'" + TabLocal["TipoDocum"].ToString() + "'," +
                                              "'" + TabLocal["NumDocum"].ToString() + "'," +
-                                             "'" + Convert.ToDateTime(TabLocal["FecIngresa"]).ToString("yyyy-MM-dd") + "'," +
+                                              "CONVERT(DATETIME,'" + Convert.ToDateTime(TabLocal["FecIngresa"]).ToString("yyyy-MM-dd") + "',102)," +
                                              "'" + Convert.ToDateTime(TabLocal["HorIngresa"]).ToString("hh:mm:ss") + "'," +
                                              "'" + TabLocal["AutoriNum"].ToString() + "'," +
                                              "'" + TabLocal["CausExter"].ToString() + "'," +
@@ -4513,7 +4563,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                              "'" + TabLocal["Destino"].ToString() + "'," +
                                              "'" + TabLocal["EstadoSal"].ToString() + "'," +
                                              "'" + TabLocal["DxMuerte"].ToString() + "'," +
-                                             "'" + Convert.ToDateTime(TabLocal["FecSalida"]).ToString("yyyy-MM-dd") + "'," +
+                                              "CONVERT(DATETIME,'" + Convert.ToDateTime(TabLocal["FecSalida"]).ToString("yyyy-MM-dd") + "',102)," +
                                              "'" + Convert.ToDateTime(TabLocal["HorSalida"]).ToString("hh:mm:ss") + "')";
 
                             SqlInsert = Conexion.SqlInsert(Utils.SqlDatos);
@@ -4705,7 +4755,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                              "'" + TabLocal["TipoDocum"].ToString() + "'," +
                                              "'" + TabLocal["NumDocum"].ToString() + "'," +
                                              "'" + TabLocal["ViaDIngreso"].ToString() + "'," +
-                                             "'" + Convert.ToDateTime(TabLocal["FecIngresa"]).ToString("yyyy-MM-dd") + "'," +
+                                             "CONVERT(DATETIME,'" + Convert.ToDateTime(TabLocal["FecIngresa"]).ToString("yyyy-MM-dd") + "',102)," +
                                              "'" + Convert.ToDateTime(TabLocal["HorIngresa"]).ToString("hh:mm:ss") + "'," +
                                              "'" + TabLocal["AutoriNum"].ToString() + "'," +
                                              "'" + TabLocal["CausExter"].ToString() + "'," +
@@ -4718,7 +4768,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                              "'" + TabLocal["DxComplica"].ToString() + "'," +
                                              "'" + TabLocal["EstadoSal"].ToString() + "'," +
                                              "'" + TabLocal["DxMuerte"].ToString() + "'," +
-                                             "'" + Convert.ToDateTime(TabLocal["FecSalida"]).ToString("yyyy-MM-dd") + "'," +
+                                             "CONVERT(DATETIME,'" + Convert.ToDateTime(TabLocal["FecSalida"]).ToString("yyyy-MM-dd") + "',102)," +
                                              "'" + Convert.ToDateTime(TabLocal["HorSalida"]).ToString("hh:mm:ss") + "')";
 
                             SqlInsert = Conexion.SqlInsert(Utils.SqlDatos);
@@ -4810,7 +4860,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                              "'" + TabLocal["CodIps"].ToString() + "'," +
                                              "'" + TabLocal["TipoDocum"].ToString() + "'," +
                                              "'" + TabLocal["NumDocum"].ToString() + "'," +
-                                             "'" + Convert.ToDateTime(TabLocal["FecConsul"]).ToString("yyy-MM-dd") + "'," +
+                                            "CONVERT(DATETIME,'" + Convert.ToDateTime(TabLocal["FecConsul"]).ToString("yyyy-MM-dd") + "',102)," +
                                              "'" + TabLocal["AutoriNum"].ToString() + "'," +
                                              "'" + TabLocal["CodConsul"].ToString() + "'," +
                                              "'" + TabLocal["FinalConsul"].ToString() + "'," +
@@ -5195,7 +5245,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
 
                             Utils.SqlDatos = "SELECT [CodDigita],[TipARchi],[TipDocu],[NumDocu],[CodEnti],[FacturaN],[Observa1] FROM [DARIPSESSQL].[dbo].[Datos temporal errores RIPS] WHERE CodEnti = '" + Coenti01 + "' ORDER BY NumDocu ASC  ";
 
-                            Utils.infNombreInforme = "InfReporErroresRips";
+                            Utils.infNombreInforme = "InfReporErroresRips.rdlc";
 
                             Utils.CarAdmin = Coenti01;
 
@@ -6282,9 +6332,6 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                                                 TipoIden = TipoIden.Substring(0, 2);
 
                                             }
-
-
-
 
                                             data = "INSERT INTO [DARIPSESSQL].[dbo].[Datos temporal recien nacidos RIPS]" +
                                                     "(CodDigita," +

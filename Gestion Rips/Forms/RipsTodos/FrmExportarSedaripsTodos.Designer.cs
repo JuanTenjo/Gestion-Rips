@@ -88,11 +88,17 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.BarraSeleccionar = new System.Windows.Forms.ProgressBar();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.BtnDesmarcarTodas = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
+            this.BtnMarcarTodas = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
+            this.btnExportar = new System.Windows.Forms.Button();
+            this.btnReportes = new System.Windows.Forms.Button();
+            this.btnValidar = new System.Windows.Forms.Button();
+            this.btnSeleccionar = new System.Windows.Forms.Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.lblNivelPermitido = new System.Windows.Forms.Label();
             this.lblNombreUser = new System.Windows.Forms.Label();
@@ -106,12 +112,6 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.label24 = new System.Windows.Forms.Label();
             this.TxtTolCopMos = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
-            this.BtnDesmarcarTodas = new System.Windows.Forms.Button();
-            this.BtnMarcarTodas = new System.Windows.Forms.Button();
-            this.btnExportar = new System.Windows.Forms.Button();
-            this.btnReportes = new System.Windows.Forms.Button();
-            this.btnValidar = new System.Windows.Forms.Button();
-            this.btnSeleccionar = new System.Windows.Forms.Button();
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -789,6 +789,18 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.label19.Text = "Desmarcar";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // BtnDesmarcarTodas
+            // 
+            this.BtnDesmarcarTodas.BackgroundImage = global::Gestion_Rips.Properties.Resources.icons8_casilla_de_verificación_desactivada_25;
+            this.BtnDesmarcarTodas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.BtnDesmarcarTodas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnDesmarcarTodas.Location = new System.Drawing.Point(344, 25);
+            this.BtnDesmarcarTodas.Name = "BtnDesmarcarTodas";
+            this.BtnDesmarcarTodas.Size = new System.Drawing.Size(43, 35);
+            this.BtnDesmarcarTodas.TabIndex = 10;
+            this.BtnDesmarcarTodas.UseVisualStyleBackColor = true;
+            this.BtnDesmarcarTodas.Click += new System.EventHandler(this.BtnDesmarcarTodas_Click);
+            // 
             // label17
             // 
             this.label17.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -798,6 +810,18 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.label17.TabIndex = 9;
             this.label17.Text = "Marcar";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BtnMarcarTodas
+            // 
+            this.BtnMarcarTodas.BackgroundImage = global::Gestion_Rips.Properties.Resources.icons8_casilla_de_verificación_marcada_25;
+            this.BtnMarcarTodas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.BtnMarcarTodas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnMarcarTodas.Location = new System.Drawing.Point(280, 25);
+            this.BtnMarcarTodas.Name = "BtnMarcarTodas";
+            this.BtnMarcarTodas.Size = new System.Drawing.Size(43, 35);
+            this.BtnMarcarTodas.TabIndex = 8;
+            this.BtnMarcarTodas.UseVisualStyleBackColor = true;
+            this.BtnMarcarTodas.Click += new System.EventHandler(this.BtnMarcarTodas_Click);
             // 
             // label15
             // 
@@ -838,6 +862,54 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.label21.TabIndex = 4;
             this.label21.Text = "Seleccionar";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnExportar
+            // 
+            this.btnExportar.BackgroundImage = global::Gestion_Rips.Properties.Resources.icons8_export_30;
+            this.btnExportar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnExportar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportar.Location = new System.Drawing.Point(217, 25);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(43, 35);
+            this.btnExportar.TabIndex = 3;
+            this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
+            // 
+            // btnReportes
+            // 
+            this.btnReportes.BackgroundImage = global::Gestion_Rips.Properties.Resources.icons8_business_report_30;
+            this.btnReportes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReportes.Location = new System.Drawing.Point(152, 25);
+            this.btnReportes.Name = "btnReportes";
+            this.btnReportes.Size = new System.Drawing.Size(43, 35);
+            this.btnReportes.TabIndex = 2;
+            this.btnReportes.UseVisualStyleBackColor = true;
+            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
+            // 
+            // btnValidar
+            // 
+            this.btnValidar.BackgroundImage = global::Gestion_Rips.Properties.Resources.icons8_validation_30;
+            this.btnValidar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnValidar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnValidar.Location = new System.Drawing.Point(88, 25);
+            this.btnValidar.Name = "btnValidar";
+            this.btnValidar.Size = new System.Drawing.Size(43, 35);
+            this.btnValidar.TabIndex = 1;
+            this.btnValidar.UseVisualStyleBackColor = true;
+            this.btnValidar.Click += new System.EventHandler(this.btnValidar_Click);
+            // 
+            // btnSeleccionar
+            // 
+            this.btnSeleccionar.BackgroundImage = global::Gestion_Rips.Properties.Resources.icons8_select_name_30;
+            this.btnSeleccionar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnSeleccionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSeleccionar.Location = new System.Drawing.Point(22, 25);
+            this.btnSeleccionar.Name = "btnSeleccionar";
+            this.btnSeleccionar.Size = new System.Drawing.Size(43, 35);
+            this.btnSeleccionar.TabIndex = 0;
+            this.btnSeleccionar.UseVisualStyleBackColor = true;
+            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
             // 
             // groupBox8
             // 
@@ -977,78 +1049,6 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.label25.TabIndex = 45;
             this.label25.Text = "Total Copagos:";
             this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // BtnDesmarcarTodas
-            // 
-            this.BtnDesmarcarTodas.BackgroundImage = global::Gestion_Rips.Properties.Resources.icons8_casilla_de_verificación_desactivada_25;
-            this.BtnDesmarcarTodas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.BtnDesmarcarTodas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnDesmarcarTodas.Location = new System.Drawing.Point(344, 25);
-            this.BtnDesmarcarTodas.Name = "BtnDesmarcarTodas";
-            this.BtnDesmarcarTodas.Size = new System.Drawing.Size(43, 35);
-            this.BtnDesmarcarTodas.TabIndex = 10;
-            this.BtnDesmarcarTodas.UseVisualStyleBackColor = true;
-            this.BtnDesmarcarTodas.Click += new System.EventHandler(this.BtnDesmarcarTodas_Click);
-            // 
-            // BtnMarcarTodas
-            // 
-            this.BtnMarcarTodas.BackgroundImage = global::Gestion_Rips.Properties.Resources.icons8_casilla_de_verificación_marcada_25;
-            this.BtnMarcarTodas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.BtnMarcarTodas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnMarcarTodas.Location = new System.Drawing.Point(280, 25);
-            this.BtnMarcarTodas.Name = "BtnMarcarTodas";
-            this.BtnMarcarTodas.Size = new System.Drawing.Size(43, 35);
-            this.BtnMarcarTodas.TabIndex = 8;
-            this.BtnMarcarTodas.UseVisualStyleBackColor = true;
-            this.BtnMarcarTodas.Click += new System.EventHandler(this.BtnMarcarTodas_Click);
-            // 
-            // btnExportar
-            // 
-            this.btnExportar.BackgroundImage = global::Gestion_Rips.Properties.Resources.icons8_export_30;
-            this.btnExportar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnExportar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExportar.Location = new System.Drawing.Point(217, 25);
-            this.btnExportar.Name = "btnExportar";
-            this.btnExportar.Size = new System.Drawing.Size(43, 35);
-            this.btnExportar.TabIndex = 3;
-            this.btnExportar.UseVisualStyleBackColor = true;
-            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
-            // 
-            // btnReportes
-            // 
-            this.btnReportes.BackgroundImage = global::Gestion_Rips.Properties.Resources.icons8_business_report_30;
-            this.btnReportes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportes.Location = new System.Drawing.Point(152, 25);
-            this.btnReportes.Name = "btnReportes";
-            this.btnReportes.Size = new System.Drawing.Size(43, 35);
-            this.btnReportes.TabIndex = 2;
-            this.btnReportes.UseVisualStyleBackColor = true;
-            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
-            // 
-            // btnValidar
-            // 
-            this.btnValidar.BackgroundImage = global::Gestion_Rips.Properties.Resources.icons8_validation_30;
-            this.btnValidar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnValidar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnValidar.Location = new System.Drawing.Point(88, 25);
-            this.btnValidar.Name = "btnValidar";
-            this.btnValidar.Size = new System.Drawing.Size(43, 35);
-            this.btnValidar.TabIndex = 1;
-            this.btnValidar.UseVisualStyleBackColor = true;
-            this.btnValidar.Click += new System.EventHandler(this.btnValidar_Click);
-            // 
-            // btnSeleccionar
-            // 
-            this.btnSeleccionar.BackgroundImage = global::Gestion_Rips.Properties.Resources.icons8_select_name_30;
-            this.btnSeleccionar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnSeleccionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSeleccionar.Location = new System.Drawing.Point(22, 25);
-            this.btnSeleccionar.Name = "btnSeleccionar";
-            this.btnSeleccionar.Size = new System.Drawing.Size(43, 35);
-            this.btnSeleccionar.TabIndex = 0;
-            this.btnSeleccionar.UseVisualStyleBackColor = true;
-            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
             // 
             // FrmExportarSedaripsTodos
             // 

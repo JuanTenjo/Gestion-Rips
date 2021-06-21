@@ -7,7 +7,7 @@
     <ProjectGuid>{BB36D498-0EBC-4AAF-A94C-EB5E122D53E4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Gestion_Rips</RootNamespace>
-    <AssemblyName>Gestion Rips</AssemblyName>
+    <AssemblyName>OBRIPSNET</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -38,18 +38,23 @@
   <ItemGroup>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1440.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1440.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1440.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1440.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1440.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -137,12 +142,6 @@
     <Compile Include="Forms\RipsTodos\FrmExportarSedaripsTodos.Designer.cs">
       <DependentUpon>FrmExportarSedaripsTodos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\RipsTodos\FrmReporteRipsTodos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\RipsTodos\FrmReporteRipsTodos.Designer.cs">
-      <DependentUpon>FrmReporteRipsTodos.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reportes\DataSet\dsInErroresRips.cs">
@@ -226,9 +225,6 @@
     <EmbeddedResource Include="Forms\RipsTodos\FrmExportarSedaripsTodos.resx">
       <DependentUpon>FrmExportarSedaripsTodos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\RipsTodos\FrmReporteRipsTodos.resx">
-      <DependentUpon>FrmReporteRipsTodos.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -251,70 +247,70 @@
     <EmbeddedResource Include="Reportes\FrmInInformeAuditar.resx">
       <DependentUpon>FrmInInformeAuditar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaAuditarRegi.rdlc">
+    <EmbeddedResource Include="Reportes\Rdlc\dsInfInformeConsultaAuditarRegi.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaHospitalizacionRegi.rdlc">
+    <EmbeddedResource Include="Reportes\Rdlc\dsInfInformeConsultaHospitalizacionRegi.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaMedicamentosRegi.rdlc">
+    <EmbeddedResource Include="Reportes\Rdlc\dsInfInformeConsultaMedicamentosRegi.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaObservacionRegi.rdlc">
+    <EmbeddedResource Include="Reportes\Rdlc\dsInfInformeConsultaObservacionRegi.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaOtrosServiRegi.rdlc">
+    <EmbeddedResource Include="Reportes\Rdlc\dsInfInformeConsultaOtrosServiRegi.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaProcedimientosRemi.rdlc">
+    <EmbeddedResource Include="Reportes\Rdlc\dsInfInformeConsultaProcedimientosRemi.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaProcedimientos.rdlc">
+    <EmbeddedResource Include="Reportes\Rdlc\dsInfInformeConsultaProcedimientos.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaAuditar.rdlc">
+    <EmbeddedResource Include="Reportes\Rdlc\dsInfInformeConsultaAuditar.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaRecienNaciRemi.rdlc">
+    <EmbeddedResource Include="Reportes\Rdlc\dsInfInformeConsultaRecienNaciRemi.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaRemisionRemi.rdlc">
+    <EmbeddedResource Include="Reportes\Rdlc\dsInfInformeConsultaRemisionRemi.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaTransaccionesRegi.rdlc">
+    <EmbeddedResource Include="Reportes\Rdlc\dsInfInformeConsultaTransaccionesRegi.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaUsuariosRegi.rdlc">
+    <EmbeddedResource Include="Reportes\Rdlc\dsInfInformeConsultaUsuariosRegi.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaUsuarios.rdlc">
+    <EmbeddedResource Include="Reportes\Rdlc\dsInfInformeConsultaUsuarios.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaRecienNaci.rdlc">
+    <EmbeddedResource Include="Reportes\Rdlc\dsInfInformeConsultaRecienNaci.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaOtrosServi.rdlc">
+    <EmbeddedResource Include="Reportes\Rdlc\dsInfInformeConsultaOtrosServi.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaObservacion.rdlc">
+    <EmbeddedResource Include="Reportes\Rdlc\dsInfInformeConsultaObservacion.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaHospitalizacion.rdlc">
+    <EmbeddedResource Include="Reportes\Rdlc\dsInfInformeConsultaHospitalizacion.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaMedicamentos.rdlc">
+    <EmbeddedResource Include="Reportes\Rdlc\dsInfInformeConsultaMedicamentos.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaTransacciones.rdlc">
+    <EmbeddedResource Include="Reportes\Rdlc\dsInfInformeConsultaTransacciones.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rdlc\dsInfInformeConsultaRemision.rdlc">
+    <EmbeddedResource Include="Reportes\Rdlc\dsInfInformeConsultaRemision.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rdlc\InfReporErroresRips.rdlc">
+    <EmbeddedResource Include="Reportes\Rdlc\InfReporErroresRips.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rdlc\InfReporUserPorRemision.rdlc" />
+    <EmbeddedResource Include="Reportes\Rdlc\InfReporUserPorRemision.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -15202,7 +15202,7 @@ FROM            DARIPSESSQL.dbo.[Datos temporal usuarios RIPS] INNER JOIN
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        [Datos empresas y terceros].CodiMinSalud, Trim([Datos empresas y terceros].NomAdmin + ' ' + [Datos empresas y terceros].ProgrAmin) AS NE, [Datos empresas y terceros].TipoDocu, [Datos empresas y terceros].NumDocu, 
+            this._commandCollection[0].CommandText = @"SELECT        [Datos empresas y terceros].CodiMinSalud, RTrim([Datos empresas y terceros].NomAdmin + ' ' + [Datos empresas y terceros].ProgrAmin) AS NE, [Datos empresas y terceros].TipoDocu, [Datos empresas y terceros].NumDocu, 
                          DARIPSESSQL.dbo.[Datos temporal transacciones RIPS].NumFactur, DARIPSESSQL.dbo.[Datos temporal transacciones RIPS].NumRemi, DARIPSESSQL.dbo.[Datos temporal transacciones RIPS].Copago, 
                          DARIPSESSQL.dbo.[Datos temporal transacciones RIPS].ValorNeto, DARIPSESSQL.dbo.[Datos temporal transacciones RIPS].VaLorDeta, 
                          ABS(DARIPSESSQL.dbo.[Datos temporal transacciones RIPS].ValorNeto + DARIPSESSQL.dbo.[Datos temporal transacciones RIPS].Copago - DARIPSESSQL.dbo.[Datos temporal transacciones RIPS].VaLorDeta) AS DT

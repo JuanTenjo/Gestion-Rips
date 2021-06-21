@@ -29,6 +29,7 @@ namespace Gestion_Rips.Reportes
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmInInformeAuditar));
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.SuspendLayout();
             // 
@@ -47,6 +48,7 @@ namespace Gestion_Rips.Reportes
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.reportViewer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmInInformeAuditar";
             this.Text = "FrmInInformeAuditar";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

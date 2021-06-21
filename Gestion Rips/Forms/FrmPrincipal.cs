@@ -54,6 +54,11 @@ namespace Gestion_Rips.Forms
                     Conexion.username = dr["NomUsar"].ToString();
                     Conexion.password = dr["PassWusa"].ToString();
 
+
+                    //Conexion.servidor = @"HAROLD-PC\PC";
+                    //Conexion.username = "sa";
+                    //Conexion.password = "SIIGHOS33*";
+
                     Conexion.conexionSQL = "Server=" + Conexion.servidor + "; " +
                                            "Initial Catalog=" + Utils.BaseDeDatosPrincipal + ";" +
                                            "User ID= " + Conexion.username + "; " +
@@ -84,7 +89,6 @@ namespace Gestion_Rips.Forms
                     if (Sqldr.HasRows)
                     {
                         Sqldr.Read();
-
                         Utils.codMinSalud = Sqldr["CodiMinSalud"].ToString();
                         Utils.nitEmpresa = Sqldr["NitCCEmpresa"].ToString();
                         Utils.nomEmpresa = Sqldr["NomEmpresa"].ToString();

@@ -12,10 +12,10 @@
               <Width>0.66365cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.247cm</Width>
+              <Width>1.60836cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.44894cm</Width>
+              <Width>1.07136cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.57396cm</Width>
@@ -42,7 +42,7 @@
               <Width>1.06022cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.1837cm</Width>
+              <Width>1.19991cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -538,7 +538,7 @@
         <DataSetName>dsDetalle</DataSetName>
         <Top>0.17639cm</Top>
         <Height>0.6cm</Height>
-        <Width>18.09594cm</Width>
+        <Width>18.09593cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -568,7 +568,7 @@
               <TextRun>
                 <Value>Totales</Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
+                  <FontSize>9pt</FontSize>
                   <FontWeight>SemiBold</FontWeight>
                 </Style>
               </TextRun>
@@ -580,7 +580,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
         <Top>1.12917cm</Top>
-        <Left>15.50047cm</Left>
+        <Left>14.89334cm</Left>
         <Height>0.6cm</Height>
         <Width>1.43963cm</Width>
         <ZIndex>2</ZIndex>
@@ -604,7 +604,7 @@
               <TextRun>
                 <Value>=Sum(Fields!ValorTotal.Value, "dsDetalle")</Value>
                 <Style>
-                  <FontSize>6pt</FontSize>
+                  <FontSize>9pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Format>0.00;(0.00)</Format>
                 </Style>
@@ -617,9 +617,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox56</rd:DefaultName>
         <Top>1.12917cm</Top>
-        <Left>16.9401cm</Left>
+        <Left>16.33297cm</Left>
         <Height>0.6cm</Height>
-        <Width>1.26969cm</Width>
+        <Width>1.87682cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -633,10 +633,10 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>0.78125in</Height>
+    <Height>0.81619in</Height>
     <Style />
   </Body>
-  <Width>7.23476in</Width>
+  <Width>7.26665in</Width>
   <Page>
     <PageHeader>
       <Height>5.29167cm</Height>
@@ -1141,7 +1141,7 @@
           <Top>4.41826cm</Top>
           <Left>1.42403cm</Left>
           <Height>0.6cm</Height>
-          <Width>1.91065cm</Width>
+          <Width>2.08704cm</Width>
           <ZIndex>14</ZIndex>
           <Style>
             <Border>
@@ -1174,9 +1174,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
           <Top>4.41826cm</Top>
-          <Left>3.33468cm</Left>
+          <Left>3.6169cm</Left>
           <Height>0.6cm</Height>
-          <Width>1.44893cm</Width>
+          <Width>1.16671cm</Width>
           <ZIndex>15</ZIndex>
           <Style>
             <Border>
@@ -1559,9 +1559,9 @@
           </Paragraphs>
           <rd:DefaultName>PageNumber</rd:DefaultName>
           <Top>0.17639cm</Top>
-          <Left>16.56353cm</Left>
+          <Left>16.21076cm</Left>
           <Height>0.6cm</Height>
-          <Width>0.41925cm</Width>
+          <Width>0.77202cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1656,7 +1656,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox30</rd:DefaultName>
           <Top>0.17639cm</Top>
-          <Left>15.50047cm</Left>
+          <Left>15.18297cm</Left>
           <Height>0.6cm</Height>
           <Width>1.02779cm</Width>
           <ZIndex>3</ZIndex>

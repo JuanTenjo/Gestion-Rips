@@ -455,7 +455,7 @@
               <TextRun>
                 <Value>=Sum(Fields!ValorDes.Value, "dsDetalle")</Value>
                 <Style>
-                  <FontSize>6pt</FontSize>
+                  <FontSize>9pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Format>0.00;(0.00)</Format>
                 </Style>
@@ -467,7 +467,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox56</rd:DefaultName>
-        <Top>1.12917cm</Top>
+        <Top>1.20799cm</Top>
         <Left>14.54027cm</Left>
         <Height>0.6cm</Height>
         <Width>1.8209cm</Width>
@@ -492,7 +492,7 @@
               <TextRun>
                 <Value>Totales</Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
+                  <FontSize>9pt</FontSize>
                   <FontWeight>SemiBold</FontWeight>
                 </Style>
               </TextRun>
@@ -503,7 +503,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>1.12917cm</Top>
+        <Top>1.20799cm</Top>
         <Left>9.24515cm</Left>
         <Height>0.6cm</Height>
         <Width>1.61805cm</Width>
@@ -528,7 +528,7 @@
               <TextRun>
                 <Value>=Sum(Fields!ValorNeto.Value, "dsDetalle")</Value>
                 <Style>
-                  <FontSize>6pt</FontSize>
+                  <FontSize>9pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Format>0.00;(0.00)</Format>
                 </Style>
@@ -540,7 +540,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox56</rd:DefaultName>
-        <Top>1.12917cm</Top>
+        <Top>1.20799cm</Top>
         <Left>16.36117cm</Left>
         <Height>0.6cm</Height>
         <Width>1.84862cm</Width>
@@ -565,7 +565,7 @@
               <TextRun>
                 <Value>=Sum(Fields!Copago.Value, "dsDetalle")</Value>
                 <Style>
-                  <FontSize>6pt</FontSize>
+                  <FontSize>9pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Format>0.00;(0.00)</Format>
                 </Style>
@@ -577,7 +577,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox56</rd:DefaultName>
-        <Top>1.12917cm</Top>
+        <Top>1.20799cm</Top>
         <Left>10.8632cm</Left>
         <Height>0.6cm</Height>
         <Width>1.60041cm</Width>
@@ -602,7 +602,7 @@
               <TextRun>
                 <Value>=Sum(Fields!ValorComi.Value, "dsDetalle")</Value>
                 <Style>
-                  <FontSize>6pt</FontSize>
+                  <FontSize>9pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Format>0.00;(0.00)</Format>
                 </Style>
@@ -614,7 +614,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox56</rd:DefaultName>
-        <Top>1.12917cm</Top>
+        <Top>1.20799cm</Top>
         <Left>12.46361cm</Left>
         <Height>0.6cm</Height>
         <Width>2.04138cm</Width>
