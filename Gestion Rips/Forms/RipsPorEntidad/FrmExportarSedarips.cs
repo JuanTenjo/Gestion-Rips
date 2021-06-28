@@ -6761,6 +6761,11 @@ namespace Gestion_Rips.Forms.Exportar
                                                     break;
                                             }
 
+                                            if (CodTomo.Length > 8)
+                                            {
+                                                CodTomo = CodTomo.Substring(0, 8);
+                                            }
+
                                             int GBus2 = Convert.ToInt32(GBus);
 
                                             switch (GBus2)
@@ -6866,6 +6871,11 @@ namespace Gestion_Rips.Forms.Exportar
                                                         {
                                                             NumFac = TabFacSele["NumFactura"].ToString();
                                                         }
+
+
+                                               
+                       
+
 
                                                         //  '******************** Lo sigueinte se cambia a partir del 01 Agosto de 2020 HERNANDO *******************
                                                         Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal procedimientos RIPS] " +
@@ -7312,7 +7322,7 @@ namespace Gestion_Rips.Forms.Exportar
 
                             //'Desacivo la factura marcada, para que no se vuelva a seleccionar
 
-                            Utils.SqlDatos = "UPDATE [Datos de las facturas realizadas] SET ExpoRips = 0, CodSele = '" + UsSel + "'  WHERE [NumFactura] = '" + TabFacSele["NumFactura"] + "'";
+                            Utils.SqlDatos = "UPDATE [Datos de las facturas realizadas] SET ExpoRips = 0, CodSele = '" + UsSel + "'  WHERE [NumFactura] = '" + TabFacSele["NumFactura"].ToString() + "'";
 
                             Boolean ActFactur = Conexion.SQLUpdate(Utils.SqlDatos);
 

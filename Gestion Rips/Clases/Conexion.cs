@@ -53,7 +53,7 @@ namespace Gestion_Rips.Clases
                     }
                 }
 
-                command.CommandTimeout = 300;
+                command.CommandTimeout = 0;
 
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -92,7 +92,7 @@ namespace Gestion_Rips.Clases
 
                     sqlConnection.Open();
 
-                    command.CommandTimeout = 300;
+                    command.CommandTimeout = 0;
 
                     command.ExecuteNonQuery();
 
@@ -102,6 +102,7 @@ namespace Gestion_Rips.Clases
             }
             catch (Exception ex)
             {
+               
                 Utils.Titulo01 = "Control de errores de ejecución";
                 Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
                 Utils.Informa += "en la funcion SQLUpdate" + "\r";
@@ -125,6 +126,8 @@ namespace Gestion_Rips.Clases
                             command.Parameters.Add(parameter);
                         }
                     }
+
+                    command.CommandTimeout = 0;
 
                     sqlConnection.Open();
                     command.ExecuteNonQuery();
@@ -162,7 +165,7 @@ namespace Gestion_Rips.Clases
 
                     sqlConnection.Open(); //aqui
 
-                    command.CommandTimeout = 300;
+                    command.CommandTimeout = 0;
 
                     command.ExecuteNonQuery();
                 }

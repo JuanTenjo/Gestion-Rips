@@ -30,9 +30,11 @@ namespace Gestion_Rips.Forms.RipsTodos
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmExportarSedaripsTodos));
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.TxtCodMinSalud = new System.Windows.Forms.TextBox();
@@ -627,25 +629,25 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.CodigoEAPB,
             this.VrFactura,
             this.VrCopago});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridFacturas.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridFacturas.DefaultCellStyle = dataGridViewCellStyle5;
             this.DataGridFacturas.Location = new System.Drawing.Point(4, 251);
             this.DataGridFacturas.MultiSelect = false;
             this.DataGridFacturas.Name = "DataGridFacturas";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridFacturas.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridFacturas.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.DataGridFacturas.RowHeadersVisible = false;
             this.DataGridFacturas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGridFacturas.Size = new System.Drawing.Size(703, 156);
@@ -695,6 +697,10 @@ namespace Gestion_Rips.Forms.RipsTodos
             // 
             // VrFactura
             // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "C0";
+            dataGridViewCellStyle3.NullValue = null;
+            this.VrFactura.DefaultCellStyle = dataGridViewCellStyle3;
             this.VrFactura.FillWeight = 91.26169F;
             this.VrFactura.HeaderText = "Vr. Factura";
             this.VrFactura.Name = "VrFactura";
@@ -702,6 +708,10 @@ namespace Gestion_Rips.Forms.RipsTodos
             // 
             // VrCopago
             // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "C0";
+            dataGridViewCellStyle4.NullValue = null;
+            this.VrCopago.DefaultCellStyle = dataGridViewCellStyle4;
             this.VrCopago.FillWeight = 91.26169F;
             this.VrCopago.HeaderText = "Vr. Copago";
             this.VrCopago.Name = "VrCopago";
@@ -714,7 +724,7 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.TxtCanFacMar.Multiline = true;
             this.TxtCanFacMar.Name = "TxtCanFacMar";
             this.TxtCanFacMar.ReadOnly = true;
-            this.TxtCanFacMar.Size = new System.Drawing.Size(97, 18);
+            this.TxtCanFacMar.Size = new System.Drawing.Size(53, 18);
             this.TxtCanFacMar.TabIndex = 37;
             // 
             // label14
@@ -736,7 +746,7 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.TxtCanFacMos.Multiline = true;
             this.TxtCanFacMos.Name = "TxtCanFacMos";
             this.TxtCanFacMos.ReadOnly = true;
-            this.TxtCanFacMos.Size = new System.Drawing.Size(97, 18);
+            this.TxtCanFacMos.Size = new System.Drawing.Size(53, 18);
             this.TxtCanFacMos.TabIndex = 34;
             // 
             // label26
@@ -965,11 +975,11 @@ namespace Gestion_Rips.Forms.RipsTodos
             // TolFacMar
             // 
             this.TolFacMar.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TolFacMar.Location = new System.Drawing.Point(370, 429);
+            this.TolFacMar.Location = new System.Drawing.Point(323, 429);
             this.TolFacMar.Multiline = true;
             this.TolFacMar.Name = "TolFacMar";
             this.TolFacMar.ReadOnly = true;
-            this.TolFacMar.Size = new System.Drawing.Size(97, 18);
+            this.TolFacMar.Size = new System.Drawing.Size(119, 18);
             this.TolFacMar.TabIndex = 43;
             // 
             // label11
@@ -977,7 +987,7 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.label11.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label11.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(252, 429);
+            this.label11.Location = new System.Drawing.Point(205, 429);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(118, 18);
             this.label11.TabIndex = 42;
@@ -987,11 +997,11 @@ namespace Gestion_Rips.Forms.RipsTodos
             // TxtTolFacMos
             // 
             this.TxtTolFacMos.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtTolFacMos.Location = new System.Drawing.Point(370, 411);
+            this.TxtTolFacMos.Location = new System.Drawing.Point(323, 411);
             this.TxtTolFacMos.Multiline = true;
             this.TxtTolFacMos.Name = "TxtTolFacMos";
             this.TxtTolFacMos.ReadOnly = true;
-            this.TxtTolFacMos.Size = new System.Drawing.Size(97, 18);
+            this.TxtTolFacMos.Size = new System.Drawing.Size(119, 18);
             this.TxtTolFacMos.TabIndex = 40;
             // 
             // label23
@@ -999,7 +1009,7 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.label23.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label23.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.White;
-            this.label23.Location = new System.Drawing.Point(252, 411);
+            this.label23.Location = new System.Drawing.Point(205, 411);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(118, 18);
             this.label23.TabIndex = 41;
@@ -1009,11 +1019,11 @@ namespace Gestion_Rips.Forms.RipsTodos
             // TxtTolCopMar
             // 
             this.TxtTolCopMar.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtTolCopMar.Location = new System.Drawing.Point(610, 428);
+            this.TxtTolCopMar.Location = new System.Drawing.Point(585, 428);
             this.TxtTolCopMar.Multiline = true;
             this.TxtTolCopMar.Name = "TxtTolCopMar";
             this.TxtTolCopMar.ReadOnly = true;
-            this.TxtTolCopMar.Size = new System.Drawing.Size(97, 18);
+            this.TxtTolCopMar.Size = new System.Drawing.Size(119, 18);
             this.TxtTolCopMar.TabIndex = 47;
             // 
             // label24
@@ -1021,9 +1031,9 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.label24.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label24.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.ForeColor = System.Drawing.Color.White;
-            this.label24.Location = new System.Drawing.Point(493, 428);
+            this.label24.Location = new System.Drawing.Point(470, 428);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(117, 18);
+            this.label24.Size = new System.Drawing.Size(115, 18);
             this.label24.TabIndex = 46;
             this.label24.Text = "Copagos Marca:";
             this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1031,11 +1041,11 @@ namespace Gestion_Rips.Forms.RipsTodos
             // TxtTolCopMos
             // 
             this.TxtTolCopMos.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtTolCopMos.Location = new System.Drawing.Point(610, 410);
+            this.TxtTolCopMos.Location = new System.Drawing.Point(585, 410);
             this.TxtTolCopMos.Multiline = true;
             this.TxtTolCopMos.Name = "TxtTolCopMos";
             this.TxtTolCopMos.ReadOnly = true;
-            this.TxtTolCopMos.Size = new System.Drawing.Size(97, 18);
+            this.TxtTolCopMos.Size = new System.Drawing.Size(119, 18);
             this.TxtTolCopMos.TabIndex = 44;
             // 
             // label25
@@ -1043,9 +1053,9 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.label25.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label25.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.Color.White;
-            this.label25.Location = new System.Drawing.Point(492, 410);
+            this.label25.Location = new System.Drawing.Point(470, 410);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(118, 18);
+            this.label25.Size = new System.Drawing.Size(115, 18);
             this.label25.TabIndex = 45;
             this.label25.Text = "Total Copagos:";
             this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

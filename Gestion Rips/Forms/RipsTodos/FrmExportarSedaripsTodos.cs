@@ -3938,10 +3938,10 @@ namespace Gestion_Rips.Forms.RipsTodos
             {
                 Int32 CantidadFact = 0;
                 Int32 CantidadFactMarcadas = 0;
-                double TolFacturado = 0;
-                double TolFacturadoMarca = 0;
-                double TolCopago = 0;
-                double TolCopagoMarca = 0;
+                decimal TolFacturado = 0;
+                decimal TolFacturadoMarca = 0;
+                decimal TolCopago = 0;
+                decimal TolCopagoMarca = 0;
                 TxtCanFacMos.Clear();
                 TxtCanFacMar.Clear();
                 TxtTolFacMos.Clear();
@@ -3956,23 +3956,27 @@ namespace Gestion_Rips.Forms.RipsTodos
                     if (Estado == 1)
                     {
                         CantidadFactMarcadas += 1;
-                        TolFacturadoMarca = TolFacturadoMarca + Convert.ToDouble(Row.Cells["VrFactura"].Value);
-                        TolCopagoMarca = TolCopagoMarca + Convert.ToDouble(Row.Cells["VrCopago"].Value);
+                        TolFacturadoMarca = TolFacturadoMarca + Convert.ToDecimal(Row.Cells["VrFactura"].Value);
+                        TolCopagoMarca = TolCopagoMarca + Convert.ToDecimal(Row.Cells["VrCopago"].Value);
                     }
 
                     CantidadFact += 1;
-                    TolFacturado = TolFacturado + Convert.ToDouble(Row.Cells["VrFactura"].Value);
-                    TolCopago = TolCopago + Convert.ToDouble(Row.Cells["VrCopago"].Value);
+                    TolFacturado = TolFacturado + Convert.ToDecimal(Row.Cells["VrFactura"].Value);
+                    TolCopago = TolCopago + Convert.ToDecimal(Row.Cells["VrCopago"].Value);
 
                 }
 
 
                 TxtCanFacMos.Text = CantidadFact.ToString();
                 TxtCanFacMar.Text = CantidadFactMarcadas.ToString();
-                TxtTolFacMos.Text = TolFacturado.ToString();
-                TolFacMar.Text = TolFacturadoMarca.ToString();
-                TxtTolCopMos.Text = TolCopago.ToString();
-                TxtTolCopMar.Text = TolCopagoMarca.ToString();
+
+                TxtTolFacMos.Text = string.Format("{0:C2}", TolFacturado);
+        
+                TolFacMar.Text = string.Format("{0:C2}", TolFacturadoMarca);
+                TxtTolCopMos.Text = string.Format("{0:C2}", TolCopago);
+                TxtTolCopMar.Text = string.Format("{0:C2}", TolCopagoMarca);
+
+
 
             }
             catch (Exception ex)
@@ -6633,6 +6637,6 @@ namespace Gestion_Rips.Forms.RipsTodos
             }
         }
 
-    
+
     }
 }

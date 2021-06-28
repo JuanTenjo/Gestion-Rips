@@ -1223,32 +1223,35 @@ namespace Gestion_Rips.Forms.Exportar
                     }
                     else
                     {
-                        //Procede a escoger una nueva carpeta donde se guardaran los archivos
-
-                        CEsp = @"\";
-
-                        var fbd = new FolderBrowserDialog();
-                        DialogResult result = fbd.ShowDialog();
-                        if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                        if (Res == DialogResult.No)
                         {
-                            Ruta = fbd.SelectedPath;
+                            //Procede a escoger una nueva carpeta donde se guardaran los archivos
 
-                            if (string.IsNullOrWhiteSpace(Ruta))
-                            {
-                                Ruta = UniRuta;
-                            }
-                            else
+                            CEsp = @"\";
+
+                            var fbd = new FolderBrowserDialog();
+                            DialogResult result = fbd.ShowDialog();
+                            if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                             {
                                 Ruta = fbd.SelectedPath;
+
+                                if (string.IsNullOrWhiteSpace(Ruta))
+                                {
+                                    Ruta = UniRuta;
+                                }
+                                else
+                                {
+                                    Ruta = fbd.SelectedPath;
+                                }
+
                             }
 
-                        }
+                            string UtimoCaracterRuta = Ruta.Substring(Ruta.Length - 1, 1);
 
-                        string UtimoCaracterRuta = Ruta.Substring(Ruta.Length - 1, 1);
-
-                        if (UtimoCaracterRuta != CEsp)
-                        {
-                            Ruta = Ruta + @"\";
+                            if (UtimoCaracterRuta != CEsp)
+                            {
+                                Ruta = Ruta + @"\";
+                            }
                         }
                     }
 
