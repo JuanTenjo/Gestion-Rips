@@ -76,8 +76,6 @@ namespace Gestion_Rips.Clases
             try
             {
 
-                MessageBox.Show(sqlString);
-
                 using (sqlConnection = new SqlConnection(conexionSQL))
                 {
                     SqlCommand command = new SqlCommand(sqlString, sqlConnection);

@@ -49,7 +49,7 @@ namespace Gestion_Rips.Forms.Exportar
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        } //Carga los combobox iniciales
         private void CargarContratos()
         {
             try
@@ -77,7 +77,7 @@ namespace Gestion_Rips.Forms.Exportar
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        } //Carga un combobox de contratos 
         private void cboNameEntidades_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -112,7 +112,7 @@ namespace Gestion_Rips.Forms.Exportar
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        } //Evento que se desencadena cada vez que cambie el cboNameEntidades
 
         #endregion
 
@@ -138,7 +138,7 @@ namespace Gestion_Rips.Forms.Exportar
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        } //Carga las fechas desde la fecha actual y un mes antes. Para los filtros
         private string NomDiagnostico(string CoDx)
         {
             try
@@ -182,7 +182,7 @@ namespace Gestion_Rips.Forms.Exportar
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return "-1";
             }
-        }
+        }  //Valida que el codigo del diagnostico si exista
         private int ValidarProcedi(string c, double T, string CodDg)
         {
             try
@@ -458,7 +458,7 @@ namespace Gestion_Rips.Forms.Exportar
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return -1;
             }
-        }
+        } //Valida Procedimientos
         private int ValidarReNan(string c, double T, string CodDg)
         {
             try
@@ -661,7 +661,7 @@ namespace Gestion_Rips.Forms.Exportar
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return -1;
             }
-        }
+        } 
         private int ValidarOtros(string c, double T, string CodDg)
         {
             try
@@ -2376,7 +2376,7 @@ namespace Gestion_Rips.Forms.Exportar
                 return false;
             }
 
-        }
+        } //Borra todos los temporales 
         private void CargarDatosUser()
         {
             try
@@ -2392,7 +2392,7 @@ namespace Gestion_Rips.Forms.Exportar
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        } //Carga datos de los usuairos
         private void DatosDeLaEmpresa()
         {
             try
@@ -2412,7 +2412,7 @@ namespace Gestion_Rips.Forms.Exportar
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        } //Carga los datos de la empresa
         private void CalcularTotalFactura()
         {
             try
@@ -2439,7 +2439,7 @@ namespace Gestion_Rips.Forms.Exportar
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        } //Calcula el total de facturas
         private void btnValidar_Click(object sender, EventArgs e)
         {
             try
@@ -2919,7 +2919,7 @@ namespace Gestion_Rips.Forms.Exportar
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        } //Boton que desencadena una serie de validaciones
         private void btnExportar_Click(object sender, EventArgs e)
         {
             try
@@ -4577,7 +4577,7 @@ namespace Gestion_Rips.Forms.Exportar
                 if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
             }
 
-        }
+        } 
         private void btnReportes_Click(object sender, EventArgs e)
         {
             try
@@ -4701,7 +4701,7 @@ namespace Gestion_Rips.Forms.Exportar
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        } //Evento del dATAGRID DESTINO QUE COGE EL NUMERO DE LA FACTURA CADA QUE VEZ QUE SE CAMBIE DE CELDA Y LA COLOCA EN EL TEXBOX CORRESPONDINTE
 
         #endregion
 
@@ -7330,6 +7330,14 @@ namespace Gestion_Rips.Forms.Exportar
                             Utils.SqlDatos = "UPDATE [Datos de las facturas realizadas] SET ExpoRips = 0, CodSele = '" + UsSel + "'  WHERE [NumFactura] = '" + TabFacSele["NumFactura"].ToString() + "'";
 
                             Boolean ActFactur = Conexion.SQLUpdate(Utils.SqlDatos);
+
+                            if (!ActFactur)
+                            {
+                                Utils.Informa = "Ha ocurrido un error ";
+                                Utils.Informa += "al desactivar la factura como ExpoRips 0";
+                                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
 
                             BarraSeleccionar.Increment(1);
 

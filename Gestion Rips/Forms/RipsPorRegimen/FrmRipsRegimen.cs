@@ -27,6 +27,43 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
 
         #region Texbox
 
+        private void txtBusquedaFactura_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if ((int)e.KeyChar == (int)Keys.Enter)
+                {
+                    string Filtro = txtBusquedaFactura.Text;
+
+                    foreach (DataGridViewRow Row in DataGridFacturas.Rows)
+                    {
+                        string NumFactura = Convert.ToString(Row.Cells["NumFactura"].Value);
+
+                        if (string.IsNullOrWhiteSpace(Filtro) == false)
+                        {
+                            if (Filtro == NumFactura)
+                            {
+                                Row.Cells["Estado"].Value = true;
+                                Utils.Titulo01 = "Control de seleccion";
+                                Utils.Informa = "Se checkout la factura " + NumFactura + " correctamente " + "\r";
+                                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                break;
+                            }
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "al buscar y checkout la factura" + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }  //Busca la factura y la marca
+
         private void txtCardinal_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -5578,7 +5615,6 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                     Utils.Informa = "Lo siento pero usted aún no ha ejecutado el " + "\r";
                     Utils.Informa += "proceso mostrar facturas, para generar RIPS." + "\r";
                     MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtFacturaDestino.Select();
                     return;
                 }
 
