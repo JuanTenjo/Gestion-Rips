@@ -4089,7 +4089,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
 
                     MJ = "";
 
-                    if(TolConsul > 0)
+                    if (TolConsul > 0)
                     {
                         //Copia las consultas
                         FunCopCon = CopiaRipsConsul(NRemEnvi, Coenti01, TolConsul);
@@ -4150,6 +4150,10 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                     Utils.Informa += MJ + "\r";
                     MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                }
+                else
+                {
+                    return;
                 }// Fin msgox si
             }
             catch (Exception ex)

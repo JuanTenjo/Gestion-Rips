@@ -432,15 +432,15 @@ namespace Gestion_Rips.Forms.RipsTodos
             // 
             // btnMostrar
             // 
-            this.btnMostrar.BackColor = System.Drawing.Color.White;
+            this.btnMostrar.BackColor = System.Drawing.Color.Gainsboro;
             this.btnMostrar.FlatAppearance.BorderSize = 0;
             this.btnMostrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSeaGreen;
             this.btnMostrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
             this.btnMostrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMostrar.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMostrar.Location = new System.Drawing.Point(200, 156);
+            this.btnMostrar.Location = new System.Drawing.Point(200, 167);
             this.btnMostrar.Name = "btnMostrar";
-            this.btnMostrar.Size = new System.Drawing.Size(93, 58);
+            this.btnMostrar.Size = new System.Drawing.Size(93, 36);
             this.btnMostrar.TabIndex = 23;
             this.btnMostrar.Text = "Mostrar";
             this.btnMostrar.UseVisualStyleBackColor = false;

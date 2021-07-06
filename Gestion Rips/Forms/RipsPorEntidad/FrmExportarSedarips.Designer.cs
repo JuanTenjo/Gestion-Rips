@@ -148,9 +148,9 @@ namespace Gestion_Rips.Forms.Exportar
             // txtTipoDocu
             // 
             this.txtTipoDocu.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTipoDocu.Location = new System.Drawing.Point(547, 26);
+            this.txtTipoDocu.Location = new System.Drawing.Point(552, 26);
             this.txtTipoDocu.Name = "txtTipoDocu";
-            this.txtTipoDocu.Size = new System.Drawing.Size(40, 22);
+            this.txtTipoDocu.Size = new System.Drawing.Size(35, 22);
             this.txtTipoDocu.TabIndex = 8;
             // 
             // txtRips
@@ -390,7 +390,7 @@ namespace Gestion_Rips.Forms.Exportar
             // 
             // btnMostrar
             // 
-            this.btnMostrar.BackColor = System.Drawing.Color.White;
+            this.btnMostrar.BackColor = System.Drawing.Color.Gainsboro;
             this.btnMostrar.FlatAppearance.BorderSize = 0;
             this.btnMostrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSeaGreen;
             this.btnMostrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
@@ -406,7 +406,7 @@ namespace Gestion_Rips.Forms.Exportar
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.BackColor = System.Drawing.Color.White;
+            this.btnLimpiar.BackColor = System.Drawing.Color.Gainsboro;
             this.btnLimpiar.FlatAppearance.BorderSize = 0;
             this.btnLimpiar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSeaGreen;
             this.btnLimpiar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;

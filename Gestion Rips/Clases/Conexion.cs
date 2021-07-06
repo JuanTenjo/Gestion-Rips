@@ -53,7 +53,7 @@ namespace Gestion_Rips.Clases
                     }
                 }
 
-                command.CommandTimeout = 0;
+                command.CommandTimeout = 500;
 
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -75,6 +75,9 @@ namespace Gestion_Rips.Clases
         {
             try
             {
+
+                MessageBox.Show(sqlString);
+
                 using (sqlConnection = new SqlConnection(conexionSQL))
                 {
                     SqlCommand command = new SqlCommand(sqlString, sqlConnection);
@@ -92,7 +95,7 @@ namespace Gestion_Rips.Clases
 
                     sqlConnection.Open();
 
-                    command.CommandTimeout = 0;
+                    command.CommandTimeout = 500;
 
                     command.ExecuteNonQuery();
 
@@ -108,6 +111,7 @@ namespace Gestion_Rips.Clases
                 Utils.Informa += "en la funcion SQLUpdate" + "\r";
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(sqlString);
                 return false;
             }
         }
@@ -127,7 +131,7 @@ namespace Gestion_Rips.Clases
                         }
                     }
 
-                    command.CommandTimeout = 0;
+                    command.CommandTimeout = 500;
 
                     sqlConnection.Open();
                     command.ExecuteNonQuery();
@@ -165,7 +169,7 @@ namespace Gestion_Rips.Clases
 
                     sqlConnection.Open(); //aqui
 
-                    command.CommandTimeout = 0;
+                    command.CommandTimeout = 500;
 
                     command.ExecuteNonQuery();
                 }

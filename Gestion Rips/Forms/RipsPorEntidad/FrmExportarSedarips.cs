@@ -3484,7 +3484,7 @@ namespace Gestion_Rips.Forms.Exportar
                                        "'" + CR + "'," +
                                        "CONVERT(DATETIME,'" + Convert.ToDateTime(Date).ToString("yyyy-MM-dd") + "',102)," +
                                        "'" + lblNombreUser.Text + "'," +
-                                       "CONVERT(DATETIME,'" + Convert.ToDateTime(Para01).ToString("yyyy-MM-dd")  + "',102)," +
+                                       "CONVERT(DATETIME,'" + Convert.ToDateTime(Para01).ToString("yyyy-MM-dd") + "',102)," +
                                        "CONVERT(DATETIME,'" + Convert.ToDateTime(Para02).ToString("yyyy-MM-dd") + "',102)," +
                                        "'" + TolFac + "'," +
                                        "'" + txtTeleIPS.Text + "'," +
@@ -3499,7 +3499,7 @@ namespace Gestion_Rips.Forms.Exportar
 
                                     Boolean RegistraRemision = Conexion.SqlInsert(Utils.SqlDatos);
 
-                           
+
 
                                     if (RegistraRemision == false)
                                     {
@@ -3516,6 +3516,11 @@ namespace Gestion_Rips.Forms.Exportar
 
                             if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
 
+                        }
+
+                        else {
+                            //Dijo que no crearia una nueva remision
+                            Siga = 0;
                         } //FInal pregunta
 
                     }
@@ -4550,7 +4555,7 @@ namespace Gestion_Rips.Forms.Exportar
                         MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
-                    } // sIGA = 1
+                    } // Siga = 1
 
                     //'***************   Borre todos los datos temporales que crearron la bse de datos **********************
 
