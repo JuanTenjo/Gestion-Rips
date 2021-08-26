@@ -1133,6 +1133,9 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
             }
         }
 
-
+        private void BtnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
     }
 }

@@ -2400,7 +2400,92 @@ namespace Gestion_Rips.Forms.Exportar
 
         }
 
+        private void BrnCerrarForm_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
 
+        private void BtnModifica_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Utils.NumRemi = null;
+
+                //Revise si seleccionó una entidad
+                if (DataGridRemi.SelectedRows.Count > 0)
+                {
+                  
+
+                    Utils.Titulo01 = "Control para modificar remisiones";
+
+                    if (string.IsNullOrWhiteSpace(txtCodigIPS.Text) || string.IsNullOrWhiteSpace(txtCodigIPS.Text))
+                    {
+                        Utils.Informa = "Lo siento pero la IPS no tiene un " + "\r";
+                        Utils.Informa += "código de SGSSS, el cual permita " + "\r";
+                        Utils.Informa += "crear la modificar de envío." + "\r";
+                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (cboNomAdmin.SelectedIndex == -1)
+                    {
+                        Utils.Informa = "Lo siento pero la IPS no tiene un " + "\r";
+                        Utils.Informa += "seleccionado el nombre de la" + "\r";
+                        Utils.Informa += "cadministradora de planes." + "\r";
+                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    string NR = DataGridRemi.SelectedCells[0].Value.ToString();
+
+                    Utils.Informa = "¿Usted desea MODIFICAR la remisión " + NR + "\r";
+                    Utils.Informa += "registrada a la administradora de planes " + cboNomAdmin.Text + "\r";
+
+ 
+                    var res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if(res == DialogResult.Yes)
+                    {
+
+                  
+
+
+                        Utils.NumRemi = NR;
+                        Utils.FecEnvio = DataGridRemi.SelectedCells[3].Value.ToString(); ;
+                        Utils.ResponEnvia = DataGridRemi.SelectedCells[4].Value.ToString(); ;
+                        Utils.TeleRespon = DataGridRemi.SelectedCells[5].Value.ToString(); ;
+                        Utils.Cantifact = DataGridRemi.SelectedCells[8].Value.ToString(); ;
+                        Utils.FecInicial = DataGridRemi.SelectedCells[6].Value.ToString(); ;
+                        Utils.FecFinal = DataGridRemi.SelectedCells[7].Value.ToString(); ;
+
+                        Gestion_Rips.Forms.ArchivoMaestro.FrmCrearModificarMaestro frmCrearModificarMaestro = new Gestion_Rips.Forms.ArchivoMaestro.FrmCrearModificarMaestro();
+                        frmCrearModificarMaestro.ShowDialog();
+
+                        CargarDatosAdminPlanes();
+
+                    }
+
+
+                }
+                else
+                {
+                    Utils.Informa = "Lo siento  pero  usted no ha " + "\r";
+                    Utils.Informa += "seleccionado la remision a modificar" + "\r";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error " + "\r";
+                Utils.Informa += "al modificar remisión" + "\r";
+                Utils.Informa += "Módulo gestión de RIPS" + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 
 }

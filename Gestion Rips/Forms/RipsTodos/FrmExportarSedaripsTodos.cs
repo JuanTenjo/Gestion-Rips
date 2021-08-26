@@ -122,6 +122,141 @@ namespace Gestion_Rips.Forms.RipsTodos
 
         #region Funciones
 
+        private void BuscarFactura(string NumFact)
+        {
+            try
+            {
+                //DataGridView.Rows.Insert(0, txtNombre.Text, txtDireccion.Text, txtTelefono.Text);
+
+                Utils.Titulo01 = "Control de seleccionar facturas";
+                string Coenti01 = null, NDO = null, CardiTer = null, UsSel = null, Para02 = null, Para03 = null;
+
+
+                Coenti01 = cboNameEntidades.SelectedValue.ToString();
+                CardiTer = cboNameEntidades.SelectedValue.ToString();
+
+
+                if (string.IsNullOrWhiteSpace(Coenti01) || string.IsNullOrEmpty(Coenti01))
+                {
+                    Utils.Informa = "Lo siento pero usted aún no ha seleccionado" + "\r";
+                    Utils.Informa += "el nombre de la entidad a mostrar los datos." + "\r";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(lblCodigoUser.Text) || string.IsNullOrEmpty(lblCodigoUser.Text))
+                {
+                    Utils.Informa = "Lo siento pero el código del usuario" + "\r";
+                    Utils.Informa += "no es valido para seleccionar datos." + "\r";
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                UsSel = lblCodigoUser.Text;
+                Para02 = DateInicial.Value.ToString("yyyy-MM-dd");
+                Para03 = DateFinal.Value.ToString("yyyy-MM-dd");
+
+                NDO = txtBusquedaFactura.Text;
+
+
+                Utils.Informa = "¿Usted desea agregar la factura número " + NDO + "," + "\r";
+                Utils.Informa += " al listado destino para RIP?" + "\r";
+
+                var Respuesta = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (Respuesta == DialogResult.Yes)
+                {
+
+
+                    string SqlFacturas = "SELECT 1 as Estado,  [Datos de las facturas realizadas].NumFactura, Format([Datos de las facturas realizadas].FechaFac, 'dd-MM-yyyy') as FechaFac, ";
+                    SqlFacturas = SqlFacturas + "[Datos empresas y terceros].NomAdmin, [Datos empresas y terceros].CodiMinSalud, ";
+                    SqlFacturas = SqlFacturas + "[Datos de las facturas realizadas].ValorFac, [Datos de las facturas realizadas].Copago, [Datos sedes de instalacion].TipSede ";
+
+
+                    SqlFacturas = SqlFacturas + "FROM [ACDATOXPSQL].[dbo].[Datos de las facturas realizadas] INNER JOIN [ACDATOXPSQL].[dbo].[Datos empresas y terceros] ON ";
+                    SqlFacturas = SqlFacturas + "[Datos de las facturas realizadas].Cartercero = [Datos empresas y terceros].CarAdmin INNER JOIN ";
+                    SqlFacturas = SqlFacturas + "[ACDATOXPSQL].[dbo].[Datos cuentas de consumos] ON [Datos de las facturas realizadas].NumCuenFac = ";
+                    SqlFacturas = SqlFacturas + "[Datos cuentas de consumos].CuenNum LEFT OUTER JOIN BDADMINSIG.dbo.[Datos sedes de instalacion] ON ";
+                    SqlFacturas = SqlFacturas + "[Datos de las facturas realizadas].PrefiFac = BDADMINSIG.dbo.[Datos sedes de instalacion].PrefiFac ";
+
+                    SqlFacturas = SqlFacturas + "WHERE ([Datos de las facturas realizadas].AnuladaFac = 'False') AND ([Datos cuentas de consumos].DefiCuenta <> N'0') AND [Datos de las facturas realizadas].NumFactura = '" + NumFact + "'  ";
+
+                    SqlDataReader sqlDataReader = Conexion.SQLDataReader(SqlFacturas);
+
+                    if (sqlDataReader.HasRows)
+                    {
+                        sqlDataReader.Read();
+
+                        switch (MarSedes)
+                        {
+                            case 1:
+
+                                if (sqlDataReader["TipSede"].ToString() == TipoSede)
+                                {
+
+
+
+                                    DataGridFacturas.Rows.Insert(0, sqlDataReader["Estado"], sqlDataReader["NumFactura"].ToString(), sqlDataReader["FechaFac"].ToString(), sqlDataReader["NomAdmin"].ToString(), sqlDataReader["CodiMinSalud"].ToString(), sqlDataReader["ValorFac"], sqlDataReader["Copago"]);
+
+                                    Utils.Informa = "La factura " + NumFact + " se agrego correctamente" + "\r";
+                                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                    DataGridFacturas.CurrentCell = DataGridFacturas.Rows[0].Cells[0]; //mover a la foco 0 de la fila a la fila 0
+                                    DataGridFacturas.Rows[0].Selected = true; //Seleccionamos la fila que encontramos
+
+                                }
+                                else
+                                {
+                                    Utils.Informa = "Lo siento pero el número de factura " + "\r";
+                                    Utils.Informa += "no se pertenece a la sede seleccionada " + "\r";
+                                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                                }
+
+                                break;
+                            case 2:
+
+                                DataGridFacturas.Rows.Insert(0, sqlDataReader["Estado"], sqlDataReader["NumFactura"].ToString(), sqlDataReader["FechaFac"].ToString(), sqlDataReader["NomAdmin"].ToString(), sqlDataReader["CodiMinSalud"].ToString(), sqlDataReader["ValorFac"], sqlDataReader["Copago"]);
+
+                                Utils.Informa = "La factura " + NumFact + " se agrego correctamente" + "\r";
+                                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                DataGridFacturas.CurrentCell = DataGridFacturas.Rows[0].Cells[0]; //mover a la foco 0 de la fila a la fila 0
+                                DataGridFacturas.Rows[0].Selected = true; //Seleccionamos la fila que encontramos
+
+                                break;
+                            default:
+
+                                break;
+                        }
+
+                    }
+                    else
+                    {
+                        Utils.Informa = "Lo siento pero el número de factura " + "\r";
+                        Utils.Informa += "no se encuentra en el este sistema o esta anulada " + "\r";
+                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+                    if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
+                    CalcularTotalFactura();
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la función BuscarFactura" + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        } //cAMBIA cONSULTA
+
+
         private int CopiaRipsProce(string NR, string CI, double TolC)
         {
             try
@@ -4082,6 +4217,102 @@ namespace Gestion_Rips.Forms.RipsTodos
         #endregion
 
         #region Texbox y button
+
+        private void BtnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
+
+        private void txtBusquedaFactura_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if ((int)e.KeyChar == (int)Keys.Enter)
+                {
+
+                    if (string.IsNullOrWhiteSpace(txtBusquedaFactura.Text) == false)
+                    {
+
+                        if (DataGridFacturas.CurrentCell.RowIndex == -1)
+                        {
+                            return;
+                        }
+
+                        string Filtro = txtBusquedaFactura.Text;
+                        int RowSelect;
+                        bool contadorEncontro = false;
+
+                        foreach (DataGridViewRow Row in DataGridFacturas.Rows)
+                        {
+                            string NumFactura = Convert.ToString(Row.Cells["NumCuenFac"].Value);
+
+                            if (string.IsNullOrWhiteSpace(Filtro) == false)
+                            {
+                                if (Filtro == NumFactura)
+                                {
+
+                                    contadorEncontro = true;
+
+                                    RowSelect = DataGridFacturas.CurrentRow.Index;
+
+                                    Boolean estado = Convert.ToBoolean(Row.Cells["Estado"].Value);
+
+                                    if (estado == false) //Valida si esta chekout, si no lo esta lo hacemos y si esta pues lo quitamos, simple.
+                                    {
+                                        //Hecho por JuanTenjo
+                                        Row.Cells["Estado"].Value = true;
+                                        Utils.Titulo01 = "Control de seleccion";
+                                        Utils.Informa = "Se checkout la factura " + NumFactura + " correctamente " + "\r";
+                                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        DataGridFacturas.FirstDisplayedScrollingRowIndex = RowSelect; //Le dice que muestre a partir de la fila actual
+                                        DataGridFacturas.Refresh(); //Refresca la grilla
+                                        DataGridFacturas.CurrentCell = DataGridFacturas.Rows[RowSelect].Cells[0]; //mover a la foco 0 de la fila a la fila 0
+                                        DataGridFacturas.Rows[RowSelect].Selected = true; //Seleccionamos la fila que encontramos
+                                    }
+                                    else
+                                    {
+                                        Row.Cells["Estado"].Value = false;
+                                        Utils.Titulo01 = "Control de seleccion";
+                                        Utils.Informa = "Se quito el checkout a la factura " + NumFactura + " " + "\r";
+                                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        DataGridFacturas.FirstDisplayedScrollingRowIndex = RowSelect; //Le dice que muestre a partir de la fila actual
+                                        DataGridFacturas.Refresh(); //Refresca la grilla
+                                        DataGridFacturas.CurrentCell = DataGridFacturas.Rows[RowSelect].Cells[0]; //mover a la foco 0 de la fila a la fila 0
+                                        DataGridFacturas.Rows[RowSelect].Selected = true; //Seleccionamos la fila que encontramos
+                                    }
+
+
+                                    break; //Se hace para que cuando lo encutre no recorra mas filas.
+
+                                }
+                            }
+                        }//Fin Foreach
+
+
+                        if (!contadorEncontro)
+                        {
+                            BuscarFactura(txtBusquedaFactura.Text);
+                        }
+
+                    }
+                    else
+                    {
+                        Utils.Informa = "No ha digitado ninguna factura" + "\r";
+                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "al buscar y checkout la factura" + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        } //NO SE NI QUE HACE
         private void btnValidar_Click(object sender, EventArgs e)
         {
             try
@@ -5062,7 +5293,7 @@ namespace Gestion_Rips.Forms.RipsTodos
             try
             {
 
-                string Coenti02 = null, TituColum = null, GrupDx = null, SqlFacturas = null, TDE = null, NCC = null, SqlEmTer = null, Para01 = null, Para07 = null, FecIni = null, FecFin = null, TipSede = null, PreSedBus = null;
+                string Coenti02 = null, TituColum = null, GrupDx = null, SqlFacturas = null, TDE = null, NCC = null, SqlEmTer = null, Para01 = null, Para07 = null, FecIni = null, FecFin = null, PreSedBus = null;
 
                 DialogResult res;
 
@@ -5141,8 +5372,9 @@ namespace Gestion_Rips.Forms.RipsTodos
                         {
                             dataSet2.Read();
 
-                            TipSede = dataSet2["TipSede"].ToString();
+                            TipoSede = dataSet2["TipSede"].ToString();
                             PreSedBus = dataSet2["PrefiFac"].ToString();
+
                         }
                         else
                         {
@@ -5174,7 +5406,7 @@ namespace Gestion_Rips.Forms.RipsTodos
 
                             SqlFacturas = SqlFacturas + "WHERE ([Datos de las facturas realizadas].FechaFac >= CONVERT(DATETIME, '" + FecIni + "', 102)) AND ";
                             SqlFacturas = SqlFacturas + "([Datos de las facturas realizadas].FechaFac <= CONVERT(DATETIME, '" + FecFin + "', 102)) AND ";
-                            SqlFacturas = SqlFacturas + "(ISNULL(BDADMINSIG.dbo.[Datos sedes de instalacion].TipSede, " + TipSede + ") = N'" + TipSede + "') AND ";
+                            SqlFacturas = SqlFacturas + "(ISNULL(BDADMINSIG.dbo.[Datos sedes de instalacion].TipSede, " + TipoSede + ") = N'" + TipoSede + "') AND ";
                             SqlFacturas = SqlFacturas + "([Datos de las facturas realizadas].AnuladaFac = 'False') AND ([Datos cuentas de consumos].DefiCuenta <> N'0') ";
                             SqlFacturas = SqlFacturas + "ORDER BY [Datos de las facturas realizadas].PrefiFac, [Datos de las facturas realizadas].FechaFac, ";
                             SqlFacturas = SqlFacturas + "[Datos de las facturas realizadas].NumFactura";
@@ -6611,12 +6843,38 @@ namespace Gestion_Rips.Forms.RipsTodos
         #endregion
 
         #region DataGrid
+
+
+        private void DataGridFacturas_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DataGridFacturas.SelectedCells.Count != 0)
+                {
+                    string CodArt = DataGridFacturas.SelectedCells[1].Value.ToString();
+                    txtBusquedaFactura.Text = CodArt;
+                }
+                else
+                {
+                    txtBusquedaFactura.Text = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "después de actualizar la lista origen " + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void DataGridFacturas_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             CalcularTotalFactura();
         }
         #endregion
 
+        string TipoSede = null;
         private void FrmExportarSedaripsTodos_Load(object sender, EventArgs e)
         {
             try
@@ -6636,6 +6894,10 @@ namespace Gestion_Rips.Forms.RipsTodos
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+
+
 
 
     }

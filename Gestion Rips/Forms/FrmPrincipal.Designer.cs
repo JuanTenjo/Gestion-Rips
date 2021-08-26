@@ -58,7 +58,7 @@ namespace Gestion_Rips.Forms
             this.exportarToolStripMenuItem2});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(632, 24);
+            this.menuStrip.Size = new System.Drawing.Size(655, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -74,7 +74,7 @@ namespace Gestion_Rips.Forms
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "&Salir";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolsStripMenuItem_Click);
             // 
@@ -91,21 +91,21 @@ namespace Gestion_Rips.Forms
             // exportarToolStripMenuItem1
             // 
             this.exportarToolStripMenuItem1.Name = "exportarToolStripMenuItem1";
-            this.exportarToolStripMenuItem1.Size = new System.Drawing.Size(167, 22);
+            this.exportarToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.exportarToolStripMenuItem1.Text = "Rips por Entidad";
             this.exportarToolStripMenuItem1.Click += new System.EventHandler(this.exportarToolStripMenuItem1_Click);
             // 
             // ripsPorRegimenToolStripMenuItem
             // 
             this.ripsPorRegimenToolStripMenuItem.Name = "ripsPorRegimenToolStripMenuItem";
-            this.ripsPorRegimenToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.ripsPorRegimenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ripsPorRegimenToolStripMenuItem.Text = "Rips por Régimen";
             this.ripsPorRegimenToolStripMenuItem.Click += new System.EventHandler(this.ripsPorRegimenToolStripMenuItem_Click);
             // 
             // ripsTodosToolStripMenuItem
             // 
             this.ripsTodosToolStripMenuItem.Name = "ripsTodosToolStripMenuItem";
-            this.ripsTodosToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.ripsTodosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ripsTodosToolStripMenuItem.Text = "Rips Todos";
             this.ripsTodosToolStripMenuItem.Click += new System.EventHandler(this.ripsTodosToolStripMenuItem_Click);
             // 
@@ -136,11 +136,11 @@ namespace Gestion_Rips.Forms
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblFecha,
-            this.lblCodUsuario,
-            this.lblNomUsuario});
-            this.statusStrip.Location = new System.Drawing.Point(0, 431);
+            this.lblNomUsuario,
+            this.lblCodUsuario});
+            this.statusStrip.Location = new System.Drawing.Point(0, 434);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(632, 22);
+            this.statusStrip.Size = new System.Drawing.Size(655, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
@@ -168,9 +168,10 @@ namespace Gestion_Rips.Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(632, 453);
+            this.ClientSize = new System.Drawing.Size(655, 456);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip);
+            this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;

@@ -23,7 +23,24 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
         {
             try
             {
+
                 CargaUsuario();
+
+                if (string.IsNullOrWhiteSpace(Utils.NumRemi) == false)
+                {
+
+                    txtRemiG.ReadOnly = true;
+
+                    txtRemiG.Text = Utils.NumRemi;
+                    DtFecEnvio.Value = Convert.ToDateTime(Utils.FecEnvio);
+                    txtResponEnvia.Text = Utils.ResponEnvia;
+                    txtTeleRespon.Text = Utils.TeleRespon;
+                    txtCantifact.Text = Utils.Cantifact;
+                    DpFecInicial.Value = Convert.ToDateTime(Utils.FecInicial);
+                    DpFecFinal.Value = Convert.ToDateTime(Utils.FecFinal);
+
+
+                }
 
 
             }
@@ -394,5 +411,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             }
         }
 
+        private void BtnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
     }
 }

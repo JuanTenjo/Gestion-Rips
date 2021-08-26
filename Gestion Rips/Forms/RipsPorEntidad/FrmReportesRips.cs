@@ -1129,7 +1129,10 @@ namespace Gestion_Rips.Forms.Exportar
 
         }
 
-
+        private void BtnBorrar_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
 
     }
 }

@@ -50,6 +50,14 @@ namespace Gestion_Rips.Clases
         public static string CodigAdmin { get; set; }
         public static string NumRemi { get; set; }
 
+        public static string FecEnvio { get; set; }
+        public static string ResponEnvia { get; set; }
+        public static string TeleRespon { get; set; }
+        public static string Cantifact { get; set; }
+        public static string FecInicial { get; set; }
+        public static string FecFinal { get; set; }
+
+
         //Para abrir la conexion principal de la base de datos 
 
         public static string BaseDeDatosPrincipal { get; set; }

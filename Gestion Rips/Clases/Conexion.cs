@@ -53,11 +53,13 @@ namespace Gestion_Rips.Clases
                     }
                 }
 
-                command.CommandTimeout = 500;
+                command.CommandTimeout = 300;
 
                 SqlDataReader reader = command.ExecuteReader();
 
                 return reader;
+
+          
 
             }
             catch (Exception ex)
@@ -93,7 +95,7 @@ namespace Gestion_Rips.Clases
 
                     sqlConnection.Open();
 
-                    command.CommandTimeout = 500;
+                    command.CommandTimeout = 300;
 
                     command.ExecuteNonQuery();
 
@@ -112,6 +114,10 @@ namespace Gestion_Rips.Clases
                 MessageBox.Show(sqlString);
                 return false;
             }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+            }
         }
         public static bool SQLDelete(string sqlString, List<SqlParameter> parameters = null)
         {
@@ -129,7 +135,7 @@ namespace Gestion_Rips.Clases
                         }
                     }
 
-                    command.CommandTimeout = 500;
+                    command.CommandTimeout = 300;
 
                     sqlConnection.Open();
                     command.ExecuteNonQuery();
@@ -145,6 +151,10 @@ namespace Gestion_Rips.Clases
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
             }
         }
 
@@ -167,7 +177,7 @@ namespace Gestion_Rips.Clases
 
                     sqlConnection.Open(); //aqui
 
-                    command.CommandTimeout = 500;
+                    command.CommandTimeout = 300;
 
                     command.ExecuteNonQuery();
                 }
@@ -182,6 +192,10 @@ namespace Gestion_Rips.Clases
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
             }
         }
 
@@ -210,6 +224,10 @@ namespace Gestion_Rips.Clases
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return 0;
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
             }
         }
 
@@ -247,6 +265,10 @@ namespace Gestion_Rips.Clases
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
             }
         }
 
@@ -289,6 +311,10 @@ namespace Gestion_Rips.Clases
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
+            }
+            finally
+            {
+                if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
             }
         }
 

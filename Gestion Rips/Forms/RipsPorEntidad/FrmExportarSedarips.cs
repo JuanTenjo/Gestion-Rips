@@ -2309,29 +2309,7 @@ namespace Gestion_Rips.Forms.Exportar
                 return "0";
             }
         }
-        private void DataGridFacturas_CurrentCellChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DataGridFacturas.SelectedCells.Count != 0)
-                {
-                    string CodArt = DataGridFacturas.SelectedCells[0].Value.ToString();
-                    txtFacturaOrigen.Text = CodArt;
-                }
-                else
-                {
-                    txtFacturaOrigen.Text = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                Utils.Titulo01 = "Control de errores de ejecución";
-                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
-                Utils.Informa += "después de actualizar la lista origen " + "\r";
-                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
-                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+
         public static Boolean BorrarTempoRips(string UsSel, string ConMinRips)
         {
             try
@@ -4895,15 +4873,15 @@ namespace Gestion_Rips.Forms.Exportar
                                         {
                                             Utils.Informa = "Lo siento pero la factura No. " + NDO + "\r";
                                             Utils.Informa += "fue anulada." + "\r";
-                                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                             return;
                                         }
                                     }
                                     else
                                     {
                                         Utils.Informa = "Lo siento pero el número de factura " + NDO + "\r";
-                                        Utils.Informa += "no pertenece a la entidad" + cboNameEntidades.Text + "\r";
-                                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        Utils.Informa += "no pertenece a la entidad " + cboNameEntidades.Text + "\r";
+                                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                         return;
                                     }
                                 }
@@ -4989,7 +4967,7 @@ namespace Gestion_Rips.Forms.Exportar
                                 {
                                     Utils.Informa = "Lo siento pero la cuenta de cobro " + NDO + "\r";
                                     Utils.Informa += "no tiene facturas relacionadas en este sistema." + "\r";
-                                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Question);
+                                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 }
                                 TabFacturas.Close();
                             }
@@ -5103,7 +5081,7 @@ namespace Gestion_Rips.Forms.Exportar
                                 {
                                     Utils.Informa = "Lo siento pero la factura " + NDO + "\r";
                                     Utils.Informa += " no se encontro en el sistema" + "\r";
-                                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Question);
+                                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 }
                                 reader.Close();
                             }
@@ -6685,7 +6663,7 @@ namespace Gestion_Rips.Forms.Exportar
                                                         if (string.IsNullOrWhiteSpace(RecienNacidos["FecMuerNaci"].ToString()))
                                                         {
                                                             data += ")";
-                                                        }
+                                                        }   
                                                         else
                                                         {
                                                             data += ",'" + Convert.ToDateTime(RecienNacidos["FecMuerNaci"]).ToString("yyyy-MM-dd") + "'," +
@@ -7327,7 +7305,7 @@ namespace Gestion_Rips.Forms.Exportar
 
                             //'Desacivo la factura marcada, para que no se vuelva a seleccionar
 
-                            Utils.SqlDatos = "UPDATE [Datos de las facturas realizadas] SET ExpoRips = 0, CodSele = '" + UsSel + "'  WHERE [NumFactura] = '" + TabFacSele["NumFactura"].ToString() + "'";
+                            Utils.SqlDatos = "UPDATE [ACDATOXPSQL].[dbo].[Datos de las facturas realizadas] SET ExpoRips = 0, CodSele = '" + UsSel + "'   WHERE [NumFactura] = '" + TabFacSele["NumFactura"].ToString() + "'";
 
                             Boolean ActFactur = Conexion.SQLUpdate(Utils.SqlDatos);
 
@@ -7407,6 +7385,33 @@ namespace Gestion_Rips.Forms.Exportar
             }
         }
 
+        private void BtnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
 
+        private void DataGridFacturas_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DataGridFacturas.SelectedCells.Count != 0)
+                {
+                    string CodArt = DataGridFacturas.SelectedCells[0].Value.ToString();
+                    txtFacturaOrigen.Text = CodArt;
+                }
+                else
+                {
+                    txtFacturaOrigen.Text = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "después de actualizar la lista origen " + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

@@ -64,11 +64,11 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.label5 = new System.Windows.Forms.Label();
             this.btnMostrar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cboSedeVivi = new System.Windows.Forms.ComboBox();
             this.RbTodasSedes = new System.Windows.Forms.RadioButton();
             this.RbPorSedes = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
-            this.cboSedeVivi = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.CboGrupEspRegis = new System.Windows.Forms.ComboBox();
             this.lblListaDx = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -89,6 +89,8 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.label26 = new System.Windows.Forms.Label();
             this.BarraSeleccionar = new System.Windows.Forms.ProgressBar();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.BtnCerrar = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.BtnDesmarcarTodas = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
@@ -102,10 +104,10 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.btnValidar = new System.Windows.Forms.Button();
             this.btnSeleccionar = new System.Windows.Forms.Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.lblNivelPermitido = new System.Windows.Forms.Label();
             this.lblNombreUser = new System.Windows.Forms.Label();
             this.lblCodigoUser = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
+            this.lblNivelPermitido = new System.Windows.Forms.Label();
             this.TolFacMar = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.TxtTolFacMos = new System.Windows.Forms.TextBox();
@@ -114,6 +116,9 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.label24 = new System.Windows.Forms.Label();
             this.TxtTolCopMos = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.txtBusquedaFactura = new System.Windows.Forms.TextBox();
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -122,6 +127,8 @@ namespace Gestion_Rips.Forms.RipsTodos
             ((System.ComponentModel.ISupportInitialize)(this.DataGridFacturas)).BeginInit();
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox4
@@ -139,22 +146,21 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.groupBox4.Controls.Add(this.label20);
             this.groupBox4.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.groupBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox4.Location = new System.Drawing.Point(1, 5);
+            this.groupBox4.Location = new System.Drawing.Point(4, 2);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(706, 62);
+            this.groupBox4.Size = new System.Drawing.Size(754, 65);
             this.groupBox4.TabIndex = 19;
             this.groupBox4.TabStop = false;
             // 
             // TxtCodMinSalud
             // 
-            this.TxtCodMinSalud.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCodMinSalud.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtCodMinSalud.ForeColor = System.Drawing.Color.Blue;
-            this.TxtCodMinSalud.Location = new System.Drawing.Point(477, 34);
+            this.TxtCodMinSalud.Location = new System.Drawing.Point(529, 37);
             this.TxtCodMinSalud.Name = "TxtCodMinSalud";
-            this.TxtCodMinSalud.Size = new System.Drawing.Size(111, 22);
+            this.TxtCodMinSalud.Size = new System.Drawing.Size(119, 22);
             this.TxtCodMinSalud.TabIndex = 20;
-            this.TxtCodMinSalud.Text = "Independiente";
             this.TxtCodMinSalud.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label10
@@ -162,9 +168,9 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.label10.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label10.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(3, 8);
+            this.label10.Location = new System.Drawing.Point(9, 14);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(143, 23);
+            this.label10.Size = new System.Drawing.Size(156, 23);
             this.label10.TabIndex = 6;
             this.label10.Text = "Documento No. IPS";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -173,9 +179,9 @@ namespace Gestion_Rips.Forms.RipsTodos
             // 
             this.txtTeleIPS.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTeleIPS.ForeColor = System.Drawing.Color.Black;
-            this.txtTeleIPS.Location = new System.Drawing.Point(588, 34);
+            this.txtTeleIPS.Location = new System.Drawing.Point(648, 37);
             this.txtTeleIPS.Name = "txtTeleIPS";
-            this.txtTeleIPS.Size = new System.Drawing.Size(118, 22);
+            this.txtTeleIPS.Size = new System.Drawing.Size(99, 22);
             this.txtTeleIPS.TabIndex = 12;
             this.txtTeleIPS.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -183,9 +189,9 @@ namespace Gestion_Rips.Forms.RipsTodos
             // 
             this.txtNombreIps.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombreIps.ForeColor = System.Drawing.Color.Black;
-            this.txtNombreIps.Location = new System.Drawing.Point(145, 34);
+            this.txtNombreIps.Location = new System.Drawing.Point(165, 37);
             this.txtNombreIps.Name = "txtNombreIps";
-            this.txtNombreIps.Size = new System.Drawing.Size(332, 22);
+            this.txtNombreIps.Size = new System.Drawing.Size(364, 22);
             this.txtNombreIps.TabIndex = 9;
             // 
             // label12
@@ -193,11 +199,11 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.label12.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label12.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(145, 8);
+            this.label12.Location = new System.Drawing.Point(165, 14);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(332, 23);
+            this.label12.Size = new System.Drawing.Size(364, 23);
             this.label12.TabIndex = 4;
-            this.label12.Text = "Nombre IPS";
+            this.label12.Text = "Nombre de la IPS";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label9
@@ -205,18 +211,18 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.label9.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label9.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(588, 8);
+            this.label9.Location = new System.Drawing.Point(648, 14);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(118, 23);
+            this.label9.Size = new System.Drawing.Size(99, 23);
             this.label9.TabIndex = 7;
-            this.label9.Text = "Telefono:";
+            this.label9.Text = "Telefono";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtTipoDocuIps
             // 
             this.txtTipoDocuIps.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTipoDocuIps.ForeColor = System.Drawing.Color.Black;
-            this.txtTipoDocuIps.Location = new System.Drawing.Point(3, 34);
+            this.txtTipoDocuIps.Location = new System.Drawing.Point(9, 37);
             this.txtTipoDocuIps.Name = "txtTipoDocuIps";
             this.txtTipoDocuIps.Size = new System.Drawing.Size(35, 22);
             this.txtTipoDocuIps.TabIndex = 10;
@@ -226,9 +232,9 @@ namespace Gestion_Rips.Forms.RipsTodos
             // 
             this.txtDocuIps.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDocuIps.ForeColor = System.Drawing.Color.Black;
-            this.txtDocuIps.Location = new System.Drawing.Point(37, 34);
+            this.txtDocuIps.Location = new System.Drawing.Point(44, 37);
             this.txtDocuIps.Name = "txtDocuIps";
-            this.txtDocuIps.Size = new System.Drawing.Size(109, 22);
+            this.txtDocuIps.Size = new System.Drawing.Size(121, 22);
             this.txtDocuIps.TabIndex = 11;
             this.txtDocuIps.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -237,11 +243,11 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.label20.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label20.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(477, 8);
+            this.label20.Location = new System.Drawing.Point(529, 14);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(111, 23);
+            this.label20.Size = new System.Drawing.Size(119, 23);
             this.label20.TabIndex = 10;
-            this.label20.Text = "Codigo IPS";
+            this.label20.Text = "Código IPS";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox1
@@ -259,9 +265,9 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.groupBox1.Controls.Add(this.lblCardinal);
             this.groupBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox1.Location = new System.Drawing.Point(4, 70);
+            this.groupBox1.Location = new System.Drawing.Point(4, 67);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(703, 51);
+            this.groupBox1.Size = new System.Drawing.Size(754, 66);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             // 
@@ -272,43 +278,47 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.cboNameEntidades.DropDownWidth = 460;
             this.cboNameEntidades.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboNameEntidades.FormattingEnabled = true;
-            this.cboNameEntidades.Location = new System.Drawing.Point(63, 26);
+            this.cboNameEntidades.Location = new System.Drawing.Point(72, 37);
             this.cboNameEntidades.Name = "cboNameEntidades";
-            this.cboNameEntidades.Size = new System.Drawing.Size(371, 22);
+            this.cboNameEntidades.Size = new System.Drawing.Size(422, 22);
             this.cboNameEntidades.TabIndex = 1;
             this.cboNameEntidades.SelectedIndexChanged += new System.EventHandler(this.cboNameEntidades_SelectedIndexChanged);
             // 
             // txtTipoDocu
             // 
             this.txtTipoDocu.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTipoDocu.Location = new System.Drawing.Point(434, 26);
+            this.txtTipoDocu.Location = new System.Drawing.Point(494, 37);
             this.txtTipoDocu.Name = "txtTipoDocu";
-            this.txtTipoDocu.Size = new System.Drawing.Size(40, 22);
+            this.txtTipoDocu.Size = new System.Drawing.Size(35, 22);
             this.txtTipoDocu.TabIndex = 8;
+            this.txtTipoDocu.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtRips
             // 
             this.txtRips.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRips.Location = new System.Drawing.Point(595, 26);
+            this.txtRips.Location = new System.Drawing.Point(650, 37);
             this.txtRips.Name = "txtRips";
-            this.txtRips.Size = new System.Drawing.Size(108, 22);
+            this.txtRips.Size = new System.Drawing.Size(97, 22);
             this.txtRips.TabIndex = 7;
+            this.txtRips.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtDocumento
             // 
             this.txtDocumento.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDocumento.Location = new System.Drawing.Point(474, 26);
+            this.txtDocumento.Location = new System.Drawing.Point(529, 37);
             this.txtDocumento.Name = "txtDocumento";
             this.txtDocumento.Size = new System.Drawing.Size(121, 22);
             this.txtDocumento.TabIndex = 6;
+            this.txtDocumento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtCardinal
             // 
             this.txtCardinal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCardinal.Location = new System.Drawing.Point(0, 26);
+            this.txtCardinal.Location = new System.Drawing.Point(9, 37);
             this.txtCardinal.Name = "txtCardinal";
             this.txtCardinal.Size = new System.Drawing.Size(63, 22);
             this.txtCardinal.TabIndex = 1;
+            this.txtCardinal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtCardinal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCardinal_KeyPress);
             // 
             // label3
@@ -316,11 +326,11 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.label3.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(595, 0);
+            this.label3.Location = new System.Drawing.Point(650, 14);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(108, 23);
+            this.label3.Size = new System.Drawing.Size(97, 23);
             this.label3.TabIndex = 4;
-            this.label3.Text = "C. Rips";
+            this.label3.Text = "C. RIPS";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
@@ -328,11 +338,11 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.label2.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(434, 0);
+            this.label2.Location = new System.Drawing.Point(494, 14);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(161, 23);
+            this.label2.Size = new System.Drawing.Size(156, 23);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Identificacion";
+            this.label2.Text = "Identificación";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
@@ -340,9 +350,9 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.label1.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(63, 0);
+            this.label1.Location = new System.Drawing.Point(73, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(371, 23);
+            this.label1.Size = new System.Drawing.Size(421, 23);
             this.label1.TabIndex = 2;
             this.label1.Text = "Nombre de la entidad y/o convenio";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -352,9 +362,9 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.lblCardinal.BackColor = System.Drawing.Color.LightSeaGreen;
             this.lblCardinal.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCardinal.ForeColor = System.Drawing.Color.White;
-            this.lblCardinal.Location = new System.Drawing.Point(0, 0);
+            this.lblCardinal.Location = new System.Drawing.Point(9, 14);
             this.lblCardinal.Name = "lblCardinal";
-            this.lblCardinal.Size = new System.Drawing.Size(63, 23);
+            this.lblCardinal.Size = new System.Drawing.Size(64, 23);
             this.lblCardinal.TabIndex = 1;
             this.lblCardinal.Text = "Cardinal";
             this.lblCardinal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -370,27 +380,31 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox3.Location = new System.Drawing.Point(4, 124);
+            this.groupBox3.Location = new System.Drawing.Point(4, 133);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(190, 117);
+            this.groupBox3.Size = new System.Drawing.Size(225, 137);
             this.groupBox3.TabIndex = 22;
             this.groupBox3.TabStop = false;
             // 
             // DateFinal
             // 
-            this.DateFinal.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DateFinal.Location = new System.Drawing.Point(92, 78);
+            this.DateFinal.CustomFormat = "dd-MMM-yyyy";
+            this.DateFinal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DateFinal.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DateFinal.Location = new System.Drawing.Point(98, 78);
             this.DateFinal.Name = "DateFinal";
-            this.DateFinal.Size = new System.Drawing.Size(98, 20);
+            this.DateFinal.Size = new System.Drawing.Size(115, 22);
             this.DateFinal.TabIndex = 9;
             this.DateFinal.Value = new System.DateTime(2020, 9, 30, 8, 32, 0, 0);
             // 
             // DateInicial
             // 
-            this.DateInicial.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DateInicial.Location = new System.Drawing.Point(92, 40);
+            this.DateInicial.CustomFormat = "dd-MMM-yyyy";
+            this.DateInicial.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DateInicial.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DateInicial.Location = new System.Drawing.Point(98, 56);
             this.DateInicial.Name = "DateInicial";
-            this.DateInicial.Size = new System.Drawing.Size(98, 20);
+            this.DateInicial.Size = new System.Drawing.Size(115, 22);
             this.DateInicial.TabIndex = 8;
             this.DateInicial.Value = new System.DateTime(2020, 9, 1, 8, 32, 0, 0);
             // 
@@ -399,9 +413,9 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.label7.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(0, 76);
+            this.label7.Location = new System.Drawing.Point(4, 78);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(92, 23);
+            this.label7.Size = new System.Drawing.Size(94, 22);
             this.label7.TabIndex = 6;
             this.label7.Text = "Fecha Final:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -411,34 +425,35 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.label6.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(0, 37);
+            this.label6.Location = new System.Drawing.Point(4, 56);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(92, 23);
+            this.label6.Size = new System.Drawing.Size(94, 22);
             this.label6.TabIndex = 5;
             this.label6.Text = "Fecha Inicial:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label5
             // 
-            this.label5.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(0, 0);
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.White;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
+                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.LightSeaGreen;
+            this.label5.Location = new System.Drawing.Point(24, 18);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(190, 23);
+            this.label5.Size = new System.Drawing.Size(169, 16);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Digite rango de fechas";
+            this.label5.Text = "Digite el rango de fechas";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnMostrar
             // 
-            this.btnMostrar.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnMostrar.BackColor = System.Drawing.SystemColors.Control;
             this.btnMostrar.FlatAppearance.BorderSize = 0;
             this.btnMostrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSeaGreen;
             this.btnMostrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
-            this.btnMostrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMostrar.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMostrar.Location = new System.Drawing.Point(200, 167);
+            this.btnMostrar.Location = new System.Drawing.Point(20, 46);
             this.btnMostrar.Name = "btnMostrar";
             this.btnMostrar.Size = new System.Drawing.Size(93, 36);
             this.btnMostrar.TabIndex = 23;
@@ -450,23 +465,50 @@ namespace Gestion_Rips.Forms.RipsTodos
             // 
             this.groupBox2.BackColor = System.Drawing.Color.White;
             this.groupBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.cboSedeVivi);
             this.groupBox2.Controls.Add(this.RbTodasSedes);
             this.groupBox2.Controls.Add(this.RbPorSedes);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox2.Location = new System.Drawing.Point(299, 124);
+            this.groupBox2.Location = new System.Drawing.Point(377, 133);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(209, 63);
+            this.groupBox2.Size = new System.Drawing.Size(187, 137);
             this.groupBox2.TabIndex = 24;
             this.groupBox2.TabStop = false;
+            // 
+            // label8
+            // 
+            this.label8.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(8, 82);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(173, 23);
+            this.label8.TabIndex = 10;
+            this.label8.Text = "Sede";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cboSedeVivi
+            // 
+            this.cboSedeVivi.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cboSedeVivi.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboSedeVivi.DropDownWidth = 100;
+            this.cboSedeVivi.Enabled = false;
+            this.cboSedeVivi.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboSedeVivi.FormattingEnabled = true;
+            this.cboSedeVivi.Location = new System.Drawing.Point(8, 105);
+            this.cboSedeVivi.Name = "cboSedeVivi";
+            this.cboSedeVivi.Size = new System.Drawing.Size(173, 22);
+            this.cboSedeVivi.TabIndex = 9;
             // 
             // RbTodasSedes
             // 
             this.RbTodasSedes.AutoSize = true;
             this.RbTodasSedes.Checked = true;
             this.RbTodasSedes.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RbTodasSedes.Location = new System.Drawing.Point(6, 43);
+            this.RbTodasSedes.Location = new System.Drawing.Point(9, 61);
             this.RbTodasSedes.Name = "RbTodasSedes";
             this.RbTodasSedes.Size = new System.Drawing.Size(110, 18);
             this.RbTodasSedes.TabIndex = 11;
@@ -479,7 +521,7 @@ namespace Gestion_Rips.Forms.RipsTodos
             // 
             this.RbPorSedes.AutoSize = true;
             this.RbPorSedes.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RbPorSedes.Location = new System.Drawing.Point(6, 25);
+            this.RbPorSedes.Location = new System.Drawing.Point(9, 37);
             this.RbPorSedes.Name = "RbPorSedes";
             this.RbPorSedes.Size = new System.Drawing.Size(78, 18);
             this.RbPorSedes.TabIndex = 10;
@@ -489,40 +531,17 @@ namespace Gestion_Rips.Forms.RipsTodos
             // 
             // label4
             // 
-            this.label4.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(0, 0);
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.White;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
+                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.LightSeaGreen;
+            this.label4.Location = new System.Drawing.Point(28, 17);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(209, 23);
+            this.label4.Size = new System.Drawing.Size(115, 16);
             this.label4.TabIndex = 4;
             this.label4.Text = "Sedes a mostrar";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // cboSedeVivi
-            // 
-            this.cboSedeVivi.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.cboSedeVivi.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboSedeVivi.DropDownWidth = 100;
-            this.cboSedeVivi.Enabled = false;
-            this.cboSedeVivi.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboSedeVivi.FormattingEnabled = true;
-            this.cboSedeVivi.Location = new System.Drawing.Point(299, 219);
-            this.cboSedeVivi.Name = "cboSedeVivi";
-            this.cboSedeVivi.Size = new System.Drawing.Size(209, 22);
-            this.cboSedeVivi.TabIndex = 9;
-            // 
-            // label8
-            // 
-            this.label8.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.label8.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(299, 194);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(209, 23);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Sede";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // CboGrupEspRegis
             // 
@@ -530,11 +549,11 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.CboGrupEspRegis.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CboGrupEspRegis.DropDownWidth = 100;
             this.CboGrupEspRegis.Enabled = false;
-            this.CboGrupEspRegis.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CboGrupEspRegis.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboGrupEspRegis.FormattingEnabled = true;
-            this.CboGrupEspRegis.Location = new System.Drawing.Point(517, 219);
+            this.CboGrupEspRegis.Location = new System.Drawing.Point(8, 105);
             this.CboGrupEspRegis.Name = "CboGrupEspRegis";
-            this.CboGrupEspRegis.Size = new System.Drawing.Size(190, 22);
+            this.CboGrupEspRegis.Size = new System.Drawing.Size(173, 24);
             this.CboGrupEspRegis.TabIndex = 12;
             // 
             // lblListaDx
@@ -542,9 +561,9 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.lblListaDx.BackColor = System.Drawing.Color.LightSeaGreen;
             this.lblListaDx.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblListaDx.ForeColor = System.Drawing.Color.White;
-            this.lblListaDx.Location = new System.Drawing.Point(517, 194);
+            this.lblListaDx.Location = new System.Drawing.Point(8, 82);
             this.lblListaDx.Name = "lblListaDx";
-            this.lblListaDx.Size = new System.Drawing.Size(190, 23);
+            this.lblListaDx.Size = new System.Drawing.Size(173, 23);
             this.lblListaDx.TabIndex = 11;
             this.lblListaDx.Text = "Lista DX";
             this.lblListaDx.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -555,12 +574,14 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.groupBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.groupBox6.Controls.Add(this.RbPorLista);
             this.groupBox6.Controls.Add(this.RbTodosRegistros);
+            this.groupBox6.Controls.Add(this.CboGrupEspRegis);
             this.groupBox6.Controls.Add(this.label13);
+            this.groupBox6.Controls.Add(this.lblListaDx);
             this.groupBox6.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.groupBox6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox6.Location = new System.Drawing.Point(514, 124);
+            this.groupBox6.Location = new System.Drawing.Point(570, 133);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(193, 68);
+            this.groupBox6.Size = new System.Drawing.Size(188, 137);
             this.groupBox6.TabIndex = 25;
             this.groupBox6.TabStop = false;
             // 
@@ -568,7 +589,7 @@ namespace Gestion_Rips.Forms.RipsTodos
             // 
             this.RbPorLista.AutoSize = true;
             this.RbPorLista.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RbPorLista.Location = new System.Drawing.Point(6, 26);
+            this.RbPorLista.Location = new System.Drawing.Point(9, 37);
             this.RbPorLista.Name = "RbPorLista";
             this.RbPorLista.Size = new System.Drawing.Size(85, 18);
             this.RbPorLista.TabIndex = 11;
@@ -581,7 +602,7 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.RbTodosRegistros.AutoSize = true;
             this.RbTodosRegistros.Checked = true;
             this.RbTodosRegistros.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RbTodosRegistros.Location = new System.Drawing.Point(6, 47);
+            this.RbTodosRegistros.Location = new System.Drawing.Point(9, 61);
             this.RbTodosRegistros.Name = "RbTodosRegistros";
             this.RbTodosRegistros.Size = new System.Drawing.Size(59, 18);
             this.RbTodosRegistros.TabIndex = 10;
@@ -592,12 +613,14 @@ namespace Gestion_Rips.Forms.RipsTodos
             // 
             // label13
             // 
-            this.label13.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.label13.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(0, 0);
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.White;
+            this.label13.Font = new System.Drawing.Font("Tahoma", 9.75F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
+                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.LightSeaGreen;
+            this.label13.Location = new System.Drawing.Point(28, 18);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(193, 23);
+            this.label13.Size = new System.Drawing.Size(118, 16);
             this.label13.TabIndex = 4;
             this.label13.Text = "Limitar Registros";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -637,7 +660,7 @@ namespace Gestion_Rips.Forms.RipsTodos
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DataGridFacturas.DefaultCellStyle = dataGridViewCellStyle5;
-            this.DataGridFacturas.Location = new System.Drawing.Point(4, 251);
+            this.DataGridFacturas.Location = new System.Drawing.Point(4, 301);
             this.DataGridFacturas.MultiSelect = false;
             this.DataGridFacturas.Name = "DataGridFacturas";
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -650,9 +673,10 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.DataGridFacturas.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.DataGridFacturas.RowHeadersVisible = false;
             this.DataGridFacturas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridFacturas.Size = new System.Drawing.Size(703, 156);
+            this.DataGridFacturas.Size = new System.Drawing.Size(754, 132);
             this.DataGridFacturas.TabIndex = 28;
             this.DataGridFacturas.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridFacturas_CellValueChanged);
+            this.DataGridFacturas.SelectionChanged += new System.EventHandler(this.DataGridFacturas_SelectionChanged);
             // 
             // Estado
             // 
@@ -719,58 +743,62 @@ namespace Gestion_Rips.Forms.RipsTodos
             // 
             // TxtCanFacMar
             // 
-            this.TxtCanFacMar.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCanFacMar.Location = new System.Drawing.Point(122, 428);
+            this.TxtCanFacMar.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCanFacMar.Location = new System.Drawing.Point(170, 37);
             this.TxtCanFacMar.Multiline = true;
             this.TxtCanFacMar.Name = "TxtCanFacMar";
             this.TxtCanFacMar.ReadOnly = true;
-            this.TxtCanFacMar.Size = new System.Drawing.Size(53, 18);
+            this.TxtCanFacMar.Size = new System.Drawing.Size(64, 23);
             this.TxtCanFacMar.TabIndex = 37;
+            this.TxtCanFacMar.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label14
             // 
             this.label14.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label14.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(5, 428);
+            this.label14.Location = new System.Drawing.Point(52, 37);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(117, 18);
+            this.label14.Size = new System.Drawing.Size(118, 23);
             this.label14.TabIndex = 36;
-            this.label14.Text = "Marcadas";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label14.Text = "Marcadas:";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // TxtCanFacMos
             // 
-            this.TxtCanFacMos.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCanFacMos.Location = new System.Drawing.Point(122, 410);
+            this.TxtCanFacMos.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCanFacMos.Location = new System.Drawing.Point(170, 14);
             this.TxtCanFacMos.Multiline = true;
             this.TxtCanFacMos.Name = "TxtCanFacMos";
             this.TxtCanFacMos.ReadOnly = true;
-            this.TxtCanFacMos.Size = new System.Drawing.Size(53, 18);
+            this.TxtCanFacMos.Size = new System.Drawing.Size(64, 23);
             this.TxtCanFacMos.TabIndex = 34;
+            this.TxtCanFacMos.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label26
             // 
             this.label26.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label26.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.ForeColor = System.Drawing.Color.White;
-            this.label26.Location = new System.Drawing.Point(4, 410);
+            this.label26.Location = new System.Drawing.Point(52, 14);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(118, 18);
+            this.label26.Size = new System.Drawing.Size(118, 23);
             this.label26.TabIndex = 35;
             this.label26.Text = "Cantidad Facturas:";
-            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // BarraSeleccionar
             // 
-            this.BarraSeleccionar.Location = new System.Drawing.Point(7, 455);
+            this.BarraSeleccionar.Location = new System.Drawing.Point(4, 501);
             this.BarraSeleccionar.Maximum = 1000000;
             this.BarraSeleccionar.Name = "BarraSeleccionar";
-            this.BarraSeleccionar.Size = new System.Drawing.Size(697, 23);
+            this.BarraSeleccionar.Size = new System.Drawing.Size(754, 23);
             this.BarraSeleccionar.TabIndex = 38;
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.label27);
+            this.groupBox7.Controls.Add(this.BtnCerrar);
             this.groupBox7.Controls.Add(this.label19);
             this.groupBox7.Controls.Add(this.BtnDesmarcarTodas);
             this.groupBox7.Controls.Add(this.label17);
@@ -783,30 +811,52 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.groupBox7.Controls.Add(this.btnReportes);
             this.groupBox7.Controls.Add(this.btnValidar);
             this.groupBox7.Controls.Add(this.btnSeleccionar);
-            this.groupBox7.Location = new System.Drawing.Point(7, 484);
+            this.groupBox7.Location = new System.Drawing.Point(4, 526);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(417, 67);
+            this.groupBox7.Size = new System.Drawing.Size(461, 96);
             this.groupBox7.TabIndex = 39;
             this.groupBox7.TabStop = false;
+            // 
+            // label27
+            // 
+            this.label27.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(386, 14);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(60, 13);
+            this.label27.TabIndex = 13;
+            this.label27.Text = "Salir";
+            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BtnCerrar
+            // 
+            this.BtnCerrar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnCerrar.BackgroundImage")));
+            this.BtnCerrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.BtnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCerrar.Location = new System.Drawing.Point(389, 31);
+            this.BtnCerrar.Name = "BtnCerrar";
+            this.BtnCerrar.Size = new System.Drawing.Size(57, 57);
+            this.BtnCerrar.TabIndex = 12;
+            this.BtnCerrar.UseVisualStyleBackColor = true;
+            this.BtnCerrar.Click += new System.EventHandler(this.BtnCerrar_Click);
             // 
             // label19
             // 
             this.label19.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(329, 9);
+            this.label19.Location = new System.Drawing.Point(323, 14);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(75, 13);
+            this.label19.Size = new System.Drawing.Size(69, 13);
             this.label19.TabIndex = 11;
             this.label19.Text = "Desmarcar";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BtnDesmarcarTodas
             // 
-            this.BtnDesmarcarTodas.BackgroundImage = global::Gestion_Rips.Properties.Resources.icons8_casilla_de_verificación_desactivada_25;
+            this.BtnDesmarcarTodas.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnDesmarcarTodas.BackgroundImage")));
             this.BtnDesmarcarTodas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.BtnDesmarcarTodas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnDesmarcarTodas.Location = new System.Drawing.Point(344, 25);
+            this.BtnDesmarcarTodas.Location = new System.Drawing.Point(326, 31);
             this.BtnDesmarcarTodas.Name = "BtnDesmarcarTodas";
-            this.BtnDesmarcarTodas.Size = new System.Drawing.Size(43, 35);
+            this.BtnDesmarcarTodas.Size = new System.Drawing.Size(57, 57);
             this.BtnDesmarcarTodas.TabIndex = 10;
             this.BtnDesmarcarTodas.UseVisualStyleBackColor = true;
             this.BtnDesmarcarTodas.Click += new System.EventHandler(this.BtnDesmarcarTodas_Click);
@@ -814,21 +864,21 @@ namespace Gestion_Rips.Forms.RipsTodos
             // label17
             // 
             this.label17.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(264, 9);
+            this.label17.Location = new System.Drawing.Point(262, 14);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(75, 13);
+            this.label17.Size = new System.Drawing.Size(60, 13);
             this.label17.TabIndex = 9;
             this.label17.Text = "Marcar";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BtnMarcarTodas
             // 
-            this.BtnMarcarTodas.BackgroundImage = global::Gestion_Rips.Properties.Resources.icons8_casilla_de_verificación_marcada_25;
+            this.BtnMarcarTodas.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnMarcarTodas.BackgroundImage")));
             this.BtnMarcarTodas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.BtnMarcarTodas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnMarcarTodas.Location = new System.Drawing.Point(280, 25);
+            this.BtnMarcarTodas.Location = new System.Drawing.Point(263, 31);
             this.BtnMarcarTodas.Name = "BtnMarcarTodas";
-            this.BtnMarcarTodas.Size = new System.Drawing.Size(43, 35);
+            this.BtnMarcarTodas.Size = new System.Drawing.Size(57, 57);
             this.BtnMarcarTodas.TabIndex = 8;
             this.BtnMarcarTodas.UseVisualStyleBackColor = true;
             this.BtnMarcarTodas.Click += new System.EventHandler(this.BtnMarcarTodas_Click);
@@ -836,9 +886,9 @@ namespace Gestion_Rips.Forms.RipsTodos
             // label15
             // 
             this.label15.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(201, 9);
+            this.label15.Location = new System.Drawing.Point(198, 14);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(75, 13);
+            this.label15.Size = new System.Drawing.Size(60, 13);
             this.label15.TabIndex = 7;
             this.label15.Text = "Exportar";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -846,9 +896,9 @@ namespace Gestion_Rips.Forms.RipsTodos
             // label16
             // 
             this.label16.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(137, 9);
+            this.label16.Location = new System.Drawing.Point(135, 14);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(75, 13);
+            this.label16.Size = new System.Drawing.Size(60, 13);
             this.label16.TabIndex = 6;
             this.label16.Text = "Reportes";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -856,9 +906,9 @@ namespace Gestion_Rips.Forms.RipsTodos
             // label18
             // 
             this.label18.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(73, 9);
+            this.label18.Location = new System.Drawing.Point(70, 14);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(75, 13);
+            this.label18.Size = new System.Drawing.Size(60, 13);
             this.label18.TabIndex = 5;
             this.label18.Text = "Validar";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -866,229 +916,261 @@ namespace Gestion_Rips.Forms.RipsTodos
             // label21
             // 
             this.label21.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(6, 9);
+            this.label21.Location = new System.Drawing.Point(7, 14);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(75, 13);
+            this.label21.Size = new System.Drawing.Size(60, 13);
             this.label21.TabIndex = 4;
-            this.label21.Text = "Seleccionar";
+            this.label21.Text = "Selección";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnExportar
             // 
-            this.btnExportar.BackgroundImage = global::Gestion_Rips.Properties.Resources.icons8_export_30;
+            this.btnExportar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnExportar.BackgroundImage")));
             this.btnExportar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnExportar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExportar.Location = new System.Drawing.Point(217, 25);
+            this.btnExportar.Location = new System.Drawing.Point(200, 31);
             this.btnExportar.Name = "btnExportar";
-            this.btnExportar.Size = new System.Drawing.Size(43, 35);
+            this.btnExportar.Size = new System.Drawing.Size(57, 57);
             this.btnExportar.TabIndex = 3;
             this.btnExportar.UseVisualStyleBackColor = true;
             this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
             // btnReportes
             // 
-            this.btnReportes.BackgroundImage = global::Gestion_Rips.Properties.Resources.icons8_business_report_30;
+            this.btnReportes.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReportes.BackgroundImage")));
             this.btnReportes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportes.Location = new System.Drawing.Point(152, 25);
+            this.btnReportes.Location = new System.Drawing.Point(136, 31);
             this.btnReportes.Name = "btnReportes";
-            this.btnReportes.Size = new System.Drawing.Size(43, 35);
+            this.btnReportes.Size = new System.Drawing.Size(57, 57);
             this.btnReportes.TabIndex = 2;
             this.btnReportes.UseVisualStyleBackColor = true;
             this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
             // 
             // btnValidar
             // 
-            this.btnValidar.BackgroundImage = global::Gestion_Rips.Properties.Resources.icons8_validation_30;
+            this.btnValidar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnValidar.BackgroundImage")));
             this.btnValidar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnValidar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnValidar.Location = new System.Drawing.Point(88, 25);
+            this.btnValidar.Location = new System.Drawing.Point(72, 31);
             this.btnValidar.Name = "btnValidar";
-            this.btnValidar.Size = new System.Drawing.Size(43, 35);
+            this.btnValidar.Size = new System.Drawing.Size(57, 57);
             this.btnValidar.TabIndex = 1;
             this.btnValidar.UseVisualStyleBackColor = true;
             this.btnValidar.Click += new System.EventHandler(this.btnValidar_Click);
             // 
             // btnSeleccionar
             // 
-            this.btnSeleccionar.BackgroundImage = global::Gestion_Rips.Properties.Resources.icons8_select_name_30;
+            this.btnSeleccionar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSeleccionar.BackgroundImage")));
             this.btnSeleccionar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnSeleccionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSeleccionar.Location = new System.Drawing.Point(22, 25);
+            this.btnSeleccionar.Location = new System.Drawing.Point(8, 31);
             this.btnSeleccionar.Name = "btnSeleccionar";
-            this.btnSeleccionar.Size = new System.Drawing.Size(43, 35);
+            this.btnSeleccionar.Size = new System.Drawing.Size(57, 57);
             this.btnSeleccionar.TabIndex = 0;
             this.btnSeleccionar.UseVisualStyleBackColor = true;
             this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
             // 
             // groupBox8
             // 
-            this.groupBox8.Controls.Add(this.lblNivelPermitido);
             this.groupBox8.Controls.Add(this.lblNombreUser);
             this.groupBox8.Controls.Add(this.lblCodigoUser);
             this.groupBox8.Controls.Add(this.label22);
-            this.groupBox8.Location = new System.Drawing.Point(440, 484);
+            this.groupBox8.Controls.Add(this.lblNivelPermitido);
+            this.groupBox8.Location = new System.Drawing.Point(470, 525);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(263, 51);
+            this.groupBox8.Size = new System.Drawing.Size(288, 97);
             this.groupBox8.TabIndex = 23;
             this.groupBox8.TabStop = false;
             // 
-            // lblNivelPermitido
-            // 
-            this.lblNivelPermitido.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNivelPermitido.Location = new System.Drawing.Point(218, 9);
-            this.lblNivelPermitido.Name = "lblNivelPermitido";
-            this.lblNivelPermitido.Size = new System.Drawing.Size(38, 13);
-            this.lblNivelPermitido.TabIndex = 30;
-            this.lblNivelPermitido.Text = "NivelPermitido";
-            this.lblNivelPermitido.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // lblNombreUser
             // 
-            this.lblNombreUser.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombreUser.Location = new System.Drawing.Point(3, 28);
+            this.lblNombreUser.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombreUser.Location = new System.Drawing.Point(4, 45);
             this.lblNombreUser.Name = "lblNombreUser";
-            this.lblNombreUser.Size = new System.Drawing.Size(218, 18);
+            this.lblNombreUser.Size = new System.Drawing.Size(278, 37);
             this.lblNombreUser.TabIndex = 11;
-            this.lblNombreUser.Text = "NombreUser";
-            this.lblNombreUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblNombreUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblCodigoUser
             // 
-            this.lblCodigoUser.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigoUser.Location = new System.Drawing.Point(31, 9);
+            this.lblCodigoUser.AutoSize = true;
+            this.lblCodigoUser.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodigoUser.Location = new System.Drawing.Point(174, 15);
             this.lblCodigoUser.Name = "lblCodigoUser";
-            this.lblCodigoUser.Size = new System.Drawing.Size(76, 13);
+            this.lblCodigoUser.Size = new System.Drawing.Size(0, 16);
             this.lblCodigoUser.TabIndex = 9;
             this.lblCodigoUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label22
             // 
-            this.label22.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(0, 9);
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(111, 15);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(31, 13);
+            this.label22.Size = new System.Drawing.Size(56, 16);
             this.label22.TabIndex = 8;
-            this.label22.Text = "ID:";
+            this.label22.Text = "Usuario:";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblNivelPermitido
+            // 
+            this.lblNivelPermitido.AutoSize = true;
+            this.lblNivelPermitido.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNivelPermitido.Location = new System.Drawing.Point(218, 54);
+            this.lblNivelPermitido.Name = "lblNivelPermitido";
+            this.lblNivelPermitido.Size = new System.Drawing.Size(0, 13);
+            this.lblNivelPermitido.TabIndex = 30;
+            this.lblNivelPermitido.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // TolFacMar
             // 
-            this.TolFacMar.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TolFacMar.Location = new System.Drawing.Point(323, 429);
+            this.TolFacMar.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TolFacMar.Location = new System.Drawing.Point(350, 37);
             this.TolFacMar.Multiline = true;
             this.TolFacMar.Name = "TolFacMar";
             this.TolFacMar.ReadOnly = true;
-            this.TolFacMar.Size = new System.Drawing.Size(119, 18);
+            this.TolFacMar.Size = new System.Drawing.Size(119, 23);
             this.TolFacMar.TabIndex = 43;
+            this.TolFacMar.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label11
             // 
             this.label11.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label11.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(205, 429);
+            this.label11.Location = new System.Drawing.Point(234, 37);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(118, 18);
+            this.label11.Size = new System.Drawing.Size(116, 23);
             this.label11.TabIndex = 42;
             this.label11.Text = "Total Marcadas:";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // TxtTolFacMos
             // 
-            this.TxtTolFacMos.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtTolFacMos.Location = new System.Drawing.Point(323, 411);
+            this.TxtTolFacMos.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtTolFacMos.Location = new System.Drawing.Point(350, 14);
             this.TxtTolFacMos.Multiline = true;
             this.TxtTolFacMos.Name = "TxtTolFacMos";
             this.TxtTolFacMos.ReadOnly = true;
-            this.TxtTolFacMos.Size = new System.Drawing.Size(119, 18);
+            this.TxtTolFacMos.Size = new System.Drawing.Size(119, 23);
             this.TxtTolFacMos.TabIndex = 40;
+            this.TxtTolFacMos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label23
             // 
             this.label23.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label23.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.White;
-            this.label23.Location = new System.Drawing.Point(205, 411);
+            this.label23.Location = new System.Drawing.Point(234, 14);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(118, 18);
+            this.label23.Size = new System.Drawing.Size(116, 23);
             this.label23.TabIndex = 41;
             this.label23.Text = "Total Facturado:";
-            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // TxtTolCopMar
             // 
-            this.TxtTolCopMar.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtTolCopMar.Location = new System.Drawing.Point(585, 428);
+            this.TxtTolCopMar.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtTolCopMar.Location = new System.Drawing.Point(583, 37);
             this.TxtTolCopMar.Multiline = true;
             this.TxtTolCopMar.Name = "TxtTolCopMar";
             this.TxtTolCopMar.ReadOnly = true;
-            this.TxtTolCopMar.Size = new System.Drawing.Size(119, 18);
+            this.TxtTolCopMar.Size = new System.Drawing.Size(119, 23);
             this.TxtTolCopMar.TabIndex = 47;
+            this.TxtTolCopMar.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label24
             // 
             this.label24.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label24.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.ForeColor = System.Drawing.Color.White;
-            this.label24.Location = new System.Drawing.Point(470, 428);
+            this.label24.Location = new System.Drawing.Point(469, 37);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(115, 18);
+            this.label24.Size = new System.Drawing.Size(114, 23);
             this.label24.TabIndex = 46;
             this.label24.Text = "Copagos Marca:";
-            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // TxtTolCopMos
             // 
-            this.TxtTolCopMos.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtTolCopMos.Location = new System.Drawing.Point(585, 410);
+            this.TxtTolCopMos.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtTolCopMos.Location = new System.Drawing.Point(583, 14);
             this.TxtTolCopMos.Multiline = true;
             this.TxtTolCopMos.Name = "TxtTolCopMos";
             this.TxtTolCopMos.ReadOnly = true;
-            this.TxtTolCopMos.Size = new System.Drawing.Size(119, 18);
+            this.TxtTolCopMos.Size = new System.Drawing.Size(119, 23);
             this.TxtTolCopMos.TabIndex = 44;
+            this.TxtTolCopMos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label25
             // 
             this.label25.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label25.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.Color.White;
-            this.label25.Location = new System.Drawing.Point(470, 410);
+            this.label25.Location = new System.Drawing.Point(469, 14);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(115, 18);
+            this.label25.Size = new System.Drawing.Size(114, 23);
             this.label25.TabIndex = 45;
             this.label25.Text = "Total Copagos:";
-            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.btnMostrar);
+            this.groupBox5.Location = new System.Drawing.Point(235, 133);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(136, 137);
+            this.groupBox5.TabIndex = 48;
+            this.groupBox5.TabStop = false;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.label23);
+            this.groupBox9.Controls.Add(this.label26);
+            this.groupBox9.Controls.Add(this.TxtTolCopMar);
+            this.groupBox9.Controls.Add(this.TxtCanFacMos);
+            this.groupBox9.Controls.Add(this.label24);
+            this.groupBox9.Controls.Add(this.label14);
+            this.groupBox9.Controls.Add(this.TxtTolCopMos);
+            this.groupBox9.Controls.Add(this.TxtCanFacMar);
+            this.groupBox9.Controls.Add(this.label25);
+            this.groupBox9.Controls.Add(this.TxtTolFacMos);
+            this.groupBox9.Controls.Add(this.TolFacMar);
+            this.groupBox9.Controls.Add(this.label11);
+            this.groupBox9.Location = new System.Drawing.Point(4, 433);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(754, 67);
+            this.groupBox9.TabIndex = 49;
+            this.groupBox9.TabStop = false;
+            // 
+            // txtBusquedaFactura
+            // 
+            this.txtBusquedaFactura.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBusquedaFactura.ForeColor = System.Drawing.Color.Red;
+            this.txtBusquedaFactura.Location = new System.Drawing.Point(4, 273);
+            this.txtBusquedaFactura.Name = "txtBusquedaFactura";
+            this.txtBusquedaFactura.Size = new System.Drawing.Size(754, 22);
+            this.txtBusquedaFactura.TabIndex = 50;
+            this.txtBusquedaFactura.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtBusquedaFactura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBusquedaFactura_KeyPress);
             // 
             // FrmExportarSedaripsTodos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(714, 556);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.cboSedeVivi);
-            this.Controls.Add(this.CboGrupEspRegis);
-            this.Controls.Add(this.TxtTolCopMar);
-            this.Controls.Add(this.lblListaDx);
-            this.Controls.Add(this.label24);
-            this.Controls.Add(this.TxtTolCopMos);
-            this.Controls.Add(this.label25);
-            this.Controls.Add(this.TolFacMar);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.TxtTolFacMos);
-            this.Controls.Add(this.label23);
+            this.ClientSize = new System.Drawing.Size(763, 625);
+            this.ControlBox = false;
+            this.Controls.Add(this.txtBusquedaFactura);
+            this.Controls.Add(this.groupBox9);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.BarraSeleccionar);
-            this.Controls.Add(this.TxtCanFacMar);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.TxtCanFacMos);
-            this.Controls.Add(this.label26);
             this.Controls.Add(this.DataGridFacturas);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.btnMostrar);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox4);
@@ -1103,6 +1185,7 @@ namespace Gestion_Rips.Forms.RipsTodos
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox6.ResumeLayout(false);
@@ -1110,6 +1193,10 @@ namespace Gestion_Rips.Forms.RipsTodos
             ((System.ComponentModel.ISupportInitialize)(this.DataGridFacturas)).EndInit();
             this.groupBox7.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1195,5 +1282,10 @@ namespace Gestion_Rips.Forms.RipsTodos
         private System.Windows.Forms.DataGridViewTextBoxColumn CodigoEAPB;
         private System.Windows.Forms.DataGridViewTextBoxColumn VrFactura;
         private System.Windows.Forms.DataGridViewTextBoxColumn VrCopago;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Button BtnCerrar;
+        private System.Windows.Forms.TextBox txtBusquedaFactura;
     }
 }
