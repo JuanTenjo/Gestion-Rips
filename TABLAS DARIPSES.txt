@@ -1,0 +1,14 @@
+BASE DE DATOS DARIPS ESPECIAL
+
+dbo.Datos temporal consultas RIPS
+dbo.Datos temporal errores RIPS
+dbo.Datos temporal hospitalizacion RIPS
+dbo.Datos temporal medicamentos RIPS
+dbo.Datos temporal observacion RIPS
+dbo.Datos temporal otros servicios RIPS
+dbo.Datos temporal procedimientos RIPS
+dbo.Datos temporal recien nacidos RIPS
+dbo.Datos temporal transacciones RIPS
+dbo.Datos temporal usuarios RIPS
+
+BASE DE DATOS RARIPS NORMAL

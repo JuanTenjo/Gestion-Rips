@@ -1026,7 +1026,7 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
             this.MaximizeBox = false;
             this.Name = "FrmRipsRegimen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmRipsRegimen";
+            this.Text = "EXPORTAR DATOS PARA SEDAS - RIPS POR REGIMEN";
             this.Load += new System.EventHandler(this.FrmRipsRegimen_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

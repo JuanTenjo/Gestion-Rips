@@ -6895,10 +6895,5 @@ namespace Gestion_Rips.Forms.RipsTodos
             }
         }
 
-
-
-
-
-
     }
 }
