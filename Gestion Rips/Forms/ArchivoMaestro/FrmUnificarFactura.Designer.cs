@@ -42,8 +42,8 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.txtFacUnica = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -55,9 +55,10 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.label1.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(67, 36);
+            this.label1.Location = new System.Drawing.Point(89, 44);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 22);
+            this.label1.Size = new System.Drawing.Size(123, 27);
             this.label1.TabIndex = 0;
             this.label1.Text = "Factura única:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -67,9 +68,10 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.label2.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(67, 14);
+            this.label2.Location = new System.Drawing.Point(89, 17);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 22);
+            this.label2.Size = new System.Drawing.Size(123, 27);
             this.label2.TabIndex = 1;
             this.label2.Text = "Remision No:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -77,26 +79,29 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(7, 14);
+            this.label3.Location = new System.Drawing.Point(9, 17);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 13);
+            this.label3.Size = new System.Drawing.Size(79, 16);
             this.label3.TabIndex = 2;
             this.label3.Text = "Actualiza";
             // 
             // LblNivelPermitido
             // 
             this.LblNivelPermitido.AutoSize = true;
-            this.LblNivelPermitido.Location = new System.Drawing.Point(88, 49);
+            this.LblNivelPermitido.Location = new System.Drawing.Point(117, 60);
+            this.LblNivelPermitido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblNivelPermitido.Name = "LblNivelPermitido";
-            this.LblNivelPermitido.Size = new System.Drawing.Size(0, 13);
+            this.LblNivelPermitido.Size = new System.Drawing.Size(0, 17);
             this.LblNivelPermitido.TabIndex = 3;
             // 
             // LblNombreUsa
             // 
             this.LblNombreUsa.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblNombreUsa.Location = new System.Drawing.Point(6, 37);
+            this.LblNombreUsa.Location = new System.Drawing.Point(8, 46);
+            this.LblNombreUsa.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblNombreUsa.Name = "LblNombreUsa";
-            this.LblNombreUsa.Size = new System.Drawing.Size(190, 37);
+            this.LblNombreUsa.Size = new System.Drawing.Size(253, 46);
             this.LblNombreUsa.TabIndex = 4;
             this.LblNombreUsa.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -104,9 +109,10 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(58, 15);
+            this.label6.Location = new System.Drawing.Point(77, 18);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(50, 14);
+            this.label6.Size = new System.Drawing.Size(61, 18);
             this.label6.TabIndex = 5;
             this.label6.Text = "Usuario:";
             // 
@@ -114,9 +120,10 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             // 
             this.LblCodigoUsaF.AutoSize = true;
             this.LblCodigoUsaF.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblCodigoUsaF.Location = new System.Drawing.Point(115, 14);
+            this.LblCodigoUsaF.Location = new System.Drawing.Point(153, 17);
+            this.LblCodigoUsaF.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblCodigoUsaF.Name = "LblCodigoUsaF";
-            this.LblCodigoUsaF.Size = new System.Drawing.Size(0, 16);
+            this.LblCodigoUsaF.Size = new System.Drawing.Size(0, 21);
             this.LblCodigoUsaF.TabIndex = 6;
             // 
             // BtnActualizar
@@ -128,9 +135,10 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.BtnActualizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
             this.BtnActualizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
             this.BtnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnActualizar.Location = new System.Drawing.Point(8, 30);
+            this.BtnActualizar.Location = new System.Drawing.Point(11, 37);
+            this.BtnActualizar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnActualizar.Name = "BtnActualizar";
-            this.BtnActualizar.Size = new System.Drawing.Size(57, 57);
+            this.BtnActualizar.Size = new System.Drawing.Size(76, 70);
             this.BtnActualizar.TabIndex = 33;
             this.BtnActualizar.TabStop = false;
             this.BtnActualizar.UseVisualStyleBackColor = false;
@@ -139,17 +147,19 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             // txtRemi
             // 
             this.txtRemi.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRemi.Location = new System.Drawing.Point(159, 14);
+            this.txtRemi.Location = new System.Drawing.Point(212, 17);
+            this.txtRemi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtRemi.Name = "txtRemi";
-            this.txtRemi.Size = new System.Drawing.Size(113, 22);
+            this.txtRemi.Size = new System.Drawing.Size(149, 26);
             this.txtRemi.TabIndex = 34;
             // 
             // txtFacUnica
             // 
             this.txtFacUnica.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFacUnica.Location = new System.Drawing.Point(159, 36);
+            this.txtFacUnica.Location = new System.Drawing.Point(212, 44);
+            this.txtFacUnica.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtFacUnica.Name = "txtFacUnica";
-            this.txtFacUnica.Size = new System.Drawing.Size(113, 22);
+            this.txtFacUnica.Size = new System.Drawing.Size(149, 26);
             this.txtFacUnica.TabIndex = 35;
             // 
             // groupBox1
@@ -158,9 +168,11 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.groupBox1.Controls.Add(this.txtFacUnica);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtRemi);
-            this.groupBox1.Location = new System.Drawing.Point(4, 2);
+            this.groupBox1.Location = new System.Drawing.Point(5, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(346, 68);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(461, 84);
             this.groupBox1.TabIndex = 36;
             this.groupBox1.TabStop = false;
             // 
@@ -170,11 +182,24 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.BtnActualizar);
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Location = new System.Drawing.Point(4, 70);
+            this.groupBox2.Location = new System.Drawing.Point(5, 86);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(138, 94);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Size = new System.Drawing.Size(184, 116);
             this.groupBox2.TabIndex = 37;
             this.groupBox2.TabStop = false;
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(91, 17);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(79, 16);
+            this.label4.TabIndex = 35;
+            this.label4.Text = "Salir";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // button1
             // 
@@ -185,22 +210,13 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(70, 30);
+            this.button1.Location = new System.Drawing.Point(93, 37);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(57, 57);
+            this.button1.Size = new System.Drawing.Size(76, 70);
             this.button1.TabIndex = 34;
             this.button1.TabStop = false;
             this.button1.UseVisualStyleBackColor = false;
-            // 
-            // label4
-            // 
-            this.label4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(68, 14);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 13);
-            this.label4.TabIndex = 35;
-            this.label4.Text = "Salir";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox3
             // 
@@ -208,24 +224,26 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.groupBox3.Controls.Add(this.LblNombreUsa);
             this.groupBox3.Controls.Add(this.LblNivelPermitido);
             this.groupBox3.Controls.Add(this.LblCodigoUsaF);
-            this.groupBox3.Location = new System.Drawing.Point(148, 70);
+            this.groupBox3.Location = new System.Drawing.Point(197, 86);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(202, 94);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Size = new System.Drawing.Size(269, 116);
             this.groupBox3.TabIndex = 38;
             this.groupBox3.TabStop = false;
             // 
             // FrmUnificarFactura
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(354, 168);
+            this.ClientSize = new System.Drawing.Size(472, 207);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "FrmUnificarFactura";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

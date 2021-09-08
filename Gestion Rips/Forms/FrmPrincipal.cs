@@ -152,7 +152,7 @@ namespace Gestion_Rips.Forms
                                    "Password=" + Conexion.password;
 
             FrmArchivoMaestro FrmArchivoMaestro = new FrmArchivoMaestro();
-            FrmArchivoMaestro.Text = "FrmGestionRipsEstandar";
+            FrmArchivoMaestro.Text = "GESTION DEL ARCHIVO MAESTRO ESTANDAR";
             FrmArchivoMaestro.ShowDialog();
 
         }
@@ -167,7 +167,7 @@ namespace Gestion_Rips.Forms
                                    "Password=" + Conexion.password;
 
             FrmArchivoMaestro FrmArchivoMaestro = new FrmArchivoMaestro();
-            FrmArchivoMaestro.Text = "FrmGestionRipsEspecial";
+            FrmArchivoMaestro.Text = "GESTION DEL ARCHIVO MAESTRO ESPECIAL";
             FrmArchivoMaestro.ShowDialog();
         }
 

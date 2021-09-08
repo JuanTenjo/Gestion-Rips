@@ -3891,6 +3891,7 @@ namespace Gestion_Rips.Forms.RipsTodos
 
                             using (SqlConnection connection = new SqlConnection(Conexion.conexionSQL))
                             {
+
                                 SqlCommand command = new SqlCommand(Utils.SqlDatos, connection);
                                 command.Connection.Open();
                                 TablaAux4 = command.ExecuteReader();
@@ -4133,14 +4134,15 @@ namespace Gestion_Rips.Forms.RipsTodos
                 txtTeleIPS.Text = Utils.TelEmpresa;
                 TxtCodMinSalud.Text = Utils.codMinSalud;
                 lblNivelPermitido.Text = Utils.nivelPermiso;
+
             }
             catch (Exception ex)
             {
                 Utils.Titulo01 = "Control de errores de ejecución";
-                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
-                Utils.Informa += "al cargar la informacion de la empresa" + "\r";
+                Utils.Informa = "Lo siento pero se ha presentado un error " + "\r";
+                Utils.Informa += "al cargar la informacion de la empresa " + "\r";
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
-                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         private void CargarDatosUser()
@@ -6895,10 +6897,9 @@ namespace Gestion_Rips.Forms.RipsTodos
             }
         }
 
-
-
-
-
-
+        private void cboNameEntidades_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            cboNameEntidades.DroppedDown = false;
+        }
     }
 }

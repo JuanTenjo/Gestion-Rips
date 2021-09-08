@@ -24,6 +24,8 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
         {
             try
             {
+
+
                 CargaUsuario();
                 CargaComboBox();
                 CargarDatosRemi(Utils.NumRemi);
@@ -59,7 +61,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             catch (Exception ex)
             {
                 Utils.Titulo01 = "Control de errores de ejecución";
-                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa = "Lo siento pero se ha presentado un error " + "\r";
                 Utils.Informa += "al cargar combobox" + "\r";
                 Utils.Informa += "Módulo gestión de RIPS" + "\r";
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
@@ -151,7 +153,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
                 if(TablaAux1.HasRows == false)
                 {
                     Utils.Informa = "Lo siento pero el número de remisión" + "\r";
-                    Utils.Informa += "digitado no existe en este sistema." + "\r";
+                    Utils.Informa += "digitado no existe en este sistema. " + "\r";
                     MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }

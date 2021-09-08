@@ -66,9 +66,10 @@
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(6, 12);
+            this.label1.Location = new System.Drawing.Point(8, 15);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 22);
+            this.label1.Size = new System.Drawing.Size(124, 27);
             this.label1.TabIndex = 0;
             this.label1.Text = "Remision No:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -80,9 +81,10 @@
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(6, 34);
+            this.label2.Location = new System.Drawing.Point(8, 42);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 22);
+            this.label2.Size = new System.Drawing.Size(124, 27);
             this.label2.TabIndex = 1;
             this.label2.Text = "Responsable:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -94,9 +96,10 @@
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(6, 56);
+            this.label3.Location = new System.Drawing.Point(8, 69);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 22);
+            this.label3.Size = new System.Drawing.Size(124, 27);
             this.label3.TabIndex = 2;
             this.label3.Text = "Telefono:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -108,9 +111,10 @@
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(6, 78);
+            this.label4.Location = new System.Drawing.Point(8, 96);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(93, 22);
+            this.label4.Size = new System.Drawing.Size(124, 27);
             this.label4.TabIndex = 3;
             this.label4.Text = "Fecha Inicial:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -122,9 +126,10 @@
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(214, 12);
+            this.label5.Location = new System.Drawing.Point(285, 15);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(121, 22);
+            this.label5.Size = new System.Drawing.Size(161, 27);
             this.label5.TabIndex = 4;
             this.label5.Text = "Fecha de envio:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -136,9 +141,10 @@
             this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(214, 56);
+            this.label6.Location = new System.Drawing.Point(285, 69);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(121, 22);
+            this.label6.Size = new System.Drawing.Size(161, 27);
             this.label6.TabIndex = 5;
             this.label6.Text = "Cant. Facturas:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -150,9 +156,10 @@
             this.label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(214, 78);
+            this.label7.Location = new System.Drawing.Point(285, 96);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(121, 22);
+            this.label7.Size = new System.Drawing.Size(161, 27);
             this.label7.TabIndex = 6;
             this.label7.Text = "Fecha final:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -163,9 +170,10 @@
             this.label8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label8.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(106, 16);
+            this.label8.Location = new System.Drawing.Point(141, 20);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(50, 14);
+            this.label8.Size = new System.Drawing.Size(61, 18);
             this.label8.TabIndex = 7;
             this.label8.Text = "Usuario:";
             // 
@@ -175,9 +183,10 @@
             this.lblCodigoUsaF.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblCodigoUsaF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblCodigoUsaF.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigoUsaF.Location = new System.Drawing.Point(161, 15);
+            this.lblCodigoUsaF.Location = new System.Drawing.Point(215, 18);
+            this.lblCodigoUsaF.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCodigoUsaF.Name = "lblCodigoUsaF";
-            this.lblCodigoUsaF.Size = new System.Drawing.Size(0, 16);
+            this.lblCodigoUsaF.Size = new System.Drawing.Size(0, 21);
             this.lblCodigoUsaF.TabIndex = 8;
             // 
             // lblNivelPermitido
@@ -186,9 +195,10 @@
             this.lblNivelPermitido.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblNivelPermitido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblNivelPermitido.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNivelPermitido.Location = new System.Drawing.Point(326, 164);
+            this.lblNivelPermitido.Location = new System.Drawing.Point(435, 202);
+            this.lblNivelPermitido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNivelPermitido.Name = "lblNivelPermitido";
-            this.lblNivelPermitido.Size = new System.Drawing.Size(0, 13);
+            this.lblNivelPermitido.Size = new System.Drawing.Size(0, 17);
             this.lblNivelPermitido.TabIndex = 9;
             // 
             // lbNombreUsa
@@ -196,9 +206,10 @@
             this.lbNombreUsa.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbNombreUsa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbNombreUsa.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbNombreUsa.Location = new System.Drawing.Point(6, 38);
+            this.lbNombreUsa.Location = new System.Drawing.Point(8, 47);
+            this.lbNombreUsa.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbNombreUsa.Name = "lbNombreUsa";
-            this.lbNombreUsa.Size = new System.Drawing.Size(302, 37);
+            this.lbNombreUsa.Size = new System.Drawing.Size(403, 46);
             this.lbNombreUsa.TabIndex = 10;
             this.lbNombreUsa.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -210,9 +221,10 @@
             this.btnGrabar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnGrabar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnGrabar.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGrabar.Location = new System.Drawing.Point(9, 28);
+            this.btnGrabar.Location = new System.Drawing.Point(12, 34);
+            this.btnGrabar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnGrabar.Name = "btnGrabar";
-            this.btnGrabar.Size = new System.Drawing.Size(57, 57);
+            this.btnGrabar.Size = new System.Drawing.Size(76, 70);
             this.btnGrabar.TabIndex = 11;
             this.btnGrabar.UseVisualStyleBackColor = true;
             this.btnGrabar.Click += new System.EventHandler(this.btnGrabar_Click);
@@ -220,34 +232,38 @@
             // txtRemiG
             // 
             this.txtRemiG.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRemiG.Location = new System.Drawing.Point(99, 12);
+            this.txtRemiG.Location = new System.Drawing.Point(132, 15);
+            this.txtRemiG.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtRemiG.Name = "txtRemiG";
-            this.txtRemiG.Size = new System.Drawing.Size(115, 22);
+            this.txtRemiG.Size = new System.Drawing.Size(152, 26);
             this.txtRemiG.TabIndex = 12;
             // 
             // txtResponEnvia
             // 
             this.txtResponEnvia.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtResponEnvia.Location = new System.Drawing.Point(99, 34);
+            this.txtResponEnvia.Location = new System.Drawing.Point(132, 42);
+            this.txtResponEnvia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtResponEnvia.Name = "txtResponEnvia";
-            this.txtResponEnvia.Size = new System.Drawing.Size(351, 22);
+            this.txtResponEnvia.Size = new System.Drawing.Size(467, 26);
             this.txtResponEnvia.TabIndex = 13;
             // 
             // txtTeleRespon
             // 
             this.txtTeleRespon.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTeleRespon.Location = new System.Drawing.Point(99, 56);
+            this.txtTeleRespon.Location = new System.Drawing.Point(132, 69);
+            this.txtTeleRespon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtTeleRespon.MaxLength = 10;
             this.txtTeleRespon.Name = "txtTeleRespon";
-            this.txtTeleRespon.Size = new System.Drawing.Size(115, 22);
+            this.txtTeleRespon.Size = new System.Drawing.Size(152, 26);
             this.txtTeleRespon.TabIndex = 14;
             // 
             // txtCantifact
             // 
             this.txtCantifact.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantifact.Location = new System.Drawing.Point(335, 56);
+            this.txtCantifact.Location = new System.Drawing.Point(447, 69);
+            this.txtCantifact.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCantifact.Name = "txtCantifact";
-            this.txtCantifact.Size = new System.Drawing.Size(115, 22);
+            this.txtCantifact.Size = new System.Drawing.Size(152, 26);
             this.txtCantifact.TabIndex = 17;
             // 
             // DpFecInicial
@@ -255,9 +271,10 @@
             this.DpFecInicial.CustomFormat = "dd-MMM-yyyy";
             this.DpFecInicial.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DpFecInicial.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DpFecInicial.Location = new System.Drawing.Point(99, 78);
+            this.DpFecInicial.Location = new System.Drawing.Point(132, 96);
+            this.DpFecInicial.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DpFecInicial.Name = "DpFecInicial";
-            this.DpFecInicial.Size = new System.Drawing.Size(115, 22);
+            this.DpFecInicial.Size = new System.Drawing.Size(152, 26);
             this.DpFecInicial.TabIndex = 19;
             // 
             // DpFecFinal
@@ -265,9 +282,10 @@
             this.DpFecFinal.CustomFormat = "dd-MMM-yyyy";
             this.DpFecFinal.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DpFecFinal.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DpFecFinal.Location = new System.Drawing.Point(335, 78);
+            this.DpFecFinal.Location = new System.Drawing.Point(447, 96);
+            this.DpFecFinal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DpFecFinal.Name = "DpFecFinal";
-            this.DpFecFinal.Size = new System.Drawing.Size(115, 22);
+            this.DpFecFinal.Size = new System.Drawing.Size(152, 26);
             this.DpFecFinal.TabIndex = 20;
             // 
             // DtFecEnvio
@@ -275,9 +293,10 @@
             this.DtFecEnvio.CustomFormat = "dd-MMM-yyyy";
             this.DtFecEnvio.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DtFecEnvio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DtFecEnvio.Location = new System.Drawing.Point(335, 12);
+            this.DtFecEnvio.Location = new System.Drawing.Point(447, 15);
+            this.DtFecEnvio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DtFecEnvio.Name = "DtFecEnvio";
-            this.DtFecEnvio.Size = new System.Drawing.Size(115, 22);
+            this.DtFecEnvio.Size = new System.Drawing.Size(152, 26);
             this.DtFecEnvio.TabIndex = 21;
             // 
             // groupBox1
@@ -296,9 +315,11 @@
             this.groupBox1.Controls.Add(this.txtResponEnvia);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtRemiG);
-            this.groupBox1.Location = new System.Drawing.Point(4, 2);
+            this.groupBox1.Location = new System.Drawing.Point(5, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(455, 107);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(607, 132);
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             // 
@@ -308,9 +329,11 @@
             this.groupBox2.Controls.Add(this.BtnCerrar);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.btnGrabar);
-            this.groupBox2.Location = new System.Drawing.Point(4, 109);
+            this.groupBox2.Location = new System.Drawing.Point(5, 134);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(137, 91);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Size = new System.Drawing.Size(183, 112);
             this.groupBox2.TabIndex = 23;
             this.groupBox2.TabStop = false;
             // 
@@ -320,9 +343,10 @@
             this.label9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(72, 12);
+            this.label9.Location = new System.Drawing.Point(96, 15);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(57, 13);
+            this.label9.Size = new System.Drawing.Size(76, 16);
             this.label9.TabIndex = 36;
             this.label9.Text = "Salir";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -335,9 +359,10 @@
             this.BtnCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.BtnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.BtnCerrar.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCerrar.Location = new System.Drawing.Point(72, 28);
+            this.BtnCerrar.Location = new System.Drawing.Point(96, 34);
+            this.BtnCerrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnCerrar.Name = "BtnCerrar";
-            this.BtnCerrar.Size = new System.Drawing.Size(57, 57);
+            this.BtnCerrar.Size = new System.Drawing.Size(76, 70);
             this.BtnCerrar.TabIndex = 35;
             this.BtnCerrar.UseVisualStyleBackColor = true;
             this.BtnCerrar.Click += new System.EventHandler(this.BtnCerrar_Click);
@@ -348,9 +373,10 @@
             this.label14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label14.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(9, 12);
+            this.label14.Location = new System.Drawing.Point(12, 15);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(57, 13);
+            this.label14.Size = new System.Drawing.Size(76, 16);
             this.label14.TabIndex = 34;
             this.label14.Text = "Guardar";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -360,28 +386,30 @@
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.lbNombreUsa);
             this.groupBox3.Controls.Add(this.lblCodigoUsaF);
-            this.groupBox3.Location = new System.Drawing.Point(147, 109);
+            this.groupBox3.Location = new System.Drawing.Point(196, 134);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(313, 91);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Size = new System.Drawing.Size(417, 112);
             this.groupBox3.TabIndex = 24;
             this.groupBox3.TabStop = false;
             // 
             // FrmCrearModificarMaestro
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(466, 205);
+            this.ClientSize = new System.Drawing.Size(621, 252);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblNivelPermitido);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "FrmCrearModificarMaestro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Crear o Modificar Maestro";
+            this.Text = "CREAR MODIFICAR MAESTRO";
             this.Load += new System.EventHandler(this.FrmCrearModificarMaestro_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

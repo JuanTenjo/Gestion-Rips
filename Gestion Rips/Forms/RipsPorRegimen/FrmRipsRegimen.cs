@@ -6756,5 +6756,12 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void cboNameEntidades_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            cboNameEntidades.DroppedDown = false;
+        }
+
+
     }
 }

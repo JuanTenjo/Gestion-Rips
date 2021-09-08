@@ -1199,9 +1199,9 @@ namespace Gestion_Rips.Forms.Exportar
                     }
 
                     Utils.Informa = "Los archivos se copiaran en la siguiente ruta: " + "\r";
-                    Utils.Informa += UniRuta + "  Presiona:" + "\r";
+                    Utils.Informa += UniRuta + ". Presiona:" + "\r";
                     Utils.Informa += "Si = Para que se guarden en la anterior ruta " + "\r";
-                    Utils.Informa += "NO = Para seleccionar una nueva carpeta " + "\r";
+                    Utils.Informa += "No = Para seleccionar una nueva carpeta " + "\r";
 
                     var Res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -1299,7 +1299,7 @@ namespace Gestion_Rips.Forms.Exportar
                                     Utils.Informa = "Lo siento pero el archivo" + "\r";
                                     Utils.Informa += NLA + "\r";
                                     Utils.Informa += "no está definido y es necesario para la exportación" + "\r";
-                                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     return;
                                 }
                             }
@@ -1402,6 +1402,7 @@ namespace Gestion_Rips.Forms.Exportar
                         //'Muestrelos resultados
 
                         Utils.Informa = "Se ha exportado los siguientes archivos" + "\r";
+
                         M = 1;
                         while (M != NuT)
                         {
@@ -1425,9 +1426,9 @@ namespace Gestion_Rips.Forms.Exportar
             catch (Exception ex)
             {
                 Utils.Titulo01 = "Control de errores de ejecución";
-                Utils.Informa += "Lo siento pero se ha presentado un error" + "\r";
-                Utils.Informa += "despues de dar click al boton de exportar " + "\r";
-                Utils.Informa += "Módulo gestión de RIPS" + "\r";
+                Utils.Informa += "Lo siento pero se ha presentado un error " + "\r";
+                Utils.Informa += "despues de dar click al boton de exportar  " + "\r";
+                Utils.Informa += "Módulo gestión de RIPS " + "\r";
                 BarraExportar.Minimum = 0;
                 BarraExportar.Maximum = 1;
                 BarraExportar.Value = 0;
@@ -2485,6 +2486,11 @@ namespace Gestion_Rips.Forms.Exportar
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void cboNomAdmin_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            cboNomAdmin.DroppedDown = false;
         }
     }
 

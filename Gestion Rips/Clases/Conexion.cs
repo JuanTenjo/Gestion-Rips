@@ -33,9 +33,6 @@ namespace Gestion_Rips.Clases
             return texto;
         }
 
-
-
-
         public static SqlDataReader SQLDataReader(string sqlString, List<SqlParameter> parameters = null)
         {
             try

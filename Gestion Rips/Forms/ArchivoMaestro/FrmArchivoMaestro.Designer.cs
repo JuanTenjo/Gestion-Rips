@@ -96,58 +96,66 @@ namespace Gestion_Rips.Forms.Exportar
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(4, 2);
+            this.groupBox1.Location = new System.Drawing.Point(5, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(795, 113);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Size = new System.Drawing.Size(1060, 139);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // cboNomAdmin
             // 
-            this.cboNomAdmin.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cboNomAdmin.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboNomAdmin.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboNomAdmin.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboNomAdmin.FormattingEnabled = true;
-            this.cboNomAdmin.Location = new System.Drawing.Point(172, 80);
+            this.cboNomAdmin.Location = new System.Drawing.Point(229, 98);
+            this.cboNomAdmin.Margin = new System.Windows.Forms.Padding(4);
             this.cboNomAdmin.Name = "cboNomAdmin";
-            this.cboNomAdmin.Size = new System.Drawing.Size(446, 22);
+            this.cboNomAdmin.Size = new System.Drawing.Size(593, 26);
             this.cboNomAdmin.TabIndex = 16;
             this.cboNomAdmin.SelectedIndexChanged += new System.EventHandler(this.cboNomAdmin_SelectedIndexChanged);
+            this.cboNomAdmin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboNomAdmin_KeyPress);
             // 
             // txtCodigAdmin
             // 
             this.txtCodigAdmin.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigAdmin.Location = new System.Drawing.Point(618, 80);
+            this.txtCodigAdmin.Location = new System.Drawing.Point(824, 98);
+            this.txtCodigAdmin.Margin = new System.Windows.Forms.Padding(4);
             this.txtCodigAdmin.Name = "txtCodigAdmin";
-            this.txtCodigAdmin.Size = new System.Drawing.Size(167, 22);
+            this.txtCodigAdmin.Size = new System.Drawing.Size(221, 26);
             this.txtCodigAdmin.TabIndex = 15;
             this.txtCodigAdmin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigAdmin_KeyPress);
             // 
             // txtCodigIPS
             // 
             this.txtCodigIPS.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigIPS.Location = new System.Drawing.Point(618, 36);
+            this.txtCodigIPS.Location = new System.Drawing.Point(824, 44);
+            this.txtCodigIPS.Margin = new System.Windows.Forms.Padding(4);
             this.txtCodigIPS.Name = "txtCodigIPS";
             this.txtCodigIPS.ReadOnly = true;
-            this.txtCodigIPS.Size = new System.Drawing.Size(167, 22);
+            this.txtCodigIPS.Size = new System.Drawing.Size(221, 26);
             this.txtCodigIPS.TabIndex = 9;
             // 
             // txtNomIPS
             // 
             this.txtNomIPS.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNomIPS.Location = new System.Drawing.Point(173, 36);
+            this.txtNomIPS.Location = new System.Drawing.Point(231, 44);
+            this.txtNomIPS.Margin = new System.Windows.Forms.Padding(4);
             this.txtNomIPS.Name = "txtNomIPS";
             this.txtNomIPS.ReadOnly = true;
-            this.txtNomIPS.Size = new System.Drawing.Size(445, 22);
+            this.txtNomIPS.Size = new System.Drawing.Size(592, 26);
             this.txtNomIPS.TabIndex = 8;
             // 
             // txtNitCCIPS
             // 
             this.txtNitCCIPS.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNitCCIPS.Location = new System.Drawing.Point(9, 36);
+            this.txtNitCCIPS.Location = new System.Drawing.Point(12, 44);
+            this.txtNitCCIPS.Margin = new System.Windows.Forms.Padding(4);
             this.txtNitCCIPS.Name = "txtNitCCIPS";
             this.txtNitCCIPS.ReadOnly = true;
-            this.txtNitCCIPS.Size = new System.Drawing.Size(165, 22);
+            this.txtNitCCIPS.Size = new System.Drawing.Size(219, 26);
             this.txtNitCCIPS.TabIndex = 7;
             // 
             // BtnBorrar
@@ -155,9 +163,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.BtnBorrar.BackColor = System.Drawing.Color.LightSeaGreen;
             this.BtnBorrar.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnBorrar.ForeColor = System.Drawing.Color.White;
-            this.BtnBorrar.Location = new System.Drawing.Point(170, 58);
+            this.BtnBorrar.Location = new System.Drawing.Point(227, 71);
+            this.BtnBorrar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.BtnBorrar.Name = "BtnBorrar";
-            this.BtnBorrar.Size = new System.Drawing.Size(448, 22);
+            this.BtnBorrar.Size = new System.Drawing.Size(597, 27);
             this.BtnBorrar.TabIndex = 11;
             this.BtnBorrar.Text = "Nombre de la administradora de planes";
             this.BtnBorrar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -167,9 +176,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.label3.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(615, 14);
+            this.label3.Location = new System.Drawing.Point(820, 17);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(170, 22);
+            this.label3.Size = new System.Drawing.Size(227, 27);
             this.label3.TabIndex = 6;
             this.label3.Text = "Código SGSSS";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -177,9 +187,10 @@ namespace Gestion_Rips.Forms.Exportar
             // txtNitCCAdmin
             // 
             this.txtNitCCAdmin.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNitCCAdmin.Location = new System.Drawing.Point(9, 80);
+            this.txtNitCCAdmin.Location = new System.Drawing.Point(12, 98);
+            this.txtNitCCAdmin.Margin = new System.Windows.Forms.Padding(4);
             this.txtNitCCAdmin.Name = "txtNitCCAdmin";
-            this.txtNitCCAdmin.Size = new System.Drawing.Size(165, 22);
+            this.txtNitCCAdmin.Size = new System.Drawing.Size(219, 26);
             this.txtNitCCAdmin.TabIndex = 13;
             this.txtNitCCAdmin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNitCCAdmin_KeyPress);
             // 
@@ -188,9 +199,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.label1.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(170, 14);
+            this.label1.Location = new System.Drawing.Point(227, 17);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(448, 22);
+            this.label1.Size = new System.Drawing.Size(597, 27);
             this.label1.TabIndex = 5;
             this.label1.Text = "Nombre de la IPS";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -200,9 +212,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.label6.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(9, 58);
+            this.label6.Location = new System.Drawing.Point(12, 71);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(162, 22);
+            this.label6.Size = new System.Drawing.Size(216, 27);
             this.label6.TabIndex = 10;
             this.label6.Text = "Nit o CC";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -212,9 +225,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.label4.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(615, 58);
+            this.label4.Location = new System.Drawing.Point(820, 71);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(170, 22);
+            this.label4.Size = new System.Drawing.Size(227, 27);
             this.label4.TabIndex = 12;
             this.label4.Text = "Código SGSSS";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -224,9 +238,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.label2.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(9, 14);
+            this.label2.Location = new System.Drawing.Point(12, 17);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(162, 22);
+            this.label2.Size = new System.Drawing.Size(216, 27);
             this.label2.TabIndex = 4;
             this.label2.Text = "Nit o CC";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -236,9 +251,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(4, 115);
+            this.label7.Location = new System.Drawing.Point(5, 142);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(795, 23);
+            this.label7.Size = new System.Drawing.Size(1060, 28);
             this.label7.TabIndex = 16;
             this.label7.Text = "Listado de remisiones de archivos enviados a la administradora seleccionada";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -249,9 +265,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(77, 16);
+            this.label8.Location = new System.Drawing.Point(103, 20);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(50, 14);
+            this.label8.Size = new System.Drawing.Size(61, 18);
             this.label8.TabIndex = 17;
             this.label8.Text = "Usuario:";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -262,9 +279,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.lblCodigoUsaF.BackColor = System.Drawing.Color.Transparent;
             this.lblCodigoUsaF.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCodigoUsaF.ForeColor = System.Drawing.Color.Black;
-            this.lblCodigoUsaF.Location = new System.Drawing.Point(135, 15);
+            this.lblCodigoUsaF.Location = new System.Drawing.Point(180, 18);
+            this.lblCodigoUsaF.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCodigoUsaF.Name = "lblCodigoUsaF";
-            this.lblCodigoUsaF.Size = new System.Drawing.Size(0, 16);
+            this.lblCodigoUsaF.Size = new System.Drawing.Size(0, 21);
             this.lblCodigoUsaF.TabIndex = 18;
             this.lblCodigoUsaF.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -273,9 +291,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.lblNombreUsa.BackColor = System.Drawing.Color.Transparent;
             this.lblNombreUsa.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombreUsa.ForeColor = System.Drawing.Color.Black;
-            this.lblNombreUsa.Location = new System.Drawing.Point(6, 43);
+            this.lblNombreUsa.Location = new System.Drawing.Point(8, 53);
+            this.lblNombreUsa.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombreUsa.Name = "lblNombreUsa";
-            this.lblNombreUsa.Size = new System.Drawing.Size(222, 37);
+            this.lblNombreUsa.Size = new System.Drawing.Size(296, 46);
             this.lblNombreUsa.TabIndex = 19;
             this.lblNombreUsa.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -285,9 +304,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.lblNivelPermitido.BackColor = System.Drawing.Color.Transparent;
             this.lblNivelPermitido.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNivelPermitido.ForeColor = System.Drawing.Color.Black;
-            this.lblNivelPermitido.Location = new System.Drawing.Point(706, 491);
+            this.lblNivelPermitido.Location = new System.Drawing.Point(941, 604);
+            this.lblNivelPermitido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNivelPermitido.Name = "lblNivelPermitido";
-            this.lblNivelPermitido.Size = new System.Drawing.Size(0, 13);
+            this.lblNivelPermitido.Size = new System.Drawing.Size(0, 17);
             this.lblNivelPermitido.TabIndex = 20;
             this.lblNivelPermitido.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -297,9 +317,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.label12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label12.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(7, 14);
+            this.label12.Location = new System.Drawing.Point(9, 17);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(57, 13);
+            this.label12.Size = new System.Drawing.Size(76, 16);
             this.label12.TabIndex = 21;
             this.label12.Text = "Nueva";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -310,9 +331,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.label13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label13.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(67, 14);
+            this.label13.Location = new System.Drawing.Point(89, 17);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(57, 13);
+            this.label13.Size = new System.Drawing.Size(76, 16);
             this.label13.TabIndex = 22;
             this.label13.Text = "Modificar";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -323,9 +345,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.label15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label15.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(126, 14);
+            this.label15.Location = new System.Drawing.Point(168, 17);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(59, 13);
+            this.label15.Size = new System.Drawing.Size(79, 16);
             this.label15.TabIndex = 24;
             this.label15.Text = "Actualiza";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -336,9 +359,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.label16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label16.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(247, 14);
+            this.label16.Location = new System.Drawing.Point(329, 17);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(57, 13);
+            this.label16.Size = new System.Drawing.Size(76, 16);
             this.label16.TabIndex = 25;
             this.label16.Text = "Exportar";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -349,9 +373,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.label18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label18.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.Black;
-            this.label18.Location = new System.Drawing.Point(187, 14);
+            this.label18.Location = new System.Drawing.Point(249, 17);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(57, 13);
+            this.label18.Size = new System.Drawing.Size(76, 16);
             this.label18.TabIndex = 27;
             this.label18.Text = "Cerrar";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -362,9 +387,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.label19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label19.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.Black;
-            this.label19.Location = new System.Drawing.Point(307, 14);
+            this.label19.Location = new System.Drawing.Point(409, 17);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(57, 13);
+            this.label19.Size = new System.Drawing.Size(76, 16);
             this.label19.TabIndex = 28;
             this.label19.Text = "Anular";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -398,15 +424,17 @@ namespace Gestion_Rips.Forms.Exportar
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DataGridRemi.DefaultCellStyle = dataGridViewCellStyle5;
             this.DataGridRemi.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.DataGridRemi.Location = new System.Drawing.Point(4, 140);
+            this.DataGridRemi.Location = new System.Drawing.Point(5, 172);
+            this.DataGridRemi.Margin = new System.Windows.Forms.Padding(4);
             this.DataGridRemi.MultiSelect = false;
             this.DataGridRemi.Name = "DataGridRemi";
             this.DataGridRemi.ReadOnly = true;
             this.DataGridRemi.RowHeadersVisible = false;
+            this.DataGridRemi.RowHeadersWidth = 51;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.DataGridRemi.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DataGridRemi.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridRemi.Size = new System.Drawing.Size(795, 144);
+            this.DataGridRemi.Size = new System.Drawing.Size(1060, 177);
             this.DataGridRemi.TabIndex = 40;
             // 
             // label9
@@ -414,9 +442,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.label9.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label9.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(566, 319);
+            this.label9.Location = new System.Drawing.Point(755, 393);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(158, 23);
+            this.label9.Size = new System.Drawing.Size(211, 28);
             this.label9.TabIndex = 17;
             this.label9.Text = "Total remisiones vigentes";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -424,10 +453,11 @@ namespace Gestion_Rips.Forms.Exportar
             // txtTotalRemisiones
             // 
             this.txtTotalRemisiones.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalRemisiones.Location = new System.Drawing.Point(724, 319);
+            this.txtTotalRemisiones.Location = new System.Drawing.Point(965, 393);
+            this.txtTotalRemisiones.Margin = new System.Windows.Forms.Padding(4);
             this.txtTotalRemisiones.Name = "txtTotalRemisiones";
             this.txtTotalRemisiones.ReadOnly = true;
-            this.txtTotalRemisiones.Size = new System.Drawing.Size(74, 23);
+            this.txtTotalRemisiones.Size = new System.Drawing.Size(97, 27);
             this.txtTotalRemisiones.TabIndex = 17;
             // 
             // label10
@@ -436,9 +466,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.label10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label10.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(363, 14);
+            this.label10.Location = new System.Drawing.Point(484, 17);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(57, 13);
+            this.label10.Size = new System.Drawing.Size(76, 16);
             this.label10.TabIndex = 41;
             this.label10.Text = "Borrar";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -449,9 +480,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(425, 14);
+            this.label5.Location = new System.Drawing.Point(567, 17);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 13);
+            this.label5.Size = new System.Drawing.Size(76, 16);
             this.label5.TabIndex = 43;
             this.label5.Text = "Unificar";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -465,9 +497,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.btnUnificar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnUnificar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnUnificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUnificar.Location = new System.Drawing.Point(425, 30);
+            this.btnUnificar.Location = new System.Drawing.Point(567, 37);
+            this.btnUnificar.Margin = new System.Windows.Forms.Padding(4);
             this.btnUnificar.Name = "btnUnificar";
-            this.btnUnificar.Size = new System.Drawing.Size(57, 57);
+            this.btnUnificar.Size = new System.Drawing.Size(76, 70);
             this.btnUnificar.TabIndex = 44;
             this.btnUnificar.TabStop = false;
             this.btnUnificar.UseVisualStyleBackColor = false;
@@ -482,9 +515,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.BtnBorrarRemi.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.BtnBorrarRemi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.BtnBorrarRemi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnBorrarRemi.Location = new System.Drawing.Point(367, 30);
+            this.BtnBorrarRemi.Location = new System.Drawing.Point(489, 37);
+            this.BtnBorrarRemi.Margin = new System.Windows.Forms.Padding(4);
             this.BtnBorrarRemi.Name = "BtnBorrarRemi";
-            this.BtnBorrarRemi.Size = new System.Drawing.Size(57, 57);
+            this.BtnBorrarRemi.Size = new System.Drawing.Size(76, 70);
             this.BtnBorrarRemi.TabIndex = 42;
             this.BtnBorrarRemi.TabStop = false;
             this.BtnBorrarRemi.UseVisualStyleBackColor = false;
@@ -499,9 +533,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.BtnExportar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.BtnExportar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.BtnExportar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnExportar.Location = new System.Drawing.Point(247, 30);
+            this.BtnExportar.Location = new System.Drawing.Point(329, 37);
+            this.BtnExportar.Margin = new System.Windows.Forms.Padding(4);
             this.BtnExportar.Name = "BtnExportar";
-            this.BtnExportar.Size = new System.Drawing.Size(57, 57);
+            this.BtnExportar.Size = new System.Drawing.Size(76, 70);
             this.BtnExportar.TabIndex = 39;
             this.BtnExportar.TabStop = false;
             this.BtnExportar.UseVisualStyleBackColor = false;
@@ -516,9 +551,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.btnCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrar.Location = new System.Drawing.Point(187, 30);
+            this.btnCerrar.Location = new System.Drawing.Point(249, 37);
+            this.btnCerrar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(57, 57);
+            this.btnCerrar.Size = new System.Drawing.Size(76, 70);
             this.btnCerrar.TabIndex = 37;
             this.btnCerrar.TabStop = false;
             this.btnCerrar.UseVisualStyleBackColor = false;
@@ -533,9 +569,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.btnAnular.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnAnular.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnAnular.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAnular.Location = new System.Drawing.Point(307, 30);
+            this.btnAnular.Location = new System.Drawing.Point(409, 37);
+            this.btnAnular.Margin = new System.Windows.Forms.Padding(4);
             this.btnAnular.Name = "btnAnular";
-            this.btnAnular.Size = new System.Drawing.Size(57, 57);
+            this.btnAnular.Size = new System.Drawing.Size(76, 70);
             this.btnAnular.TabIndex = 36;
             this.btnAnular.TabStop = false;
             this.btnAnular.UseVisualStyleBackColor = false;
@@ -550,9 +587,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.btnActualizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnActualizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizar.Location = new System.Drawing.Point(127, 30);
+            this.btnActualizar.Location = new System.Drawing.Point(169, 37);
+            this.btnActualizar.Margin = new System.Windows.Forms.Padding(4);
             this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(57, 57);
+            this.btnActualizar.Size = new System.Drawing.Size(76, 70);
             this.btnActualizar.TabIndex = 33;
             this.btnActualizar.TabStop = false;
             this.btnActualizar.UseVisualStyleBackColor = false;
@@ -567,9 +605,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.BtnModifica.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.BtnModifica.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.BtnModifica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnModifica.Location = new System.Drawing.Point(67, 30);
+            this.BtnModifica.Location = new System.Drawing.Point(89, 37);
+            this.BtnModifica.Margin = new System.Windows.Forms.Padding(4);
             this.BtnModifica.Name = "BtnModifica";
-            this.BtnModifica.Size = new System.Drawing.Size(57, 57);
+            this.BtnModifica.Size = new System.Drawing.Size(76, 70);
             this.BtnModifica.TabIndex = 30;
             this.BtnModifica.TabStop = false;
             this.BtnModifica.UseVisualStyleBackColor = false;
@@ -584,9 +623,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.btnNuevaRemi.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnNuevaRemi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnNuevaRemi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNuevaRemi.Location = new System.Drawing.Point(7, 30);
+            this.btnNuevaRemi.Location = new System.Drawing.Point(9, 37);
+            this.btnNuevaRemi.Margin = new System.Windows.Forms.Padding(4);
             this.btnNuevaRemi.Name = "btnNuevaRemi";
-            this.btnNuevaRemi.Size = new System.Drawing.Size(57, 57);
+            this.btnNuevaRemi.Size = new System.Drawing.Size(76, 70);
             this.btnNuevaRemi.TabIndex = 29;
             this.btnNuevaRemi.TabStop = false;
             this.btnNuevaRemi.UseVisualStyleBackColor = false;
@@ -594,9 +634,10 @@ namespace Gestion_Rips.Forms.Exportar
             // 
             // BarraExportar
             // 
-            this.BarraExportar.Location = new System.Drawing.Point(4, 290);
+            this.BarraExportar.Location = new System.Drawing.Point(5, 357);
+            this.BarraExportar.Margin = new System.Windows.Forms.Padding(4);
             this.BarraExportar.Name = "BarraExportar";
-            this.BarraExportar.Size = new System.Drawing.Size(795, 23);
+            this.BarraExportar.Size = new System.Drawing.Size(1060, 28);
             this.BarraExportar.TabIndex = 45;
             // 
             // groupBox2
@@ -619,18 +660,21 @@ namespace Gestion_Rips.Forms.Exportar
             this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Location = new System.Drawing.Point(4, 343);
+            this.groupBox2.Location = new System.Drawing.Point(5, 422);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(557, 98);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Size = new System.Drawing.Size(743, 121);
             this.groupBox2.TabIndex = 46;
             this.groupBox2.TabStop = false;
             // 
             // label11
             // 
             this.label11.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(491, 13);
+            this.label11.Location = new System.Drawing.Point(655, 16);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(57, 13);
+            this.label11.Size = new System.Drawing.Size(76, 16);
             this.label11.TabIndex = 46;
             this.label11.Text = "Salir";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -642,9 +686,10 @@ namespace Gestion_Rips.Forms.Exportar
             this.BrnCerrarForm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.BrnCerrarForm.FlatAppearance.BorderSize = 0;
             this.BrnCerrarForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BrnCerrarForm.Location = new System.Drawing.Point(491, 30);
+            this.BrnCerrarForm.Location = new System.Drawing.Point(655, 37);
+            this.BrnCerrarForm.Margin = new System.Windows.Forms.Padding(4);
             this.BrnCerrarForm.Name = "BrnCerrarForm";
-            this.BrnCerrarForm.Size = new System.Drawing.Size(57, 57);
+            this.BrnCerrarForm.Size = new System.Drawing.Size(76, 70);
             this.BrnCerrarForm.TabIndex = 45;
             this.BrnCerrarForm.UseVisualStyleBackColor = false;
             this.BrnCerrarForm.Click += new System.EventHandler(this.BrnCerrarForm_Click);
@@ -654,18 +699,20 @@ namespace Gestion_Rips.Forms.Exportar
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.lblNombreUsa);
             this.groupBox3.Controls.Add(this.lblCodigoUsaF);
-            this.groupBox3.Location = new System.Drawing.Point(566, 343);
+            this.groupBox3.Location = new System.Drawing.Point(755, 422);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(233, 98);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox3.Size = new System.Drawing.Size(311, 121);
             this.groupBox3.TabIndex = 47;
             this.groupBox3.TabStop = false;
             // 
             // FrmArchivoMaestro
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(806, 447);
+            this.ClientSize = new System.Drawing.Size(1075, 550);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -677,9 +724,8 @@ namespace Gestion_Rips.Forms.Exportar
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblNivelPermitido);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "FrmArchivoMaestro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

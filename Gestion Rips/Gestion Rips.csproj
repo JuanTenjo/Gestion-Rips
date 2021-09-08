@@ -7,7 +7,7 @@
     <ProjectGuid>{BB36D498-0EBC-4AAF-A94C-EB5E122D53E4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Gestion_Rips</RootNamespace>
-    <AssemblyName>OBRIPSNET</AssemblyName>
+    <AssemblyName>OBRIPSXPSQL</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
