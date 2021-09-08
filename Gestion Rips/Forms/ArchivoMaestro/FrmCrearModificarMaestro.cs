@@ -26,6 +26,8 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
 
                 CargaUsuario();
 
+
+
                 if (string.IsNullOrWhiteSpace(Utils.NumRemi) == false)
                 {
 
