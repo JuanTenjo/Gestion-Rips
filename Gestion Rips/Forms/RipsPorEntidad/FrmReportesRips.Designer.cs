@@ -123,7 +123,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.txtCardinal.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCardinal.Location = new System.Drawing.Point(91, 13);
             this.txtCardinal.Name = "txtCardinal";
-            this.txtCardinal.Size = new System.Drawing.Size(79, 27);
+            this.txtCardinal.Size = new System.Drawing.Size(79, 23);
             this.txtCardinal.TabIndex = 3;
             // 
             // txtNombre
@@ -131,15 +131,15 @@ namespace Gestion_Rips.Forms.Exportar
             this.txtNombre.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombre.Location = new System.Drawing.Point(91, 42);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(342, 27);
+            this.txtNombre.Size = new System.Drawing.Size(342, 23);
             this.txtNombre.TabIndex = 4;
             // 
             // txtCodigoSGSS
             // 
             this.txtCodigoSGSS.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigoSGSS.Location = new System.Drawing.Point(306, 13);
+            this.txtCodigoSGSS.Location = new System.Drawing.Point(306, 16);
             this.txtCodigoSGSS.Name = "txtCodigoSGSS";
-            this.txtCodigoSGSS.Size = new System.Drawing.Size(75, 27);
+            this.txtCodigoSGSS.Size = new System.Drawing.Size(75, 23);
             this.txtCodigoSGSS.TabIndex = 5;
             // 
             // groupBox1
@@ -176,7 +176,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.rbUsuarios.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbUsuarios.Location = new System.Drawing.Point(9, 250);
             this.rbUsuarios.Name = "rbUsuarios";
-            this.rbUsuarios.Size = new System.Drawing.Size(177, 25);
+            this.rbUsuarios.Size = new System.Drawing.Size(135, 20);
             this.rbUsuarios.TabIndex = 8;
             this.rbUsuarios.Text = "RIPS de usuarios";
             this.rbUsuarios.UseVisualStyleBackColor = true;
@@ -214,7 +214,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.rbTrasnsacciones.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbTrasnsacciones.Location = new System.Drawing.Point(9, 224);
             this.rbTrasnsacciones.Name = "rbTrasnsacciones";
-            this.rbTrasnsacciones.Size = new System.Drawing.Size(222, 25);
+            this.rbTrasnsacciones.Size = new System.Drawing.Size(171, 20);
             this.rbTrasnsacciones.TabIndex = 7;
             this.rbTrasnsacciones.Text = "RIPS de transacciones";
             this.rbTrasnsacciones.UseVisualStyleBackColor = true;
@@ -226,7 +226,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.rbConsultas.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbConsultas.Location = new System.Drawing.Point(9, 42);
             this.rbConsultas.Name = "rbConsultas";
-            this.rbConsultas.Size = new System.Drawing.Size(186, 25);
+            this.rbConsultas.Size = new System.Drawing.Size(142, 20);
             this.rbConsultas.TabIndex = 0;
             this.rbConsultas.Text = "RIPS de consultas";
             this.rbConsultas.UseVisualStyleBackColor = true;
@@ -264,7 +264,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.rbProcedi.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbProcedi.Location = new System.Drawing.Point(9, 198);
             this.rbProcedi.Name = "rbProcedi";
-            this.rbProcedi.Size = new System.Drawing.Size(237, 25);
+            this.rbProcedi.Size = new System.Drawing.Size(179, 20);
             this.rbProcedi.TabIndex = 6;
             this.rbProcedi.Text = "RIPS de procedimientos";
             this.rbProcedi.UseVisualStyleBackColor = true;
@@ -302,7 +302,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.rbHospi.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbHospi.Location = new System.Drawing.Point(9, 68);
             this.rbHospi.Name = "rbHospi";
-            this.rbHospi.Size = new System.Drawing.Size(228, 25);
+            this.rbHospi.Size = new System.Drawing.Size(172, 20);
             this.rbHospi.TabIndex = 1;
             this.rbHospi.Text = "RIPS de hospitalizados";
             this.rbHospi.UseVisualStyleBackColor = true;
@@ -314,7 +314,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.rbRecienNaci.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbRecienNaci.Location = new System.Drawing.Point(9, 172);
             this.rbRecienNaci.Name = "rbRecienNaci";
-            this.rbRecienNaci.Size = new System.Drawing.Size(227, 25);
+            this.rbRecienNaci.Size = new System.Drawing.Size(173, 20);
             this.rbRecienNaci.TabIndex = 5;
             this.rbRecienNaci.Text = "RIPS de recien nacidos";
             this.rbRecienNaci.UseVisualStyleBackColor = true;
@@ -352,7 +352,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.rbMedica.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbMedica.Location = new System.Drawing.Point(9, 94);
             this.rbMedica.Name = "rbMedica";
-            this.rbMedica.Size = new System.Drawing.Size(229, 25);
+            this.rbMedica.Size = new System.Drawing.Size(173, 20);
             this.rbMedica.TabIndex = 2;
             this.rbMedica.Text = "RIPS de medicamentos";
             this.rbMedica.UseVisualStyleBackColor = true;
@@ -364,7 +364,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.rbOtrosServ.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbOtrosServ.Location = new System.Drawing.Point(9, 146);
             this.rbOtrosServ.Name = "rbOtrosServ";
-            this.rbOtrosServ.Size = new System.Drawing.Size(229, 25);
+            this.rbOtrosServ.Size = new System.Drawing.Size(176, 20);
             this.rbOtrosServ.TabIndex = 4;
             this.rbOtrosServ.Text = "RIPS de otros servicios";
             this.rbOtrosServ.UseVisualStyleBackColor = true;
@@ -402,7 +402,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.rbObser.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbObser.Location = new System.Drawing.Point(9, 120);
             this.rbObser.Name = "rbObser";
-            this.rbObser.Size = new System.Drawing.Size(208, 25);
+            this.rbObser.Size = new System.Drawing.Size(159, 20);
             this.rbObser.TabIndex = 3;
             this.rbObser.Text = "RIPS de observacion";
             this.rbObser.UseVisualStyleBackColor = true;
@@ -411,9 +411,9 @@ namespace Gestion_Rips.Forms.Exportar
             // txtTotalTrans
             // 
             this.txtTotalTrans.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalTrans.Location = new System.Drawing.Point(148, 13);
+            this.txtTotalTrans.Location = new System.Drawing.Point(148, 15);
             this.txtTotalTrans.Name = "txtTotalTrans";
-            this.txtTotalTrans.Size = new System.Drawing.Size(141, 27);
+            this.txtTotalTrans.Size = new System.Drawing.Size(141, 23);
             this.txtTotalTrans.TabIndex = 11;
             // 
             // label15
@@ -431,9 +431,9 @@ namespace Gestion_Rips.Forms.Exportar
             // txtSumDeta
             // 
             this.txtSumDeta.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSumDeta.Location = new System.Drawing.Point(148, 39);
+            this.txtSumDeta.Location = new System.Drawing.Point(148, 41);
             this.txtSumDeta.Name = "txtSumDeta";
-            this.txtSumDeta.Size = new System.Drawing.Size(141, 27);
+            this.txtSumDeta.Size = new System.Drawing.Size(141, 23);
             this.txtSumDeta.TabIndex = 13;
             // 
             // label16
@@ -453,7 +453,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.txtTolDifer.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTolDifer.Location = new System.Drawing.Point(295, 39);
             this.txtTolDifer.Name = "txtTolDifer";
-            this.txtTolDifer.Size = new System.Drawing.Size(132, 27);
+            this.txtTolDifer.Size = new System.Drawing.Size(132, 23);
             this.txtTolDifer.TabIndex = 15;
             // 
             // label17
@@ -476,7 +476,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.label18.ForeColor = System.Drawing.Color.Black;
             this.label18.Location = new System.Drawing.Point(121, 14);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(72, 21);
+            this.label18.Size = new System.Drawing.Size(56, 16);
             this.label18.TabIndex = 16;
             this.label18.Text = "Usuario:";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -489,7 +489,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.lblCodigoUser.ForeColor = System.Drawing.Color.Black;
             this.lblCodigoUser.Location = new System.Drawing.Point(187, 14);
             this.lblCodigoUser.Name = "lblCodigoUser";
-            this.lblCodigoUser.Size = new System.Drawing.Size(0, 21);
+            this.lblCodigoUser.Size = new System.Drawing.Size(0, 16);
             this.lblCodigoUser.TabIndex = 17;
             this.lblCodigoUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -502,7 +502,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.lblNombreUser.Name = "lblNombreUser";
             this.lblNombreUser.Size = new System.Drawing.Size(437, 37);
             this.lblNombreUser.TabIndex = 18;
-            this.lblNombreUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblNombreUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label21
             // 
@@ -639,7 +639,7 @@ namespace Gestion_Rips.Forms.Exportar
             // 
             // FrmReportesRips
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(447, 541);

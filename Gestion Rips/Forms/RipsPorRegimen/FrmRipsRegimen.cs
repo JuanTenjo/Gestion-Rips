@@ -6712,6 +6712,8 @@ namespace Gestion_Rips.Forms.RipsPorRegimen
         {
             try
             {
+
+
                 DatosDeLaEmpresa();
                 CargarDatosUser();
                 CargarRangoFechas();

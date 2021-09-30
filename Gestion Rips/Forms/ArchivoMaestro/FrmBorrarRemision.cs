@@ -546,7 +546,10 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             }
         }
 
-
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
     }
 
 }

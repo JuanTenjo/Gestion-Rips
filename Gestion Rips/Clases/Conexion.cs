@@ -50,7 +50,6 @@ namespace Gestion_Rips.Clases
                     }
                 }
 
-                command.CommandTimeout = 300;
 
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -92,8 +91,6 @@ namespace Gestion_Rips.Clases
 
                     sqlConnection.Open();
 
-                    command.CommandTimeout = 300;
-
                     command.ExecuteNonQuery();
 
                 }
@@ -132,8 +129,6 @@ namespace Gestion_Rips.Clases
                         }
                     }
 
-                    command.CommandTimeout = 300;
-
                     sqlConnection.Open();
                     command.ExecuteNonQuery();
                 }
@@ -147,6 +142,7 @@ namespace Gestion_Rips.Clases
                 Utils.Informa += "en la funcion SQLUDelete" + "\r";
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(sqlString);
                 return false;
             }
             finally
@@ -174,8 +170,6 @@ namespace Gestion_Rips.Clases
 
                     sqlConnection.Open(); //aqui
 
-                    command.CommandTimeout = 300;
-
                     command.ExecuteNonQuery();
                 }
 
@@ -188,6 +182,7 @@ namespace Gestion_Rips.Clases
                 Utils.Informa += "en la funcion SqlInsert" + "\r";
                 Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(sqlString);
                 return false;
             }
             finally

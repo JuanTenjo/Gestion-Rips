@@ -59,7 +59,7 @@ namespace Gestion_Rips.Forms
             this.exportarToolStripMenuItem2});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(655, 28);
+            this.menuStrip.Size = new System.Drawing.Size(655, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -69,13 +69,13 @@ namespace Gestion_Rips.Forms
             this.exitToolStripMenuItem});
             this.fileMenu.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.fileMenu.Name = "fileMenu";
-            this.fileMenu.Size = new System.Drawing.Size(73, 24);
+            this.fileMenu.Size = new System.Drawing.Size(60, 20);
             this.fileMenu.Text = "&Archivo";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(121, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
             this.exitToolStripMenuItem.Text = "&Salir";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolsStripMenuItem_Click);
             // 
@@ -86,27 +86,27 @@ namespace Gestion_Rips.Forms
             this.ripsPorRegimenToolStripMenuItem,
             this.ripsTodosToolStripMenuItem});
             this.exportarToolStripMenuItem.Name = "exportarToolStripMenuItem";
-            this.exportarToolStripMenuItem.Size = new System.Drawing.Size(79, 24);
+            this.exportarToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
             this.exportarToolStripMenuItem.Text = "Procesar";
             // 
             // exportarToolStripMenuItem1
             // 
             this.exportarToolStripMenuItem1.Name = "exportarToolStripMenuItem1";
-            this.exportarToolStripMenuItem1.Size = new System.Drawing.Size(210, 26);
+            this.exportarToolStripMenuItem1.Size = new System.Drawing.Size(167, 22);
             this.exportarToolStripMenuItem1.Text = "Rips por Entidad";
             this.exportarToolStripMenuItem1.Click += new System.EventHandler(this.exportarToolStripMenuItem1_Click);
             // 
             // ripsPorRegimenToolStripMenuItem
             // 
             this.ripsPorRegimenToolStripMenuItem.Name = "ripsPorRegimenToolStripMenuItem";
-            this.ripsPorRegimenToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
+            this.ripsPorRegimenToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.ripsPorRegimenToolStripMenuItem.Text = "Rips por Régimen";
             this.ripsPorRegimenToolStripMenuItem.Click += new System.EventHandler(this.ripsPorRegimenToolStripMenuItem_Click);
             // 
             // ripsTodosToolStripMenuItem
             // 
             this.ripsTodosToolStripMenuItem.Name = "ripsTodosToolStripMenuItem";
-            this.ripsTodosToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
+            this.ripsTodosToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.ripsTodosToolStripMenuItem.Text = "Rips Todos";
             this.ripsTodosToolStripMenuItem.Click += new System.EventHandler(this.ripsTodosToolStripMenuItem_Click);
             // 
@@ -116,20 +116,20 @@ namespace Gestion_Rips.Forms
             this.archivoMaestroToolStripMenuItem1,
             this.gestionRipsEspecialToolStripMenuItem});
             this.exportarToolStripMenuItem2.Name = "exportarToolStripMenuItem2";
-            this.exportarToolStripMenuItem2.Size = new System.Drawing.Size(79, 24);
+            this.exportarToolStripMenuItem2.Size = new System.Drawing.Size(63, 20);
             this.exportarToolStripMenuItem2.Text = "Exportar";
             // 
             // archivoMaestroToolStripMenuItem1
             // 
             this.archivoMaestroToolStripMenuItem1.Name = "archivoMaestroToolStripMenuItem1";
-            this.archivoMaestroToolStripMenuItem1.Size = new System.Drawing.Size(235, 26);
+            this.archivoMaestroToolStripMenuItem1.Size = new System.Drawing.Size(187, 22);
             this.archivoMaestroToolStripMenuItem1.Text = "Gestión Rips Estándar";
             this.archivoMaestroToolStripMenuItem1.Click += new System.EventHandler(this.archivoMaestroToolStripMenuItem1_Click);
             // 
             // gestionRipsEspecialToolStripMenuItem
             // 
             this.gestionRipsEspecialToolStripMenuItem.Name = "gestionRipsEspecialToolStripMenuItem";
-            this.gestionRipsEspecialToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
+            this.gestionRipsEspecialToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.gestionRipsEspecialToolStripMenuItem.Text = "Gestión Rips Especial";
             this.gestionRipsEspecialToolStripMenuItem.Click += new System.EventHandler(this.gestionRipsEspecialToolStripMenuItem_Click);
             // 
@@ -140,34 +140,34 @@ namespace Gestion_Rips.Forms
             this.lblFecha,
             this.lblNomUsuario,
             this.lblCodUsuario});
-            this.statusStrip.Location = new System.Drawing.Point(0, 430);
+            this.statusStrip.Location = new System.Drawing.Point(0, 434);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(655, 26);
+            this.statusStrip.Size = new System.Drawing.Size(655, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
             // lblFecha
             // 
             this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(151, 20);
+            this.lblFecha.Size = new System.Drawing.Size(118, 17);
             this.lblFecha.Text = "toolStripStatusLabel1";
             this.lblFecha.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblNomUsuario
             // 
             this.lblNomUsuario.Name = "lblNomUsuario";
-            this.lblNomUsuario.Size = new System.Drawing.Size(151, 20);
+            this.lblNomUsuario.Size = new System.Drawing.Size(118, 17);
             this.lblNomUsuario.Text = "toolStripStatusLabel2";
             // 
             // lblCodUsuario
             // 
             this.lblCodUsuario.Name = "lblCodUsuario";
-            this.lblCodUsuario.Size = new System.Drawing.Size(151, 20);
+            this.lblCodUsuario.Size = new System.Drawing.Size(118, 17);
             this.lblCodUsuario.Text = "toolStripStatusLabel1";
             // 
             // FrmPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(655, 456);
@@ -178,7 +178,7 @@ namespace Gestion_Rips.Forms
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
             this.Name = "FrmPrincipal";
-            this.Text = "SEDAS-RIPS  4.0.1    (07-SEP-2021) *** SIIGHOS PLUS ***";
+            this.Text = "SEDAS-RIPS  4.0.2   (07-SEP-2021) *** SIIGHOS PLUS ***";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             this.menuStrip.ResumeLayout(false);

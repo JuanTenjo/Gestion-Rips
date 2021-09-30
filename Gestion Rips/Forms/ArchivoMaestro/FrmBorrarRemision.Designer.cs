@@ -71,10 +71,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.label1.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(9, 17);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(7, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(151, 27);
+            this.label1.Size = new System.Drawing.Size(113, 22);
             this.label1.TabIndex = 6;
             this.label1.Text = "Remisión No:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -84,10 +83,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.label2.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(273, 17);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(205, 14);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(296, 27);
+            this.label2.Size = new System.Drawing.Size(222, 22);
             this.label2.TabIndex = 7;
             this.label2.Text = "Fecha:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -97,10 +95,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.label4.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(9, 44);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(7, 36);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(151, 27);
+            this.label4.Size = new System.Drawing.Size(113, 22);
             this.label4.TabIndex = 9;
             this.label4.Text = "Nombre entidad:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -110,10 +107,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.label5.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(9, 71);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(7, 58);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(151, 27);
+            this.label5.Size = new System.Drawing.Size(113, 22);
             this.label5.TabIndex = 10;
             this.label5.Text = "Reportado del:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -123,10 +119,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.label6.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label6.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(313, 71);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(235, 58);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(256, 27);
+            this.label6.Size = new System.Drawing.Size(192, 22);
             this.label6.TabIndex = 11;
             this.label6.Text = "al";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -136,10 +131,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.label7.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(9, 17);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(7, 14);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(233, 32);
+            this.label7.Size = new System.Drawing.Size(175, 26);
             this.label7.TabIndex = 12;
             this.label7.Text = "¿Que archivos borra?";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -149,11 +143,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.asd.Controls.Add(this.RdTodoSelect);
             this.asd.Controls.Add(this.RdArSelect);
             this.asd.Controls.Add(this.label7);
-            this.asd.Location = new System.Drawing.Point(5, 113);
-            this.asd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.asd.Location = new System.Drawing.Point(4, 92);
             this.asd.Name = "asd";
-            this.asd.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.asd.Size = new System.Drawing.Size(252, 135);
+            this.asd.Size = new System.Drawing.Size(189, 110);
             this.asd.TabIndex = 13;
             this.asd.TabStop = false;
             // 
@@ -161,10 +153,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             // 
             this.RdTodoSelect.AutoSize = true;
             this.RdTodoSelect.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RdTodoSelect.Location = new System.Drawing.Point(13, 90);
-            this.RdTodoSelect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RdTodoSelect.Location = new System.Drawing.Point(10, 73);
             this.RdTodoSelect.Name = "RdTodoSelect";
-            this.RdTodoSelect.Size = new System.Drawing.Size(168, 25);
+            this.RdTodoSelect.Size = new System.Drawing.Size(132, 20);
             this.RdTodoSelect.TabIndex = 14;
             this.RdTodoSelect.TabStop = true;
             this.RdTodoSelect.Text = "Todos los archivos";
@@ -175,10 +166,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             // 
             this.RdArSelect.AutoSize = true;
             this.RdArSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RdArSelect.Location = new System.Drawing.Point(13, 58);
-            this.RdArSelect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RdArSelect.Location = new System.Drawing.Point(10, 47);
             this.RdArSelect.Name = "RdArSelect";
-            this.RdArSelect.Size = new System.Drawing.Size(207, 24);
+            this.RdArSelect.Size = new System.Drawing.Size(170, 20);
             this.RdArSelect.TabIndex = 13;
             this.RdArSelect.TabStop = true;
             this.RdArSelect.Text = "El archivo seleccionado";
@@ -189,11 +179,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             // 
             this.groupBox2.Controls.Add(this.CboArchiBorrar);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Location = new System.Drawing.Point(267, 113);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Location = new System.Drawing.Point(200, 92);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox2.Size = new System.Drawing.Size(319, 135);
+            this.groupBox2.Size = new System.Drawing.Size(239, 110);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             // 
@@ -203,10 +191,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.CboArchiBorrar.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CboArchiBorrar.Enabled = false;
             this.CboArchiBorrar.FormattingEnabled = true;
-            this.CboArchiBorrar.Location = new System.Drawing.Point(8, 66);
-            this.CboArchiBorrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CboArchiBorrar.Location = new System.Drawing.Point(6, 54);
             this.CboArchiBorrar.Name = "CboArchiBorrar";
-            this.CboArchiBorrar.Size = new System.Drawing.Size(300, 24);
+            this.CboArchiBorrar.Size = new System.Drawing.Size(226, 21);
             this.CboArchiBorrar.TabIndex = 13;
             // 
             // label8
@@ -214,10 +201,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.label8.BackColor = System.Drawing.Color.LightSeaGreen;
             this.label8.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(9, 17);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(7, 14);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(300, 32);
+            this.label8.Size = new System.Drawing.Size(225, 26);
             this.label8.TabIndex = 12;
             this.label8.Text = "Archivo seleccionado";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -226,10 +212,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             // 
             this.TxtRemiNum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtRemiNum.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtRemiNum.Location = new System.Drawing.Point(160, 17);
-            this.TxtRemiNum.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TxtRemiNum.Location = new System.Drawing.Point(120, 14);
             this.TxtRemiNum.Name = "TxtRemiNum";
-            this.TxtRemiNum.Size = new System.Drawing.Size(113, 26);
+            this.TxtRemiNum.Size = new System.Drawing.Size(85, 22);
             this.TxtRemiNum.TabIndex = 16;
             this.TxtRemiNum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtRemiNum_KeyPress);
             // 
@@ -237,20 +222,18 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             // 
             this.TxtCodMin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtCodMin.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCodMin.Location = new System.Drawing.Point(160, 44);
-            this.TxtCodMin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TxtCodMin.Location = new System.Drawing.Point(120, 36);
             this.TxtCodMin.Name = "TxtCodMin";
-            this.TxtCodMin.Size = new System.Drawing.Size(69, 26);
+            this.TxtCodMin.Size = new System.Drawing.Size(52, 22);
             this.TxtCodMin.TabIndex = 18;
             // 
             // TxtNomEnti
             // 
             this.TxtNomEnti.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtNomEnti.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNomEnti.Location = new System.Drawing.Point(229, 44);
-            this.TxtNomEnti.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TxtNomEnti.Location = new System.Drawing.Point(172, 36);
             this.TxtNomEnti.Name = "TxtNomEnti";
-            this.TxtNomEnti.Size = new System.Drawing.Size(339, 26);
+            this.TxtNomEnti.Size = new System.Drawing.Size(255, 22);
             this.TxtNomEnti.TabIndex = 19;
             // 
             // label14
@@ -259,10 +242,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.label14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label14.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(12, 15);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Location = new System.Drawing.Point(9, 12);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(76, 16);
+            this.label14.Size = new System.Drawing.Size(57, 13);
             this.label14.TabIndex = 33;
             this.label14.Text = "Borrar";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -276,10 +258,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.BtnBorrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
             this.BtnBorrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
             this.BtnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnBorrar.Location = new System.Drawing.Point(13, 34);
-            this.BtnBorrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnBorrar.Location = new System.Drawing.Point(10, 28);
             this.BtnBorrar.Name = "BtnBorrar";
-            this.BtnBorrar.Size = new System.Drawing.Size(76, 70);
+            this.BtnBorrar.Size = new System.Drawing.Size(57, 57);
             this.BtnBorrar.TabIndex = 32;
             this.BtnBorrar.TabStop = false;
             this.BtnBorrar.UseVisualStyleBackColor = false;
@@ -292,10 +273,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.label9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label9.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(131, 20);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(98, 16);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(61, 18);
+            this.label9.Size = new System.Drawing.Size(50, 14);
             this.label9.TabIndex = 34;
             this.label9.Text = "Usuario:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -307,10 +287,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.LblNivelPermi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LblNivelPermi.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblNivelPermi.ForeColor = System.Drawing.Color.Black;
-            this.LblNivelPermi.Location = new System.Drawing.Point(403, 309);
-            this.LblNivelPermi.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblNivelPermi.Location = new System.Drawing.Point(302, 251);
             this.LblNivelPermi.Name = "LblNivelPermi";
-            this.LblNivelPermi.Size = new System.Drawing.Size(0, 17);
+            this.LblNivelPermi.Size = new System.Drawing.Size(0, 13);
             this.LblNivelPermi.TabIndex = 35;
             this.LblNivelPermi.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -321,10 +300,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.LblCodigoUsaF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LblCodigoUsaF.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblCodigoUsaF.ForeColor = System.Drawing.Color.Black;
-            this.LblCodigoUsaF.Location = new System.Drawing.Point(209, 20);
-            this.LblCodigoUsaF.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblCodigoUsaF.Location = new System.Drawing.Point(157, 16);
             this.LblCodigoUsaF.Name = "LblCodigoUsaF";
-            this.LblCodigoUsaF.Size = new System.Drawing.Size(0, 21);
+            this.LblCodigoUsaF.Size = new System.Drawing.Size(0, 16);
             this.LblCodigoUsaF.TabIndex = 36;
             this.LblCodigoUsaF.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -334,10 +312,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.LblNombreUsa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LblNombreUsa.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblNombreUsa.ForeColor = System.Drawing.Color.Black;
-            this.LblNombreUsa.Location = new System.Drawing.Point(8, 46);
-            this.LblNombreUsa.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblNombreUsa.Location = new System.Drawing.Point(6, 37);
             this.LblNombreUsa.Name = "LblNombreUsa";
-            this.LblNombreUsa.Size = new System.Drawing.Size(372, 46);
+            this.LblNombreUsa.Size = new System.Drawing.Size(279, 37);
             this.LblNombreUsa.TabIndex = 37;
             this.LblNombreUsa.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -346,10 +323,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.DtFecRemi.CustomFormat = "dd-MMM-yyyy";
             this.DtFecRemi.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DtFecRemi.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DtFecRemi.Location = new System.Drawing.Point(347, 17);
-            this.DtFecRemi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DtFecRemi.Location = new System.Drawing.Point(260, 14);
             this.DtFecRemi.Name = "DtFecRemi";
-            this.DtFecRemi.Size = new System.Drawing.Size(152, 26);
+            this.DtFecRemi.Size = new System.Drawing.Size(115, 22);
             this.DtFecRemi.TabIndex = 38;
             // 
             // DtPer01
@@ -357,10 +333,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.DtPer01.CustomFormat = "dd-MMM-yyyy";
             this.DtPer01.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DtPer01.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DtPer01.Location = new System.Drawing.Point(160, 71);
-            this.DtPer01.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DtPer01.Location = new System.Drawing.Point(120, 58);
             this.DtPer01.Name = "DtPer01";
-            this.DtPer01.Size = new System.Drawing.Size(152, 26);
+            this.DtPer01.Size = new System.Drawing.Size(115, 22);
             this.DtPer01.TabIndex = 39;
             // 
             // DtPer02
@@ -368,10 +343,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.DtPer02.CustomFormat = "dd-MMM-yyyy";
             this.DtPer02.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DtPer02.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DtPer02.Location = new System.Drawing.Point(347, 71);
-            this.DtPer02.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DtPer02.Location = new System.Drawing.Point(260, 58);
             this.DtPer02.Name = "DtPer02";
-            this.DtPer02.Size = new System.Drawing.Size(152, 26);
+            this.DtPer02.Size = new System.Drawing.Size(115, 22);
             this.DtPer02.TabIndex = 40;
             // 
             // groupBox1
@@ -387,11 +361,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.groupBox1.Controls.Add(this.TxtNomEnti);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Location = new System.Drawing.Point(5, 2);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Location = new System.Drawing.Point(4, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Size = new System.Drawing.Size(579, 111);
+            this.groupBox1.Size = new System.Drawing.Size(434, 90);
             this.groupBox1.TabIndex = 41;
             this.groupBox1.TabStop = false;
             // 
@@ -400,11 +372,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.LblCodigoUsaF);
             this.groupBox3.Controls.Add(this.LblNombreUsa);
-            this.groupBox3.Location = new System.Drawing.Point(196, 249);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Location = new System.Drawing.Point(147, 202);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox3.Size = new System.Drawing.Size(389, 105);
+            this.groupBox3.Size = new System.Drawing.Size(292, 85);
             this.groupBox3.TabIndex = 42;
             this.groupBox3.TabStop = false;
             // 
@@ -417,13 +387,13 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGray;
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(95, 34);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(71, 28);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(76, 70);
+            this.button1.Size = new System.Drawing.Size(57, 57);
             this.button1.TabIndex = 43;
             this.button1.TabStop = false;
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label3
             // 
@@ -431,10 +401,9 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(95, 15);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(71, 12);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 16);
+            this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 44;
             this.label3.Text = "Salir";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -445,20 +414,18 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.groupBox4.Controls.Add(this.label3);
             this.groupBox4.Controls.Add(this.BtnBorrar);
             this.groupBox4.Controls.Add(this.label14);
-            this.groupBox4.Location = new System.Drawing.Point(5, 249);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Location = new System.Drawing.Point(4, 202);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox4.Size = new System.Drawing.Size(181, 105);
+            this.groupBox4.Size = new System.Drawing.Size(136, 85);
             this.groupBox4.TabIndex = 45;
             this.groupBox4.TabStop = false;
             // 
             // FrmBorrarRemision
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(592, 361);
+            this.ClientSize = new System.Drawing.Size(444, 293);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -467,7 +434,6 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
             this.Controls.Add(this.asd);
             this.Controls.Add(this.LblNivelPermi);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "FrmBorrarRemision";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -118,6 +118,31 @@ namespace Gestion_Rips.Forms.Exportar
 
         #region Funciones y Procesos
 
+        private void desmarcarFacturas(string UsSel)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in DataGridDestino.Rows)
+                {
+                    //Desactivo la factura marcada, para que no se vuelva a seleccionar
+
+                    string NumFactur = Convert.ToString(row.Cells[0].Value);
+
+                    Utils.SqlDatos = "UPDATE [ACDATOXPSQL].[dbo].[Datos de las facturas realizadas] SET ExpoRips = 0, CodSele = '" + UsSel + "' WHERE [NumFactura] = '" + NumFactur + "'";
+
+                    Boolean ActFactur = Conexion.SQLUpdate(Utils.SqlDatos);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "en la funcion desmarcar Facturas" + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        } 
         private void CargarRangoFechas()
         {
             try
@@ -2663,6 +2688,7 @@ namespace Gestion_Rips.Forms.Exportar
         {
             try
             {
+
                 string Coenti01, CR;
                 string Coenti02 = null, NEnti = null, UsSel = null, TDE = null, NCC = null, Para02 = null, Para01 = null, TUReg = null, AcRe = null;
                 int SiNoP = 0, FunAudi = 0, FunUs = 0, FunFac = 0, FunCon = 0, FunHos = 0, FunObs = 0, FunMedi = 0, FunOtros = 0, FunReN = 0, FunProce = 0, TolInco = 0;
@@ -3016,10 +3042,14 @@ namespace Gestion_Rips.Forms.Exportar
                 Utils.Informa += "previamente seleccionados a la entidad ";
                 Utils.Informa += NEnti + "?";
                 var Respuesta = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
                 if (Respuesta == DialogResult.Yes)
                 {
+
+                    this.Cursor = Cursors.WaitCursor;
+
                     //Validamos el del usuarios
-                        FunUs = ValidarUsuarios(Coenti02, TUReg, TolUsa, UsSel);
+                    FunUs = ValidarUsuarios(Coenti02, TUReg, TolUsa, UsSel);
 
                         switch (FunUs)
                         {
@@ -3113,7 +3143,7 @@ namespace Gestion_Rips.Forms.Exportar
                     if (TolInco == 0)
                     {
                         Utils.Titulo01 = "Control de validacion";
-                        Utils.Informa = "Los datos de los seleccionados han validado exitosamente.";
+                        Utils.Informa = "Los datos de los seleccionados han validado exitosamente." + "\r";
                         Utils.Informa = Utils.Informa + "Recuerde este no es el validador oficial de MinSalud.";
                         MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -3134,6 +3164,9 @@ namespace Gestion_Rips.Forms.Exportar
 
                         }
                     }
+
+
+                    this.Cursor = Cursors.Arrow;
                 }
             }
             catch (Exception ex)
@@ -6494,7 +6527,6 @@ namespace Gestion_Rips.Forms.Exportar
 
                         CanFacSel = 0;
 
-
                         SqlConsumos = "SELECT [Datos cuentas de consumos].CuenNum, [Datos del Paciente].TipoIden, " +
                         "[Datos del Paciente].NumIden, [Datos registros de consumos].FechaCon, " +
                         "[Datos cuentas de consumos].NumRemi, [Datos registros de consumos].CodiSOAT, " +
@@ -6557,7 +6589,8 @@ namespace Gestion_Rips.Forms.Exportar
 
                         while (TabFacSele.Read())
                         {
-                      
+
+
 
                             ValdetaFac = 0; //En esta variable se va ha registrar los valores de detalle de cada factura para después auditar qquien tiene descuadre
                             CanFacSel += 1;
@@ -6943,8 +6976,7 @@ namespace Gestion_Rips.Forms.Exportar
                                     FecEnPer = Convert.ToDateTime(TabConsumos["FecEntrada"].ToString());
 
 
-                 
-
+                
                                     SqlDataReader TabConsumos2;
 
                                     using (SqlConnection connection4 = new SqlConnection(Conexion.conexionSQL))
@@ -7428,6 +7460,7 @@ namespace Gestion_Rips.Forms.Exportar
                                     }//Fin Using Consumos 2
 
                                     if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
                                     TabConsumos2.Close();
 
                                     // 2. copiamos las facturas, despues de registrar, datos de los archivos de movimientos,
@@ -7548,27 +7581,19 @@ namespace Gestion_Rips.Forms.Exportar
 
                                 }  //Final  de TabConsumos.hasrow
 
-                                TabConsumos.Close();
-
+                       
                             } //Fin Using TABCONSUMOS
 
-                            //'Desacivo la factura marcada, para que no se vuelva a seleccionar
+                            TabConsumos.Close();
 
-                            Utils.SqlDatos = "UPDATE [ACDATOXPSQL].[dbo].[Datos de las facturas realizadas] SET ExpoRips = 0, CodSele = '" + UsSel + "'   WHERE [NumFactura] = '" + TabFacSele["NumFactura"].ToString() + "'";
 
-                            Boolean ActFactur = Conexion.SQLUpdate(Utils.SqlDatos);
-
-                            if (!ActFactur)
-                            {
-                                Utils.Informa = "Ha ocurrido un error ";
-                                Utils.Informa += "al desactivar la factura como ExpoRips 0";
-                                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return;
-                            }
 
                             BarraSeleccionar.Increment(1);
 
                         } // FINAL WHILE TABFACSELEC
+
+
+                        desmarcarFacturas(UsSel);
 
                         Utils.Informa = "He terminado de procesar todos ";
                         Utils.Informa += "los datos que conforman los RIPS ";
@@ -7583,9 +7608,9 @@ namespace Gestion_Rips.Forms.Exportar
 
                 } //Fin Suing
 
-
                 TabFacSele.Close();
 
+              
                 DataGridDestino.DataSource = null;
 
                 CalcularTotalFactura();
@@ -7605,6 +7630,8 @@ namespace Gestion_Rips.Forms.Exportar
         }
 
         #endregion
+
+
 
         int Seleccion = 1;
 
