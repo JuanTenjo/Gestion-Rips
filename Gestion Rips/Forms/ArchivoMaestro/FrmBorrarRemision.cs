@@ -113,6 +113,7 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
         {
             try
             {
+                Utils.Titulo01 = "Control Para borrar remisón" + "\r"; 
                 string R, Estandatos, TB = null, T, NArch = null, USC, Rz, FRS;
                 Double NR, TolEl;
                 Int32 TRZ, FunFec;

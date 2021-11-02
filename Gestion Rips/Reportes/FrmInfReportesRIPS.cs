@@ -71,6 +71,7 @@ namespace Gestion_Rips.Reportes
 
             this.reportViewer1.ZoomPercent = 100;
             this.reportViewer1.RefreshReport();
+
         }
     }
 }

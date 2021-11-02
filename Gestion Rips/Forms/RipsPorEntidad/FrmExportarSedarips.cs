@@ -143,27 +143,7 @@ namespace Gestion_Rips.Forms.Exportar
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         } 
-        private void CargarRangoFechas()
-        {
-            try
-            {
-                DateTime FechaActual = DateTime.Now;
-
-                DateTime FechaUnMesAntes = DateTime.Now.AddMonths(-1);
-
-                DateInicial.Value = FechaUnMesAntes;
-
-                DateFinal.Value = FechaActual;
-            }
-            catch (Exception ex)
-            {
-                Utils.Titulo01 = "Control de errores de ejecución";
-                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
-                Utils.Informa += "al abrir funcion CargarRangoFechas" + "\r";
-                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
-                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        } //Carga las fechas desde la fecha actual y un mes antes. Para los filtros
+ 
         private string NomDiagnostico(string CoDx)
         {
             try
@@ -5912,10 +5892,23 @@ namespace Gestion_Rips.Forms.Exportar
         }
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
+            string UsSel = null, Coenti01 = null;
+            Coenti01 = cboNameEntidades.SelectedValue.ToString();
+
             DataGridDestino.DataSource = null;
             DataGridFacturas.DataSource = null;
             txtTotalCantidadFacturas.Clear();
             txtTotalCantidadDestino.Clear();
+
+            UsSel = lblCodigoUser.Text;
+
+            Boolean FunEli = BorrarTempoRips(UsSel, Coenti01);
+
+            if (FunEli == false)
+            {
+                return;
+            }
+
         }
 
         //private void ActualizarDataGrisDestino()
@@ -6294,6 +6287,8 @@ namespace Gestion_Rips.Forms.Exportar
             }
 
         }
+
+
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
             string Coenti01 = Convert.ToString(cboNameEntidades.SelectedValue);
@@ -6302,7 +6297,7 @@ namespace Gestion_Rips.Forms.Exportar
             int TM = 0, SubTolD = 0, TolD = 0;
             object PoliFactu;
             DateTime FecEnPer;
-            string NumFac, DxEntra, DxSalida, DxRelac01, DxRelac02, DxRelac03, DxComplica, DxMuerte;
+            string NumFac, DxEntra, DxSalida, DxRelac01, DxRelac02, DxRelac03, DxComplica, DxMuerte, NombreIps = "";
             double RegisConsul, CanFacSel, ValdetaFac;
             Boolean Seguir = false, SqlInsert;
             try
@@ -6381,6 +6376,7 @@ namespace Gestion_Rips.Forms.Exportar
 
 
                 UsSel = lblCodigoUser.Text;
+
                 Boolean FunEli = BorrarTempoRips(UsSel, Coenti02);
 
                 if (FunEli == false)
@@ -7025,9 +7021,9 @@ namespace Gestion_Rips.Forms.Exportar
                                                     break;
                                             }
 
-                                            if (CodTomo.Length > 8)
+                                            if (CodTomo.Length > 10)
                                             {
-                                                CodTomo = CodTomo.Substring(0, 8);
+                                                CodTomo = CodTomo.Substring(0, 10);
                                             }
 
                                             int GBus2 = Convert.ToInt32(GBus);
@@ -7508,6 +7504,19 @@ namespace Gestion_Rips.Forms.Exportar
                                     }
 
 
+                                  
+
+                                    if (txtNombreIps.Text.Length > 60)
+                                    {
+                                        NombreIps = txtNombreIps.Text.Substring(0, 60);
+                                    }
+                                    else
+                                    {
+                                        NombreIps = txtNombreIps.Text;
+                                    }
+
+
+
                                     Utils.SqlDatos = "INSERT INTO [DARIPSXPSQL].[dbo].[Datos temporal transacciones RIPS]" +
                                         "(" +
                                         "CodDigita," +
@@ -7535,7 +7544,7 @@ namespace Gestion_Rips.Forms.Exportar
                                         "'" + UsSel + "'," +
                                         "'" + Coenti02 + "'," +
                                         "'" + lblCodMinSalud.Text + "'," +
-                                        "'" + txtNombreIps.Text + "'," +
+                                        "'" + NombreIps + "'," +
                                         "'" + TipoDocuIPS + "'," +
                                         "'" + txtDocuIps.Text + "'," +
                                         "'" + NumFac + "'," +
@@ -7641,8 +7650,6 @@ namespace Gestion_Rips.Forms.Exportar
         {
             try
             {
-
-
                 DatosDeLaEmpresa();
                 CargarCombobox();
                 CargarDatosUser();
@@ -7662,7 +7669,27 @@ namespace Gestion_Rips.Forms.Exportar
                 if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
             }
         }
+        private void CargarRangoFechas()
+        {
+            try
+            {
+                DateTime FechaActual = DateTime.Now;
 
+                DateTime FechaUnMesAntes = DateTime.Now.AddMonths(-1);
+
+                DateInicial.Value = FechaUnMesAntes;
+
+                DateFinal.Value = FechaActual;
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "al abrir funcion CargarRangoFechas" + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void BtnCerrar_Click(object sender, EventArgs e)
         {
             this.Dispose();

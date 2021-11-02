@@ -5574,7 +5574,7 @@ namespace Gestion_Rips.Forms.RipsTodos
             {
                 Utils.Titulo01 = "Control para seleccionar datos";
 
-                string SqlEmTer = null, HisBus = null, CuenBus = null, SqlConsumos1 = null, ConMinRips = null, MT = null, FacturError = null, FacRipsEs = null,SqlFacturas = null, Coenti02 = null, SqlConsumos = null, TDE = null, NCC = null, CodERP = null, UsSel = null, NEnti = null;
+                string SqlEmTer = null, NombreIps = "", HisBus = null, CuenBus = null, SqlConsumos1 = null, ConMinRips = null, MT = null, FacturError = null, FacRipsEs = null,SqlFacturas = null, Coenti02 = null, SqlConsumos = null, TDE = null, NCC = null, CodERP = null, UsSel = null, NEnti = null;
                 int FunEli = 0;
                 double ValdetaFac = 0, CanFacSel = 0;
                 string TipUsSel = null;
@@ -5586,6 +5586,7 @@ namespace Gestion_Rips.Forms.RipsTodos
                 string GBus = null;
                 string ClaSerBus = null;
                 string CodTomo = null;
+
                 int TolD = 0;
 
                 string NumFac, DxEntra, DxSalida, DxRelac01, DxRelac02, DxRelac03, DxComplica, DxMuerte;
@@ -6611,6 +6612,14 @@ namespace Gestion_Rips.Forms.RipsTodos
                                                 }
 
 
+                                                if (txtNombreIps.Text.Length > 60)
+                                                {
+                                                    NombreIps = txtNombreIps.Text.Substring(0, 60);
+                                                }
+                                                else
+                                                {
+                                                    NombreIps = txtNombreIps.Text;
+                                                }
 
                                                 Utils.SqlDatos = "INSERT INTO [DARIPSESSQL].[dbo].[Datos temporal transacciones RIPS]" +
                                                     "(" +
@@ -6639,7 +6648,7 @@ namespace Gestion_Rips.Forms.RipsTodos
                                                     "'" + UsSel + "'," +
                                                     "'" + Coenti02 + "'," +
                                                     "'" + TxtCodMinSalud.Text + "'," +
-                                                    "'" + txtNombreIps.Text + "'," +
+                                                    "'" + NombreIps + "'," +
                                                     "'" + TipoDocuIPS + "'," +
                                                     "'" + txtDocuIps.Text + "'," +
                                                     "'" + TabFacturas["NumFactura"].ToString() + "'," +

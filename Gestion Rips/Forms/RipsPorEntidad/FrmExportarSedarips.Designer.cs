@@ -669,9 +669,9 @@ namespace Gestion_Rips.Forms.Exportar
             this.groupBox6.Controls.Add(this.lblCodigoUser);
             this.groupBox6.Controls.Add(this.label16);
             this.groupBox6.Controls.Add(this.lblNivelPermitido);
-            this.groupBox6.Location = new System.Drawing.Point(571, 354);
+            this.groupBox6.Location = new System.Drawing.Point(573, 354);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(263, 138);
+            this.groupBox6.Size = new System.Drawing.Size(261, 138);
             this.groupBox6.TabIndex = 18;
             this.groupBox6.TabStop = false;
             // 
@@ -730,10 +730,11 @@ namespace Gestion_Rips.Forms.Exportar
             // lblNombreUser
             // 
             this.lblNombreUser.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombreUser.Location = new System.Drawing.Point(9, 88);
+            this.lblNombreUser.Location = new System.Drawing.Point(9, 95);
             this.lblNombreUser.Name = "lblNombreUser";
-            this.lblNombreUser.Size = new System.Drawing.Size(245, 37);
+            this.lblNombreUser.Size = new System.Drawing.Size(245, 30);
             this.lblNombreUser.TabIndex = 11;
+            this.lblNombreUser.Text = "nombreUser";
             this.lblNombreUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblCodigoUser
@@ -750,7 +751,7 @@ namespace Gestion_Rips.Forms.Exportar
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(92, 68);
+            this.label16.Location = new System.Drawing.Point(66, 68);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(50, 14);
             this.label16.TabIndex = 8;
@@ -1059,17 +1060,17 @@ namespace Gestion_Rips.Forms.Exportar
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(840, 524);
+            this.ClientSize = new System.Drawing.Size(848, 524);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.BarraSeleccionar);
             this.Controls.Add(this.groupBox7);
-            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox6);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

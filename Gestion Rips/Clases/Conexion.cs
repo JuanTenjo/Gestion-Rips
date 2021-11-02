@@ -103,9 +103,9 @@ namespace Gestion_Rips.Clases
                 Utils.Titulo01 = "Control de errores de ejecución";
                 Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
                 Utils.Informa += "en la funcion SQLUpdate" + "\r";
-                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace + "\r";
+                Utils.Informa += "Consulta: " + sqlString;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                MessageBox.Show(sqlString);
                 return false;
             }
             finally
@@ -140,9 +140,9 @@ namespace Gestion_Rips.Clases
                 Utils.Titulo01 = "Control de errores de ejecución";
                 Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
                 Utils.Informa += "en la funcion SQLUDelete" + "\r";
-                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace + "\r";
+                Utils.Informa += "Consulta: " + sqlString;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                MessageBox.Show(sqlString);
                 return false;
             }
             finally
@@ -180,9 +180,9 @@ namespace Gestion_Rips.Clases
                 Utils.Titulo01 = "Control de errores de ejecución";
                 Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
                 Utils.Informa += "en la funcion SqlInsert" + "\r";
-                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace + "\r";
+                Utils.Informa += "Consulta: " + sqlString;
                 MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                MessageBox.Show(sqlString);
                 return false;
             }
             finally

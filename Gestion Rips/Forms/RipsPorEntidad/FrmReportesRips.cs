@@ -77,7 +77,7 @@ namespace Gestion_Rips.Forms.Exportar
                 int SiNoP = 0, FunAudi = 0, FunUs = 0, FunFac = 0, FunCon = 0, FunHos = 0, FunObs = 0, FunMedi = 0, FunOtros = 0, FunReN = 0, FunProce = 0, TolInco = 0;
                 double  TolOtrosSer, TolConsul, TolHos, TolMedi, TolObs, TolOtros, TolUsa = 0, TolReN, TolProce, TolFac, ValTolTras = 0, ValTolDeta = 0;
                 string Sqlsuarios, SqlFacturas, SqlHospitalizados, SqlUrgencias, SqlRNacidos, SqlConsultas, SqlMedica, SqlProcedimientos, SqlOtrosServi;
-
+                double difer = 0;
 
                 txtCardinal.Text = Utils.CarAdmin;
                 txtNombre.Text = Utils.NomTerc;
@@ -387,7 +387,7 @@ namespace Gestion_Rips.Forms.Exportar
 
                 txtSumDeta.Text = Convert.ToString(ValTolDeta);
 
-                double difer = ValTolTras - ValTolDeta;
+                difer = ValTolTras - ValTolDeta;
 
                 txtTolDifer.Text = Convert.ToString(difer);
 
@@ -425,7 +425,7 @@ namespace Gestion_Rips.Forms.Exportar
                 string SqlUpdate;
                 string Cardinal = Utils.CarAdmin;
                 string CodDigita = Utils.codUsuario;
-
+                int siga = 0;
                 Utils.SqlDatos = "SELECT * FROM DARIPSXPSQL.dbo.[Datos temporal transacciones RIPS] WHERE [Datos temporal transacciones RIPS].[NumRemi] = '" + CI + "'  ";
 
                 SqlDataReader TabLocal5;
@@ -438,14 +438,25 @@ namespace Gestion_Rips.Forms.Exportar
 
                     if (TabLocal5.HasRows)
                     {
-                        Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos temporal transacciones RIPS] SET [Datos temporal transacciones RIPS].[VaLorDeta] = 0 WHERE [Datos temporal transacciones RIPS].[NumRemi] = '" + CI + "'  ";
-
-                        Boolean ActConsul = Conexion.SQLUpdate(Utils.SqlDatos);
+                        siga = 1;
+                    }
+                    else
+                    {
+                        siga = 0;
                     }
                 }
 
-
                 TabLocal5.Close();
+
+                if (siga == 1)
+                {
+                    Utils.SqlDatos = "UPDATE [DARIPSXPSQL].[dbo].[Datos temporal transacciones RIPS] SET" +
+                    " [Datos temporal transacciones RIPS].[VaLorDeta] = 0 WHERE [Datos temporal transacciones RIPS].[NumRemi] = '" + CI + "'  ";
+                    Boolean ActConsul = Conexion.SQLUpdate(Utils.SqlDatos);
+                }
+
+
+              
 
                 //Auditamos cada una de las facturas de consultas
 
@@ -491,7 +502,8 @@ namespace Gestion_Rips.Forms.Exportar
                                 else
                                 {
                                     TabLocal5.Read();
-                                    SqlUpdate = "UPDATE [DARIPSXPSQL].[dbo].[Datos temporal transacciones RIPS] SET [Datos temporal transacciones RIPS].[VaLorDeta] = '" + (Convert.ToDouble(TabLocal5["VaLorDeta"]) + TolCon) + "'  WHERE [Datos temporal transacciones RIPS].[NumFactur] = '" + NF + "' AND [Datos temporal transacciones RIPS].[NumRemi] = '" + CI + "'  ";
+                                    SqlUpdate = "UPDATE [DARIPSXPSQL].[dbo].[Datos temporal transacciones RIPS] SET [Datos temporal transacciones RIPS].[VaLorDeta] = '" + (Convert.ToDouble(TabLocal5["VaLorDeta"]) + TolCon) + "'  " +
+                                    "WHERE [Datos temporal transacciones RIPS].[NumFactur] = '" + NF + "' AND [Datos temporal transacciones RIPS].[NumRemi] = '" + CI + "'  ";
                                     Boolean ActuValor = Conexion.SQLUpdate(SqlUpdate);
                                     TabLocal5.Close();
                                 }

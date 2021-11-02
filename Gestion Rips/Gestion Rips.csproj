@@ -7,7 +7,7 @@
     <ProjectGuid>{BB36D498-0EBC-4AAF-A94C-EB5E122D53E4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Gestion_Rips</RootNamespace>
-    <AssemblyName>OBRIPSXPSQL</AssemblyName>
+    <AssemblyName>OBRIPSNET</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -194,6 +194,7 @@
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="Forms\ArchivoMaestro\FrmArchivoMaestro.resx">
       <DependentUpon>FrmArchivoMaestro.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ArchivoMaestro\FrmAnularRemi.resx">
       <DependentUpon>FrmAnularRemi.cs</DependentUpon>

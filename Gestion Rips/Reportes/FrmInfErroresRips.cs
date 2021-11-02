@@ -61,9 +61,7 @@ namespace Gestion_Rips.Reportes
             this.reportViewer2.LocalReport.DataSources.Add(rdsInfoEmpresa);
 
 
-            //this.reportViewer2.LocalReport.ReportPath = System.IO.Path.Combine(Application.StartupPath + @"\Reportes\rdlc","InfReporErroresRips.rdlc");
 
-            //String reporte = "Gestion_Rips." + Utils.infNombreInforme + ".rdlc";
 
             string reporte = "Gestion_Rips.Reportes.Rdlc." + Utils.infNombreInforme;
 
