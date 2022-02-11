@@ -75,7 +75,7 @@ namespace Gestion_Rips.Forms
                     this.lblCodUsuario.Text = Utils.codUsuario;
                     this.lblNomUsuario.Text = Utils.nomUsuario;
 
-                    Utils.SqlDatos = @"SELECT CodiMinSalud, NitCCEmpresa, NomEmpresa, TipoDocEmp, TelPrin " +
+                    Utils.SqlDatos = @"SELECT CodiMinSalud, NitCCEmpresa, NomEmpresa,CatEmpresa, TipoDocEmp, TelPrin " +
                                    "FROM [BDADMINSIG].[dbo].[Datos informacion de la empresa] " +
                                    "WHERE CodUnico = @codUnicoEmpresa";
 
@@ -92,6 +92,7 @@ namespace Gestion_Rips.Forms
                         Utils.codMinSalud = Sqldr["CodiMinSalud"].ToString();
                         Utils.nitEmpresa = Sqldr["NitCCEmpresa"].ToString();
                         Utils.nomEmpresa = Sqldr["NomEmpresa"].ToString();
+                        Utils.CateEmpresa = Sqldr["CatEmpresa"].ToString();
                         Utils.tipoDocEmp = Sqldr["TipoDocEmp"].ToString();
                         Utils.TelEmpresa = Sqldr["TelPrin"].ToString();
                     }
@@ -103,6 +104,43 @@ namespace Gestion_Rips.Forms
                 {
                     this.Close();
                 }
+
+                string cadena = Utils.nomEmpresa;
+
+                string[] parte = cadena.Split(' ');
+
+                int cantidad = parte.Length;
+
+                LblNombreEmpresa.Text = "";
+
+                if (cantidad > 4)
+                {
+
+                    int parImpar = cantidad % 2;
+
+                    int mitadSalto = parImpar == 0 ? cantidad / 2 : (cantidad + 1) / 2;
+
+                    for (int i = 0; i < parte.Length; i++)
+                    {
+                        if (i == mitadSalto)
+                        {
+                            LblNombreEmpresa.Text += "\r";
+                        }
+
+                        LblNombreEmpresa.Text = LblNombreEmpresa.Text + parte[i] + " ";
+
+                    }
+
+                    LblNombreEmpresa.Text += "\r" + Utils.CateEmpresa;
+
+
+                }
+                else
+                {
+                    LblNombreEmpresa.Text = Utils.nomEmpresa + "\r" + Utils.CateEmpresa;
+                }
+
+
 
                 dr.Close();
             }

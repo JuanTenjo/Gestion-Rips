@@ -120,7 +120,6 @@ namespace Gestion_Rips.Forms.ArchivoMaestro
 
                 FRS = DateTime.Now.ToString("yyyy-MM-dd");
 
-                Utils.tipoDocEmp = "Control para borrar datos de remisión";
                 //Revisamos si se digito un numero valido de Remision
                 if (string.IsNullOrWhiteSpace(TxtRemiNum.Text))
                 {

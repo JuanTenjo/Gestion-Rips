@@ -20,7 +20,7 @@ namespace Gestion_Rips.Clases
         public static string tipoDocEmp { get; set; }
         public static string nitEmpresa { get; set; }
         public static string nomEmpresa { get; set; }
-
+        public static string CateEmpresa { get; set; }
         public static string TelEmpresa { get; set; }
 
 

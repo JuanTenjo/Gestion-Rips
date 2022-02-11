@@ -1089,9 +1089,6 @@ namespace Gestion_Rips.Forms.Exportar
                 int FunAct, FunElim, FunCopy, P, B, M, FunEliT, DVF, InD, SobrEscri, NuT;
                 Double TolReg;
 
-                double[] CanReg = new double[11];
-                string[] NomAr = new string[11];
-
 
                 Utils.Titulo01 = "Control para exportar archivos RIPS";
 
@@ -1173,217 +1170,227 @@ namespace Gestion_Rips.Forms.Exportar
                 NAP = cboNomAdmin.Text;
 
 
-                    //   'Proceda a correr el proceso de copia de archivos a las tablas temporales
-                    //1. Eliminar lo que haya en ellas
+                //   'Proceda a correr el proceso de copia de archivos a las tablas temporales
+                //1. Eliminar lo que haya en ellas
 
-                    //FunElim = EliminarTodosTemp();  Esta funcion la comentareo porque estaba eliminando tablas termporales de acces las cuales ya no se utilizan 
-
-
-                    //FunCopy = CopiarTodosTemp(NR)  Esta funcion la comentareo porque estaba rellenando tablas termporales de acces las cuales ya no se utilizan
+                //FunElim = EliminarTodosTemp();  Esta funcion la comentareo porque estaba eliminando tablas termporales de acces las cuales ya no se utilizan 
 
 
-                    if (string.IsNullOrWhiteSpace(txtCodigAdmin.Text))
+                //FunCopy = CopiarTodosTemp(NR)  Esta funcion la comentareo porque estaba rellenando tablas termporales de acces las cuales ya no se utilizan
+
+
+                if (string.IsNullOrWhiteSpace(txtCodigAdmin.Text))
+                {
+                    UniRuta = @"C:\RIPS\PARTIC\";
+                }
+                else
+                {
+                    UniRuta = @"C:\RIPS\" + txtCodigAdmin.Text + @"\";
+                }
+
+                Utils.Informa = "Se exportaran los archivos de la remision " + NR + "\r";
+                Utils.Informa += "Registrada a la administradora de planes " + NAP + "\r";
+                Utils.Informa += "Los archivos se copiaran en la siguiente ruta: " + "\r";
+                Utils.Informa += UniRuta + " Presiona:" + "\r";
+                Utils.Informa += "Si = Para que se guarden en la ruta actual " + "\r";
+                Utils.Informa += "No = Para seleccionar una nueva carpeta " + "\r";
+
+                var Res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+                if (Res == DialogResult.Yes)
+                {
+                    //'Revisamos si el directorio digitado existe
+                    if (!Directory.Exists(UniRuta))
                     {
-                        UniRuta = @"C:\RIPS\PARTIC\";
+                        //Si no existe lo creamos
+                        Directory.CreateDirectory(UniRuta);
+
+                        Ruta = UniRuta;
+
                     }
                     else
                     {
-                        UniRuta = @"C:\RIPS\" + txtCodigAdmin.Text + @"\";
+                        Ruta = UniRuta;
                     }
-
-                    Utils.Informa = "Se exportaran los archivos de la remision " + NR + "\r";
-                    Utils.Informa += "Registrada a la administradora de planes " + NAP + "\r";
-                    Utils.Informa += "Los archivos se copiaran en la siguiente ruta: " + "\r";
-                    Utils.Informa += UniRuta + " Presiona:" + "\r";
-                    Utils.Informa += "Si = Para que se guarden en la ruta actual " + "\r";
-                    Utils.Informa += "No = Para seleccionar una nueva carpeta " + "\r";
-
-                    var Res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-
-                    if (Res == DialogResult.Yes)
+                }
+                else
+                {
+                    if (Res == DialogResult.No)
                     {
-                        //'Revisamos si el directorio digitado existe
-                        if (!Directory.Exists(UniRuta))
+                        //Procede a escoger una nueva carpeta donde se guardaran los archivos
+
+                        CEsp = @"\";
+
+                        var fbd = new FolderBrowserDialog();
+
+                        DialogResult result = fbd.ShowDialog();
+
+                        if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                         {
-                            //Si no existe lo creamos
-                            Directory.CreateDirectory(UniRuta);
+                            Ruta = fbd.SelectedPath;
 
-                            Ruta = UniRuta;
-
-                        }
-                        else
-                        {
-                            Ruta = UniRuta;
-                        }
-                    }
-                    else
-                    {
-                        if (Res == DialogResult.No)
-                        {
-                            //Procede a escoger una nueva carpeta donde se guardaran los archivos
-
-                            CEsp = @"\";
-
-                            var fbd = new FolderBrowserDialog();
-
-                            DialogResult result = fbd.ShowDialog();
-
-                            if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                            if (string.IsNullOrWhiteSpace(Ruta))
                             {
-                                Ruta = fbd.SelectedPath;
-
-                                if (string.IsNullOrWhiteSpace(Ruta))
-                                {
-                                    Ruta = UniRuta;
-                                }
-                                else
-                                {
-                                    Ruta = fbd.SelectedPath;
-                                }
-
-                                string UtimoCaracterRuta = Ruta.Substring(Ruta.Length - 1, 1);
-
-                                if (UtimoCaracterRuta != CEsp)
-                                {
-                                    Ruta = Ruta + @"\";
-                                }
-
+                                Ruta = UniRuta;
                             }
                             else
                             {
-                                return;
+                                Ruta = fbd.SelectedPath;
                             }
-                        }
-                    }
 
+                            string UtimoCaracterRuta = Ruta.Substring(Ruta.Length - 1, 1);
 
-                    //Proceda a exportar los archivos
-                    //Abrimos la tabla nombre de archivos
+                            if (UtimoCaracterRuta != CEsp)
+                            {
+                                Ruta = Ruta + @"\";
+                            }
 
-                    if (string.IsNullOrWhiteSpace(Ruta))
-                    {
-                    return;
-                    }
-                    else
-                    {
-
-                        Utils.SqlDatos = "SELECT * FROM [Datos nombres de archivos]";
-
-                        SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
-
-                        if (TablaAux1.HasRows == false)
-                        {
-
-                            Utils.Informa = "Error fatal, la tabla de nombres de archivos" + "\r";
-                            Utils.Informa += "le han sido borrado sus datos. " + "\r";
-                            MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
                         }
                         else
                         {
-                            NuT = 0;
-                            BarraExportar.Minimum = 1;
-                            BarraExportar.Maximum = Convert.ToInt32(11);
-                            while (TablaAux1.Read())
+                            return;
+                        }
+                    }
+                }
+
+
+                //Proceda a exportar los archivos
+                //Abrimos la tabla nombre de archivos
+
+                if (string.IsNullOrWhiteSpace(Ruta))
+                {
+                        return;
+                }
+                else
+                {
+
+                    Utils.SqlDatos = "SELECT * FROM [Datos nombres de archivos]";
+
+                    SqlDataReader TablaAux1 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                    if (TablaAux1.HasRows == false)
+                    {
+
+                        Utils.Informa = "Error fatal, la tabla de nombres de archivos" + "\r";
+                        Utils.Informa += "le han sido borrado sus datos. " + "\r";
+                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else
+                    {
+                        NuT = 0;
+                        BarraExportar.Minimum = 1;
+                        BarraExportar.Maximum = Convert.ToInt32(11);
+
+                        List<string> NomArList = new List<string>();
+                        List<double> CanRegList = new List<double>();
+
+
+                        while (TablaAux1.Read())
+                        {
+
+                            TolReg = 0;
+                            NT = TablaAux1["NomTabRemo"].ToString(); //Nombre de la tabla en sql
+                            NE = TablaAux1["NomEspicifica"].ToString(); //Nombre de la especificación
+                            InD = Convert.ToInt32(TablaAux1["Indispensable"]); //Nombre de la especificación
+                            NLA = TablaAux1["NomArchivo"].ToString(); //Nombre de la especificación
+                            TAE = TablaAux1["CodRIPS"].ToString(); //Nombre de la especificación
+
+                            Utils.SqlDatos = "SELECT * FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+
+                            SqlDataReader TablaAux3 = Conexion.SQLDataReader(Utils.SqlDatos);
+
+                            if (TablaAux3.HasRows == false)
                             {
-
-                                TolReg = 0;
-                                NT = TablaAux1["NomTabRemo"].ToString(); //Nombre de la tabla en sql
-                                NE = TablaAux1["NomEspicifica"].ToString(); //Nombre de la especificación
-                                InD = Convert.ToInt32(TablaAux1["Indispensable"]); //Nombre de la especificación
-                                NLA = TablaAux1["NomArchivo"].ToString(); //Nombre de la especificación
-                                TAE = TablaAux1["CodRIPS"].ToString(); //Nombre de la especificación
-
-                                Utils.SqlDatos = "SELECT * FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
-
-                                SqlDataReader TablaAux3 = Conexion.SQLDataReader(Utils.SqlDatos);
-
-                                if (TablaAux3.HasRows == false)
+                                //No tiene nada la tabla
+                                if (InD == 1)
                                 {
-                                    //No tiene nada la tabla
-                                    if (InD == 1)
-                                    {
-                                        //'Debe parar el proceso ya que es un archivo importante
-                                        Utils.Informa = "Lo siento pero el archivo" + "\r";
-                                        Utils.Informa += NLA + "\r";
-                                        Utils.Informa += "no está definido y es necesario para la exportación" + "\r";
-                                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                        return;
-                                    }
+                                    //'Debe parar el proceso ya que es un archivo importante
+                                    Utils.Informa = "Lo siento pero el archivo" + "\r";
+                                    Utils.Informa += NLA + "\r";
+                                    Utils.Informa += "no está definido y es necesario para la exportación" + "\r";
+                                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    return;
                                 }
-                                else
-                                {
-                                    //Cuente el número de registros que contiene el archivo o tabla
+                            }
+                            else
+                            {
+                                //Cuente el número de registros que contiene el archivo o tabla
 
-                                    while (TablaAux3.Read())
+                                while (TablaAux3.Read())
+                                {
+                                    TolReg += 1;
+                                }
+
+
+
+                            } // fINAL TablaAux3.HasRows == false
+
+                            if (TolReg > 0)
+                            {                                    
+                             
+
+                                NomArList.Add(NLA);
+                                CanRegList.Add(TolReg);
+
+                                //Se procede a exportar
+                                NomArchi = TAE + NR + ".txt";
+
+                                if (string.IsNullOrEmpty(Ruta) == false)
+                                {
+                                    // 'El archivo se va agregar nuevo, mientras no se presente error
+
+
+                                    switch (NT)
                                     {
-                                        TolReg += 1;
+                                        case "Datos archivo de control": //CT
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(CodIPS)), CONVERT(varchar,FechaRemi,103), LTRIM(RTRIM(CodArchivo)), LTRIM(RTRIM(TotalRegis)) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            break;
+                                        case "Datos archivo de transacciones": //AF
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(CodIPS)),LTRIM(RTRIM(RazonSocial)),LTRIM(RTRIM(TipIdenti)),LTRIM(RTRIM(NumIdenti)),LTRIM(RTRIM(NumFactur)),CONVERT(varchar,FecFactur,103),CONVERT(varchar,FecInicio,103),CONVERT(varchar,FecFinal,103),LTRIM(RTRIM(CodAdmin)),LTRIM(RTRIM(NomAdmin)),LTRIM(RTRIM(NumContra)),LTRIM(RTRIM(PlanBene)),LTRIM(RTRIM(NumPoli)),LTRIM(RTRIM(Copago)),LTRIM(RTRIM(ValorComi)),LTRIM(RTRIM(ValorDes)),LTRIM(RTRIM(ValorNeto)) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            break;
+                                        case "Datos archivo usuarios": //US
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)), LTRIM(RTRIM(CodAdmin)), LTRIM(RTRIM(TipUsuario)),LTRIM(RTRIM(Apellido1)),LTRIM(RTRIM(Apellido2)),LTRIM(RTRIM(Nombre1)),LTRIM(RTRIM(Nombre2)),LTRIM(RTRIM(Edad)),LTRIM(RTRIM(EdadMedi)),LTRIM(RTRIM(Sexo)),LTRIM(RTRIM(CodDpto)),LTRIM(RTRIM(CodMuni)),LTRIM(RTRIM(ZonaResi)) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'"; //Bien
+                                            break;
+                                        case "Datos archivo de servicios agrupados": //AD
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(CodConcepto)), LTRIM(RTRIM(CantiGrupo)),LTRIM(RTRIM(ValUnita)),LTRIM(RTRIM(Valtotal)) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            break;
+                                        case "Datos archivo de consulta": //AC
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),CONVERT(varchar,FecConsul,103),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CodConsul)),LTRIM(RTRIM(FinalConsul)),LTRIM(RTRIM(CausExter)),LTRIM(RTRIM(DxPrincipal)),LTRIM(RTRIM(DxRelacion1)),LTRIM(RTRIM(DxRelacion2)),LTRIM(RTRIM(DxRelacion3)),LTRIM(RTRIM(TipoDxPrin)),LTRIM(RTRIM(ValorConsul)),LTRIM(RTRIM(ValorCuota)),LTRIM(RTRIM(ValorNeto)) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'"; //Tenia VezAno en la archivo de sql
+                                            break;
+                                        case "Datos archivo de procedimientos": //AP
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),CONVERT(varchar,FecProce,103),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CodProce)),LTRIM(RTRIM(AmbitoReal)),LTRIM(RTRIM(FinalProce)),LTRIM(RTRIM(PersonAten)),LTRIM(RTRIM(DxPrincipal)),LTRIM(RTRIM(DxRelacion)),LTRIM(RTRIM(Complicacion)),LTRIM(RTRIM(RealiActo)),LTRIM(RTRIM(ValorProce)) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            break;
+                                        case "Datos archivo de hospitalizacion": //AH
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),LTRIM(RTRIM(ViaDIngreso)), CONVERT(varchar,FecIngresa,103) ,SUBSTRING(CONVERT(varchar,HorIngresa,24),1,5),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CausExter)),LTRIM(RTRIM(DxPrincIngre)),LTRIM(RTRIM(DxPrincEgre)),LTRIM(RTRIM(DxRelacion1)),LTRIM(RTRIM(DxRelacion2)),LTRIM(RTRIM(DxRelacion3)),LTRIM(RTRIM(DxComplica)),LTRIM(RTRIM(EstadoSal)),LTRIM(RTRIM(DxMuerte)),CONVERT(varchar,FecSalida,103),SUBSTRING(CONVERT(varchar,HorSalida,24),1,5) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            break;
+                                        case "Datos archivo de observacion urgencias": //AU
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),CONVERT(varchar,FecIngresa,103),SUBSTRING(CONVERT(varchar,HorIngresa,24),1,5),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CausExter)),LTRIM(RTRIM(DxPrincIngre)),LTRIM(RTRIM(DxRelacion1)),LTRIM(RTRIM(DxRelacion2)),LTRIM(RTRIM(DxRelacion3)),LTRIM(RTRIM(Destino)),LTRIM(RTRIM(EstadoSal)),LTRIM(RTRIM(DxMuerte)),CONVERT(varchar,FecSalida,103),SUBSTRING(CONVERT(varchar,HorSalida,24),1,5) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            break;
+                                        case "Datos archivo de recien nacido": //AN
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),CONVERT(varchar,FecNaci,103),SUBSTRING(CONVERT(varchar,HorIngresa,24),1,5),LTRIM(RTRIM(EdadGesta)),LTRIM(RTRIM(ControlPrena)),LTRIM(RTRIM(SexoRecien)),LTRIM(RTRIM(PesoRecien)),LTRIM(RTRIM(DxRecien)),LTRIM(RTRIM(DxMuerte)),CONVERT(varchar,FecMuerte,103),SUBSTRING(CONVERT(varchar,HorMuerte,24),1,5) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            break;
+                                        case "Datos archivo de medicamentos": //AM
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)), LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CodMedica)),LTRIM(RTRIM(TipoMedica)),LTRIM(RTRIM(NomGenerico)),LTRIM(RTRIM(FormaFarma)),LTRIM(RTRIM(ConcenMedi)),LTRIM(RTRIM(UniMedida)),LTRIM(RTRIM(NumUnidad)),LTRIM(RTRIM(ValorUnita)),LTRIM(RTRIM(ValorTotal)) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            break;
+                                        case "Datos archivo de otros servicios": //AT
+                                            Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(TipoServicio)),LTRIM(RTRIM(CodiServi)),LTRIM(RTRIM(NomServi)),LTRIM(RTRIM(Cantidad)),LTRIM(RTRIM(ValorUnita)),LTRIM(RTRIM(ValorTotal)) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            break;
+
+                                        default:
+                                            Utils.SqlDatos = "SELECT * FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
+                                            break;
                                     }
 
 
 
-                                } // fINAL TablaAux3.HasRows == false
+                                    DataTable dt = Conexion.SQLDataTable(Utils.SqlDatos);
 
-                                if (TolReg > 0)
-                                {
-                                    NuT += 1;
-                                    CanReg[NuT] = TolReg;
-                                    NomAr[NuT] = NLA;
-
-                                    //Se procede a exportar
-                                    NomArchi = TAE + NR + ".txt";
-
-                                    if (string.IsNullOrEmpty(Ruta) == false)
+                           
+                                    using (StreamWriter file = new StreamWriter(Ruta + NomArchi, false))
                                     {
-                                        // 'El archivo se va agregar nuevo, mientras no se presente error
 
-
-                                        switch (NT)
-                                        {
-                                            case "Datos archivo de control": //CT
-                                                Utils.SqlDatos = "SELECT LTRIM(RTRIM(CodIPS)), CONVERT(varchar,FechaRemi,103), LTRIM(RTRIM(CodArchivo)), LTRIM(RTRIM(TotalRegis)) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
-                                                break;
-                                            case "Datos archivo de transacciones": //AF
-                                                Utils.SqlDatos = "SELECT LTRIM(RTRIM(CodIPS)),LTRIM(RTRIM(RazonSocial)),LTRIM(RTRIM(TipIdenti)),LTRIM(RTRIM(NumIdenti)),LTRIM(RTRIM(NumFactur)),CONVERT(varchar,FecFactur,103),CONVERT(varchar,FecInicio,103),CONVERT(varchar,FecFinal,103),LTRIM(RTRIM(CodAdmin)),LTRIM(RTRIM(NomAdmin)),LTRIM(RTRIM(NumContra)),LTRIM(RTRIM(PlanBene)),LTRIM(RTRIM(NumPoli)),LTRIM(RTRIM(Copago)),LTRIM(RTRIM(ValorComi)),LTRIM(RTRIM(ValorDes)),LTRIM(RTRIM(ValorNeto)) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
-                                                break;
-                                            case "Datos archivo usuarios": //US
-                                                Utils.SqlDatos = "SELECT LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)), LTRIM(RTRIM(CodAdmin)), LTRIM(RTRIM(TipUsuario)),LTRIM(RTRIM(Apellido1)),LTRIM(RTRIM(Apellido2)),LTRIM(RTRIM(Nombre1)),LTRIM(RTRIM(Nombre2)),LTRIM(RTRIM(Edad)),LTRIM(RTRIM(EdadMedi)),LTRIM(RTRIM(Sexo)),LTRIM(RTRIM(CodDpto)),LTRIM(RTRIM(CodMuni)),LTRIM(RTRIM(ZonaResi)) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'"; //Bien
-                                                break;
-                                            case "Datos archivo de servicios agrupados": //AD
-                                                Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(CodConcepto)), LTRIM(RTRIM(CantiGrupo)),LTRIM(RTRIM(ValUnita)),LTRIM(RTRIM(Valtotal)) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
-                                                break;
-                                            case "Datos archivo de consulta": //AC
-                                                Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),CONVERT(varchar,FecConsul,103),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CodConsul)),LTRIM(RTRIM(FinalConsul)),LTRIM(RTRIM(CausExter)),LTRIM(RTRIM(DxPrincipal)),LTRIM(RTRIM(DxRelacion1)),LTRIM(RTRIM(DxRelacion2)),LTRIM(RTRIM(DxRelacion3)),LTRIM(RTRIM(TipoDxPrin)),LTRIM(RTRIM(ValorConsul)),LTRIM(RTRIM(ValorCuota)),LTRIM(RTRIM(ValorNeto)) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'"; //Tenia VezAno en la archivo de sql
-                                                break;
-                                            case "Datos archivo de procedimientos": //AP
-                                                Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),CONVERT(varchar,FecProce,103),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CodProce)),LTRIM(RTRIM(AmbitoReal)),LTRIM(RTRIM(FinalProce)),LTRIM(RTRIM(PersonAten)),LTRIM(RTRIM(DxPrincipal)),LTRIM(RTRIM(DxRelacion)),LTRIM(RTRIM(Complicacion)),LTRIM(RTRIM(RealiActo)),LTRIM(RTRIM(ValorProce)) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
-                                                break;
-                                            case "Datos archivo de hospitalizacion": //AH
-                                                Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),LTRIM(RTRIM(ViaDIngreso)), CONVERT(varchar,FecIngresa,103) ,SUBSTRING(CONVERT(varchar,HorIngresa,24),1,5),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CausExter)),LTRIM(RTRIM(DxPrincIngre)),LTRIM(RTRIM(DxPrincEgre)),LTRIM(RTRIM(DxRelacion1)),LTRIM(RTRIM(DxRelacion2)),LTRIM(RTRIM(DxRelacion3)),LTRIM(RTRIM(DxComplica)),LTRIM(RTRIM(EstadoSal)),LTRIM(RTRIM(DxMuerte)),CONVERT(varchar,FecSalida,103),SUBSTRING(CONVERT(varchar,HorSalida,24),1,5) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
-                                                break;
-                                            case "Datos archivo de observacion urgencias": //AU
-                                                Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),CONVERT(varchar,FecIngresa,103),SUBSTRING(CONVERT(varchar,HorIngresa,24),1,5),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CausExter)),LTRIM(RTRIM(DxPrincIngre)),LTRIM(RTRIM(DxRelacion1)),LTRIM(RTRIM(DxRelacion2)),LTRIM(RTRIM(DxRelacion3)),LTRIM(RTRIM(Destino)),LTRIM(RTRIM(EstadoSal)),LTRIM(RTRIM(DxMuerte)),CONVERT(varchar,FecSalida,103),SUBSTRING(CONVERT(varchar,HorSalida,24),1,5) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
-                                                break;
-                                            case "Datos archivo de recien nacido": //AN
-                                                Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),CONVERT(varchar,FecNaci,103),SUBSTRING(CONVERT(varchar,HorIngresa,24),1,5),LTRIM(RTRIM(EdadGesta)),LTRIM(RTRIM(ControlPrena)),LTRIM(RTRIM(SexoRecien)),LTRIM(RTRIM(PesoRecien)),LTRIM(RTRIM(DxRecien)),LTRIM(RTRIM(DxMuerte)),CONVERT(varchar,FecMuerte,103),SUBSTRING(CONVERT(varchar,HorMuerte,24),1,5) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
-                                                break;
-                                            case "Datos archivo de medicamentos": //AM
-                                                Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)), LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(CodMedica)),LTRIM(RTRIM(TipoMedica)),LTRIM(RTRIM(NomGenerico)),LTRIM(RTRIM(FormaFarma)),LTRIM(RTRIM(ConcenMedi)),LTRIM(RTRIM(UniMedida)),LTRIM(RTRIM(NumUnidad)),LTRIM(RTRIM(ValorUnita)),LTRIM(RTRIM(ValorTotal)) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
-                                                break;
-                                            case "Datos archivo de otros servicios": //AT
-                                                Utils.SqlDatos = "SELECT LTRIM(RTRIM(NumFactur)), LTRIM(RTRIM(CodIPS)), LTRIM(RTRIM(TipoDocum)), LTRIM(RTRIM(NumDocum)),LTRIM(RTRIM(AutoriNum)),LTRIM(RTRIM(TipoServicio)),LTRIM(RTRIM(CodiServi)),LTRIM(RTRIM(NomServi)),LTRIM(RTRIM(Cantidad)),LTRIM(RTRIM(ValorUnita)),LTRIM(RTRIM(ValorTotal)) FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
-                                                break;
-
-                                            default:
-                                                Utils.SqlDatos = "SELECT * FROM [" + NT + "] WHERE [NumRemi]  = '" + NR + "'";
-                                                break;
-                                        }
-
-
-
-                                        DataTable dt = Conexion.SQLDataTable(Utils.SqlDatos);
-
-                                        using (StreamWriter file = new StreamWriter(Ruta + NomArchi, false))
+                                        if (dt.Rows.Count > 0)
                                         {
                                             foreach (DataRow row in dt.Rows)
                                             {
@@ -1403,30 +1410,37 @@ namespace Gestion_Rips.Forms.Exportar
                                             }
                                         }
 
-                                }//Verificar Ruta
+                                    }
+        
 
-                            }// fiNAL TolReg > 0
+                                 
+                            }//Verificar Ruta
 
-                            BarraExportar.Increment(1);
 
-                        }// Final while 
+                        }// fiNAL TolReg > 0
 
-                        //'Muestrelos resultados
+                        BarraExportar.Increment(1);
 
-                        Utils.Informa = "Se ha exportado los siguientes archivos" + "\r";
+                    }// Final while 
 
-                        M = 1;
-                        while (M != NuT)
-                        {
-                            Utils.Informa += NomAr[M].ToString() + ". Con " + CanReg[M].ToString() + " registros." + "\r"; ;
-                            M += 1;
-                        }
+                    //'Muestrelos resultados
 
-                        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Utils.Informa = "Se ha exportado los siguientes archivos: " + "\r";
 
-                        BarraExportar.Minimum = 0;
-                        BarraExportar.Maximum = 1;
-                        BarraExportar.Value = 0;
+
+
+                    for(int i = 0; i < NomArList.Count; i++)
+                    {
+                        Utils.Informa += NomArList[i].ToString() + ". Con " + CanRegList[i].ToString() + " registros." + "\r";
+                    }
+
+
+                    MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+   
+                    BarraExportar.Minimum = 0;
+                    BarraExportar.Maximum = 1;
+                    BarraExportar.Value = 0;
 
                     } // TablaAux1.HasRows == false
                 }
@@ -1705,6 +1719,9 @@ namespace Gestion_Rips.Forms.Exportar
                             Utils.Informa = "Lo siento pero el NIT digitado no corresponde a ninguna entidad en este sistema" + "\r";
                             MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
+
+                        if (Conexion.sqlConnection.State == ConnectionState.Open) Conexion.sqlConnection.Close();
+
 
                     }
 

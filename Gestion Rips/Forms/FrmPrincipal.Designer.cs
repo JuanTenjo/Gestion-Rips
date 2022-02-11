@@ -46,6 +46,7 @@ namespace Gestion_Rips.Forms
             this.lblNomUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblCodUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.LblNombreEmpresa = new System.Windows.Forms.Label();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -59,7 +60,7 @@ namespace Gestion_Rips.Forms
             this.exportarToolStripMenuItem2});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(655, 24);
+            this.menuStrip.Size = new System.Drawing.Size(1042, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -140,9 +141,9 @@ namespace Gestion_Rips.Forms
             this.lblFecha,
             this.lblNomUsuario,
             this.lblCodUsuario});
-            this.statusStrip.Location = new System.Drawing.Point(0, 434);
+            this.statusStrip.Location = new System.Drawing.Point(0, 573);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(655, 22);
+            this.statusStrip.Size = new System.Drawing.Size(1042, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
@@ -165,20 +166,41 @@ namespace Gestion_Rips.Forms
             this.lblCodUsuario.Size = new System.Drawing.Size(118, 17);
             this.lblCodUsuario.Text = "toolStripStatusLabel1";
             // 
+            // LblNombreEmpresa
+            // 
+            this.LblNombreEmpresa.AutoSize = true;
+            this.LblNombreEmpresa.BackColor = System.Drawing.Color.Transparent;
+            this.LblNombreEmpresa.Dock = System.Windows.Forms.DockStyle.Right;
+            this.LblNombreEmpresa.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.LblNombreEmpresa.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblNombreEmpresa.ForeColor = System.Drawing.Color.White;
+            this.LblNombreEmpresa.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.LblNombreEmpresa.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.LblNombreEmpresa.Location = new System.Drawing.Point(947, 24);
+            this.LblNombreEmpresa.Margin = new System.Windows.Forms.Padding(30, 10, 30, 10);
+            this.LblNombreEmpresa.Name = "LblNombreEmpresa";
+            this.LblNombreEmpresa.Padding = new System.Windows.Forms.Padding(0, 30, 40, 0);
+            this.LblNombreEmpresa.Size = new System.Drawing.Size(95, 48);
+            this.LblNombreEmpresa.TabIndex = 4;
+            this.LblNombreEmpresa.Text = "label1";
+            this.LblNombreEmpresa.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(655, 456);
+            this.BackgroundImage = global::Gestion_Rips.Properties.Resources.fondo;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(1042, 595);
+            this.Controls.Add(this.LblNombreEmpresa);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
             this.Name = "FrmPrincipal";
-            this.Text = "SEDAS-RIPS  Ver.  4.0.3 B   (30-OCT-2021) *** SIIGHOS PLUS ***";
+            this.Text = "SEDAS-RIPS  Ver.  4.0.6 B   (06-DIC-2021) *** SIIGHOS PLUS ***";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             this.menuStrip.ResumeLayout(false);
@@ -207,6 +229,7 @@ namespace Gestion_Rips.Forms
         private System.Windows.Forms.ToolStripMenuItem ripsPorRegimenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gestionRipsEspecialToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ripsTodosToolStripMenuItem;
+        private System.Windows.Forms.Label LblNombreEmpresa;
     }
 }
 

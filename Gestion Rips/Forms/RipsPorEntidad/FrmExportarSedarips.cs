@@ -9,6 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
+using ExcelDataReader;
+
 namespace Gestion_Rips.Forms.Exportar
 {
     public partial class FrmExportarSedarips : Form
@@ -5892,41 +5895,38 @@ namespace Gestion_Rips.Forms.Exportar
         }
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            string UsSel = null, Coenti01 = null;
-            Coenti01 = cboNameEntidades.SelectedValue.ToString();
 
-            DataGridDestino.DataSource = null;
-            DataGridFacturas.DataSource = null;
-            txtTotalCantidadFacturas.Clear();
-            txtTotalCantidadDestino.Clear();
+            //preguntar si quiere eliminar, 
 
-            UsSel = lblCodigoUser.Text;
 
-            Boolean FunEli = BorrarTempoRips(UsSel, Coenti01);
+            Utils.Titulo01 = "Control de ejecución";
+            Utils.Informa = "Se limpiaran todas las facturas exportadas a Rips" + "\r";
+            Utils.Informa += "¿Esta seguro?" + "\r";
+           
 
-            if (FunEli == false)
+            var res = MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if(res == DialogResult.Yes)
             {
-                return;
+                string UsSel = null, Coenti01 = null;
+                Coenti01 = cboNameEntidades.SelectedValue.ToString();
+
+                DataGridDestino.DataSource = null;
+                DataGridFacturas.DataSource = null;
+                txtTotalCantidadFacturas.Clear();
+                txtTotalCantidadDestino.Clear();
+
+                UsSel = lblCodigoUser.Text;
+
+                Boolean FunEli = BorrarTempoRips(UsSel, Coenti01);
+
+                if (FunEli == false)
+                {
+                    return;
+                }
             }
 
         }
-
-        //private void ActualizarDataGrisDestino()
-        //{
-        //    try
-        //    {
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Utils.Titulo01 = "Control de errores de ejecución";
-        //        Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
-        //        Utils.Informa += "al actualziar el datagrid destino " + "\r";
-        //        Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
-        //        MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
-
         private void btnMostrar_Click(object sender, EventArgs e)
         {
             try
@@ -5997,13 +5997,13 @@ namespace Gestion_Rips.Forms.Exportar
                 Para01 = Coenti01;
                 Para02 = Fec01.ToString("yyyy-MM-dd");
                 Para03 = Fec02.ToString("yyyy-MM-dd");
-
-             
-
-                Para07 = txtNombreIps.Text;
                 Fec1Sql = Para02;
                 Fec2Sql = Para03;
 
+
+
+                Para07 = txtNombreIps.Text;
+           
                 Para11 = txtTipoDocu.Text;
                 Para12 = txtDocumento.Text;
                 Para13 = txtRips.Text;
@@ -7350,6 +7350,8 @@ namespace Gestion_Rips.Forms.Exportar
                                                                             break;
                                                                     }
 
+                                                                    
+
                                                                     if (TabConsumos2["PosMedi"].ToString() == "2")
                                                                     {
                                                                         //El medicamento no es POS
@@ -7650,6 +7652,8 @@ namespace Gestion_Rips.Forms.Exportar
         {
             try
             {
+                //Sufijo del concecutivo del codigo CUM se le quite el 0 o lo lleve
+                
                 DatosDeLaEmpresa();
                 CargarCombobox();
                 CargarDatosUser();
@@ -7722,6 +7726,165 @@ namespace Gestion_Rips.Forms.Exportar
         private void cboNameEntidades_KeyPress(object sender, KeyPressEventArgs e)
         {
             cboNameEntidades.DroppedDown = false;
+        }
+
+        private void BtnImportar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Utils.Titulo01 = "Control de ejecución";
+                Utils.Informa = "Usted desea mostrar las facturas" + "\r";
+                Utils.Informa += "de la empresa  " + cboNameEntidades.Text +  "\r";
+                Utils.Informa += "en el rango de fechas del  " + DateInicial.Text  + " al " + DateFinal.Text + "?"+ "\r";
+
+                var res= MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if(res == DialogResult.Yes)
+                {
+                    string NumFactura = "", SqlFacturas, UsSel, Coenti01;
+                    string Fec1Sql, Fec2Sql;
+
+                    Type tipo;
+
+                    DateTime Fec01 = DateInicial.Value;
+                    DateTime Fec02 = DateFinal.Value;
+
+                    Fec1Sql = Fec01.ToString("yyyy-MM-dd");
+                    Fec2Sql = Fec02.ToString("yyyy-MM-dd");
+
+                    Coenti01 = (cboNameEntidades.SelectedValue).ToString();
+
+                    UsSel = lblCodigoUser.Text;
+
+                    String fileName = null;
+                    OpenFileDialog openFileDialog = new OpenFileDialog();
+                    openFileDialog.Filter = "Excel (*.xlsx)|*.xlsx|Excel (*.xls)|*.xls";
+                    // openFileDialog.Filter = "Excel (*.xlsx)|*.xlsx";
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        fileName = openFileDialog.FileName;
+                        Path.GetDirectoryName(fileName);
+                    }
+
+
+                    if (string.IsNullOrWhiteSpace(fileName) == false)
+                    {
+                        //Ruta del fichero Excel
+                        string filePath = fileName;
+
+                        using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
+                        {
+                            using (var reader = ExcelReaderFactory.CreateReader(stream))
+                            {
+                                do
+                                {
+                                    while (reader.Read())
+                                    {
+                                        //reader.GetDouble(0);
+
+                                        tipo = reader.GetFieldType(0);
+                                        
+                                        if(tipo.Name == "Double")
+                                        {
+                                            NumFactura = reader.GetDouble(0).ToString();
+                                        }
+                                        else
+                                        {
+                                            NumFactura = reader.GetString(0);                                     
+                                        }
+                                        
+
+                                        Utils.SqlDatos = "SELECT [Datos de las facturas realizadas].NumFactura, Format([FechaFac],'dd-MMM-yyyy') AS FD " +
+                                        "FROM [ACDATOXPSQL].[dbo].[Datos cuentas de consumos] INNER JOIN [ACDATOXPSQL].[dbo].[Datos de las facturas realizadas] ON " +
+                                        "[Datos cuentas de consumos].CuenNum = [Datos de las facturas realizadas].NumCuenFac " +
+                                        "WHERE [Datos de las facturas realizadas].Cartercero ='" + Coenti01 + "'  AND " +
+                                        "[Datos de las facturas realizadas].ExpoRips = 0 AND " +
+                                        "[Datos de las facturas realizadas].CodSele ='" + UsSel + "' AND " +
+                                        "[Datos de las facturas realizadas].FechaFac >= CONVERT(DATETIME, '" + Fec1Sql + "', 102) AND " +
+                                        "[Datos de las facturas realizadas].FechaFac <= CONVERT(DATETIME, '" + Fec2Sql + "', 102) AND " +
+                                        "[Datos de las facturas realizadas].NumFactura ='" + NumFactura + "' AND " +
+                                        "[Datos de las facturas realizadas].AnuladaFac = 0  AND " +
+                                        "[Datos cuentas de consumos].DefiCuenta <>'0' " +
+                                        "ORDER BY [Datos de las facturas realizadas].FechaFac, [Datos de las facturas realizadas].NumFactura;";
+
+
+                                        SqlDataReader TabFacturas;
+
+                                        using (SqlConnection connection3 = new SqlConnection(Conexion.conexionSQL))
+                                        {
+                                            SqlCommand command3 = new SqlCommand(Utils.SqlDatos, connection3);
+                                            command3.Connection.Open();
+                                            TabFacturas = command3.ExecuteReader();
+
+                                            if (TabFacturas.HasRows)
+                                            {
+                                                TabFacturas.Read();
+                                                NumFactura = TabFacturas["NumFactura"].ToString();
+
+
+                                                SqlFacturas = "UPDATE [ACDATOXPSQL].[dbo].[Datos de las facturas realizadas] SET [Datos de las facturas realizadas].ExpoRips = 1, " +
+                                                "[Datos de las facturas realizadas].CodSele = N'" + UsSel + "' " +
+                                                "WHERE [Datos de las facturas realizadas].NumFactura = '" + NumFactura + "'";
+
+                                                bool estaAct = Conexion.SQLUpdate(SqlFacturas);
+
+
+                                            }
+                                            else
+                                            {
+                                                Utils.Titulo01 = "Control de importación";
+                                                Utils.Informa = "La factura " + NumFactura + " no existe, no pertenece a la entidad" + "\r";
+                                                Utils.Informa += cboNameEntidades.Text + ", ";
+                                                Utils.Informa += "o no se encuentra en el rango de fechas definido" + "\r";
+                                                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                            }
+                                        }
+                                    }
+                                } while (reader.NextResult());
+
+                            }
+                        }
+
+
+
+                        Utils.SqlDatos = "SELECT [Datos de las facturas realizadas].NumFactura, Format([FechaFac],'dd-MMM-yyyy') AS FD " +
+                        "FROM [ACDATOXPSQL].[dbo].[Datos cuentas de consumos] INNER JOIN [ACDATOXPSQL].[dbo].[Datos de las facturas realizadas] ON " +
+                        "[Datos cuentas de consumos].CuenNum = [Datos de las facturas realizadas].NumCuenFac " +
+                        "WHERE [Datos de las facturas realizadas].Cartercero ='" + Coenti01 + "' AND " +
+                        "[Datos de las facturas realizadas].ExpoRips = 1 AND " +
+                        "[Datos de las facturas realizadas].CodSele ='" + UsSel + "' AND " +
+                        "[Datos de las facturas realizadas].FechaFac >= CONVERT(DATETIME, '" + Fec1Sql + "', 102) AND " +
+                        "[Datos de las facturas realizadas].FechaFac <= CONVERT(DATETIME, '" + Fec2Sql + "', 102) AND " +
+                        "[Datos de las facturas realizadas].AnuladaFac = 0 AND " +
+                        "[Datos cuentas de consumos].DefiCuenta <>'0' " +
+                        "ORDER BY [Datos de las facturas realizadas].FechaFac, [Datos de las facturas realizadas].NumFactura; ";
+
+                        DataSet sqlDataSet = Conexion.SQLDataSet(Utils.SqlDatos);
+
+
+                        if (sqlDataSet.Tables.Count > 0)
+                        {
+                            DataGridDestino.DataSource = null;
+                            DataGridDestino.DataSource = sqlDataSet.Tables[0];
+                        }
+
+                        CalcularTotalFactura();
+
+                    }
+
+                }//PREGUNTA
+
+              
+
+            }
+            catch (Exception ex)
+            {
+                Utils.Titulo01 = "Control de errores de ejecución";
+                Utils.Informa = "Lo siento pero se ha presentado un error" + "\r";
+                Utils.Informa += "después de dar click en importar " + "\r";
+                Utils.Informa += "Error: " + ex.Message + " - " + ex.StackTrace;
+                MessageBox.Show(Utils.Informa, Utils.Titulo01, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

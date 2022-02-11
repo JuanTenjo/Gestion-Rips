@@ -36,6 +36,9 @@
     <ApplicationIcon>SIIGHOSPLUSICONO.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ExcelDataReader, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.3.6.0\lib\net45\ExcelDataReader.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1440.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
@@ -62,6 +65,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -398,6 +402,7 @@
     <None Include="Resources\icons8-agrupar-objetos-30.png" />
     <None Include="Imagenes\icons8-casilla-de-verificación-marcada-25.png" />
     <None Include="Imagenes\icons8-casilla-de-verificación-desactivada-25.png" />
+    <None Include="Resources\fondo.JPG" />
     <Content Include="SIIGHOSPLUSICONO.ico" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">

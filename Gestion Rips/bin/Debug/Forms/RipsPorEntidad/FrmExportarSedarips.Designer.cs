@@ -105,6 +105,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.lblTipoRips = new System.Windows.Forms.Label();
             this.BarraSeleccionar = new System.Windows.Forms.ProgressBar();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.BtnImportar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -414,7 +415,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.btnMostrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSeaGreen;
             this.btnMostrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
             this.btnMostrar.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMostrar.Location = new System.Drawing.Point(6, 25);
+            this.btnMostrar.Location = new System.Drawing.Point(6, 12);
             this.btnMostrar.Name = "btnMostrar";
             this.btnMostrar.Size = new System.Drawing.Size(76, 28);
             this.btnMostrar.TabIndex = 14;
@@ -429,7 +430,7 @@ namespace Gestion_Rips.Forms.Exportar
             this.btnLimpiar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSeaGreen;
             this.btnLimpiar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
             this.btnLimpiar.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Location = new System.Drawing.Point(6, 62);
+            this.btnLimpiar.Location = new System.Drawing.Point(6, 45);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(76, 28);
             this.btnLimpiar.TabIndex = 15;
@@ -1047,6 +1048,7 @@ namespace Gestion_Rips.Forms.Exportar
             // 
             // groupBox8
             // 
+            this.groupBox8.Controls.Add(this.BtnImportar);
             this.groupBox8.Controls.Add(this.btnMostrar);
             this.groupBox8.Controls.Add(this.btnLimpiar);
             this.groupBox8.Location = new System.Drawing.Point(370, 67);
@@ -1055,12 +1057,27 @@ namespace Gestion_Rips.Forms.Exportar
             this.groupBox8.TabIndex = 21;
             this.groupBox8.TabStop = false;
             // 
+            // BtnImportar
+            // 
+            this.BtnImportar.BackColor = System.Drawing.SystemColors.Control;
+            this.BtnImportar.FlatAppearance.BorderSize = 0;
+            this.BtnImportar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSeaGreen;
+            this.BtnImportar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSeaGreen;
+            this.BtnImportar.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnImportar.Location = new System.Drawing.Point(6, 79);
+            this.BtnImportar.Name = "BtnImportar";
+            this.BtnImportar.Size = new System.Drawing.Size(76, 28);
+            this.BtnImportar.TabIndex = 16;
+            this.BtnImportar.Text = "&Importar";
+            this.BtnImportar.UseVisualStyleBackColor = false;
+            this.BtnImportar.Click += new System.EventHandler(this.BtnImportar_Click);
+            // 
             // FrmExportarSedarips
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(848, 524);
+            this.ClientSize = new System.Drawing.Size(846, 525);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.BarraSeleccionar);
@@ -1176,5 +1193,6 @@ namespace Gestion_Rips.Forms.Exportar
         private System.Windows.Forms.Button BtnCerrar;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.Button BtnImportar;
     }
 }

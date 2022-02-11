@@ -4092,8 +4092,8 @@ namespace Gestion_Rips.Forms.RipsTodos
                     if (Estado == 1)
                     {
                         CantidadFactMarcadas += 1;
-                        TolFacturadoMarca = TolFacturadoMarca + Convert.ToDecimal(Row.Cells["VrFactura"].Value);
-                        TolCopagoMarca = TolCopagoMarca + Convert.ToDecimal(Row.Cells["VrCopago"].Value);
+                        TolFacturadoMarca +=  + Convert.ToDecimal(Row.Cells["VrFactura"].Value);
+                        TolCopagoMarca += Convert.ToDecimal(Row.Cells["VrCopago"].Value);
                     }
 
                     CantidadFact += 1;
